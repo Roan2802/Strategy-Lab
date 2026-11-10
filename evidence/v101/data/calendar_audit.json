@@ -1,0 +1,789 @@
+{
+ "XAUUSD": {
+  "timezone": "America/New_York",
+  "rows": 718568,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00",
+     "18:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-17:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "18:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 417,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 729900,
+   "observed_minutes": 718568,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 11332,
+   "coverage_pct": 98.447,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18",
+   "2025-12-25",
+   "2026-01-01",
+   "2026-04-03"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "EURUSD": {
+  "timezone": "America/New_York",
+  "rows": 757018,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-17:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "17:00-24:00"
+    ],
+    "daylight_time": [
+     "17:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 419,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 761580,
+   "observed_minutes": 757018,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 4562,
+   "coverage_pct": 99.401,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2025-01-01",
+   "2026-01-01"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "GBPUSD": {
+  "timezone": "America/New_York",
+  "rows": 757018,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-17:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "17:00-24:00"
+    ],
+    "daylight_time": [
+     "17:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 419,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 761580,
+   "observed_minutes": 757018,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 4562,
+   "coverage_pct": 99.401,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2025-01-01",
+   "2026-01-01"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "USDJPY": {
+  "timezone": "America/New_York",
+  "rows": 757018,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-17:00"
+    ],
+    "daylight_time": [
+     "00:00-17:00"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "17:00-24:00"
+    ],
+    "daylight_time": [
+     "17:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 419,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 761580,
+   "observed_minutes": 757018,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 4562,
+   "coverage_pct": 99.401,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2025-01-01",
+   "2026-01-01"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "USA30IDXUSD": {
+  "timezone": "America/New_York",
+  "rows": 694207,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:14:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-16:15"
+    ],
+    "daylight_time": [
+     "00:00-16:15"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "18:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 417,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 729900,
+   "observed_minutes": 694207,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 35693,
+   "coverage_pct": 95.11,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18",
+   "2025-12-25",
+   "2026-01-01",
+   "2026-04-03"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "US500": {
+  "timezone": "America/New_York",
+  "rows": 694207,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:14:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-16:15"
+    ],
+    "daylight_time": [
+     "00:00-16:15"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "18:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 417,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 729900,
+   "observed_minutes": 694207,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 35693,
+   "coverage_pct": 95.11,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18",
+   "2025-12-25",
+   "2026-01-01",
+   "2026-04-03"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "USATECHIDXUSD": {
+  "timezone": "America/New_York",
+  "rows": 694207,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 20:14:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-16:15",
+     "18:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-16:15"
+    ],
+    "daylight_time": [
+     "00:00-16:15"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [
+     "18:00-24:00"
+    ],
+    "daylight_time": [
+     "18:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": -5.0,
+  "days_daylight_time": 417,
+  "utc_offset_daylight_time": -4.0,
+  "configured_vs_data": {
+   "expected_minutes": 729900,
+   "observed_minutes": 694207,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 35693,
+   "coverage_pct": 95.11,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18",
+   "2025-12-25",
+   "2026-01-01",
+   "2026-04-03"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "DE40": {
+  "timezone": "Europe/Berlin",
+  "rows": 696047,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 19:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-22:15"
+    ],
+    "daylight_time": [
+     "00:00-22:15"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-22:15"
+    ],
+    "daylight_time": [
+     "00:00-22:15"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-22:15"
+    ],
+    "daylight_time": [
+     "00:00-22:15"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-22:15"
+    ],
+    "daylight_time": [
+     "00:00-22:15"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-22:00"
+    ],
+    "daylight_time": [
+     "00:00-22:00"
+    ]
+   },
+   "5": {
+    "standard_time": [],
+    "daylight_time": []
+   },
+   "6": {
+    "standard_time": [],
+    "daylight_time": []
+   }
+  },
+  "days_standard_time": 216,
+  "utc_offset_standard_time": 1.0,
+  "days_daylight_time": 307,
+  "utc_offset_daylight_time": 2.0,
+  "configured_vs_data": {
+   "expected_minutes": 704505,
+   "observed_minutes": 696047,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 8458,
+   "coverage_pct": 98.799,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18",
+   "2025-12-25",
+   "2026-01-01",
+   "2026-04-03"
+  ],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ },
+ "BTCUSD": {
+  "timezone": "UTC",
+  "rows": 1061398,
+  "range": [
+   "2024-10-01 00:00:00+00:00",
+   "2026-10-09 23:59:00+00:00"
+  ],
+  "derived": {
+   "0": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "1": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "2": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "3": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "4": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "5": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   },
+   "6": {
+    "standard_time": [
+     "00:00-24:00"
+    ],
+    "daylight_time": [
+     "00:00-24:00"
+    ]
+   }
+  },
+  "days_standard_time": 739,
+  "utc_offset_standard_time": 0.0,
+  "days_daylight_time": 739,
+  "utc_offset_daylight_time": 0.0,
+  "configured_vs_data": {
+   "expected_minutes": 1064160,
+   "observed_minutes": 1061398,
+   "observed_outside_calendar": 0,
+   "expected_but_absent": 2762,
+   "coverage_pct": 99.74,
+   "outside_pct_of_observed": 0.0
+  },
+  "whole_days_expected_but_no_data_(holiday_candidates)": [],
+  "days_with_bars_outside_calendar": {
+   "count": 0,
+   "worst": {}
+  }
+ }
+}

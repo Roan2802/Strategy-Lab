@@ -1,0 +1,95 @@
+{
+  "audited_at": "2026-11-10T13:58:38+00:00",
+  "machine": "PCROAN2025",
+  "task_name": "Dukascopy Strategy Lab Daily Sync",
+  "before_changes": {
+    "registered": true,
+    "enabled": true,
+    "state": "Ready",
+    "run_as": "Roanv, logon type Interactive only (runs while the user is signed in, app open or closed; not when signed out)",
+    "action": "C:\\Python311\\pythonw.exe -m strategy_lab.daily_sync --config strategy_lab\\daily_sync.local.json",
+    "triggers": [
+      "Time trigger, repeat every 30 min indefinitely (anchor 2026-11-09 10:20:15, drifted on every reinstall)",
+      "At logon"
+    ],
+    "StartWhenAvailable": true,
+    "WakeToRun": false,
+    "MultipleInstances": "IgnoreNew",
+    "ExecutionTimeLimit": "PT2H",
+    "DisallowStartIfOnBatteries": false,
+    "RunOnlyIfNetworkAvailable": false,
+    "last_run_local": "2026-11-10 14:20:16",
+    "last_result": 1,
+    "last_result_meaning": "exit code 1 = run finished with days still waiting (RETRY: provider 503/unreachable, DE40 calendar mismatch). Not a crash.",
+    "missed_runs": 0,
+    "findings": [
+      "Task existed and was healthy; catch-up after a missed start was already on (StartWhenAvailable).",
+      "Last Result 1 on every run looked like a failure in Task Scheduler although it only meant 'retry later'.",
+      "The task ran the full sync on every tick; request volume was already bounded by stored backoff, but nothing decided whether a fetch was needed at all.",
+      "Install script anchored the repeat at now+1 min on each run, so reinstalling shifted the schedule.",
+      "No wall-clock-jump detection: after laptop sleep the in-app worker kept waiting out its remaining idle timer."
+    ],
+    "in_app_trickle": {
+      "running": true,
+      "note": "alive in the server on port 8767 (busy 20 s / idle 900 s); had no heartbeat field"
+    }
+  },
+  "changes_made_on_machine": [
+    "Re-registered the same task name (Register-ScheduledTask -Force): action now `pythonw -m strategy_lab.data_check --scheduled --config ...`",
+    "Triggers: repeat every 30 min from a fixed anchor (00:00:15 local) + at logon; StartWhenAvailable kept, WakeToRun false, IgnoreNew, 2 h limit, restart 3x/5 min on failure",
+    "Previous definition exported to evidence/v10/data/scheduled_task_previous.xml (rollback: Register-ScheduledTask -Xml)",
+    "Scheduled runs now exit 0 when finished (days waiting is not a failure); non-zero means a real crash",
+    "No second task was added: one gated 30-minute task replaces 'daily + periodic' (a second one would only duplicate the lock-protected sync)"
+  ],
+  "after_changes": {
+    "scheduler": {
+      "installed": true,
+      "enabled": true,
+      "state": "Ready",
+      "last_run": "2026-11-10T13:52:47.0000000Z",
+      "last_run_age_s": 349,
+      "last_result": 0,
+      "last_result_class": "OK",
+      "last_result_nl": "geslaagd",
+      "next_run": "2026-11-10T14:00:15.0000000Z",
+      "catch_up": true,
+      "wake_to_run": false,
+      "missed_runs": 0,
+      "triggers": [
+        "MSFT_TaskTimeTrigger",
+        "MSFT_TaskLogonTrigger"
+      ],
+      "stale": false,
+      "runs_when_app_closed": true,
+      "error": null
+    },
+    "worker_in_server": {
+      "alive": true,
+      "state": "STARTING",
+      "heartbeat_age_s": null,
+      "stuck": false,
+      "requests": 0,
+      "filled": 0,
+      "last_error": null,
+      "checked_at": null,
+      "resumed_at": null,
+      "next_check_s": 20
+    },
+    "trickle": {
+      "running": true,
+      "state": "STARTING",
+      "requests": 0,
+      "filled": 0,
+      "heartbeat_at": null,
+      "resumed_at": null
+    },
+    "task_started_manually_once": "Start-ScheduledTask at 14:52:47 local -> LastTaskResult 0, ran with no app involvement",
+    "runs_when_app_closed": true,
+    "runs_when_signed_out": false,
+    "needs_wake": false
+  },
+  "remaining_limits": [
+    "Interactive-only logon: nothing runs while the Windows user is signed out (changing that needs a stored password or SYSTEM account; not done).",
+    "No wake timers: a sleeping PC fetches after it wakes (StartWhenAvailable)."
+  ]
+}

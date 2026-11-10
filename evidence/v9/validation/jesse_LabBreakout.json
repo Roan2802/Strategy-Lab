@@ -1,0 +1,3528 @@
+{
+ "name": "jesse_LabBreakout",
+ "request": {
+  "strategy": {
+   "kind": "jesse",
+   "name": "LabBreakout"
+  },
+  "symbol": "XAUUSD",
+  "timeframe": "M15",
+  "start": "2026-01-01",
+  "end": "2026-10-01",
+  "capital": 10000,
+  "holdout_percent": 20,
+  "fee": 0.0006,
+  "walk_forward": {
+   "enabled": true,
+   "mode": "rolling",
+   "train_days": 60,
+   "test_days": 20,
+   "step_days": 20,
+   "max_combos": 4,
+   "min_trades": 10
+  },
+  "stability": {
+   "enabled": true
+  },
+  "pbo": {
+   "enabled": true,
+   "max_combos": 4
+  },
+  "monte_carlo": {
+   "n": 1000,
+   "method": "block_bootstrap"
+  }
+ },
+ "started_at": "2026-11-09T20:13:29.662970+00:00",
+ "finished_at": "2026-11-09T20:20:17.180294+00:00",
+ "wall_seconds": 407.5,
+ "progress_log": [
+  {
+   "t": 0.0,
+   "p": 0.01,
+   "m": "Strategie en Dukascopy-data laden"
+  },
+  {
+   "t": 1.2,
+   "p": 0.02,
+   "m": "Basisbacktest op de ontwikkelperiode"
+  },
+  {
+   "t": 11.3,
+   "p": 0.08,
+   "m": "Kostenstress: scenario baseline (1/3)"
+  },
+  {
+   "t": 11.3,
+   "p": 0.107,
+   "m": "Kostenstress: scenario fee ×1,5 (2/3)"
+  },
+  {
+   "t": 21.5,
+   "p": 0.133,
+   "m": "Kostenstress: scenario fee ×2 (3/3)"
+  },
+  {
+   "t": 31.7,
+   "p": 0.16,
+   "m": "Walk-forward venster 1/7, combinatie 1/4"
+  },
+  {
+   "t": 36.7,
+   "p": 0.171,
+   "m": "Walk-forward venster 1/7, combinatie 2/4"
+  },
+  {
+   "t": 45.0,
+   "p": 0.182,
+   "m": "Walk-forward venster 1/7, combinatie 3/4"
+  },
+  {
+   "t": 49.8,
+   "p": 0.193,
+   "m": "Walk-forward venster 1/7, combinatie 4/4"
+  },
+  {
+   "t": 54.7,
+   "p": 0.205,
+   "m": "Walk-forward venster 1/7, test op ongeziene data"
+  },
+  {
+   "t": 58.6,
+   "p": 0.216,
+   "m": "Walk-forward venster 2/7, combinatie 1/4"
+  },
+  {
+   "t": 63.6,
+   "p": 0.227,
+   "m": "Walk-forward venster 2/7, combinatie 2/4"
+  },
+  {
+   "t": 68.4,
+   "p": 0.238,
+   "m": "Walk-forward venster 2/7, combinatie 3/4"
+  },
+  {
+   "t": 73.1,
+   "p": 0.249,
+   "m": "Walk-forward venster 2/7, combinatie 4/4"
+  },
+  {
+   "t": 77.8,
+   "p": 0.26,
+   "m": "Walk-forward venster 2/7, test op ongeziene data"
+  },
+  {
+   "t": 82.1,
+   "p": 0.271,
+   "m": "Walk-forward venster 3/7, combinatie 1/4"
+  },
+  {
+   "t": 87.0,
+   "p": 0.283,
+   "m": "Walk-forward venster 3/7, combinatie 2/4"
+  },
+  {
+   "t": 91.7,
+   "p": 0.294,
+   "m": "Walk-forward venster 3/7, combinatie 3/4"
+  },
+  {
+   "t": 96.4,
+   "p": 0.305,
+   "m": "Walk-forward venster 3/7, combinatie 4/4"
+  },
+  {
+   "t": 101.1,
+   "p": 0.316,
+   "m": "Walk-forward venster 3/7, test op ongeziene data"
+  },
+  {
+   "t": 104.6,
+   "p": 0.327,
+   "m": "Walk-forward venster 4/7, combinatie 1/4"
+  },
+  {
+   "t": 109.4,
+   "p": 0.338,
+   "m": "Walk-forward venster 4/7, combinatie 2/4"
+  },
+  {
+   "t": 114.1,
+   "p": 0.349,
+   "m": "Walk-forward venster 4/7, combinatie 3/4"
+  },
+  {
+   "t": 118.8,
+   "p": 0.361,
+   "m": "Walk-forward venster 4/7, combinatie 4/4"
+  },
+  {
+   "t": 123.6,
+   "p": 0.372,
+   "m": "Walk-forward venster 4/7, test op ongeziene data"
+  },
+  {
+   "t": 127.0,
+   "p": 0.383,
+   "m": "Walk-forward venster 5/7, combinatie 1/4"
+  },
+  {
+   "t": 131.8,
+   "p": 0.394,
+   "m": "Walk-forward venster 5/7, combinatie 2/4"
+  },
+  {
+   "t": 138.9,
+   "p": 0.405,
+   "m": "Walk-forward venster 5/7, combinatie 3/4"
+  },
+  {
+   "t": 144.0,
+   "p": 0.416,
+   "m": "Walk-forward venster 5/7, combinatie 4/4"
+  },
+  {
+   "t": 148.8,
+   "p": 0.427,
+   "m": "Walk-forward venster 5/7, test op ongeziene data"
+  },
+  {
+   "t": 152.4,
+   "p": 0.439,
+   "m": "Walk-forward venster 6/7, combinatie 1/4"
+  },
+  {
+   "t": 157.6,
+   "p": 0.45,
+   "m": "Walk-forward venster 6/7, combinatie 2/4"
+  },
+  {
+   "t": 162.3,
+   "p": 0.461,
+   "m": "Walk-forward venster 6/7, combinatie 3/4"
+  },
+  {
+   "t": 167.0,
+   "p": 0.472,
+   "m": "Walk-forward venster 6/7, combinatie 4/4"
+  },
+  {
+   "t": 171.7,
+   "p": 0.483,
+   "m": "Walk-forward venster 6/7, test op ongeziene data"
+  },
+  {
+   "t": 175.3,
+   "p": 0.494,
+   "m": "Walk-forward venster 7/7, combinatie 1/4"
+  },
+  {
+   "t": 180.1,
+   "p": 0.505,
+   "m": "Walk-forward venster 7/7, combinatie 2/4"
+  },
+  {
+   "t": 184.7,
+   "p": 0.517,
+   "m": "Walk-forward venster 7/7, combinatie 3/4"
+  },
+  {
+   "t": 189.3,
+   "p": 0.528,
+   "m": "Walk-forward venster 7/7, combinatie 4/4"
+  },
+  {
+   "t": 193.9,
+   "p": 0.539,
+   "m": "Walk-forward venster 7/7, test op ongeziene data"
+  },
+  {
+   "t": 197.3,
+   "p": 0.55,
+   "m": "Parameterstabiliteit 1/15: basis"
+  },
+  {
+   "t": 207.5,
+   "p": 0.559,
+   "m": "Parameterstabiliteit 2/15: {'entry_interval': 54}"
+  },
+  {
+   "t": 217.8,
+   "p": 0.567,
+   "m": "Parameterstabiliteit 3/15: {'entry_interval': 66}"
+  },
+  {
+   "t": 227.8,
+   "p": 0.576,
+   "m": "Parameterstabiliteit 4/15: {'ema_period': 18}"
+  },
+  {
+   "t": 238.0,
+   "p": 0.585,
+   "m": "Parameterstabiliteit 5/15: {'ema_period': 22}"
+  },
+  {
+   "t": 248.0,
+   "p": 0.593,
+   "m": "Parameterstabiliteit 6/15: {'max_bar_range': 22.5}"
+  },
+  {
+   "t": 258.0,
+   "p": 0.602,
+   "m": "Parameterstabiliteit 7/15: {'max_bar_range': 27.5}"
+  },
+  {
+   "t": 268.1,
+   "p": 0.611,
+   "m": "Parameterstabiliteit 8/15: {'stop_distance': 0.9}"
+  },
+  {
+   "t": 278.1,
+   "p": 0.619,
+   "m": "Parameterstabiliteit 9/15: {'stop_distance': 1.1}"
+  },
+  {
+   "t": 288.7,
+   "p": 0.628,
+   "m": "Parameterstabiliteit 10/15: {'target_distance': 0.9}"
+  },
+  {
+   "t": 298.7,
+   "p": 0.637,
+   "m": "Parameterstabiliteit 11/15: {'target_distance': 1.1}"
+  },
+  {
+   "t": 308.9,
+   "p": 0.645,
+   "m": "Parameterstabiliteit 12/15: {'stop_offset': 0.09}"
+  },
+  {
+   "t": 319.1,
+   "p": 0.654,
+   "m": "Parameterstabiliteit 13/15: {'stop_offset': 0.11000000000000001}"
+  },
+  {
+   "t": 329.0,
+   "p": 0.663,
+   "m": "Parameterstabiliteit 14/15: {'pending_expiry_bars': 4}"
+  },
+  {
+   "t": 339.0,
+   "p": 0.671,
+   "m": "Parameterstabiliteit 15/15: {'pending_expiry_bars': 6}"
+  },
+  {
+   "t": 348.7,
+   "p": 0.68,
+   "m": "PBO/CSCV combinatie 1/4"
+  },
+  {
+   "t": 348.7,
+   "p": 0.71,
+   "m": "PBO/CSCV combinatie 2/4"
+  },
+  {
+   "t": 358.1,
+   "p": 0.74,
+   "m": "PBO/CSCV combinatie 3/4"
+  },
+  {
+   "t": 367.6,
+   "p": 0.77,
+   "m": "PBO/CSCV combinatie 4/4"
+  },
+  {
+   "t": 377.2,
+   "p": 0.81,
+   "m": "Monte Carlo, drop-best en jaaroverzicht op de echte trades"
+  },
+  {
+   "t": 377.2,
+   "p": 0.85,
+   "m": "Geprobeerde configuraties tellen en Sharpe-correcties (PSR/DSR/MinTRL)"
+  },
+  {
+   "t": 377.2,
+   "p": 0.86,
+   "m": "Opnieuw met futures-rekenmodel: 4 backtest(s) liepen nog op spot voordat de strategie shortposities opende; alle stappen worden opnieuw uitgevoerd met futures zodat elke vergelijking op hetzelfde rekenmodel berust."
+  },
+  {
+   "t": 377.2,
+   "p": 0.02,
+   "m": "Basisbacktest op de ontwikkelperiode"
+  },
+  {
+   "t": 377.2,
+   "p": 0.08,
+   "m": "Kostenstress: scenario baseline (1/3)"
+  },
+  {
+   "t": 377.2,
+   "p": 0.107,
+   "m": "Kostenstress: scenario fee ×1,5 (2/3)"
+  },
+  {
+   "t": 387.4,
+   "p": 0.133,
+   "m": "Kostenstress: scenario fee ×2 (3/3)"
+  },
+  {
+   "t": 398.0,
+   "p": 0.16,
+   "m": "Walk-forward venster 1/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.171,
+   "m": "Walk-forward venster 1/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.182,
+   "m": "Walk-forward venster 1/7, combinatie 3/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.193,
+   "m": "Walk-forward venster 1/7, combinatie 4/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.205,
+   "m": "Walk-forward venster 1/7, test op ongeziene data"
+  },
+  {
+   "t": 402.7,
+   "p": 0.216,
+   "m": "Walk-forward venster 2/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.227,
+   "m": "Walk-forward venster 2/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.238,
+   "m": "Walk-forward venster 2/7, combinatie 3/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.249,
+   "m": "Walk-forward venster 2/7, combinatie 4/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.26,
+   "m": "Walk-forward venster 2/7, test op ongeziene data"
+  },
+  {
+   "t": 402.7,
+   "p": 0.271,
+   "m": "Walk-forward venster 3/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.283,
+   "m": "Walk-forward venster 3/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.294,
+   "m": "Walk-forward venster 3/7, combinatie 3/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.305,
+   "m": "Walk-forward venster 3/7, combinatie 4/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.316,
+   "m": "Walk-forward venster 3/7, test op ongeziene data"
+  },
+  {
+   "t": 402.7,
+   "p": 0.327,
+   "m": "Walk-forward venster 4/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.338,
+   "m": "Walk-forward venster 4/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.349,
+   "m": "Walk-forward venster 4/7, combinatie 3/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.361,
+   "m": "Walk-forward venster 4/7, combinatie 4/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.372,
+   "m": "Walk-forward venster 4/7, test op ongeziene data"
+  },
+  {
+   "t": 402.7,
+   "p": 0.383,
+   "m": "Walk-forward venster 5/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.394,
+   "m": "Walk-forward venster 5/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.405,
+   "m": "Walk-forward venster 5/7, combinatie 3/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.416,
+   "m": "Walk-forward venster 5/7, combinatie 4/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.427,
+   "m": "Walk-forward venster 5/7, test op ongeziene data"
+  },
+  {
+   "t": 402.7,
+   "p": 0.439,
+   "m": "Walk-forward venster 6/7, combinatie 1/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.45,
+   "m": "Walk-forward venster 6/7, combinatie 2/4"
+  },
+  {
+   "t": 402.7,
+   "p": 0.461,
+   "m": "Walk-forward venster 6/7, combinatie 3/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.472,
+   "m": "Walk-forward venster 6/7, combinatie 4/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.483,
+   "m": "Walk-forward venster 6/7, test op ongeziene data"
+  },
+  {
+   "t": 402.8,
+   "p": 0.494,
+   "m": "Walk-forward venster 7/7, combinatie 1/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.505,
+   "m": "Walk-forward venster 7/7, combinatie 2/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.517,
+   "m": "Walk-forward venster 7/7, combinatie 3/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.528,
+   "m": "Walk-forward venster 7/7, combinatie 4/4"
+  },
+  {
+   "t": 402.8,
+   "p": 0.539,
+   "m": "Walk-forward venster 7/7, test op ongeziene data"
+  },
+  {
+   "t": 402.8,
+   "p": 0.55,
+   "m": "Parameterstabiliteit 1/15: basis"
+  },
+  {
+   "t": 402.8,
+   "p": 0.559,
+   "m": "Parameterstabiliteit 2/15: {'entry_interval': 54}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.567,
+   "m": "Parameterstabiliteit 3/15: {'entry_interval': 66}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.576,
+   "m": "Parameterstabiliteit 4/15: {'ema_period': 18}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.585,
+   "m": "Parameterstabiliteit 5/15: {'ema_period': 22}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.593,
+   "m": "Parameterstabiliteit 6/15: {'max_bar_range': 22.5}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.602,
+   "m": "Parameterstabiliteit 7/15: {'max_bar_range': 27.5}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.611,
+   "m": "Parameterstabiliteit 8/15: {'stop_distance': 0.9}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.619,
+   "m": "Parameterstabiliteit 9/15: {'stop_distance': 1.1}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.628,
+   "m": "Parameterstabiliteit 10/15: {'target_distance': 0.9}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.637,
+   "m": "Parameterstabiliteit 11/15: {'target_distance': 1.1}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.645,
+   "m": "Parameterstabiliteit 12/15: {'stop_offset': 0.09}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.654,
+   "m": "Parameterstabiliteit 13/15: {'stop_offset': 0.11000000000000001}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.663,
+   "m": "Parameterstabiliteit 14/15: {'pending_expiry_bars': 4}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.671,
+   "m": "Parameterstabiliteit 15/15: {'pending_expiry_bars': 6}"
+  },
+  {
+   "t": 402.8,
+   "p": 0.68,
+   "m": "PBO/CSCV combinatie 1/4"
+  },
+  {
+   "t": 402.9,
+   "p": 0.71,
+   "m": "PBO/CSCV combinatie 2/4"
+  },
+  {
+   "t": 402.9,
+   "p": 0.74,
+   "m": "PBO/CSCV combinatie 3/4"
+  },
+  {
+   "t": 402.9,
+   "p": 0.77,
+   "m": "PBO/CSCV combinatie 4/4"
+  },
+  {
+   "t": 402.9,
+   "p": 0.81,
+   "m": "Monte Carlo, drop-best en jaaroverzicht op de echte trades"
+  },
+  {
+   "t": 402.9,
+   "p": 0.85,
+   "m": "Geprobeerde configuraties tellen en Sharpe-correcties (PSR/DSR/MinTRL)"
+  },
+  {
+   "t": 402.9,
+   "p": 0.88,
+   "m": "Onaangeroerde holdout (eenmalig)"
+  },
+  {
+   "t": 407.5,
+   "p": 0.95,
+   "m": "Scorecard en rapport"
+  },
+  {
+   "t": 407.5,
+   "p": 1.0,
+   "m": "Klaar"
+  }
+ ],
+ "scorecard": {
+  "verdict": "REJECT",
+  "checks": [
+   {
+    "name": "sample_size",
+    "status": "PASS",
+    "value": 111,
+    "threshold": 100,
+    "explanation_nl": "111 trades; minimaal 100 nodig voor betekenisvolle statistiek."
+   },
+   {
+    "name": "net_after_costs",
+    "status": "FAIL",
+    "value": -627.3335325999994,
+    "threshold": 0.0,
+    "explanation_nl": "Netto resultaat na kosten is niet positief: harde afwijzing."
+   },
+   {
+    "name": "profit_factor",
+    "status": "FAIL",
+    "value": 0.0,
+    "threshold": 1.2,
+    "explanation_nl": "Profit factor 0.00 (drempel 1.2)."
+   },
+   {
+    "name": "max_drawdown",
+    "status": "PASS",
+    "value": 6.273335326000029,
+    "threshold": 30.0,
+    "explanation_nl": "Maximale drawdown 6.3% (limiet 30.0%)."
+   },
+   {
+    "name": "psr",
+    "status": "FAIL",
+    "value": 1.6074414154057673e-47,
+    "threshold": 0.95,
+    "explanation_nl": "PSR = 0.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "dsr",
+    "status": "FAIL",
+    "value": 2.4244324449148794e-183,
+    "threshold": 0.95,
+    "explanation_nl": "DSR = 0.000 bij 163 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "pbo",
+    "status": "PASS",
+    "value": 0.05714285714285714,
+    "threshold": 0.5,
+    "explanation_nl": "Kans op backtest-overfitting 0.06 (max 0.5)."
+   },
+   {
+    "name": "walk_forward_efficiency",
+    "status": "INSUFFICIENT_EVIDENCE",
+    "value": null,
+    "threshold": 0.5,
+    "explanation_nl": "Walk-forward efficiency niet berekenbaar: te weinig geldige vensters."
+   },
+   {
+    "name": "oos_profitability",
+    "status": "FAIL",
+    "value": -273.9598743999985,
+    "threshold": 0.0,
+    "explanation_nl": "Out-of-sample resultaat niet positief of niet consistent over vensters."
+   },
+   {
+    "name": "cost_stress",
+    "status": "NOT_TESTED",
+    "value": null,
+    "threshold": 0.0,
+    "explanation_nl": "Niet getest: Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine."
+   },
+   {
+    "name": "parameter_stability",
+    "status": "FAIL",
+    "value": 0.0,
+    "threshold": 0.7,
+    "explanation_nl": "0% van de naburige parameterwaarden is winstgevend."
+   },
+   {
+    "name": "drop_best_trades",
+    "status": "FAIL",
+    "value": -615.7908789999993,
+    "threshold": 0.0,
+    "explanation_nl": "Zonder de beste 3 trades is het resultaat niet meer positief."
+   },
+   {
+    "name": "yearly_consistency",
+    "status": "INSUFFICIENT_EVIDENCE",
+    "value": 0.0,
+    "threshold": 0.6,
+    "explanation_nl": "Slechts 1 jaar data; minimaal 2 nodig."
+   }
+  ],
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "notes_nl": [
+   "Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, psr, dsr, oos_profitability, parameter_stability, drop_best_trades."
+  ],
+  "counts": {
+   "PASS": 3,
+   "FAIL": 7,
+   "INSUFFICIENT_EVIDENCE": 2,
+   "NOT_TESTED": 1
+  },
+  "disclaimer_nl": "Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs."
+ },
+ "evidence": {
+  "n_trades": 111,
+  "net_profit": -627.3335325999994,
+  "profit_factor": 0.0,
+  "max_drawdown_pct": 6.273335326000029,
+  "cost_stress": {
+   "scenarios": {
+    "baseline": {
+     "n_trades": 111,
+     "net_profit": -627.3335325999994,
+     "profit_factor": 0.0,
+     "win_rate": 0.0,
+     "max_drawdown": 627.3335325999996,
+     "max_drawdown_pct": 6.273335325999997,
+     "recovery_factor": -0.9999999999999998,
+     "sharpe": -16.103447157542472,
+     "sortino": -11.322945302565453,
+     "trades": 111,
+     "sharpe_daily": -16.103447157542472,
+     "engine_metrics": {
+      "total": 111,
+      "total_winning_trades": 0,
+      "total_losing_trades": 111,
+      "starting_balance": 10000.0,
+      "finishing_balance": 9372.6664674,
+      "win_rate": 0.0,
+      "win_rate_longs": 0.0,
+      "win_rate_shorts": 0.0,
+      "longs_count": 111,
+      "longs_percentage": 100.0,
+      "shorts_percentage": 0.0,
+      "shorts_count": 0,
+      "fee": 622.7965326000001,
+      "net_profit": -627.3335325999994,
+      "net_profit_percentage": -6.273335325999994,
+      "average_loss": 5.651653446846842,
+      "expectancy": -5.651653446846842,
+      "expectancy_percentage": -0.05651653446846842,
+      "expected_net_profit_every_100_trades": -5.651653446846842,
+      "average_holding_period": 111.35135135135135,
+      "average_losing_holding_period": 111.35135135135135,
+      "gross_profit": 0.0,
+      "gross_loss": -627.3335325999994,
+      "annualization": 365,
+      "max_drawdown": -6.273335326000029,
+      "max_underwater_period": 214.0,
+      "annual_return": -10.324653882359836,
+      "sharpe_ratio": -17.136466703556387,
+      "calmar_ratio": -1.6457997772841815,
+      "sortino_ratio": -12.812735223300573,
+      "smart_sharpe": -16.84619859000048,
+      "smart_sortino": -12.595705158287991,
+      "omega_ratio": 0.0,
+      "serenity_index": -0.010081273441223277,
+      "positive_months": 0,
+      "negative_months": 8,
+      "total_open_trades": 0,
+      "open_pl": 0.0,
+      "winning_streak": 0,
+      "losing_streak": 111,
+      "largest_losing_trade": -10.343663799999351,
+      "largest_winning_trade": 0.0,
+      "current_streak": -111,
+      "avg_trades_per_day": 0.5093674016335193,
+      "avg_trades_per_week": 3.5655718114346353,
+      "avg_trades_per_month": 15.505143705724329
+     },
+     "degradation": {
+      "net_profit_delta": 0.0,
+      "net_profit_rel": 0.0,
+      "profit_factor_delta": 0.0,
+      "n_trades_delta": 0
+     }
+    },
+    "fee ×1,5": {
+     "n_trades": 111,
+     "net_profit": -938.7317988999993,
+     "profit_factor": 0.0,
+     "win_rate": 0.0,
+     "max_drawdown": 938.7317988999995,
+     "max_drawdown_pct": 9.387317989000003,
+     "recovery_factor": -0.9999999999999998,
+     "sharpe": -16.383718918201815,
+     "sortino": -11.418478259106521,
+     "trades": 111,
+     "sharpe_daily": -16.383718918201815,
+     "engine_metrics": {
+      "total": 111,
+      "total_winning_trades": 0,
+      "total_losing_trades": 111,
+      "starting_balance": 10000.0,
+      "finishing_balance": 9061.268201100002,
+      "win_rate": 0.0,
+      "win_rate_longs": 0.0,
+      "win_rate_shorts": 0.0,
+      "longs_count": 111,
+      "longs_percentage": 100.0,
+      "shorts_percentage": 0.0,
+      "shorts_count": 0,
+      "fee": 934.1947988999998,
+      "net_profit": -938.7317988999993,
+      "net_profit_percentage": -9.387317988999992,
+      "average_loss": 8.457043233333327,
+      "expectancy": -8.457043233333327,
+      "expectancy_percentage": -0.08457043233333326,
+      "expected_net_profit_every_100_trades": -8.457043233333327,
+      "average_holding_period": 111.35135135135135,
+      "average_losing_holding_period": 111.35135135135135,
+      "gross_profit": 0.0,
+      "gross_loss": -938.7317988999993,
+      "annualization": 365,
+      "max_drawdown": -9.387317988999955,
+      "max_underwater_period": 214.0,
+      "annual_return": -15.27907491994065,
+      "sharpe_ratio": -17.44085855239692,
+      "calmar_ratio": -1.627629418524508,
+      "sortino_ratio": -12.937049026366255,
+      "smart_sharpe": -17.316690861510814,
+      "smart_sortino": -12.844945561410196,
+      "omega_ratio": 0.0,
+      "serenity_index": -0.010264223185160605,
+      "positive_months": 0,
+      "negative_months": 8,
+      "total_open_trades": 0,
+      "open_pl": 0.0,
+      "winning_streak": 0,
+      "losing_streak": 111,
+      "largest_losing_trade": -13.246995699999353,
+      "largest_winning_trade": 0.0,
+      "current_streak": -111,
+      "avg_trades_per_day": 0.5093674016335193,
+      "avg_trades_per_week": 3.5655718114346353,
+      "avg_trades_per_month": 15.505143705724329
+     },
+     "degradation": {
+      "net_profit_delta": -311.3982662999998,
+      "net_profit_rel": -0.4963839012548906,
+      "profit_factor_delta": 0.0,
+      "n_trades_delta": 0
+     }
+    },
+    "fee ×2": {
+     "n_trades": 111,
+     "net_profit": -1250.1300651999995,
+     "profit_factor": 0.0,
+     "win_rate": 0.0,
+     "max_drawdown": 1250.1300651999998,
+     "max_drawdown_pct": 12.50130065199999,
+     "recovery_factor": -0.9999999999999998,
+     "sharpe": -16.496322603838436,
+     "sortino": -11.45615147407212,
+     "trades": 111,
+     "sharpe_daily": -16.496322603838436,
+     "engine_metrics": {
+      "total": 111,
+      "total_winning_trades": 0,
+      "total_losing_trades": 111,
+      "starting_balance": 10000.0,
+      "finishing_balance": 8749.869934799995,
+      "win_rate": 0.0,
+      "win_rate_longs": 0.0,
+      "win_rate_shorts": 0.0,
+      "longs_count": 111,
+      "longs_percentage": 100.0,
+      "shorts_percentage": 0.0,
+      "shorts_count": 0,
+      "fee": 1245.5930652000002,
+      "net_profit": -1250.1300651999995,
+      "net_profit_percentage": -12.501300651999994,
+      "average_loss": 11.262433019819815,
+      "expectancy": -11.262433019819815,
+      "expectancy_percentage": -0.11262433019819813,
+      "expected_net_profit_every_100_trades": -11.262433019819813,
+      "average_holding_period": 111.35135135135135,
+      "average_losing_holding_period": 111.35135135135135,
+      "gross_profit": 0.0,
+      "gross_loss": -1250.1300651999995,
+      "annualization": 365,
+      "max_drawdown": -12.501300652000003,
+      "max_underwater_period": 214.0,
+      "annual_return": -20.118707524004876,
+      "sharpe_ratio": -17.588895502394664,
+      "calmar_ratio": -1.6093291477464158,
+      "sortino_ratio": -12.996443427452089,
+      "smart_sharpe": -17.575410427701396,
+      "smart_sortino": -12.986479299213215,
+      "omega_ratio": 0.0,
+      "serenity_index": -0.010542628295131659,
+      "positive_months": 0,
+      "negative_months": 8,
+      "total_open_trades": 0,
+      "open_pl": 0.0,
+      "winning_streak": 0,
+      "losing_streak": 111,
+      "largest_losing_trade": -16.15032759999935,
+      "largest_winning_trade": 0.0,
+      "current_streak": -111,
+      "avg_trades_per_day": 0.5093674016335193,
+      "avg_trades_per_week": 3.5655718114346353,
+      "avg_trades_per_month": 15.505143705724329
+     },
+     "degradation": {
+      "net_profit_delta": -622.7965326000001,
+      "net_profit_rel": -0.9927678025097819,
+      "profit_factor_delta": 0.0,
+      "n_trades_delta": 0
+     }
+    }
+   },
+   "baseline_net_profit": -627.3335325999994,
+   "survives_spread_50": null,
+   "all_positive": false,
+   "n_scenarios_positive": 0,
+   "status": "OK",
+   "unsupported": [
+    {
+     "name": "spread_+25%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "spread_+50%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    }
+   ]
+  },
+  "walk_forward": {
+   "n_windows": 7,
+   "n_windows_ok": 1,
+   "n_candidates": 4,
+   "wfe": null,
+   "oos_net_profit": -273.9598743999985,
+   "oos_n_trades": 44,
+   "oos_metrics": {
+    "n_trades": 44,
+    "net_profit": -273.9598743999985,
+    "profit_factor": 0.0,
+    "win_rate": 0.0,
+    "max_drawdown": 273.9598743999985,
+    "max_drawdown_pct": 2.739598743999977,
+    "recovery_factor": -1.0,
+    "sharpe": -12.912624049891837,
+    "sortino": -10.053239611425902
+   },
+   "oos_profitable_windows_frac": 0.0,
+   "windows": [
+    {
+     "train": [
+      "2026-01-01",
+      "2026-03-02"
+     ],
+     "test": [
+      "2026-03-02",
+      "2026-03-22"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 240,
+      "position_size": 1.0,
+      "ema_period": 68,
+      "max_bar_range": 100.0,
+      "stop_distance": 8.4,
+      "target_distance": 16.7,
+      "stop_offset": 5.0,
+      "pending_expiry_bars": 20
+     },
+     "train_metrics": {
+      "n_trades": 11,
+      "net_profit": -82.33417439999764,
+      "profit_factor": 0.28240105841636853,
+      "win_rate": 0.2727272727272727,
+      "max_drawdown": 82.33417439999764,
+      "max_drawdown_pct": 0.8233417439999721,
+      "recovery_factor": -1.0,
+      "sharpe": -5.128339616129253,
+      "sortino": -5.445355064425491,
+      "trades": 11,
+      "sharpe_daily": -5.128339616129253,
+      "engine_metrics": {
+       "total": 11,
+       "total_winning_trades": 3,
+       "total_losing_trades": 8,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9917.665825600006,
+       "win_rate": 0.2727272727272727,
+       "win_rate_longs": 0.2727272727272727,
+       "win_rate_shorts": 0.0,
+       "ratio_avg_win_loss": 0.7530694891103161,
+       "longs_count": 11,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 65.2341744,
+       "net_profit": -82.33417439999764,
+       "net_profit_percentage": -0.8233417439999764,
+       "average_win": 10.800488799999819,
+       "average_loss": 14.341955099999636,
+       "expectancy": -7.484924945454331,
+       "expectancy_percentage": -0.07484924945454331,
+       "expected_net_profit_every_100_trades": -7.484924945454331,
+       "average_holding_period": 5225.454545454545,
+       "average_winning_holding_period": 12860.0,
+       "average_losing_holding_period": 2362.5,
+       "gross_profit": 32.40146639999946,
+       "gross_loss": -114.73564079999709,
+       "annualization": 365,
+       "max_drawdown": -0.8233417439999502,
+       "max_underwater_period": 55.0,
+       "annual_return": -4.986043390609874,
+       "sharpe_ratio": -5.595056041620982,
+       "calmar_ratio": -6.055861283537903,
+       "sortino_ratio": -6.05107775597227,
+       "smart_sharpe": -5.122349363732697,
+       "smart_sortino": -5.539843401500881,
+       "omega_ratio": 0.28263778255075417,
+       "serenity_index": -0.14131043118081013,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 1,
+       "losing_streak": 4,
+       "largest_losing_trade": -14.646281999999637,
+       "largest_winning_trade": 11.335198399999818,
+       "current_streak": -1,
+       "avg_trades_per_day": 0.1863069124098752,
+       "avg_trades_per_week": 1.3041483868691264,
+       "avg_trades_per_month": 5.671182413756601
+      }
+     },
+     "test_metrics": {
+      "n_trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 0.0,
+      "max_drawdown_pct": 0.0,
+      "recovery_factor": 0.0,
+      "sharpe": 0.0,
+      "sortino": 0.0,
+      "trades": 0,
+      "sharpe_daily": 0.0,
+      "engine_metrics": {
+       "total": 0,
+       "win_rate": 0,
+       "net_profit_percentage": 0,
+       "annualization": 365
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2026-01-21",
+      "2026-03-22"
+     ],
+     "test": [
+      "2026-03-22",
+      "2026-04-11"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 240,
+      "position_size": 1.0,
+      "ema_period": 68,
+      "max_bar_range": 100.0,
+      "stop_distance": 8.4,
+      "target_distance": 16.7,
+      "stop_offset": 5.0,
+      "pending_expiry_bars": 20
+     },
+     "train_metrics": {
+      "n_trades": 10,
+      "net_profit": -94.77335599999745,
+      "profit_factor": 0.18068277993989781,
+      "win_rate": 0.2,
+      "max_drawdown": 94.77335599999743,
+      "max_drawdown_pct": 0.9477335599999788,
+      "recovery_factor": -1.0000000000000002,
+      "sharpe": -5.9203711107046555,
+      "sortino": -5.9675614318302515,
+      "trades": 10,
+      "sharpe_daily": -5.9203711107046555,
+      "engine_metrics": {
+       "total": 10,
+       "total_winning_trades": 2,
+       "total_losing_trades": 8,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9905.226644000004,
+       "win_rate": 0.2,
+       "win_rate_longs": 0.2,
+       "win_rate_shorts": 0.0,
+       "ratio_avg_win_loss": 0.7227311197595913,
+       "longs_count": 10,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 60.973355999999995,
+       "net_profit": -94.77335599999745,
+       "net_profit_percentage": -0.9477335599999744,
+       "average_win": 10.45011199999982,
+       "average_loss": 14.459197499999636,
+       "expectancy": -9.477335599999744,
+       "expectancy_percentage": -0.09477335599999745,
+       "expected_net_profit_every_100_trades": -9.477335599999744,
+       "average_holding_period": 2136.0,
+       "average_winning_holding_period": 3720.0,
+       "average_losing_holding_period": 1740.0,
+       "gross_profit": 20.90022399999964,
+       "gross_loss": -115.67357999999709,
+       "annualization": 365,
+       "max_drawdown": -0.9477335599999748,
+       "max_underwater_period": 56.0,
+       "annual_return": -5.816603202047976,
+       "sharpe_ratio": -6.372890477659474,
+       "calmar_ratio": -6.1373823272103305,
+       "sortino_ratio": -6.589536400630341,
+       "smart_sharpe": -5.988798079251349,
+       "smart_sortino": -6.19238681059921,
+       "omega_ratio": 0.18068053005088977,
+       "serenity_index": -0.1002634191528111,
+       "positive_months": 0,
+       "negative_months": 3,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 1,
+       "losing_streak": 4,
+       "largest_losing_trade": -14.625677999999636,
+       "largest_winning_trade": 10.514713999999818,
+       "current_streak": -3,
+       "avg_trades_per_day": 0.16984937662919758,
+       "avg_trades_per_week": 1.188945636404383,
+       "avg_trades_per_month": 5.170215024592775
+      }
+     },
+     "test_metrics": {
+      "n_trades": 4,
+      "net_profit": -55.83749159999854,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 55.83749159999854,
+      "max_drawdown_pct": 0.5583749159999934,
+      "recovery_factor": -1.0,
+      "sharpe": -12.295474847208,
+      "sortino": -10.039496013609698,
+      "trades": 4,
+      "sharpe_daily": -12.295474847208,
+      "engine_metrics": {
+       "total": 4,
+       "total_winning_trades": 0,
+       "total_losing_trades": 4,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9944.162508400004,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 4,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 22.237491600000002,
+       "net_profit": -55.83749159999854,
+       "net_profit_percentage": -0.5583749159999855,
+       "average_loss": 13.959372899999636,
+       "expectancy": -13.959372899999636,
+       "expectancy_percentage": -0.13959372899999636,
+       "expected_net_profit_every_100_trades": -13.959372899999636,
+       "average_holding_period": 2085.0,
+       "average_losing_holding_period": 2085.0,
+       "gross_profit": 0.0,
+       "gross_loss": -55.83749159999854,
+       "annualization": 365,
+       "max_drawdown": -0.5583749159999485,
+       "max_underwater_period": 16.0,
+       "annual_return": -10.733447395899221,
+       "sharpe_ratio": -11.642663396420831,
+       "calmar_ratio": -19.222653253822404,
+       "sortino_ratio": -10.569911391441465,
+       "smart_sharpe": -7.524821682326717,
+       "smart_sortino": -6.831486551697607,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.17461977054843472,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 4,
+       "largest_losing_trade": -14.140937999999636,
+       "largest_winning_trade": 0.0,
+       "current_streak": -4,
+       "avg_trades_per_day": 0.2109812827368961,
+       "avg_trades_per_week": 1.4768689791582728,
+       "avg_trades_per_month": 6.422270246511117
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2026-02-10",
+      "2026-04-11"
+     ],
+     "test": [
+      "2026-04-11",
+      "2026-05-01"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 60,
+      "position_size": 1.0,
+      "ema_period": 20,
+      "max_bar_range": 25.0,
+      "stop_distance": 1.0,
+      "target_distance": 1.0,
+      "stop_offset": 0.1,
+      "pending_expiry_bars": 5
+     },
+     "train_metrics": {
+      "n_trades": 31,
+      "net_profit": -174.8818212,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 174.8818212,
+      "max_drawdown_pct": 1.7488182120000055,
+      "recovery_factor": -1.0,
+      "sharpe": -16.913398109609496,
+      "sortino": -11.638383346572745,
+      "trades": 31,
+      "sharpe_daily": -16.913398109609496,
+      "engine_metrics": {
+       "total": 31,
+       "total_winning_trades": 0,
+       "total_losing_trades": 31,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9825.118178800003,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 31,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 183.8818212,
+       "net_profit": -174.8818212,
+       "net_profit_percentage": -1.7488182119999998,
+       "average_loss": 5.641349070967742,
+       "expectancy": -5.641349070967742,
+       "expectancy_percentage": -0.05641349070967742,
+       "expected_net_profit_every_100_trades": -5.641349070967742,
+       "average_holding_period": 189.67741935483872,
+       "average_losing_holding_period": 189.67741935483872,
+       "gross_profit": 0.0,
+       "gross_loss": -174.8818212,
+       "annualization": 365,
+       "max_drawdown": -1.7488182119999807,
+       "max_underwater_period": 58.0,
+       "annual_return": -10.340121029816697,
+       "sharpe_ratio": -17.231628542764465,
+       "calmar_ratio": -5.9126334337469775,
+       "sortino_ratio": -12.991049497538464,
+       "smart_sharpe": -16.20980422535919,
+       "smart_sortino": -12.22068874769661,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.03923225493739475,
+       "positive_months": 0,
+       "negative_months": 3,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 31,
+       "largest_losing_trade": -7.282845999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -31,
+       "avg_trades_per_day": 0.5177392978508716,
+       "avg_trades_per_week": 3.624175084956101,
+       "avg_trades_per_month": 15.759984226580531
+      }
+     },
+     "test_metrics": {
+      "n_trades": 10,
+      "net_profit": -58.96059199999999,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 58.96059199999999,
+      "max_drawdown_pct": 0.5896059199999945,
+      "recovery_factor": -1.0,
+      "sharpe": -20.172187659874375,
+      "sortino": -12.662572556824975,
+      "trades": 10,
+      "sharpe_daily": -20.172187659874375,
+      "engine_metrics": {
+       "total": 10,
+       "total_winning_trades": 0,
+       "total_losing_trades": 10,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9941.039407999999,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 10,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 56.96059199999999,
+       "net_profit": -58.96059199999999,
+       "net_profit_percentage": -0.5896059199999999,
+       "average_loss": 5.896059199999999,
+       "expectancy": -5.896059199999999,
+       "expectancy_percentage": -0.05896059199999999,
+       "expected_net_profit_every_100_trades": -5.896059199999999,
+       "average_holding_period": 84.0,
+       "average_losing_holding_period": 84.0,
+       "gross_profit": 0.0,
+       "gross_loss": -58.96059199999999,
+       "annualization": 365,
+       "max_drawdown": -0.5896059200000026,
+       "max_underwater_period": 18.0,
+       "annual_return": -11.30022499098634,
+       "sharpe_ratio": -20.462477523720075,
+       "calmar_ratio": -19.16572511854408,
+       "sortino_ratio": -14.651751060510122,
+       "smart_sharpe": -11.686368015766943,
+       "smart_sortino": -8.367791963120801,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.09080774154349806,
+       "positive_months": 0,
+       "negative_months": 1,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 10,
+       "largest_losing_trade": -6.810345999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -10,
+       "avg_trades_per_day": 0.5529741561383972,
+       "avg_trades_per_week": 3.8708190929687802,
+       "avg_trades_per_month": 16.83253331285281
+      }
+     },
+     "wfe": null,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2026-03-02",
+      "2026-05-01"
+     ],
+     "test": [
+      "2026-05-01",
+      "2026-05-21"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 60,
+      "position_size": 1.0,
+      "ema_period": 20,
+      "max_bar_range": 25.0,
+      "stop_distance": 1.0,
+      "target_distance": 1.0,
+      "stop_offset": 0.1,
+      "pending_expiry_bars": 5
+     },
+     "train_metrics": {
+      "n_trades": 24,
+      "net_profit": -143.170282,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 143.17028200000001,
+      "max_drawdown_pct": 1.4317028199999913,
+      "recovery_factor": -0.9999999999999998,
+      "sharpe": -14.77085491151911,
+      "sortino": -10.888788781165953,
+      "trades": 24,
+      "sharpe_daily": -14.77085491151911,
+      "engine_metrics": {
+       "total": 24,
+       "total_winning_trades": 0,
+       "total_losing_trades": 24,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9856.829718,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 24,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 139.170282,
+       "net_profit": -143.170282,
+       "net_profit_percentage": -1.43170282,
+       "average_loss": 5.965428416666666,
+       "expectancy": -5.965428416666666,
+       "expectancy_percentage": -0.05965428416666666,
+       "expected_net_profit_every_100_trades": -5.965428416666666,
+       "average_holding_period": 65.0,
+       "average_losing_holding_period": 65.0,
+       "gross_profit": 0.0,
+       "gross_loss": -143.170282,
+       "annualization": 365,
+       "max_drawdown": -1.4317028199999693,
+       "max_underwater_period": 52.0,
+       "annual_return": -8.39870189743116,
+       "sharpe_ratio": -14.19983909983275,
+       "calmar_ratio": -5.866232698648551,
+       "sortino_ratio": -11.581230679864758,
+       "smart_sharpe": -13.852604975220293,
+       "smart_sortino": -11.298030393665378,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.04615350234903063,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 24,
+       "largest_losing_trade": -7.255774000000001,
+       "largest_winning_trade": 0.0,
+       "current_streak": -24,
+       "avg_trades_per_day": 0.39999537042395344,
+       "avg_trades_per_week": 2.799967592967674,
+       "avg_trades_per_month": 12.175859075705143
+      }
+     },
+     "test_metrics": {
+      "n_trades": 9,
+      "net_profit": -52.90445759999999,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 52.90445759999999,
+      "max_drawdown_pct": 0.5290445759999967,
+      "recovery_factor": -1.0,
+      "sharpe": -14.038965649361769,
+      "sortino": -10.733716481537249,
+      "trades": 9,
+      "sharpe_daily": -14.038965649361769,
+      "engine_metrics": {
+       "total": 9,
+       "total_winning_trades": 0,
+       "total_losing_trades": 9,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9947.095542399997,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 9,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 49.90445759999999,
+       "net_profit": -52.90445759999999,
+       "net_profit_percentage": -0.5290445759999999,
+       "average_loss": 5.878273066666666,
+       "expectancy": -5.878273066666666,
+       "expectancy_percentage": -0.058782730666666665,
+       "expected_net_profit_every_100_trades": -5.878273066666666,
+       "average_holding_period": 73.33333333333333,
+       "average_losing_holding_period": 73.33333333333333,
+       "gross_profit": 0.0,
+       "gross_loss": -52.90445759999999,
+       "annualization": 365,
+       "max_drawdown": -0.5290445760000262,
+       "max_underwater_period": 20.0,
+       "annual_return": -9.226876186399169,
+       "sharpe_ratio": -14.402510477713793,
+       "calmar_ratio": -17.4406403637313,
+       "sortino_ratio": -12.062455137158667,
+       "smart_sharpe": -12.866784739467695,
+       "smart_sortino": -10.776247232693805,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.13408915539831906,
+       "positive_months": 0,
+       "negative_months": 1,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 9,
+       "largest_losing_trade": -6.638121999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -9,
+       "avg_trades_per_day": 0.44998437554251586,
+       "avg_trades_per_week": 3.149890628797611,
+       "avg_trades_per_month": 13.697524391514182
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2026-03-22",
+      "2026-05-21"
+     ],
+     "test": [
+      "2026-05-21",
+      "2026-06-10"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 60,
+      "position_size": 1.0,
+      "ema_period": 20,
+      "max_bar_range": 25.0,
+      "stop_distance": 1.0,
+      "target_distance": 1.0,
+      "stop_offset": 0.1,
+      "pending_expiry_bars": 5
+     },
+     "train_metrics": {
+      "n_trades": 24,
+      "net_profit": -132.99132399999996,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 132.99132400000002,
+      "max_drawdown_pct": 1.3299132400000053,
+      "recovery_factor": -0.9999999999999996,
+      "sharpe": -12.546502786595472,
+      "sortino": -9.918040256396822,
+      "trades": 24,
+      "sharpe_daily": -12.546502786595472,
+      "engine_metrics": {
+       "total": 24,
+       "total_winning_trades": 0,
+       "total_losing_trades": 24,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9867.008676000007,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 24,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 134.99132399999996,
+       "net_profit": -132.99132399999996,
+       "net_profit_percentage": -1.3299132399999998,
+       "average_loss": 5.541305166666665,
+       "expectancy": -5.541305166666665,
+       "expectancy_percentage": -0.05541305166666665,
+       "expected_net_profit_every_100_trades": -5.541305166666665,
+       "average_holding_period": 77.5,
+       "average_losing_holding_period": 77.5,
+       "gross_profit": 0.0,
+       "gross_loss": -132.99132399999996,
+       "annualization": 365,
+       "max_drawdown": -1.3299132399999691,
+       "max_underwater_period": 57.0,
+       "annual_return": -7.9488956832785345,
+       "sharpe_ratio": -14.343534219845845,
+       "calmar_ratio": -5.9770031940419805,
+       "sortino_ratio": -11.69043104196871,
+       "smart_sharpe": -13.683133757698325,
+       "smart_sortino": -11.152183916505175,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.05333219230614406,
+       "positive_months": 0,
+       "negative_months": 3,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 24,
+       "largest_losing_trade": -6.745377999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -24,
+       "avg_trades_per_day": 0.40620114949283626,
+       "avg_trades_per_week": 2.843408046449854,
+       "avg_trades_per_month": 12.364762990561935
+      }
+     },
+     "test_metrics": {
+      "n_trades": 8,
+      "net_profit": -44.9689712,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 44.9689712,
+      "max_drawdown_pct": 0.4496897119999994,
+      "recovery_factor": -1.0,
+      "sharpe": -18.679395999890076,
+      "sortino": -12.29631806882817,
+      "trades": 8,
+      "sharpe_daily": -18.679395999890076,
+      "engine_metrics": {
+       "total": 8,
+       "total_winning_trades": 0,
+       "total_losing_trades": 8,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9955.031028799996,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 8,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 42.9689712,
+       "net_profit": -44.9689712,
+       "net_profit_percentage": -0.449689712,
+       "average_loss": 5.6211214,
+       "expectancy": -5.6211214,
+       "expectancy_percentage": -0.056211214,
+       "expected_net_profit_every_100_trades": -5.6211214,
+       "average_holding_period": 82.5,
+       "average_losing_holding_period": 82.5,
+       "gross_profit": 0.0,
+       "gross_loss": -44.9689712,
+       "annualization": 365,
+       "max_drawdown": -0.44968971200002317,
+       "max_underwater_period": 16.0,
+       "annual_return": -7.896151180066369,
+       "sharpe_ratio": -17.061776753056233,
+       "calmar_ratio": -17.559110136070807,
+       "sortino_ratio": -13.314379620930444,
+       "smart_sharpe": -14.517516453475688,
+       "smart_sortino": -11.328932971770085,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.12083447510406223,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 8,
+       "largest_losing_trade": -6.404157999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -8,
+       "avg_trades_per_day": 0.39998611159334746,
+       "avg_trades_per_week": 2.799902781153432,
+       "avg_trades_per_month": 12.175577236901498
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2026-04-11",
+      "2026-06-10"
+     ],
+     "test": [
+      "2026-06-10",
+      "2026-06-30"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 60,
+      "position_size": 1.0,
+      "ema_period": 20,
+      "max_bar_range": 25.0,
+      "stop_distance": 1.0,
+      "target_distance": 1.0,
+      "stop_offset": 0.1,
+      "pending_expiry_bars": 5
+     },
+     "train_metrics": {
+      "n_trades": 28,
+      "net_profit": -165.70106860000038,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 165.70106860000035,
+      "max_drawdown_pct": 1.6570106860000124,
+      "recovery_factor": -1.0000000000000002,
+      "sharpe": -17.004960829625947,
+      "sortino": -11.665944994100078,
+      "trades": 28,
+      "sharpe_daily": -17.004960829625947,
+      "engine_metrics": {
+       "total": 28,
+       "total_winning_trades": 0,
+       "total_losing_trades": 28,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9834.298931399999,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 28,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 155.2840686,
+       "net_profit": -165.70106860000038,
+       "net_profit_percentage": -1.6570106860000038,
+       "average_loss": 5.917895307142871,
+       "expectancy": -5.917895307142871,
+       "expectancy_percentage": -0.05917895307142871,
+       "expected_net_profit_every_100_trades": -5.917895307142871,
+       "average_holding_period": 210.0,
+       "average_losing_holding_period": 210.0,
+       "gross_profit": 0.0,
+       "gross_loss": -165.70106860000038,
+       "annualization": 365,
+       "max_drawdown": -1.6570106860000045,
+       "max_underwater_period": 58.0,
+       "annual_return": -9.981142009797306,
+       "sharpe_ratio": -22.9034445127698,
+       "calmar_ratio": -6.023583368609175,
+       "sortino_ratio": -14.911860127935414,
+       "smart_sharpe": -18.51943512612549,
+       "smart_sortino": -12.05754121809865,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.03201662173114793,
+       "positive_months": 0,
+       "negative_months": 3,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 28,
+       "largest_losing_trade": -6.810345999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -28,
+       "avg_trades_per_day": 0.48206023361748424,
+       "avg_trades_per_week": 3.3744216353223897,
+       "avg_trades_per_month": 14.67391351131622
+      }
+     },
+     "test_metrics": {
+      "n_trades": 5,
+      "net_profit": -22.066517999999995,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 22.066517999999995,
+      "max_drawdown_pct": 0.22066517999999635,
+      "recovery_factor": -1.0,
+      "sharpe": -10.128602843656424,
+      "sortino": -8.803273913250932,
+      "trades": 5,
+      "sharpe_daily": -10.128602843656424,
+      "engine_metrics": {
+       "total": 5,
+       "total_winning_trades": 0,
+       "total_losing_trades": 5,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9977.933481999999,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 5,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 25.066517999999995,
+       "net_profit": -22.066517999999995,
+       "net_profit_percentage": -0.22066517999999993,
+       "average_loss": 4.413303599999999,
+       "expectancy": -4.413303599999999,
+       "expectancy_percentage": -0.04413303599999999,
+       "expected_net_profit_every_100_trades": -4.413303599999999,
+       "average_holding_period": 60.0,
+       "average_losing_holding_period": 60.0,
+       "gross_profit": 0.0,
+       "gross_loss": -22.066517999999995,
+       "annualization": 365,
+       "max_drawdown": -0.22066518000002366,
+       "max_underwater_period": 18.0,
+       "annual_return": -3.951401985805103,
+       "sharpe_ratio": -9.761203744224618,
+       "calmar_ratio": -17.906776165612897,
+       "sortino_ratio": -9.160582521709674,
+       "smart_sharpe": -7.306640420948499,
+       "smart_sortino": -6.857052089724109,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.17710586588579463,
+       "positive_months": 0,
+       "negative_months": 1,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 5,
+       "largest_losing_trade": -5.867469999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -5,
+       "avg_trades_per_day": 0.24999131974584216,
+       "avg_trades_per_week": 1.7499392382208951,
+       "avg_trades_per_month": 7.609735773063435
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2026-05-01",
+      "2026-06-30"
+     ],
+     "test": [
+      "2026-06-30",
+      "2026-07-20"
+     ],
+     "params": {
+      "order_mode": 0,
+      "entry_interval": 60,
+      "position_size": 1.0,
+      "ema_period": 20,
+      "max_bar_range": 25.0,
+      "stop_distance": 1.0,
+      "target_distance": 1.0,
+      "stop_offset": 0.1,
+      "pending_expiry_bars": 5
+     },
+     "train_metrics": {
+      "n_trades": 26,
+      "net_profit": -142.9044628,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 142.9044628,
+      "max_drawdown_pct": 1.4290446279999924,
+      "recovery_factor": -1.0,
+      "sharpe": -16.133310284314085,
+      "sortino": -11.383860349214027,
+      "trades": 26,
+      "sharpe_daily": -16.133310284314085,
+      "engine_metrics": {
+       "total": 26,
+       "total_winning_trades": 0,
+       "total_losing_trades": 26,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9857.095537200006,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 26,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 138.9044628,
+       "net_profit": -142.9044628,
+       "net_profit_percentage": -1.429044628,
+       "average_loss": 5.496325492307692,
+       "expectancy": -5.496325492307692,
+       "expectancy_percentage": -0.054963254923076924,
+       "expected_net_profit_every_100_trades": -5.496325492307692,
+       "average_holding_period": 78.46153846153847,
+       "average_losing_holding_period": 78.46153846153847,
+       "gross_profit": 0.0,
+       "gross_loss": -142.9044628,
+       "annualization": 365,
+       "max_drawdown": -1.4290446279999092,
+       "max_underwater_period": 60.0,
+       "annual_return": -8.383673173624395,
+       "sharpe_ratio": -15.898859505304141,
+       "calmar_ratio": -5.866627962037955,
+       "sortino_ratio": -12.412080624213333,
+       "smart_sharpe": -14.315049945701661,
+       "smart_sortino": -11.175616339424385,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.038968625205496106,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 26,
+       "largest_losing_trade": -6.638121999999999,
+       "largest_winning_trade": 0.0,
+       "current_streak": -26,
+       "avg_trades_per_day": 0.4333283179592829,
+       "avg_trades_per_week": 3.0332982257149803,
+       "avg_trades_per_month": 13.190513998680572
+      }
+     },
+     "test_metrics": {
+      "n_trades": 8,
+      "net_profit": -39.221844,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 39.221844000000004,
+      "max_drawdown_pct": 0.39221843999999695,
+      "recovery_factor": -0.9999999999999998,
+      "sharpe": -16.933542693824474,
+      "sortino": -11.779737102616103,
+      "trades": 8,
+      "sharpe_daily": -16.933542693824474,
+      "engine_metrics": {
+       "total": 8,
+       "total_winning_trades": 0,
+       "total_losing_trades": 8,
+       "starting_balance": 10000.0,
+       "finishing_balance": 9960.778156000002,
+       "win_rate": 0.0,
+       "win_rate_longs": 0.0,
+       "win_rate_shorts": 0.0,
+       "longs_count": 8,
+       "longs_percentage": 100.0,
+       "shorts_percentage": 0.0,
+       "shorts_count": 0,
+       "fee": 39.221844,
+       "net_profit": -39.221844,
+       "net_profit_percentage": -0.39221843999999995,
+       "average_loss": 4.9027305,
+       "expectancy": -4.9027305,
+       "expectancy_percentage": -0.04902730499999999,
+       "expected_net_profit_every_100_trades": -4.9027305,
+       "average_holding_period": 75.0,
+       "average_losing_holding_period": 75.0,
+       "gross_profit": 0.0,
+       "gross_loss": -39.221844,
+       "annualization": 365,
+       "max_drawdown": -0.3922184399999695,
+       "max_underwater_period": 20.0,
+       "annual_return": -6.920908511747436,
+       "sharpe_ratio": -16.880560071943634,
+       "calmar_ratio": -17.645545966038654,
+       "sortino_ratio": -13.237269326974186,
+       "smart_sharpe": -12.393529135680645,
+       "smart_sortino": -9.718663502959044,
+       "omega_ratio": 0.0,
+       "serenity_index": -0.11573440782069101,
+       "positive_months": 0,
+       "negative_months": 2,
+       "total_open_trades": 0,
+       "open_pl": 0.0,
+       "winning_streak": 0,
+       "losing_streak": 8,
+       "largest_losing_trade": -5.891278,
+       "largest_winning_trade": 0.0,
+       "current_streak": -8,
+       "avg_trades_per_day": 0.39998611159334746,
+       "avg_trades_per_week": 2.799902781153432,
+       "avg_trades_per_month": 12.175577236901498
+      }
+     },
+     "wfe": null,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    }
+   ],
+   "mode": "rolling",
+   "objective": "sharpe",
+   "wfe_definition": "mean over OK windows with IS>0 of (OOS net/test_days)/(IS net/train_days)",
+   "status": "INSUFFICIENT_EVIDENCE"
+  },
+  "parameter_stability": {
+   "base_net_profit": -627.3335325999994,
+   "base_objective": -627.3335325999994,
+   "objective": "net_profit",
+   "neighbours": [
+    {
+     "param": "entry_interval",
+     "value": 54,
+     "net_profit": -670.1517601999999,
+     "objective": -670.1517601999999,
+     "n_trades": 125,
+     "rel_change": -0.06825432624737793
+    },
+    {
+     "param": "entry_interval",
+     "value": 66,
+     "net_profit": -585.0391465999993,
+     "objective": -585.0391465999993,
+     "n_trades": 106,
+     "rel_change": 0.06741929739465705
+    },
+    {
+     "param": "ema_period",
+     "value": 18,
+     "net_profit": -637.4620281999993,
+     "objective": -637.4620281999993,
+     "n_trades": 113,
+     "rel_change": -0.016145311981047843
+    },
+    {
+     "param": "ema_period",
+     "value": 22,
+     "net_profit": -614.7009565999994,
+     "objective": -614.7009565999994,
+     "n_trades": 109,
+     "rel_change": 0.020136937280626557
+    },
+    {
+     "param": "max_bar_range",
+     "value": 22.5,
+     "net_profit": -609.8350553999993,
+     "objective": -609.8350553999993,
+     "n_trades": 108,
+     "rel_change": 0.027893419195172405
+    },
+    {
+     "param": "max_bar_range",
+     "value": 27.5,
+     "net_profit": -627.3335325999994,
+     "objective": -627.3335325999994,
+     "n_trades": 111,
+     "rel_change": 0.0
+    },
+    {
+     "param": "stop_distance",
+     "value": 0.9,
+     "net_profit": -621.836832599982,
+     "objective": -621.836832599982,
+     "n_trades": 111,
+     "rel_change": 0.008762005718451262
+    },
+    {
+     "param": "stop_distance",
+     "value": 1.1,
+     "net_profit": -630.7314926000164,
+     "objective": -630.7314926000164,
+     "n_trades": 111,
+     "rel_change": -0.005416512625961538
+    },
+    {
+     "param": "target_distance",
+     "value": 0.9,
+     "net_profit": -629.0325126000173,
+     "objective": -629.0325126000173,
+     "n_trades": 111,
+     "rel_change": -0.00270825631299572
+    },
+    {
+     "param": "target_distance",
+     "value": 1.1,
+     "net_profit": -628.1330525999831,
+     "objective": -628.1330525999831,
+     "n_trades": 111,
+     "rel_change": -0.0012744735590173668
+    },
+    {
+     "param": "stop_offset",
+     "value": 0.09,
+     "net_profit": -627.3335325999994,
+     "objective": -627.3335325999994,
+     "n_trades": 111,
+     "rel_change": 0.0
+    },
+    {
+     "param": "stop_offset",
+     "value": 0.11000000000000001,
+     "net_profit": -627.3335325999994,
+     "objective": -627.3335325999994,
+     "n_trades": 111,
+     "rel_change": 0.0
+    },
+    {
+     "param": "pending_expiry_bars",
+     "value": 4,
+     "net_profit": -627.3335325999994,
+     "objective": -627.3335325999994,
+     "n_trades": 111,
+     "rel_change": 0.0
+    },
+    {
+     "param": "pending_expiry_bars",
+     "value": 6,
+     "net_profit": -627.3335325999994,
+     "objective": -627.3335325999994,
+     "n_trades": 111,
+     "rel_change": 0.0
+    }
+   ],
+   "n_neighbours": 14,
+   "rel_step": 0.1,
+   "frac_positive": 0.0,
+   "mean_rel_change": 0.00217234134732192,
+   "worst_rel_change": -0.06825432624737793,
+   "status": "OK"
+  },
+  "pbo_result": {
+   "pbo": 0.05714285714285714,
+   "n_splits": 8,
+   "logits": [
+    1.3862943611198908,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    -0.4054651081081643,
+    1.3862943611198908,
+    0.4054651081081642,
+    1.3862943611198908,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    -0.4054651081081643,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    -0.4054651081081643,
+    1.3862943611198908,
+    1.3862943611198908,
+    -0.4054651081081643,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    1.3862943611198908,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    0.4054651081081642,
+    1.3862943611198908,
+    0.4054651081081642,
+    1.3862943611198908
+   ],
+   "status": "OK",
+   "n_combinations": 70,
+   "logit_mean": 0.723434246871587,
+   "logit_median": 0.4054651081081642,
+   "prob_oos_loss": 1.0,
+   "is_oos_slope": -0.4972436860402807,
+   "n_trials": 4,
+   "n_periods": 8,
+   "metric": "mean",
+   "n_candidates": 4
+  },
+  "pbo": 0.05714285714285714,
+  "monte_carlo": {
+   "method": "block_bootstrap",
+   "n_sims": 1000,
+   "n_trades": 111,
+   "capital": 10000.0,
+   "seed": 0,
+   "cost_shock_per_trade": 0.0,
+   "ruin_drawdown_pct": 50,
+   "notes_nl": [],
+   "block": 5,
+   "status": "OK",
+   "final_equity": {
+    "mean": 9372.618571951,
+    "std": 16.765239460043052,
+    "min": 9323.769183200002,
+    "max": 9422.334068600001,
+    "p5": 9346.86467883,
+    "p25": 9360.4544951,
+    "p50": 9372.2057469,
+    "p75": 9384.067606350003,
+    "p95": 9401.171008880001
+   },
+   "max_drawdown_pct": {
+    "mean": 6.273814280489993,
+    "std": 0.16765239460043055,
+    "min": 5.77665931399999,
+    "max": 6.762308167999981,
+    "p5": 5.988289911199982,
+    "p25": 6.159323936499978,
+    "p50": 6.277942530999999,
+    "p75": 6.395455048999993,
+    "p95": 6.5313532117000035
+   },
+   "max_drawdown_abs": {
+    "mean": 627.3814280489993,
+    "std": 16.765239460043052,
+    "min": 577.665931399999,
+    "max": 676.2308167999981,
+    "p5": 598.8289911199982,
+    "p25": 615.9323936499977,
+    "p50": 627.7942530999999,
+    "p75": 639.5455048999993,
+    "p95": 653.1353211700003
+   },
+   "prob_loss": 1.0,
+   "risk_of_ruin": 0.0,
+   "equity_bands": {
+    "trade_index": [
+     0,
+     2,
+     4,
+     6,
+     9,
+     11,
+     13,
+     15,
+     18,
+     20,
+     22,
+     24,
+     27,
+     29,
+     31,
+     33,
+     36,
+     38,
+     40,
+     43,
+     45,
+     47,
+     49,
+     52,
+     54,
+     56,
+     58,
+     61,
+     63,
+     65,
+     67,
+     70,
+     72,
+     74,
+     77,
+     79,
+     81,
+     83,
+     86,
+     88,
+     90,
+     92,
+     95,
+     97,
+     99,
+     101,
+     104,
+     106,
+     108,
+     111
+    ],
+    "p5": [
+     10000.0,
+     9985.792448,
+     9973.2030676,
+     9961.056032,
+     9942.593602,
+     9930.34517498,
+     9918.00700533,
+     9906.1843336,
+     9888.58355351,
+     9876.822418509999,
+     9864.98580082,
+     9852.5777865,
+     9834.68728522,
+     9822.678380180001,
+     9810.810643039998,
+     9798.944021109999,
+     9781.346970740002,
+     9769.70276898,
+     9758.05747317,
+     9740.105683220001,
+     9728.60995054,
+     9716.80681098,
+     9705.42821647,
+     9688.284128960002,
+     9676.617710810002,
+     9664.743822980001,
+     9652.67013309,
+     9635.21359998,
+     9623.8018485,
+     9612.688505940001,
+     9601.07985607,
+     9582.97994658,
+     9571.071016610002,
+     9559.646960090002,
+     9542.311577620001,
+     9530.927380620002,
+     9518.459633100001,
+     9507.80008433,
+     9490.393245730002,
+     9478.524654480001,
+     9467.44088246,
+     9456.33712556,
+     9439.068904970001,
+     9427.175465880002,
+     9416.03859711,
+     9404.87252175,
+     9387.09699016,
+     9375.032331650003,
+     9363.41835575,
+     9346.86467883
+    ],
+    "p25": [
+     10000.0,
+     9987.589094,
+     9975.622867099999,
+     9964.0111804,
+     9946.310032250001,
+     9934.3840177,
+     9922.6883153,
+     9911.1369837,
+     9893.70173095,
+     9881.860938,
+     9870.36733745,
+     9858.9008741,
+     9841.654085099999,
+     9829.917268000001,
+     9818.0305049,
+     9806.63558995,
+     9789.4086413,
+     9778.177815699999,
+     9766.321586,
+     9749.066525350001,
+     9737.9208998,
+     9726.3273072,
+     9715.2634345,
+     9698.253219200002,
+     9686.74482645,
+     9675.383024350002,
+     9663.387393250001,
+     9646.54631405,
+     9634.98229505,
+     9624.097641200002,
+     9612.3326317,
+     9595.00774925,
+     9584.05026535,
+     9572.372793300001,
+     9555.4928039,
+     9543.5232208,
+     9532.400165900002,
+     9520.745650100002,
+     9503.404291350002,
+     9492.026367750002,
+     9480.7898164,
+     9469.484272450001,
+     9452.2342651,
+     9440.9612713,
+     9429.608853400001,
+     9418.179397700002,
+     9400.969674150001,
+     9389.432991350002,
+     9377.6258647,
+     9360.4544951
+    ],
+    "p50": [
+     10000.0,
+     9988.77508,
+     9977.486948,
+     9966.2039826,
+     9949.0531974,
+     9937.7931824,
+     9926.329801700002,
+     9914.8993395,
+     9897.731999399999,
+     9886.6563164,
+     9875.2649174,
+     9863.5502717,
+     9846.8762504,
+     9835.401123,
+     9824.1661246,
+     9812.9160395,
+     9795.9619456,
+     9784.5437692,
+     9773.3008729,
+     9756.2793347,
+     9745.007204200001,
+     9733.7987577,
+     9722.779585,
+     9705.5472711,
+     9694.018026400001,
+     9682.9952508,
+     9671.3359015,
+     9654.6070959,
+     9643.303036000001,
+     9631.630677300001,
+     9620.405171900002,
+     9603.2162934,
+     9591.9904566,
+     9580.888494,
+     9564.0521345,
+     9552.8228301,
+     9541.3981365,
+     9530.1083516,
+     9513.176057600002,
+     9501.640274500001,
+     9490.5232751,
+     9479.269740200001,
+     9462.2834552,
+     9451.459146700001,
+     9440.0077079,
+     9428.3807944,
+     9411.2730477,
+     9399.798526800001,
+     9389.0415972,
+     9372.2057469
+    ],
+    "p75": [
+     10000.0,
+     9990.163972,
+     9979.2674842,
+     9968.2486743,
+     9951.9378828,
+     9940.8203101,
+     9930.047479500001,
+     9919.1329901,
+     9902.4359246,
+     9891.4027996,
+     9880.490644500002,
+     9869.4498525,
+     9852.7281439,
+     9841.91702705,
+     9830.52176965,
+     9819.7877467,
+     9803.1361124,
+     9791.98625965,
+     9780.35342675,
+     9763.80032355,
+     9752.36737715,
+     9741.043572350001,
+     9729.79306815,
+     9713.0898633,
+     9702.06005825,
+     9690.869293200001,
+     9679.6346302,
+     9662.959474,
+     9651.8961136,
+     9640.40606755,
+     9629.728201850001,
+     9613.2646571,
+     9601.936214000001,
+     9591.118195899999,
+     9574.227818300002,
+     9563.225694699999,
+     9552.20854675,
+     9540.778408,
+     9523.548061550002,
+     9512.43789875,
+     9501.412118850001,
+     9490.5325622,
+     9473.82442275,
+     9462.816762350001,
+     9451.1750914,
+     9440.00291925,
+     9423.333713799999,
+     9411.876911300002,
+     9400.7273654,
+     9384.067606350003
+    ],
+    "p95": [
+     10000.0,
+     9991.908468,
+     9982.16346636,
+     9972.442033,
+     9956.87851458,
+     9946.70491494,
+     9936.448528820001,
+     9925.78569118,
+     9909.819207760002,
+     9899.63622718,
+     9888.83531804,
+     9877.78186078,
+     9861.90590236,
+     9850.86625299,
+     9840.31121027,
+     9829.23443846,
+     9813.15260504,
+     9802.87385366,
+     9791.748527140002,
+     9775.05183243,
+     9764.39167776,
+     9753.225481599999,
+     9742.49642618,
+     9726.25334214,
+     9715.57061262,
+     9704.188150790002,
+     9692.89448901,
+     9676.933125530002,
+     9665.375307569999,
+     9654.272443419999,
+     9643.41685632,
+     9627.332952390001,
+     9616.185630850001,
+     9604.548297210002,
+     9589.00098499,
+     9577.5537667,
+     9566.24685258,
+     9554.65639908,
+     9538.63072761,
+     9527.37570981,
+     9516.20164772,
+     9505.5455458,
+     9488.76218812,
+     9477.51161696,
+     9466.04933896,
+     9455.58529324,
+     9439.20642818,
+     9428.30097366,
+     9417.277965000001,
+     9401.171008880001
+    ]
+   }
+  },
+  "drop_best": {
+   "n_trades": 111,
+   "baseline_net": -627.3335325999994,
+   "by_trades": {
+    "1": {
+     "removed_pnl": -3.8301859999999994,
+     "net_after": -623.5033465999993,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    },
+    "3": {
+     "removed_pnl": -11.542653599999998,
+     "net_after": -615.7908789999993,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    },
+    "5": {
+     "removed_pnl": -19.310689599999996,
+     "net_after": -608.0228429999993,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    }
+   },
+   "by_days": {
+    "1": {
+     "removed_pnl": -3.8301859999999994,
+     "net_after": -623.5033465999993,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    },
+    "3": {
+     "removed_pnl": -11.542653599999998,
+     "net_after": -615.7908789999993,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    },
+    "5": {
+     "removed_pnl": -19.332241599999996,
+     "net_after": -608.0012909999994,
+     "profit_factor_after": 0.0,
+     "still_positive": false
+    }
+   },
+   "status": "OK"
+  },
+  "yearly": {
+   "years": {
+    "2026": {
+     "n_trades": 111,
+     "net_profit": -627.3335325999994,
+     "profit_factor": 0.0,
+     "win_rate": 0.0,
+     "avg_r": null
+    }
+   },
+   "n_years": 1,
+   "frac_positive": 0.0,
+   "status": "INSUFFICIENT_EVIDENCE"
+  },
+  "n_trials": 163,
+  "psr": {
+   "value": 1.6074414154057673e-47,
+   "sr": -1.0197037892005691,
+   "n": 156,
+   "skew": -0.6093757173300803,
+   "kurtosis": 2.519865252153203,
+   "sr_benchmark": 0.0,
+   "status": "OK"
+  },
+  "dsr": {
+   "value": 2.4244324449148794e-183,
+   "sr": -1.0197037892005691,
+   "sr0": 1.0187012856248727,
+   "n": 156,
+   "n_trials": 163,
+   "sr_variance_across_trials": 0.14256794902366154,
+   "status": "OK"
+  },
+  "min_trl": {
+   "value": null,
+   "n": 156,
+   "sr": -1.0197037892005691,
+   "confidence": 0.95,
+   "status": "NOT_REACHABLE"
+  },
+  "haircut_sharpe": {
+   "sr": -1.0197037892005691,
+   "n_trials": 163,
+   "n_obs": 156,
+   "p_raw": 1.0,
+   "p_adjusted": 1.0,
+   "sr_adjusted": 0.0,
+   "haircut": null,
+   "status": "OK"
+  },
+  "holdout": {
+   "start": "2026-08-08",
+   "end": "2026-10-01",
+   "metrics": {
+    "n_trades": 23,
+    "net_profit": -112.54435799999999,
+    "profit_factor": 0.0,
+    "win_rate": 0.0,
+    "max_drawdown": 112.54435799999999,
+    "max_drawdown_pct": 1.1254435800000184,
+    "recovery_factor": -1.0,
+    "sharpe": -13.69320175815291,
+    "sortino": -10.45724203330223,
+    "trades": 23,
+    "sharpe_daily": -13.69320175815291,
+    "engine_metrics": {
+     "total": 23,
+     "total_winning_trades": 0,
+     "total_losing_trades": 23,
+     "starting_balance": 10000.0,
+     "finishing_balance": 9887.455641999997,
+     "win_rate": 0.0,
+     "win_rate_longs": 0.0,
+     "win_rate_shorts": 0.0,
+     "longs_count": 23,
+     "longs_percentage": 100.0,
+     "shorts_percentage": 0.0,
+     "shorts_count": 0,
+     "fee": 121.54435799999999,
+     "net_profit": -112.54435799999999,
+     "net_profit_percentage": -1.1254435799999998,
+     "average_loss": 4.8932329565217385,
+     "expectancy": -4.8932329565217385,
+     "expectancy_percentage": -0.04893232956521738,
+     "expected_net_profit_every_100_trades": -4.8932329565217385,
+     "average_holding_period": 80.8695652173913,
+     "average_losing_holding_period": 80.8695652173913,
+     "gross_profit": 0.0,
+     "gross_loss": -112.54435799999999,
+     "annualization": 365,
+     "max_drawdown": -1.1254435800000184,
+     "max_underwater_period": 48.0,
+     "annual_return": -7.637153452778267,
+     "sharpe_ratio": -14.725016985267324,
+     "calmar_ratio": -6.7859052097290755,
+     "sortino_ratio": -11.907611126577738,
+     "smart_sharpe": -13.295264738689504,
+     "smart_sortino": -10.751420014768948,
+     "omega_ratio": 0.0,
+     "serenity_index": -0.056063833757913246,
+     "positive_months": 0,
+     "negative_months": 2,
+     "total_open_trades": 0,
+     "open_pl": 0.0,
+     "winning_streak": 0,
+     "losing_streak": 23,
+     "largest_losing_trade": -6.627549999999999,
+     "largest_winning_trade": 0.0,
+     "current_streak": -23,
+     "avg_trades_per_day": 0.44159411207850563,
+     "avg_trades_per_week": 3.091158784549539,
+     "avg_trades_per_month": 13.442124771669713
+    }
+   },
+   "trades": 23,
+   "previous_exposures": 75,
+   "untouched": false
+  }
+ },
+ "report_md": "# Validatierapport\n\n**Verdict: REJECT** - Afgewezen: het bewijs spreekt de strategie tegen.\n\n_Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs._\n\n## Wat is aangetoond?\n- 111 trades; minimaal 100 nodig voor betekenisvolle statistiek.\n- Maximale drawdown 6.3% (limiet 30.0%).\n- Kans op backtest-overfitting 0.06 (max 0.5).\n\n## Wat is onzeker?\n- [FAIL] net_after_costs: Netto resultaat na kosten is niet positief: harde afwijzing.\n- [FAIL] profit_factor: Profit factor 0.00 (drempel 1.2).\n- [FAIL] psr: PSR = 0.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [FAIL] dsr: DSR = 0.000 bij 163 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [ONVOLDOENDE BEWIJS] walk_forward_efficiency: Walk-forward efficiency niet berekenbaar: te weinig geldige vensters.\n- [FAIL] oos_profitability: Out-of-sample resultaat niet positief of niet consistent over vensters.\n- [NIET GETEST] cost_stress: Niet getest: Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine.\n- [FAIL] parameter_stability: 0% van de naburige parameterwaarden is winstgevend.\n- [FAIL] drop_best_trades: Zonder de beste 3 trades is het resultaat niet meer positief.\n- [ONVOLDOENDE BEWIJS] yearly_consistency: Slechts 1 jaar data; minimaal 2 nodig.\n\n## Waar verdient de strategie geld?\n- Geen regime-uitsplitsing aangeleverd (niet getest).\n\n## Wanneer verliest zij?\n- Jaar 2026: netto -627.33.\n- Monte Carlo (block_bootstrap): 95e percentiel max drawdown 6.53%, kans op ruin-drempel 0.0% (eigenschap van de herbemonsterde historie, geen voorspelling).\n\n## Kostengevoeligheid?\n- [NIET GETEST] Niet getest: Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine.\n  - baseline: netto -627.33, PF 0.00\n  - fee ×1,5: netto -938.73, PF 0.00\n  - fee ×2: netto -1,250.13, PF 0.00\n\n## Hoeveel hypotheses geprobeerd?\n- 163 geprobeerde configuraties; de DSR corrigeert hiervoor.\n\n## Genoeg OOS-data?\n- [FAIL] Out-of-sample resultaat niet positief of niet consistent over vensters.\n- [ONVOLDOENDE BEWIJS] Walk-forward efficiency niet berekenbaar: te weinig geldige vensters.\n\n## Parameters stabiel?\n- [FAIL] 0% van de naburige parameterwaarden is winstgevend.\n\n## Statistisch overtuigend?\n- [FAIL] PSR = 0.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [FAIL] DSR = 0.000 bij 163 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [PASS] Kans op backtest-overfitting 0.06 (max 0.5).\n- [FAIL] Zonder de beste 3 trades is het resultaat niet meer positief.\n- [ONVOLDOENDE BEWIJS] Slechts 1 jaar data; minimaal 2 nodig.\n\n## Open risico's\n- Trades zijn niet iid; p-waarden en CI's zijn op dagrendementen met blokbootstrap berekend.\n- Historische resultaten zeggen niets zeker over de toekomst (regimewissel, kosten, liquiditeit).\n- Backtest-aannames (fills, spread, slippage) kunnen afwijken van de werkelijkheid.\n- Open check: net_after_costs (FAIL).\n- Open check: profit_factor (FAIL).\n- Open check: psr (FAIL).\n- Open check: dsr (FAIL).\n- Open check: walk_forward_efficiency (ONVOLDOENDE BEWIJS).\n- Open check: oos_profitability (FAIL).\n- Open check: cost_stress (NIET GETEST).\n- Open check: parameter_stability (FAIL).\n- Open check: drop_best_trades (FAIL).\n- Open check: yearly_consistency (ONVOLDOENDE BEWIJS).\n- Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, psr, dsr, oos_profitability, parameter_stability, drop_best_trades.\n\n## Checks\n\n| Check | Status | Waarde | Drempel |\n|---|---|---|---|\n| sample_size | PASS | 111 | 100 |\n| net_after_costs | FAIL | -627.334 | 0.0 |\n| profit_factor | FAIL | 0.000 | 1.2 |\n| max_drawdown | PASS | 6.273 | 30.0 |\n| psr | FAIL | 0.000 | 0.95 |\n| dsr | FAIL | 0.000 | 0.95 |\n| pbo | PASS | 0.057 | 0.5 |\n| walk_forward_efficiency | ONVOLDOENDE BEWIJS | - | 0.5 |\n| oos_profitability | FAIL | -273.960 | 0.0 |\n| cost_stress | NIET GETEST | - | 0.0 |\n| parameter_stability | FAIL | 0.000 | 0.7 |\n| drop_best_trades | FAIL | -615.791 | 0.0 |\n| yearly_consistency | ONVOLDOENDE BEWIJS | 0.000 | 0.6 |\n\n## Engine en beperkingen\n- Echte Jesse-backtest via de Docker-runner op Dukascopy Bid-candles (route M15, opgebouwd uit M1), fee 0.0006 per fill.\n- Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine; alleen fee-stress (×1,5 en ×2) wordt getoetst.\n- Elke validatiestap draait echte Jesse-backtests in Docker (ca. 10–20 s per backtest); houd max_combos klein.\n- Forward alleen via de geauditeerde LabBreakout-snapshot op M1 (eigen Bid/Ask-replica van de regels, niet de Jesse-engine zelf).\n- Rekenmodel automatisch van spot naar futures gezet bij 2026-01-01–2026-03-01 (params {'order_mode': 2, 'entry_interval': 163, 'position_size': 1.0, 'ema_period': 37, 'max_bar_range': 25.0, 'stop_distance': 1.0, 'target_distance': 0.1, 'stop_offset': 0.001, 'pending_expiry_bars': 1}): de strategie opent shortposities.\n\n## Niet uitgevoerde stappen\n- Alle stappen zijn uitgevoerd.\n- Kostenscenario spread_+25%: NIET ONDERSTEUND - Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine\n- Kostenscenario spread_+50%: NIET ONDERSTEUND - Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine\n- Kostenscenario slippage_+1pt: NIET ONDERSTEUND - Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine\n- Kostenscenario entry_delay_1bar: NIET ONDERSTEUND - Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine\n- Kostenscenario exit_delay_1bar: NIET ONDERSTEUND - Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine\n\n## Getelde configuraties (trial accounting)\n- Logboek (deze markt+timeframe): 126; zelfde familie elders: 0; optimizer-trials niet in logboek: 20 (van 25); nieuwe configuraties in deze validatie: 17 (van 18).\n- Totaal N = 163; gebruikt voor DSR en de Sharpe-haircut.\n- N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).\n\n## Holdout\n- Periode 2026-08-08 – 2026-10-01: netto -112.54435799999999, 23 trades.\n- Let op: deze periode is al 75 keer eerder gebruikt in het researchlogboek en telt daardoor niet meer als volledig onaangeroerd.\n\n## Nog nodig vóór een prospectieve forward test\n- Netto resultaat na kosten moet positief zijn (net_after_costs: gefaald). Netto resultaat na kosten is niet positief: harde afwijzing.\n- Profit factor moet de drempel halen (profit_factor: gefaald). Profit factor 0.00 (drempel 1.2).\n- PSR (kans dat de echte Sharpe > 0) moet de drempel halen (psr: gefaald). PSR = 0.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- DSR (Sharpe gecorrigeerd voor alle geprobeerde configuraties) moet de drempel halen (dsr: gefaald). DSR = 0.000 bij 163 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- Walk-forward efficiency moet aantonen dat out-of-sample het tempo bijhoudt (walk_forward_efficiency: onvoldoende bewijs). Walk-forward efficiency niet berekenbaar: te weinig geldige vensters.\n- Out-of-sample resultaat moet positief en consistent over vensters zijn (oos_profitability: gefaald). Out-of-sample resultaat niet positief of niet consistent over vensters.\n- Resultaat moet positief blijven bij +50% spread (cost_stress: niet getest). Niet getest: Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine.\n- Naburige parameterwaarden moeten ook winstgevend zijn (parameter_stability: gefaald). 0% van de naburige parameterwaarden is winstgevend.\n- Resultaat moet positief blijven zonder de beste trades (drop_best_trades: gefaald). Zonder de beste 3 trades is het resultaat niet meer positief.\n- Voldoende jaren moeten winstgevend zijn (yearly_consistency: onvoldoende bewijs). Slechts 1 jaar data; minimaal 2 nodig.\n- Verdict is REJECT; alleen FORWARD_ELIGIBLE mag worden bevroren voor een forward test.\n- De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.\n- Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data.\n\n## Herhaling\n- 4 backtest(s) liepen nog op spot voordat de strategie shortposities opende; alle stappen worden opnieuw uitgevoerd met futures zodat elke vergelijking op hetzelfde rekenmodel berust.\n",
+ "ledger_id": "ee6aa3eea8084ac99742b8a900957b99",
+ "n_trials": 163,
+ "trial_accounting": {
+  "ledger_prior": 126,
+  "family_prior": 6,
+  "family_prior_other_markets": 0,
+  "optimizer_trials": 25,
+  "optimizer_trials_not_in_ledger": 20,
+  "in_run_configs": 18,
+  "in_run_configs_new": 17,
+  "total": 163,
+  "definition_nl": "N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).",
+  "stages": {
+   "base": 1,
+   "cost_stress": 1,
+   "walk_forward": 4,
+   "parameter_stability": 15,
+   "pbo": 4
+  }
+ },
+ "config": {
+  "strategy": {
+   "kind": "jesse",
+   "name": "LabBreakout",
+   "family": "jesse:LabBreakout"
+  },
+  "symbol": "XAUUSD",
+  "timeframe": "M15",
+  "capital": 10000.0,
+  "data_ranges": {
+   "full": [
+    "2026-01-01",
+    "2026-10-01"
+   ],
+   "development": [
+    "2026-01-01",
+    "2026-08-08"
+   ],
+   "holdout": [
+    "2026-08-08",
+    "2026-10-01"
+   ],
+   "holdout_percent": 20.0,
+   "convention": "halfopen [start, end) kalenderdagen UTC"
+  },
+  "dataset_sha256": "adaf15625152a3f1f1b3b55fa842fe0013cf32c54169a3affa01c3c63518bcdb",
+  "code_sha256": "b5d77bbbb026cb4ac2a27999a4cf532eddc8d5bce8cac8ceb649482b2a8ee472",
+  "spec_sha256": null,
+  "engine_nl": "Echte Jesse-backtest via de Docker-runner op Dukascopy Bid-candles (route M15, opgebouwd uit M1), fee 0.0006 per fill.",
+  "params": {
+   "order_mode": 0,
+   "entry_interval": 60,
+   "position_size": 1.0,
+   "ema_period": 20,
+   "max_bar_range": 25.0,
+   "stop_distance": 1.0,
+   "target_distance": 1.0,
+   "stop_offset": 0.1,
+   "pending_expiry_bars": 5
+  },
+  "defaults": {
+   "order_mode": 0,
+   "entry_interval": 60,
+   "position_size": 1.0,
+   "ema_period": 20,
+   "max_bar_range": 25.0,
+   "stop_distance": 1.0,
+   "target_distance": 1.0,
+   "stop_offset": 0.1,
+   "pending_expiry_bars": 5
+  },
+  "param_specs": {
+   "order_mode": {
+    "type": "categorical",
+    "options": [
+     0,
+     1,
+     2
+    ],
+    "default": 0
+   },
+   "entry_interval": {
+    "type": "int",
+    "min": 10,
+    "max": 240,
+    "default": 60
+   },
+   "position_size": {
+    "type": "float",
+    "min": 0.01,
+    "max": 10.0,
+    "default": 1.0
+   },
+   "ema_period": {
+    "type": "int",
+    "min": 5,
+    "max": 100,
+    "default": 20
+   },
+   "max_bar_range": {
+    "type": "float",
+    "min": 1.0,
+    "max": 100.0,
+    "default": 25.0
+   },
+   "stop_distance": {
+    "type": "float",
+    "min": 0.1,
+    "max": 25.0,
+    "default": 1.0
+   },
+   "target_distance": {
+    "type": "float",
+    "min": 0.1,
+    "max": 25.0,
+    "default": 1.0
+   },
+   "stop_offset": {
+    "type": "float",
+    "min": 0.001,
+    "max": 5.0,
+    "default": 0.1
+   },
+   "pending_expiry_bars": {
+    "type": "int",
+    "min": 1,
+    "max": 30,
+    "default": 5
+   }
+  },
+  "fixed_params": [
+   "position_size"
+  ],
+  "grid": {
+   "order_mode": [
+    0,
+    1,
+    2
+   ],
+   "entry_interval": [
+    10,
+    60,
+    87,
+    163,
+    240
+   ],
+   "ema_period": [
+    5,
+    20,
+    37,
+    68,
+    100
+   ],
+   "max_bar_range": [
+    1.0,
+    25.0,
+    34.0,
+    67.0,
+    100.0
+   ],
+   "stop_distance": [
+    0.1,
+    1.0,
+    8.4,
+    16.7,
+    25.0
+   ],
+   "target_distance": [
+    0.1,
+    1.0,
+    8.4,
+    16.7,
+    25.0
+   ],
+   "stop_offset": [
+    0.001,
+    0.1,
+    1.667333,
+    3.333667,
+    5.0
+   ],
+   "pending_expiry_bars": [
+    1,
+    5,
+    11,
+    20,
+    30
+   ]
+  },
+  "walk_forward": {
+   "enabled": true,
+   "mode": "rolling",
+   "train_days": 60,
+   "test_days": 20,
+   "step_days": 20,
+   "objective": "sharpe",
+   "min_trades": 10,
+   "seed": 0,
+   "max_combos": 4,
+   "candidates": [
+    {
+     "order_mode": 0,
+     "entry_interval": 60,
+     "position_size": 1.0,
+     "ema_period": 20,
+     "max_bar_range": 25.0,
+     "stop_distance": 1.0,
+     "target_distance": 1.0,
+     "stop_offset": 0.1,
+     "pending_expiry_bars": 5
+    },
+    {
+     "order_mode": 2,
+     "entry_interval": 163,
+     "position_size": 1.0,
+     "ema_period": 37,
+     "max_bar_range": 25.0,
+     "stop_distance": 1.0,
+     "target_distance": 0.1,
+     "stop_offset": 0.001,
+     "pending_expiry_bars": 1
+    },
+    {
+     "order_mode": 0,
+     "entry_interval": 240,
+     "position_size": 1.0,
+     "ema_period": 68,
+     "max_bar_range": 100.0,
+     "stop_distance": 8.4,
+     "target_distance": 16.7,
+     "stop_offset": 5.0,
+     "pending_expiry_bars": 20
+    },
+    {
+     "order_mode": 1,
+     "entry_interval": 87,
+     "position_size": 1.0,
+     "ema_period": 37,
+     "max_bar_range": 100.0,
+     "stop_distance": 1.0,
+     "target_distance": 25.0,
+     "stop_offset": 3.333667,
+     "pending_expiry_bars": 1
+    }
+   ],
+   "windows": [
+    [
+     "2026-01-01",
+     "2026-03-02",
+     "2026-03-22"
+    ],
+    [
+     "2026-01-21",
+     "2026-03-22",
+     "2026-04-11"
+    ],
+    [
+     "2026-02-10",
+     "2026-04-11",
+     "2026-05-01"
+    ],
+    [
+     "2026-03-02",
+     "2026-05-01",
+     "2026-05-21"
+    ],
+    [
+     "2026-03-22",
+     "2026-05-21",
+     "2026-06-10"
+    ],
+    [
+     "2026-04-11",
+     "2026-06-10",
+     "2026-06-30"
+    ],
+    [
+     "2026-05-01",
+     "2026-06-30",
+     "2026-07-20"
+    ]
+   ]
+  },
+  "stability": {
+   "enabled": true,
+   "rel_step": 0.1,
+   "params": [
+    "ema_period",
+    "entry_interval",
+    "max_bar_range",
+    "pending_expiry_bars",
+    "stop_distance",
+    "stop_offset",
+    "target_distance"
+   ]
+  },
+  "pbo": {
+   "enabled": true,
+   "n_splits": 8,
+   "seed": 0,
+   "max_combos": 4,
+   "candidates": [
+    {
+     "order_mode": 0,
+     "entry_interval": 60,
+     "position_size": 1.0,
+     "ema_period": 20,
+     "max_bar_range": 25.0,
+     "stop_distance": 1.0,
+     "target_distance": 1.0,
+     "stop_offset": 0.1,
+     "pending_expiry_bars": 5
+    },
+    {
+     "order_mode": 2,
+     "entry_interval": 163,
+     "position_size": 1.0,
+     "ema_period": 37,
+     "max_bar_range": 25.0,
+     "stop_distance": 1.0,
+     "target_distance": 0.1,
+     "stop_offset": 0.001,
+     "pending_expiry_bars": 1
+    },
+    {
+     "order_mode": 0,
+     "entry_interval": 240,
+     "position_size": 1.0,
+     "ema_period": 68,
+     "max_bar_range": 100.0,
+     "stop_distance": 8.4,
+     "target_distance": 16.7,
+     "stop_offset": 5.0,
+     "pending_expiry_bars": 20
+    },
+    {
+     "order_mode": 1,
+     "entry_interval": 87,
+     "position_size": 1.0,
+     "ema_period": 37,
+     "max_bar_range": 100.0,
+     "stop_distance": 1.0,
+     "target_distance": 25.0,
+     "stop_offset": 3.333667,
+     "pending_expiry_bars": 1
+    }
+   ]
+  },
+  "monte_carlo": {
+   "enabled": true,
+   "n": 1000,
+   "method": "block_bootstrap",
+   "seed": 0
+  },
+  "cost_stress": {
+   "enabled": true,
+   "scenarios": {
+    "baseline": {},
+    "fee ×1,5": {
+     "fee_multiplier": 1.5
+    },
+    "fee ×2": {
+     "fee_multiplier": 2.0
+    }
+   },
+   "unsupported": [
+    {
+     "name": "spread_+25%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "spread_+50%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    }
+   ]
+  },
+  "seeds": {
+   "walk_forward": 0,
+   "pbo": 0,
+   "monte_carlo": 0
+  },
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "sr_variance": {
+   "value": 0.14256794902366154,
+   "source": "pbo_candidates_per_observation"
+  },
+  "fee": 0.0006,
+  "warmup_candles": 210,
+  "account_type": "futures",
+  "account_type_note": "Rekenmodel automatisch van spot naar futures gezet bij 2026-01-01–2026-03-01 (params {'order_mode': 2, 'entry_interval': 163, 'position_size': 1.0, 'ema_period': 37, 'max_bar_range': 25.0, 'stop_distance': 1.0, 'target_distance': 0.1, 'stop_offset': 0.001, 'pending_expiry_bars': 1}): de strategie opent shortposities.",
+  "jesse_backtests": 60,
+  "cache_hits": 57,
+  "jesse_seconds": 405.4
+ },
+ "capabilities": {
+  "backtest": true,
+  "optimize": true,
+  "inspect": true,
+  "validate": true,
+  "walk_forward": true,
+  "stability": true,
+  "cost_stress_spread": false,
+  "forward": true
+ },
+ "limitations_nl": [
+  "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine; alleen fee-stress (×1,5 en ×2) wordt getoetst.",
+  "Elke validatiestap draait echte Jesse-backtests in Docker (ca. 10–20 s per backtest); houd max_combos klein.",
+  "Forward alleen via de geauditeerde LabBreakout-snapshot op M1 (eigen Bid/Ask-replica van de regels, niet de Jesse-engine zelf)."
+ ],
+ "forward_gaps_nl": [
+  "Netto resultaat na kosten moet positief zijn (net_after_costs: gefaald). Netto resultaat na kosten is niet positief: harde afwijzing.",
+  "Profit factor moet de drempel halen (profit_factor: gefaald). Profit factor 0.00 (drempel 1.2).",
+  "PSR (kans dat de echte Sharpe > 0) moet de drempel halen (psr: gefaald). PSR = 0.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.",
+  "DSR (Sharpe gecorrigeerd voor alle geprobeerde configuraties) moet de drempel halen (dsr: gefaald). DSR = 0.000 bij 163 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.",
+  "Walk-forward efficiency moet aantonen dat out-of-sample het tempo bijhoudt (walk_forward_efficiency: onvoldoende bewijs). Walk-forward efficiency niet berekenbaar: te weinig geldige vensters.",
+  "Out-of-sample resultaat moet positief en consistent over vensters zijn (oos_profitability: gefaald). Out-of-sample resultaat niet positief of niet consistent over vensters.",
+  "Resultaat moet positief blijven bij +50% spread (cost_stress: niet getest). Niet getest: Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine.",
+  "Naburige parameterwaarden moeten ook winstgevend zijn (parameter_stability: gefaald). 0% van de naburige parameterwaarden is winstgevend.",
+  "Resultaat moet positief blijven zonder de beste trades (drop_best_trades: gefaald). Zonder de beste 3 trades is het resultaat niet meer positief.",
+  "Voldoende jaren moeten winstgevend zijn (yearly_consistency: onvoldoende bewijs). Slechts 1 jaar data; minimaal 2 nodig.",
+  "Verdict is REJECT; alleen FORWARD_ELIGIBLE mag worden bevroren voor een forward test.",
+  "De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.",
+  "Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data."
+ ],
+ "oos_equity": [
+  {
+   "time": "2026-03-25T12:17:00+00:00",
+   "equity": 9986.111878,
+   "pnl": -13.888121999999637
+  },
+  {
+   "time": "2026-03-30T04:00:00+00:00",
+   "equity": 9972.311968,
+   "pnl": -13.799909999999636
+  },
+  {
+   "time": "2026-04-01T17:35:00+00:00",
+   "equity": 9958.17103,
+   "pnl": -14.140937999999636
+  },
+  {
+   "time": "2026-04-07T09:42:00+00:00",
+   "equity": 9944.1625084,
+   "pnl": -14.008521599999636
+  },
+  {
+   "time": "2026-04-13T13:16:00+00:00",
+   "equity": 9937.482290400001,
+   "pnl": -6.680218
+  },
+  {
+   "time": "2026-04-14T20:18:00+00:00",
+   "equity": 9930.671944400001,
+   "pnl": -6.810345999999999
+  },
+  {
+   "time": "2026-04-15T12:16:00+00:00",
+   "equity": 9923.8959424,
+   "pnl": -6.776002
+  },
+  {
+   "time": "2026-04-16T04:16:00+00:00",
+   "equity": 9919.1032244,
+   "pnl": -4.792718000000001
+  },
+  {
+   "time": "2026-04-20T18:16:00+00:00",
+   "equity": 9912.3255544,
+   "pnl": -6.7776700000000005
+  },
+  {
+   "time": "2026-04-22T02:17:00+00:00",
+   "equity": 9905.6195364,
+   "pnl": -6.706018
+  },
+  {
+   "time": "2026-04-24T01:16:00+00:00",
+   "equity": 9900.9679504,
+   "pnl": -4.651586
+  },
+  {
+   "time": "2026-04-24T16:16:00+00:00",
+   "equity": 9894.304004399999,
+   "pnl": -6.663945999999999
+  },
+  {
+   "time": "2026-04-28T00:16:00+00:00",
+   "equity": 9889.6661584,
+   "pnl": -4.637846
+  },
+  {
+   "time": "2026-04-29T23:17:00+00:00",
+   "equity": 9885.2019164,
+   "pnl": -4.464241999999999
+  },
+  {
+   "time": "2026-05-01T15:16:00+00:00",
+   "equity": 9878.6386744,
+   "pnl": -6.563241999999999
+  },
+  {
+   "time": "2026-05-05T14:16:00+00:00",
+   "equity": 9872.1514644,
+   "pnl": -6.487209999999999
+  },
+  {
+   "time": "2026-05-06T06:16:00+00:00",
+   "equity": 9865.5598064,
+   "pnl": -6.591657999999999
+  },
+  {
+   "time": "2026-05-06T22:16:00+00:00",
+   "equity": 9860.922896400001,
+   "pnl": -4.63691
+  },
+  {
+   "time": "2026-05-12T19:18:00+00:00",
+   "equity": 9856.282614400001,
+   "pnl": -4.640281999999999
+  },
+  {
+   "time": "2026-05-13T11:16:00+00:00",
+   "equity": 9849.6444924,
+   "pnl": -6.638121999999999
+  },
+  {
+   "time": "2026-05-18T02:16:00+00:00",
+   "equity": 9845.2002544,
+   "pnl": -4.444237999999999
+  },
+  {
+   "time": "2026-05-18T17:16:00+00:00",
+   "equity": 9838.7371764,
+   "pnl": -6.463077999999999
+  },
+  {
+   "time": "2026-05-20T16:16:00+00:00",
+   "equity": 9832.2974588,
+   "pnl": -6.4397176
+  },
+  {
+   "time": "2026-05-24T23:16:00+00:00",
+   "equity": 9827.8076532,
+   "pnl": -4.489805599999999
+  },
+  {
+   "time": "2026-05-25T14:19:00+00:00",
+   "equity": 9823.3259512,
+   "pnl": -4.481702
+  },
+  {
+   "time": "2026-05-27T01:01:00+00:00",
+   "equity": 9818.9074772,
+   "pnl": -4.418474
+  },
+  {
+   "time": "2026-05-29T00:01:00+00:00",
+   "equity": 9812.5143952,
+   "pnl": -6.393082
+  },
+  {
+   "time": "2026-06-01T23:01:00+00:00",
+   "equity": 9806.1325296,
+   "pnl": -6.381865599999999
+  },
+  {
+   "time": "2026-06-04T13:01:00+00:00",
+   "equity": 9799.7283716,
+   "pnl": -6.404157999999999
+  },
+  {
+   "time": "2026-06-08T12:01:00+00:00",
+   "equity": 9793.5315976,
+   "pnl": -6.196774
+  },
+  {
+   "time": "2026-06-09T04:01:00+00:00",
+   "equity": 9787.3284876,
+   "pnl": -6.203110000000001
+  },
+  {
+   "time": "2026-06-11T07:16:00+00:00",
+   "equity": 9783.4121056,
+   "pnl": -3.9163819999999987
+  },
+  {
+   "time": "2026-06-11T23:16:00+00:00",
+   "equity": 9779.3432876,
+   "pnl": -4.068818
+  },
+  {
+   "time": "2026-06-16T13:16:00+00:00",
+   "equity": 9775.1305056,
+   "pnl": -4.212781999999999
+  },
+  {
+   "time": "2026-06-22T00:31:00+00:00",
+   "equity": 9771.1294396,
+   "pnl": -4.001066
+  },
+  {
+   "time": "2026-06-26T13:31:00+00:00",
+   "equity": 9765.2619696,
+   "pnl": -5.867469999999999
+  },
+  {
+   "time": "2026-06-30T15:16:00+00:00",
+   "equity": 9759.4196876,
+   "pnl": -5.842281999999999
+  },
+  {
+   "time": "2026-07-02T14:16:00+00:00",
+   "equity": 9755.4651096,
+   "pnl": -3.9545779999999997
+  },
+  {
+   "time": "2026-07-06T17:32:00+00:00",
+   "equity": 9751.4781676,
+   "pnl": -3.986941999999999
+  },
+  {
+   "time": "2026-07-09T08:31:00+00:00",
+   "equity": 9747.5401256,
+   "pnl": -3.9380419999999994
+  },
+  {
+   "time": "2026-07-10T15:31:00+00:00",
+   "equity": 9743.6173116,
+   "pnl": -3.9228140000000007
+  },
+  {
+   "time": "2026-07-14T14:31:00+00:00",
+   "equity": 9737.726033600002,
+   "pnl": -5.891278
+  },
+  {
+   "time": "2026-07-15T22:31:00+00:00",
+   "equity": 9731.852311600001,
+   "pnl": -5.873721999999999
+  },
+  {
+   "time": "2026-07-17T20:32:00+00:00",
+   "equity": 9726.040125600002,
+   "pnl": -5.8121860000000005
+  }
+ ],
+ "steps": {
+  "base": {
+   "status": "DONE",
+   "seconds": 0.0,
+   "backtests": 1
+  },
+  "cost_stress": {
+   "status": "DONE",
+   "seconds": 20.78,
+   "backtests": 3,
+   "unsupported": [
+    {
+     "name": "spread_+25%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "spread_+50%",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "Jesse rekent met Bid-candles en een fee-fractie; spread-/slippagestress vereist de Bid/Ask-engine"
+    }
+   ]
+  },
+  "walk_forward": {
+   "status": "DONE",
+   "seconds": 4.8,
+   "backtests": 35
+  },
+  "parameter_stability": {
+   "status": "DONE",
+   "seconds": 0.08,
+   "backtests": 15
+  },
+  "pbo": {
+   "status": "DONE",
+   "seconds": 0.03,
+   "backtests": 4
+  },
+  "monte_carlo": {
+   "status": "DONE",
+   "seconds": 0.0,
+   "backtests": 0
+  },
+  "statistics": {
+   "status": "DONE",
+   "seconds": 0.0,
+   "backtests": 0
+  },
+  "holdout": {
+   "status": "DONE",
+   "seconds": 4.61,
+   "backtests": 1
+  }
+ },
+ "timing": {
+  "total_seconds": 406.3,
+  "backtests": 59,
+  "distinct_configs": 18,
+  "first_pass_backtests": 58
+ },
+ "rerun_nl": "4 backtest(s) liepen nog op spot voordat de strategie shortposities opende; alle stappen worden opnieuw uitgevoerd met futures zodat elke vergelijking op hetzelfde rekenmodel berust.",
+ "strategy": {
+  "kind": "jesse",
+  "name": "LabBreakout"
+ }
+}

@@ -1,0 +1,491 @@
+{
+  "_notes": [
+    "APPROXIMATE calendars - TO BE CONFIRMED against real Dukascopy data before production use. Expected-minute mismatches show up as INCOMPLETE/ERROR in the intake log.",
+    "FX: America/New_York wall clock, open Sunday 17:00 to Friday 17:00 (covers the 22:00/21:00 UTC weekly boundary across DST). Intervals end at 24:00 or are split at local midnight.",
+    "XAUUSD, US30, US500, USTEC: assumed daily maintenance break 17:00-18:00 New York time plus the weekly closure. Holidays are not modelled; add them under overrides.",
+    "DE40: assumed Europe/Berlin Mon-Fri 01:00-22:00. Unverified guess.",
+    "BTCUSD: 24/7, all seven days open.",
+    "Inbox mode: drop paired '<SYMBOL>_1 Min_Bid_<from>_<to>*.csv' + '_Ask_' JForex exports into inbox_directory. source_directory is the read-only original history; only days after its last row are ingested.",
+    "Paths are relative to this config file. first_day is a UTC date; days before the end of the original history are skipped regardless.",
+    "providers: geordende terugvalketen uit 'datafeed', 'datafeed_ticks', 'jforex', 'inbox' (of enkelvoudig 'provider'). Zonder beide sleutels: inbox bij inbox_directory, jforex bij jforex_command of export_directory, anders datafeed."
+  ],
+  "providers": [
+    "datafeed",
+    "datafeed_ticks",
+    "inbox"
+  ],
+  "inbox_directory": "../daily_inbox",
+  "source_directory": "C:/AI/Dukascopy_data",
+  "max_days_per_symbol": 3,
+  "symbols": {
+    "XAUUSD": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "EURUSD": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "GBPUSD": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "USDJPY": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "US30": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "US500": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "USTEC": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    },
+    "DE40": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "Europe/Berlin",
+      "weekly": {
+        "0": [
+          [
+            "01:00",
+            "22:00"
+          ]
+        ],
+        "1": [
+          [
+            "01:00",
+            "22:00"
+          ]
+        ],
+        "2": [
+          [
+            "01:00",
+            "22:00"
+          ]
+        ],
+        "3": [
+          [
+            "01:00",
+            "22:00"
+          ]
+        ],
+        "4": [
+          [
+            "01:00",
+            "22:00"
+          ]
+        ],
+        "5": [],
+        "6": []
+      },
+      "overrides": {}
+    },
+    "BTCUSD": {
+      "first_day": "2026-10-16",
+      "update_at": "00:30",
+      "timezone": "UTC",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "5": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "6": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {}
+    }
+  }
+}

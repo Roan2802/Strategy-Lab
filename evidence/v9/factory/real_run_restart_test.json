@@ -1,0 +1,142 @@
+{
+ "started": 1794314757.8913176,
+ "run_id": "fr_20261110_124557_9f2851",
+ "supervisor_1": {
+  "alive": true,
+  "pid": 1912,
+  "heartbeat_age_s": 0.1,
+  "started_at": "2026-11-10T12:45:58.829668+00:00",
+  "spawned_pid": 1912
+ },
+ "kill": {
+  "at": 1794314776.2735314,
+  "supervisor_pid": 1912,
+  "worker_pids": [
+   36740,
+   37132,
+   32584,
+   37360,
+   41464,
+   13756,
+   404,
+   21648
+  ],
+  "trials_before_kill": 43,
+  "phase": "researching",
+  "tasks_running": [
+   "2d7937a37a3e25a9",
+   "ef92eb8e99cc7a01",
+   "47e36c3a68ab84f0",
+   "39c76aeeb6be95df"
+  ],
+  "stages_done_before": 69
+ },
+ "after_kill": {
+  "supervisor": {
+   "alive": false,
+   "pid": 1912,
+   "heartbeat_age_s": 5.2,
+   "started_at": "2026-11-10T12:45:58.829668+00:00"
+  },
+  "run_status": "running",
+  "trials": 47
+ },
+ "supervisor_2": {
+  "alive": true,
+  "pid": 15168,
+  "heartbeat_age_s": 0.1,
+  "started_at": "2026-11-10T12:46:40.515394+00:00"
+ },
+ "finished": 1794314852.6049824,
+ "status": "done",
+ "counts": {
+  "generated": 56,
+  "technically_valid": 45,
+  "rejected": 56,
+  "quick_passed": 7,
+  "dev_validated": 2,
+  "wf_passed": 0,
+  "frozen": 0,
+  "final_tested": 0,
+  "oos_approved": 0,
+  "forward_ready": 0,
+  "errors": 0,
+  "in_progress": 0
+ },
+ "verification": {
+  "trial_rows": 87,
+  "duplicate_trial_rows": 0,
+  "l4_trial_count_mismatches": [],
+  "ledger_l4_rows": 70,
+  "ledger_l4_duplicate_rows": 0,
+  "ledger_rows_run": 189,
+  "resume_log": [
+   "2d7937a37a3e25a9: taak hervat na onderbreking (vanaf laatste stage)",
+   "ef92eb8e99cc7a01: taak hervat na onderbreking (vanaf laatste stage)",
+   "47e36c3a68ab84f0: taak hervat na onderbreking (vanaf laatste stage)",
+   "39c76aeeb6be95df: taak hervat na onderbreking (vanaf laatste stage)"
+  ]
+ },
+ "log_tail": [
+  {
+   "at": "2026-11-10T12:45:57.913624+00:00",
+   "level": "info",
+   "message": "Run aangemaakt (uitgebreid, regelmatig, 48 kandidaten max, 4 workers)"
+  },
+  {
+   "at": "2026-11-10T12:45:58.863240+00:00",
+   "level": "info",
+   "message": "Data voorbereiden XAUUSD:M15"
+  },
+  {
+   "at": "2026-11-10T12:46:01.426167+00:00",
+   "level": "info",
+   "message": "Data voorbereiden XAUUSD:H1"
+  },
+  {
+   "at": "2026-11-10T12:46:03.843784+00:00",
+   "level": "info",
+   "message": "Data voorbereiden DE40:M15"
+  },
+  {
+   "at": "2026-11-10T12:46:04.559012+00:00",
+   "level": "info",
+   "message": "Data voorbereiden DE40:H1"
+  },
+  {
+   "at": "2026-11-10T12:46:05.616372+00:00",
+   "level": "info",
+   "message": "48 kandidaten gegenereerd (generator.py); 8 duplicaten van eerder geteste hypotheses afgewezen"
+  },
+  {
+   "at": "2026-11-10T12:46:40.567026+00:00",
+   "level": "warning",
+   "message": "2d7937a37a3e25a9: taak hervat na onderbreking (vanaf laatste stage)"
+  },
+  {
+   "at": "2026-11-10T12:46:40.579023+00:00",
+   "level": "warning",
+   "message": "ef92eb8e99cc7a01: taak hervat na onderbreking (vanaf laatste stage)"
+  },
+  {
+   "at": "2026-11-10T12:46:40.589023+00:00",
+   "level": "warning",
+   "message": "47e36c3a68ab84f0: taak hervat na onderbreking (vanaf laatste stage)"
+  },
+  {
+   "at": "2026-11-10T12:46:40.599029+00:00",
+   "level": "warning",
+   "message": "39c76aeeb6be95df: taak hervat na onderbreking (vanaf laatste stage)"
+  },
+  {
+   "at": "2026-11-10T12:47:30.647458+00:00",
+   "level": "info",
+   "message": "L6: 0 kandidaten bevroren, 0 niet geselecteerd"
+  },
+  {
+   "at": "2026-11-10T12:47:30.735513+00:00",
+   "level": "info",
+   "message": "Klaar: {'generated': 56, 'technically_valid': 45, 'rejected': 56, 'quick_passed': 7, 'dev_validated': 2, 'wf_passed': 0, 'frozen': 0, 'final_tested': 0, 'oos_approved': 0, 'forward_ready': 0, 'errors': 0, 'in_progress': 0}. Meervoudig testen: 0 eindtests ooit, DSR-N 1623"
+  }
+ ]
+}

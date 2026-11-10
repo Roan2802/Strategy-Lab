@@ -1,0 +1,4676 @@
+{
+ "name": "builder_EmaRsiPullback_expanding",
+ "request": {
+  "strategy": {
+   "kind": "builder",
+   "name": "EmaRsiPullback"
+  },
+  "symbol": "XAUUSD",
+  "timeframe": "M15",
+  "start": "2025-01-01",
+  "end": "2026-10-01",
+  "capital": 10000,
+  "holdout_percent": 20,
+  "walk_forward": {
+   "enabled": true,
+   "mode": "expanding",
+   "train_days": 120,
+   "test_days": 30,
+   "step_days": 30,
+   "max_combos": 12,
+   "min_trades": 10
+  },
+  "stability": {
+   "enabled": true
+  },
+  "pbo": {
+   "enabled": true,
+   "max_combos": 12
+  },
+  "monte_carlo": {
+   "n": 1000,
+   "method": "block_bootstrap"
+  }
+ },
+ "started_at": "2026-11-09T20:09:59.551997+00:00",
+ "finished_at": "2026-11-09T20:10:29.340537+00:00",
+ "wall_seconds": 29.8,
+ "progress_log": [
+  {
+   "t": 0.0,
+   "p": 0.01,
+   "m": "Strategie en Dukascopy-data laden"
+  },
+  {
+   "t": 0.0,
+   "p": 0.02,
+   "m": "Basisbacktest op de ontwikkelperiode"
+  },
+  {
+   "t": 0.2,
+   "p": 0.08,
+   "m": "Kostenstress: scenario baseline (1/7)"
+  },
+  {
+   "t": 0.5,
+   "p": 0.091,
+   "m": "Kostenstress: scenario spread_+25% (2/7)"
+  },
+  {
+   "t": 0.7,
+   "p": 0.103,
+   "m": "Kostenstress: scenario spread_+50% (3/7)"
+  },
+  {
+   "t": 0.9,
+   "p": 0.114,
+   "m": "Kostenstress: scenario commission_x2 (4/7)"
+  },
+  {
+   "t": 1.1,
+   "p": 0.126,
+   "m": "Kostenstress: scenario slippage_+1pt (5/7)"
+  },
+  {
+   "t": 1.3,
+   "p": 0.137,
+   "m": "Kostenstress: scenario entry_delay_1bar (6/7)"
+  },
+  {
+   "t": 1.5,
+   "p": 0.149,
+   "m": "Kostenstress: scenario exit_delay_1bar (7/7)"
+  },
+  {
+   "t": 1.8,
+   "p": 0.16,
+   "m": "Walk-forward venster 1/13, combinatie 1/12"
+  },
+  {
+   "t": 1.8,
+   "p": 0.162,
+   "m": "Walk-forward venster 1/13, combinatie 2/12"
+  },
+  {
+   "t": 1.9,
+   "p": 0.165,
+   "m": "Walk-forward venster 1/13, combinatie 3/12"
+  },
+  {
+   "t": 1.9,
+   "p": 0.167,
+   "m": "Walk-forward venster 1/13, combinatie 4/12"
+  },
+  {
+   "t": 2.0,
+   "p": 0.169,
+   "m": "Walk-forward venster 1/13, combinatie 5/12"
+  },
+  {
+   "t": 2.0,
+   "p": 0.172,
+   "m": "Walk-forward venster 1/13, combinatie 6/12"
+  },
+  {
+   "t": 2.1,
+   "p": 0.174,
+   "m": "Walk-forward venster 1/13, combinatie 7/12"
+  },
+  {
+   "t": 2.2,
+   "p": 0.176,
+   "m": "Walk-forward venster 1/13, combinatie 8/12"
+  },
+  {
+   "t": 2.2,
+   "p": 0.178,
+   "m": "Walk-forward venster 1/13, combinatie 9/12"
+  },
+  {
+   "t": 2.3,
+   "p": 0.181,
+   "m": "Walk-forward venster 1/13, combinatie 10/12"
+  },
+  {
+   "t": 2.4,
+   "p": 0.183,
+   "m": "Walk-forward venster 1/13, combinatie 11/12"
+  },
+  {
+   "t": 2.5,
+   "p": 0.185,
+   "m": "Walk-forward venster 1/13, combinatie 12/12"
+  },
+  {
+   "t": 2.5,
+   "p": 0.188,
+   "m": "Walk-forward venster 1/13, test op ongeziene data"
+  },
+  {
+   "t": 2.5,
+   "p": 0.19,
+   "m": "Walk-forward venster 2/13, combinatie 1/12"
+  },
+  {
+   "t": 2.6,
+   "p": 0.192,
+   "m": "Walk-forward venster 2/13, combinatie 2/12"
+  },
+  {
+   "t": 2.7,
+   "p": 0.195,
+   "m": "Walk-forward venster 2/13, combinatie 3/12"
+  },
+  {
+   "t": 2.8,
+   "p": 0.197,
+   "m": "Walk-forward venster 2/13, combinatie 4/12"
+  },
+  {
+   "t": 2.8,
+   "p": 0.199,
+   "m": "Walk-forward venster 2/13, combinatie 5/12"
+  },
+  {
+   "t": 2.9,
+   "p": 0.202,
+   "m": "Walk-forward venster 2/13, combinatie 6/12"
+  },
+  {
+   "t": 3.0,
+   "p": 0.204,
+   "m": "Walk-forward venster 2/13, combinatie 7/12"
+  },
+  {
+   "t": 3.1,
+   "p": 0.206,
+   "m": "Walk-forward venster 2/13, combinatie 8/12"
+  },
+  {
+   "t": 3.1,
+   "p": 0.208,
+   "m": "Walk-forward venster 2/13, combinatie 9/12"
+  },
+  {
+   "t": 3.2,
+   "p": 0.211,
+   "m": "Walk-forward venster 2/13, combinatie 10/12"
+  },
+  {
+   "t": 3.3,
+   "p": 0.213,
+   "m": "Walk-forward venster 2/13, combinatie 11/12"
+  },
+  {
+   "t": 3.4,
+   "p": 0.215,
+   "m": "Walk-forward venster 2/13, combinatie 12/12"
+  },
+  {
+   "t": 3.5,
+   "p": 0.218,
+   "m": "Walk-forward venster 2/13, test op ongeziene data"
+  },
+  {
+   "t": 3.5,
+   "p": 0.22,
+   "m": "Walk-forward venster 3/13, combinatie 1/12"
+  },
+  {
+   "t": 3.6,
+   "p": 0.222,
+   "m": "Walk-forward venster 3/13, combinatie 2/12"
+  },
+  {
+   "t": 3.7,
+   "p": 0.225,
+   "m": "Walk-forward venster 3/13, combinatie 3/12"
+  },
+  {
+   "t": 3.8,
+   "p": 0.227,
+   "m": "Walk-forward venster 3/13, combinatie 4/12"
+  },
+  {
+   "t": 3.8,
+   "p": 0.229,
+   "m": "Walk-forward venster 3/13, combinatie 5/12"
+  },
+  {
+   "t": 3.9,
+   "p": 0.232,
+   "m": "Walk-forward venster 3/13, combinatie 6/12"
+  },
+  {
+   "t": 4.0,
+   "p": 0.234,
+   "m": "Walk-forward venster 3/13, combinatie 7/12"
+  },
+  {
+   "t": 4.1,
+   "p": 0.236,
+   "m": "Walk-forward venster 3/13, combinatie 8/12"
+  },
+  {
+   "t": 4.2,
+   "p": 0.238,
+   "m": "Walk-forward venster 3/13, combinatie 9/12"
+  },
+  {
+   "t": 4.3,
+   "p": 0.241,
+   "m": "Walk-forward venster 3/13, combinatie 10/12"
+  },
+  {
+   "t": 4.4,
+   "p": 0.243,
+   "m": "Walk-forward venster 3/13, combinatie 11/12"
+  },
+  {
+   "t": 4.5,
+   "p": 0.245,
+   "m": "Walk-forward venster 3/13, combinatie 12/12"
+  },
+  {
+   "t": 4.5,
+   "p": 0.248,
+   "m": "Walk-forward venster 3/13, test op ongeziene data"
+  },
+  {
+   "t": 4.6,
+   "p": 0.25,
+   "m": "Walk-forward venster 4/13, combinatie 1/12"
+  },
+  {
+   "t": 4.7,
+   "p": 0.252,
+   "m": "Walk-forward venster 4/13, combinatie 2/12"
+  },
+  {
+   "t": 4.9,
+   "p": 0.255,
+   "m": "Walk-forward venster 4/13, combinatie 3/12"
+  },
+  {
+   "t": 5.0,
+   "p": 0.257,
+   "m": "Walk-forward venster 4/13, combinatie 4/12"
+  },
+  {
+   "t": 5.1,
+   "p": 0.259,
+   "m": "Walk-forward venster 4/13, combinatie 5/12"
+  },
+  {
+   "t": 5.2,
+   "p": 0.262,
+   "m": "Walk-forward venster 4/13, combinatie 6/12"
+  },
+  {
+   "t": 5.3,
+   "p": 0.264,
+   "m": "Walk-forward venster 4/13, combinatie 7/12"
+  },
+  {
+   "t": 5.5,
+   "p": 0.266,
+   "m": "Walk-forward venster 4/13, combinatie 8/12"
+  },
+  {
+   "t": 5.6,
+   "p": 0.268,
+   "m": "Walk-forward venster 4/13, combinatie 9/12"
+  },
+  {
+   "t": 5.7,
+   "p": 0.271,
+   "m": "Walk-forward venster 4/13, combinatie 10/12"
+  },
+  {
+   "t": 5.8,
+   "p": 0.273,
+   "m": "Walk-forward venster 4/13, combinatie 11/12"
+  },
+  {
+   "t": 5.9,
+   "p": 0.275,
+   "m": "Walk-forward venster 4/13, combinatie 12/12"
+  },
+  {
+   "t": 6.0,
+   "p": 0.278,
+   "m": "Walk-forward venster 4/13, test op ongeziene data"
+  },
+  {
+   "t": 6.0,
+   "p": 0.28,
+   "m": "Walk-forward venster 5/13, combinatie 1/12"
+  },
+  {
+   "t": 6.1,
+   "p": 0.282,
+   "m": "Walk-forward venster 5/13, combinatie 2/12"
+  },
+  {
+   "t": 6.2,
+   "p": 0.285,
+   "m": "Walk-forward venster 5/13, combinatie 3/12"
+  },
+  {
+   "t": 6.3,
+   "p": 0.287,
+   "m": "Walk-forward venster 5/13, combinatie 4/12"
+  },
+  {
+   "t": 6.4,
+   "p": 0.289,
+   "m": "Walk-forward venster 5/13, combinatie 5/12"
+  },
+  {
+   "t": 6.5,
+   "p": 0.292,
+   "m": "Walk-forward venster 5/13, combinatie 6/12"
+  },
+  {
+   "t": 6.6,
+   "p": 0.294,
+   "m": "Walk-forward venster 5/13, combinatie 7/12"
+  },
+  {
+   "t": 6.8,
+   "p": 0.296,
+   "m": "Walk-forward venster 5/13, combinatie 8/12"
+  },
+  {
+   "t": 6.8,
+   "p": 0.298,
+   "m": "Walk-forward venster 5/13, combinatie 9/12"
+  },
+  {
+   "t": 7.0,
+   "p": 0.301,
+   "m": "Walk-forward venster 5/13, combinatie 10/12"
+  },
+  {
+   "t": 7.1,
+   "p": 0.303,
+   "m": "Walk-forward venster 5/13, combinatie 11/12"
+  },
+  {
+   "t": 7.2,
+   "p": 0.305,
+   "m": "Walk-forward venster 5/13, combinatie 12/12"
+  },
+  {
+   "t": 7.3,
+   "p": 0.308,
+   "m": "Walk-forward venster 5/13, test op ongeziene data"
+  },
+  {
+   "t": 7.3,
+   "p": 0.31,
+   "m": "Walk-forward venster 6/13, combinatie 1/12"
+  },
+  {
+   "t": 7.5,
+   "p": 0.312,
+   "m": "Walk-forward venster 6/13, combinatie 2/12"
+  },
+  {
+   "t": 7.6,
+   "p": 0.315,
+   "m": "Walk-forward venster 6/13, combinatie 3/12"
+  },
+  {
+   "t": 7.8,
+   "p": 0.317,
+   "m": "Walk-forward venster 6/13, combinatie 4/12"
+  },
+  {
+   "t": 7.9,
+   "p": 0.319,
+   "m": "Walk-forward venster 6/13, combinatie 5/12"
+  },
+  {
+   "t": 8.0,
+   "p": 0.322,
+   "m": "Walk-forward venster 6/13, combinatie 6/12"
+  },
+  {
+   "t": 8.1,
+   "p": 0.324,
+   "m": "Walk-forward venster 6/13, combinatie 7/12"
+  },
+  {
+   "t": 8.3,
+   "p": 0.326,
+   "m": "Walk-forward venster 6/13, combinatie 8/12"
+  },
+  {
+   "t": 8.4,
+   "p": 0.328,
+   "m": "Walk-forward venster 6/13, combinatie 9/12"
+  },
+  {
+   "t": 8.5,
+   "p": 0.331,
+   "m": "Walk-forward venster 6/13, combinatie 10/12"
+  },
+  {
+   "t": 8.6,
+   "p": 0.333,
+   "m": "Walk-forward venster 6/13, combinatie 11/12"
+  },
+  {
+   "t": 8.8,
+   "p": 0.335,
+   "m": "Walk-forward venster 6/13, combinatie 12/12"
+  },
+  {
+   "t": 8.9,
+   "p": 0.338,
+   "m": "Walk-forward venster 6/13, test op ongeziene data"
+  },
+  {
+   "t": 8.9,
+   "p": 0.34,
+   "m": "Walk-forward venster 7/13, combinatie 1/12"
+  },
+  {
+   "t": 9.0,
+   "p": 0.342,
+   "m": "Walk-forward venster 7/13, combinatie 2/12"
+  },
+  {
+   "t": 9.2,
+   "p": 0.345,
+   "m": "Walk-forward venster 7/13, combinatie 3/12"
+  },
+  {
+   "t": 9.3,
+   "p": 0.347,
+   "m": "Walk-forward venster 7/13, combinatie 4/12"
+  },
+  {
+   "t": 9.5,
+   "p": 0.349,
+   "m": "Walk-forward venster 7/13, combinatie 5/12"
+  },
+  {
+   "t": 9.6,
+   "p": 0.352,
+   "m": "Walk-forward venster 7/13, combinatie 6/12"
+  },
+  {
+   "t": 9.7,
+   "p": 0.354,
+   "m": "Walk-forward venster 7/13, combinatie 7/12"
+  },
+  {
+   "t": 9.9,
+   "p": 0.356,
+   "m": "Walk-forward venster 7/13, combinatie 8/12"
+  },
+  {
+   "t": 10.0,
+   "p": 0.358,
+   "m": "Walk-forward venster 7/13, combinatie 9/12"
+  },
+  {
+   "t": 10.2,
+   "p": 0.361,
+   "m": "Walk-forward venster 7/13, combinatie 10/12"
+  },
+  {
+   "t": 10.3,
+   "p": 0.363,
+   "m": "Walk-forward venster 7/13, combinatie 11/12"
+  },
+  {
+   "t": 10.5,
+   "p": 0.365,
+   "m": "Walk-forward venster 7/13, combinatie 12/12"
+  },
+  {
+   "t": 10.6,
+   "p": 0.368,
+   "m": "Walk-forward venster 7/13, test op ongeziene data"
+  },
+  {
+   "t": 10.6,
+   "p": 0.37,
+   "m": "Walk-forward venster 8/13, combinatie 1/12"
+  },
+  {
+   "t": 10.8,
+   "p": 0.372,
+   "m": "Walk-forward venster 8/13, combinatie 2/12"
+  },
+  {
+   "t": 10.9,
+   "p": 0.375,
+   "m": "Walk-forward venster 8/13, combinatie 3/12"
+  },
+  {
+   "t": 11.1,
+   "p": 0.377,
+   "m": "Walk-forward venster 8/13, combinatie 4/12"
+  },
+  {
+   "t": 11.2,
+   "p": 0.379,
+   "m": "Walk-forward venster 8/13, combinatie 5/12"
+  },
+  {
+   "t": 11.4,
+   "p": 0.382,
+   "m": "Walk-forward venster 8/13, combinatie 6/12"
+  },
+  {
+   "t": 11.5,
+   "p": 0.384,
+   "m": "Walk-forward venster 8/13, combinatie 7/12"
+  },
+  {
+   "t": 11.8,
+   "p": 0.386,
+   "m": "Walk-forward venster 8/13, combinatie 8/12"
+  },
+  {
+   "t": 11.9,
+   "p": 0.388,
+   "m": "Walk-forward venster 8/13, combinatie 9/12"
+  },
+  {
+   "t": 12.1,
+   "p": 0.391,
+   "m": "Walk-forward venster 8/13, combinatie 10/12"
+  },
+  {
+   "t": 12.2,
+   "p": 0.393,
+   "m": "Walk-forward venster 8/13, combinatie 11/12"
+  },
+  {
+   "t": 12.4,
+   "p": 0.395,
+   "m": "Walk-forward venster 8/13, combinatie 12/12"
+  },
+  {
+   "t": 12.5,
+   "p": 0.398,
+   "m": "Walk-forward venster 8/13, test op ongeziene data"
+  },
+  {
+   "t": 12.6,
+   "p": 0.4,
+   "m": "Walk-forward venster 9/13, combinatie 1/12"
+  },
+  {
+   "t": 12.7,
+   "p": 0.402,
+   "m": "Walk-forward venster 9/13, combinatie 2/12"
+  },
+  {
+   "t": 12.9,
+   "p": 0.405,
+   "m": "Walk-forward venster 9/13, combinatie 3/12"
+  },
+  {
+   "t": 13.1,
+   "p": 0.407,
+   "m": "Walk-forward venster 9/13, combinatie 4/12"
+  },
+  {
+   "t": 13.2,
+   "p": 0.409,
+   "m": "Walk-forward venster 9/13, combinatie 5/12"
+  },
+  {
+   "t": 13.4,
+   "p": 0.412,
+   "m": "Walk-forward venster 9/13, combinatie 6/12"
+  },
+  {
+   "t": 13.5,
+   "p": 0.414,
+   "m": "Walk-forward venster 9/13, combinatie 7/12"
+  },
+  {
+   "t": 13.8,
+   "p": 0.416,
+   "m": "Walk-forward venster 9/13, combinatie 8/12"
+  },
+  {
+   "t": 13.9,
+   "p": 0.418,
+   "m": "Walk-forward venster 9/13, combinatie 9/12"
+  },
+  {
+   "t": 14.1,
+   "p": 0.421,
+   "m": "Walk-forward venster 9/13, combinatie 10/12"
+  },
+  {
+   "t": 14.2,
+   "p": 0.423,
+   "m": "Walk-forward venster 9/13, combinatie 11/12"
+  },
+  {
+   "t": 14.4,
+   "p": 0.425,
+   "m": "Walk-forward venster 9/13, combinatie 12/12"
+  },
+  {
+   "t": 14.5,
+   "p": 0.428,
+   "m": "Walk-forward venster 9/13, test op ongeziene data"
+  },
+  {
+   "t": 14.6,
+   "p": 0.43,
+   "m": "Walk-forward venster 10/13, combinatie 1/12"
+  },
+  {
+   "t": 14.7,
+   "p": 0.432,
+   "m": "Walk-forward venster 10/13, combinatie 2/12"
+  },
+  {
+   "t": 14.9,
+   "p": 0.435,
+   "m": "Walk-forward venster 10/13, combinatie 3/12"
+  },
+  {
+   "t": 15.1,
+   "p": 0.437,
+   "m": "Walk-forward venster 10/13, combinatie 4/12"
+  },
+  {
+   "t": 15.2,
+   "p": 0.439,
+   "m": "Walk-forward venster 10/13, combinatie 5/12"
+  },
+  {
+   "t": 15.5,
+   "p": 0.442,
+   "m": "Walk-forward venster 10/13, combinatie 6/12"
+  },
+  {
+   "t": 15.6,
+   "p": 0.444,
+   "m": "Walk-forward venster 10/13, combinatie 7/12"
+  },
+  {
+   "t": 15.8,
+   "p": 0.446,
+   "m": "Walk-forward venster 10/13, combinatie 8/12"
+  },
+  {
+   "t": 16.0,
+   "p": 0.448,
+   "m": "Walk-forward venster 10/13, combinatie 9/12"
+  },
+  {
+   "t": 16.2,
+   "p": 0.451,
+   "m": "Walk-forward venster 10/13, combinatie 10/12"
+  },
+  {
+   "t": 16.4,
+   "p": 0.453,
+   "m": "Walk-forward venster 10/13, combinatie 11/12"
+  },
+  {
+   "t": 16.6,
+   "p": 0.455,
+   "m": "Walk-forward venster 10/13, combinatie 12/12"
+  },
+  {
+   "t": 16.7,
+   "p": 0.458,
+   "m": "Walk-forward venster 10/13, test op ongeziene data"
+  },
+  {
+   "t": 16.7,
+   "p": 0.46,
+   "m": "Walk-forward venster 11/13, combinatie 1/12"
+  },
+  {
+   "t": 16.9,
+   "p": 0.462,
+   "m": "Walk-forward venster 11/13, combinatie 2/12"
+  },
+  {
+   "t": 17.1,
+   "p": 0.465,
+   "m": "Walk-forward venster 11/13, combinatie 3/12"
+  },
+  {
+   "t": 17.3,
+   "p": 0.467,
+   "m": "Walk-forward venster 11/13, combinatie 4/12"
+  },
+  {
+   "t": 17.5,
+   "p": 0.469,
+   "m": "Walk-forward venster 11/13, combinatie 5/12"
+  },
+  {
+   "t": 17.7,
+   "p": 0.472,
+   "m": "Walk-forward venster 11/13, combinatie 6/12"
+  },
+  {
+   "t": 17.9,
+   "p": 0.474,
+   "m": "Walk-forward venster 11/13, combinatie 7/12"
+  },
+  {
+   "t": 18.1,
+   "p": 0.476,
+   "m": "Walk-forward venster 11/13, combinatie 8/12"
+  },
+  {
+   "t": 18.3,
+   "p": 0.478,
+   "m": "Walk-forward venster 11/13, combinatie 9/12"
+  },
+  {
+   "t": 18.5,
+   "p": 0.481,
+   "m": "Walk-forward venster 11/13, combinatie 10/12"
+  },
+  {
+   "t": 18.7,
+   "p": 0.483,
+   "m": "Walk-forward venster 11/13, combinatie 11/12"
+  },
+  {
+   "t": 18.9,
+   "p": 0.485,
+   "m": "Walk-forward venster 11/13, combinatie 12/12"
+  },
+  {
+   "t": 19.1,
+   "p": 0.488,
+   "m": "Walk-forward venster 11/13, test op ongeziene data"
+  },
+  {
+   "t": 19.1,
+   "p": 0.49,
+   "m": "Walk-forward venster 12/13, combinatie 1/12"
+  },
+  {
+   "t": 19.3,
+   "p": 0.492,
+   "m": "Walk-forward venster 12/13, combinatie 2/12"
+  },
+  {
+   "t": 19.5,
+   "p": 0.495,
+   "m": "Walk-forward venster 12/13, combinatie 3/12"
+  },
+  {
+   "t": 19.7,
+   "p": 0.497,
+   "m": "Walk-forward venster 12/13, combinatie 4/12"
+  },
+  {
+   "t": 19.9,
+   "p": 0.499,
+   "m": "Walk-forward venster 12/13, combinatie 5/12"
+  },
+  {
+   "t": 20.1,
+   "p": 0.502,
+   "m": "Walk-forward venster 12/13, combinatie 6/12"
+  },
+  {
+   "t": 20.3,
+   "p": 0.504,
+   "m": "Walk-forward venster 12/13, combinatie 7/12"
+  },
+  {
+   "t": 20.5,
+   "p": 0.506,
+   "m": "Walk-forward venster 12/13, combinatie 8/12"
+  },
+  {
+   "t": 20.7,
+   "p": 0.508,
+   "m": "Walk-forward venster 12/13, combinatie 9/12"
+  },
+  {
+   "t": 20.9,
+   "p": 0.511,
+   "m": "Walk-forward venster 12/13, combinatie 10/12"
+  },
+  {
+   "t": 21.1,
+   "p": 0.513,
+   "m": "Walk-forward venster 12/13, combinatie 11/12"
+  },
+  {
+   "t": 21.3,
+   "p": 0.515,
+   "m": "Walk-forward venster 12/13, combinatie 12/12"
+  },
+  {
+   "t": 21.5,
+   "p": 0.518,
+   "m": "Walk-forward venster 12/13, test op ongeziene data"
+  },
+  {
+   "t": 21.5,
+   "p": 0.52,
+   "m": "Walk-forward venster 13/13, combinatie 1/12"
+  },
+  {
+   "t": 21.7,
+   "p": 0.522,
+   "m": "Walk-forward venster 13/13, combinatie 2/12"
+  },
+  {
+   "t": 21.9,
+   "p": 0.525,
+   "m": "Walk-forward venster 13/13, combinatie 3/12"
+  },
+  {
+   "t": 22.2,
+   "p": 0.527,
+   "m": "Walk-forward venster 13/13, combinatie 4/12"
+  },
+  {
+   "t": 22.3,
+   "p": 0.529,
+   "m": "Walk-forward venster 13/13, combinatie 5/12"
+  },
+  {
+   "t": 22.6,
+   "p": 0.532,
+   "m": "Walk-forward venster 13/13, combinatie 6/12"
+  },
+  {
+   "t": 22.8,
+   "p": 0.534,
+   "m": "Walk-forward venster 13/13, combinatie 7/12"
+  },
+  {
+   "t": 23.1,
+   "p": 0.536,
+   "m": "Walk-forward venster 13/13, combinatie 8/12"
+  },
+  {
+   "t": 23.2,
+   "p": 0.538,
+   "m": "Walk-forward venster 13/13, combinatie 9/12"
+  },
+  {
+   "t": 23.5,
+   "p": 0.541,
+   "m": "Walk-forward venster 13/13, combinatie 10/12"
+  },
+  {
+   "t": 23.7,
+   "p": 0.543,
+   "m": "Walk-forward venster 13/13, combinatie 11/12"
+  },
+  {
+   "t": 23.9,
+   "p": 0.545,
+   "m": "Walk-forward venster 13/13, combinatie 12/12"
+  },
+  {
+   "t": 24.1,
+   "p": 0.548,
+   "m": "Walk-forward venster 13/13, test op ongeziene data"
+  },
+  {
+   "t": 24.1,
+   "p": 0.55,
+   "m": "Parameterstabiliteit 1/13: basis"
+  },
+  {
+   "t": 24.3,
+   "p": 0.56,
+   "m": "Parameterstabiliteit 2/13: {'ema_fast': 18}"
+  },
+  {
+   "t": 24.5,
+   "p": 0.57,
+   "m": "Parameterstabiliteit 3/13: {'ema_fast': 22}"
+  },
+  {
+   "t": 24.8,
+   "p": 0.58,
+   "m": "Parameterstabiliteit 4/13: {'ema_slow': 45}"
+  },
+  {
+   "t": 25.0,
+   "p": 0.59,
+   "m": "Parameterstabiliteit 5/13: {'ema_slow': 55}"
+  },
+  {
+   "t": 25.2,
+   "p": 0.6,
+   "m": "Parameterstabiliteit 6/13: {'rsi_period': 13}"
+  },
+  {
+   "t": 25.4,
+   "p": 0.61,
+   "m": "Parameterstabiliteit 7/13: {'rsi_period': 15}"
+  },
+  {
+   "t": 25.7,
+   "p": 0.62,
+   "m": "Parameterstabiliteit 8/13: {'rsi_low': 36}"
+  },
+  {
+   "t": 25.9,
+   "p": 0.63,
+   "m": "Parameterstabiliteit 9/13: {'rsi_low': 44}"
+  },
+  {
+   "t": 26.1,
+   "p": 0.64,
+   "m": "Parameterstabiliteit 10/13: {'rsi_high': 54}"
+  },
+  {
+   "t": 26.3,
+   "p": 0.65,
+   "m": "Parameterstabiliteit 11/13: {'rsi_high': 66}"
+  },
+  {
+   "t": 26.5,
+   "p": 0.66,
+   "m": "Parameterstabiliteit 12/13: {'stop_mult': 1.35}"
+  },
+  {
+   "t": 26.7,
+   "p": 0.67,
+   "m": "Parameterstabiliteit 13/13: {'stop_mult': 1.65}"
+  },
+  {
+   "t": 26.9,
+   "p": 0.68,
+   "m": "PBO/CSCV combinatie 1/12"
+  },
+  {
+   "t": 27.2,
+   "p": 0.69,
+   "m": "PBO/CSCV combinatie 2/12"
+  },
+  {
+   "t": 27.5,
+   "p": 0.7,
+   "m": "PBO/CSCV combinatie 3/12"
+  },
+  {
+   "t": 27.7,
+   "p": 0.71,
+   "m": "PBO/CSCV combinatie 4/12"
+  },
+  {
+   "t": 27.9,
+   "p": 0.72,
+   "m": "PBO/CSCV combinatie 5/12"
+  },
+  {
+   "t": 28.1,
+   "p": 0.73,
+   "m": "PBO/CSCV combinatie 6/12"
+  },
+  {
+   "t": 28.3,
+   "p": 0.74,
+   "m": "PBO/CSCV combinatie 7/12"
+  },
+  {
+   "t": 28.6,
+   "p": 0.75,
+   "m": "PBO/CSCV combinatie 8/12"
+  },
+  {
+   "t": 28.8,
+   "p": 0.76,
+   "m": "PBO/CSCV combinatie 9/12"
+  },
+  {
+   "t": 29.0,
+   "p": 0.77,
+   "m": "PBO/CSCV combinatie 10/12"
+  },
+  {
+   "t": 29.2,
+   "p": 0.78,
+   "m": "PBO/CSCV combinatie 11/12"
+  },
+  {
+   "t": 29.5,
+   "p": 0.79,
+   "m": "PBO/CSCV combinatie 12/12"
+  },
+  {
+   "t": 29.7,
+   "p": 0.81,
+   "m": "Monte Carlo, drop-best en jaaroverzicht op de echte trades"
+  },
+  {
+   "t": 29.7,
+   "p": 0.85,
+   "m": "Geprobeerde configuraties tellen en Sharpe-correcties (PSR/DSR/MinTRL)"
+  },
+  {
+   "t": 29.7,
+   "p": 0.88,
+   "m": "Onaangeroerde holdout (eenmalig)"
+  },
+  {
+   "t": 29.8,
+   "p": 0.95,
+   "m": "Scorecard en rapport"
+  },
+  {
+   "t": 29.8,
+   "p": 1.0,
+   "m": "Klaar"
+  }
+ ],
+ "scorecard": {
+  "verdict": "REJECT",
+  "checks": [
+   {
+    "name": "sample_size",
+    "status": "PASS",
+    "value": 351,
+    "threshold": 100,
+    "explanation_nl": "351 trades; minimaal 100 nodig voor betekenisvolle statistiek."
+   },
+   {
+    "name": "net_after_costs",
+    "status": "FAIL",
+    "value": -1882.1298788903641,
+    "threshold": 0.0,
+    "explanation_nl": "Netto resultaat na kosten is niet positief: harde afwijzing."
+   },
+   {
+    "name": "profit_factor",
+    "status": "FAIL",
+    "value": 0.8120703426619186,
+    "threshold": 1.2,
+    "explanation_nl": "Profit factor 0.81 (drempel 1.2)."
+   },
+   {
+    "name": "max_drawdown",
+    "status": "PASS",
+    "value": 22.36264272812497,
+    "threshold": 30.0,
+    "explanation_nl": "Maximale drawdown 22.4% (limiet 30.0%)."
+   },
+   {
+    "name": "psr",
+    "status": "FAIL",
+    "value": 0.040897340080595215,
+    "threshold": 0.95,
+    "explanation_nl": "PSR = 0.041 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "dsr",
+    "status": "FAIL",
+    "value": 1.2042313348208478e-12,
+    "threshold": 0.95,
+    "explanation_nl": "DSR = 0.000 bij 132 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "pbo",
+    "status": "PASS",
+    "value": 0.2571428571428571,
+    "threshold": 0.5,
+    "explanation_nl": "Kans op backtest-overfitting 0.26 (max 0.5)."
+   },
+   {
+    "name": "walk_forward_efficiency",
+    "status": "FAIL",
+    "value": 0.06876447478548622,
+    "threshold": 0.5,
+    "explanation_nl": "WFE 0.07: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5)."
+   },
+   {
+    "name": "oos_profitability",
+    "status": "FAIL",
+    "value": -365.03155931283754,
+    "threshold": 0.0,
+    "explanation_nl": "Out-of-sample resultaat niet positief of niet consistent over vensters."
+   },
+   {
+    "name": "cost_stress",
+    "status": "FAIL",
+    "value": -2514.895159811472,
+    "threshold": 0.0,
+    "explanation_nl": "Resultaat wordt negatief bij +50% spread: kostengevoelig."
+   },
+   {
+    "name": "parameter_stability",
+    "status": "FAIL",
+    "value": 0.08333333333333333,
+    "threshold": 0.7,
+    "explanation_nl": "8% van de naburige parameterwaarden is winstgevend."
+   },
+   {
+    "name": "drop_best_trades",
+    "status": "FAIL",
+    "value": -2180.3951002201266,
+    "threshold": 0.0,
+    "explanation_nl": "Zonder de beste 3 trades is het resultaat niet meer positief."
+   },
+   {
+    "name": "yearly_consistency",
+    "status": "FAIL",
+    "value": 0.0,
+    "threshold": 0.6,
+    "explanation_nl": "0% van de jaren winstgevend (min 60%)."
+   }
+  ],
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "notes_nl": [
+   "Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency."
+  ],
+  "counts": {
+   "PASS": 3,
+   "FAIL": 10,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "NOT_TESTED": 0
+  },
+  "disclaimer_nl": "Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs."
+ },
+ "evidence": {
+  "n_trades": 351,
+  "net_profit": -1882.1298788903641,
+  "profit_factor": 0.8120703426619186,
+  "max_drawdown_pct": 22.36264272812497,
+  "cost_stress": {
+   "scenarios": {
+    "baseline": {
+     "n_trades": 351,
+     "net_profit": -1882.1298788903641,
+     "profit_factor": 0.8120703426619186,
+     "win_rate": 0.2962962962962963,
+     "max_drawdown": 2246.6763842893242,
+     "max_drawdown_pct": 21.82866494728209,
+     "recovery_factor": -0.8377396460174772,
+     "sharpe": -1.4768150025053617,
+     "sortino": -1.991649276507278,
+     "trades": 351,
+     "sharpe_daily": -1.319630760693531,
+     "engine_metrics": {
+      "net_profit": -1882.1298788903641,
+      "profit_factor": 0.8120703426619186,
+      "win_rate": 29.629629629629626,
+      "expectancy": -5.362193387152034,
+      "avg_r": -0.12903704526279466,
+      "max_drawdown": 2314.2623842893236,
+      "max_drawdown_pct": 22.36264272812497,
+      "recovery_factor": -0.8132741955568443,
+      "sharpe_daily": -1.319630760693531,
+      "sortino_daily": -1.7996233374578323,
+      "trades": 351,
+      "exposure_pct": 14.669696969696968
+     },
+     "degradation": {
+      "net_profit_delta": 0.0,
+      "net_profit_rel": 0.0,
+      "profit_factor_delta": 0.0,
+      "n_trades_delta": 0
+     }
+    },
+    "spread_+25%": {
+     "n_trades": 352,
+     "net_profit": -2434.5203710865153,
+     "profit_factor": 0.755819090739678,
+     "win_rate": 0.2840909090909091,
+     "max_drawdown": 2732.0326879003997,
+     "max_drawdown_pct": 26.54437754641943,
+     "recovery_factor": -0.8911022118690219,
+     "sharpe": -1.9274016617156517,
+     "sortino": -2.5347585458678696,
+     "trades": 352,
+     "sharpe_daily": -1.7656708826970438,
+     "engine_metrics": {
+      "net_profit": -2434.5203710865153,
+      "profit_factor": 0.755819090739678,
+      "win_rate": 28.40909090909091,
+      "expectancy": -6.916251054223054,
+      "avg_r": -0.16580593456680187,
+      "max_drawdown": 2798.5419379004024,
+      "max_drawdown_pct": 27.045824997289834,
+      "recovery_factor": -0.8699245625430958,
+      "sharpe_daily": -1.7656708826970438,
+      "sortino_daily": -2.3486886343454794,
+      "trades": 352,
+      "exposure_pct": 14.524242424242425
+     },
+     "degradation": {
+      "net_profit_delta": -552.3904921961512,
+      "net_profit_rel": -0.29349222834814176,
+      "profit_factor_delta": -0.056251251922240564,
+      "n_trades_delta": 1
+     }
+    },
+    "spread_+50%": {
+     "n_trades": 352,
+     "net_profit": -2514.895159811472,
+     "profit_factor": 0.745031837538584,
+     "win_rate": 0.28125,
+     "max_drawdown": 2825.1640576520213,
+     "max_drawdown_pct": 27.449240160637295,
+     "recovery_factor": -0.890176679474532,
+     "sharpe": -2.00935125273853,
+     "sortino": -2.6331914205690405,
+     "trades": 352,
+     "sharpe_daily": -1.8335353642665935,
+     "engine_metrics": {
+      "net_profit": -2514.895159811472,
+      "profit_factor": 0.745031837538584,
+      "win_rate": 28.125,
+      "expectancy": -7.144588522191682,
+      "avg_r": -0.17458942904256805,
+      "max_drawdown": 2890.5965576520202,
+      "max_drawdown_pct": 27.93918851806184,
+      "recovery_factor": -0.8700263456531188,
+      "sharpe_daily": -1.8335353642665935,
+      "sortino_daily": -2.4374465135407437,
+      "trades": 352,
+      "exposure_pct": 14.39090909090909
+     },
+     "degradation": {
+      "net_profit_delta": -632.7652809211077,
+      "net_profit_rel": -0.3361963953806223,
+      "profit_factor_delta": -0.06703850512333454,
+      "n_trades_delta": 1
+     }
+    },
+    "commission_x2": {
+     "n_trades": 351,
+     "net_profit": -2372.6838887143244,
+     "profit_factor": 0.7654020636001606,
+     "win_rate": 0.2962962962962963,
+     "max_drawdown": 2645.276205528204,
+     "max_drawdown_pct": 25.75189452771972,
+     "recovery_factor": -0.8969512838605642,
+     "sharpe": -1.896112910978383,
+     "sortino": -2.4706503677438003,
+     "trades": 351,
+     "sharpe_daily": -1.7097127921401032,
+     "engine_metrics": {
+      "net_profit": -2372.6838887143244,
+      "profit_factor": 0.7654020636001606,
+      "win_rate": 29.629629629629626,
+      "expectancy": -6.7597831587302695,
+      "avg_r": -0.1636183609875489,
+      "max_drawdown": 2712.862205528203,
+      "max_drawdown_pct": 26.265466490983403,
+      "recovery_factor": -0.8746053831555942,
+      "sharpe_daily": -1.7097127921401032,
+      "sortino_daily": -2.2564938115820734,
+      "trades": 351,
+      "exposure_pct": 14.669696969696968
+     },
+     "degradation": {
+      "net_profit_delta": -490.5540098239603,
+      "net_profit_rel": -0.26063770376631673,
+      "profit_factor_delta": -0.04666827906175797,
+      "n_trades_delta": 0
+     }
+    },
+    "slippage_+1pt": {
+     "n_trades": 351,
+     "net_profit": -1880.908172200338,
+     "profit_factor": 0.8121694165749419,
+     "win_rate": 0.2962962962962963,
+     "max_drawdown": 2245.044677599289,
+     "max_drawdown_pct": 21.813425938777574,
+     "recovery_factor": -0.8378043390261899,
+     "sharpe": -1.4768617884211397,
+     "sortino": -1.993588226847641,
+     "trades": 351,
+     "sharpe_daily": -1.318840282701199,
+     "engine_metrics": {
+      "net_profit": -1880.908172200338,
+      "profit_factor": 0.8121694165749419,
+      "win_rate": 29.629629629629626,
+      "expectancy": -5.358712741311504,
+      "avg_r": -0.12991610495182093,
+      "max_drawdown": 2312.5606775992874,
+      "max_drawdown_pct": 22.347019757717206,
+      "recovery_factor": -0.8133443547751336,
+      "sharpe_daily": -1.318840282701199,
+      "sortino_daily": -1.8002055348471164,
+      "trades": 351,
+      "exposure_pct": 14.675757575757576
+     },
+     "degradation": {
+      "net_profit_delta": 1.221706690026167,
+      "net_profit_rel": 0.00064910859963949,
+      "profit_factor_delta": 9.907391302332869e-05,
+      "n_trades_delta": 0
+     }
+    },
+    "entry_delay_1bar": {
+     "n_trades": 337,
+     "net_profit": -2650.210099179064,
+     "profit_factor": 0.7203390651517765,
+     "win_rate": 0.27299703264094954,
+     "max_drawdown": 2852.6004924681974,
+     "max_drawdown_pct": 27.96011897706408,
+     "recovery_factor": -0.9290505649762346,
+     "sharpe": -2.100395359375937,
+     "sortino": -2.8093562423914977,
+     "trades": 337,
+     "sharpe_daily": -1.9029072557948892,
+     "engine_metrics": {
+      "net_profit": -2650.210099179064,
+      "profit_factor": 0.7203390651517765,
+      "win_rate": 27.299703264094955,
+      "expectancy": -7.864124923380012,
+      "avg_r": -0.2039877802846444,
+      "max_drawdown": 2870.072492468199,
+      "max_drawdown_pct": 28.083279226468154,
+      "recovery_factor": -0.9233948292713476,
+      "sharpe_daily": -1.9029072557948892,
+      "sortino_daily": -2.5671321255550446,
+      "trades": 337,
+      "exposure_pct": 14.603030303030303
+     },
+     "degradation": {
+      "net_profit_delta": -768.0802202886998,
+      "net_profit_rel": -0.40809097655977505,
+      "profit_factor_delta": -0.0917312775101421,
+      "n_trades_delta": -14
+     }
+    },
+    "exit_delay_1bar": {
+     "n_trades": 344,
+     "net_profit": -1510.6030000000233,
+     "profit_factor": 0.8449221126810138,
+     "win_rate": 0.3081395348837209,
+     "max_drawdown": 1864.8490000000047,
+     "max_drawdown_pct": 18.151049595213504,
+     "recovery_factor": -0.8100403839667552,
+     "sharpe": -1.116197501292883,
+     "sortino": -1.5977214689928243,
+     "trades": 344,
+     "sharpe_daily": -0.9969195165001631,
+     "engine_metrics": {
+      "net_profit": -1510.6030000000233,
+      "profit_factor": 0.8449221126810138,
+      "win_rate": 30.813953488372093,
+      "expectancy": -4.391287790697742,
+      "avg_r": -0.09930372910821494,
+      "max_drawdown": 1917.925000000023,
+      "max_drawdown_pct": 18.601754801826566,
+      "recovery_factor": -0.7876236036341385,
+      "sharpe_daily": -0.9969195165001631,
+      "sortino_daily": -1.4296378216675154,
+      "trades": 344,
+      "exposure_pct": 15.56969696969697
+     },
+     "degradation": {
+      "net_profit_delta": 371.52687889034087,
+      "net_profit_rel": 0.19739704632359362,
+      "profit_factor_delta": 0.03285177001909523,
+      "n_trades_delta": -7
+     }
+    }
+   },
+   "baseline_net_profit": -1882.1298788903641,
+   "survives_spread_50": false,
+   "all_positive": false,
+   "n_scenarios_positive": 0,
+   "status": "OK",
+   "unsupported": []
+  },
+  "walk_forward": {
+   "n_windows": 13,
+   "n_windows_ok": 10,
+   "n_candidates": 12,
+   "wfe": 0.06876447478548622,
+   "oos_net_profit": -365.03155931283754,
+   "oos_n_trades": 192,
+   "oos_metrics": {
+    "n_trades": 192,
+    "net_profit": -365.03155931283754,
+    "profit_factor": 0.9299254155362168,
+    "win_rate": 0.3333333333333333,
+    "max_drawdown": 1049.171678764299,
+    "max_drawdown_pct": 9.819898157776743,
+    "recovery_factor": -0.34792357313987643,
+    "sharpe": -0.43965180980363283,
+    "sortino": -0.6710140443276951
+   },
+   "oos_profitable_windows_frac": 0.5,
+   "windows": [
+    {
+     "train": [
+      "2025-01-01",
+      "2025-05-01"
+     ],
+     "test": [
+      "2025-05-01",
+      "2025-05-31"
+     ],
+     "params": {
+      "ema_fast": 50,
+      "ema_slow": 140,
+      "rsi_period": 21,
+      "rsi_low": 30,
+      "rsi_high": 80,
+      "stop_mult": 0.5
+     },
+     "train_metrics": {
+      "n_trades": 10,
+      "net_profit": 241.2167785219767,
+      "profit_factor": 1.9733942173937855,
+      "win_rate": 0.5,
+      "max_drawdown": 99.84412500163444,
+      "max_drawdown_pct": 0.9758824928880815,
+      "recovery_factor": 2.4159336217131253,
+      "sharpe": 3.0283275900262194,
+      "sortino": 5.85051121590157,
+      "trades": 10,
+      "sharpe_daily": 1.6373948524031605,
+      "engine_metrics": {
+       "net_profit": 241.2167785219767,
+       "profit_factor": 1.9733942173937855,
+       "win_rate": 50.0,
+       "expectancy": 24.12167785219767,
+       "avg_r": 0.5,
+       "max_drawdown": 99.8441250016349,
+       "max_drawdown_pct": 0.9758824928880815,
+       "recovery_factor": 2.415933621713114,
+       "sharpe_daily": 1.6373948524031605,
+       "sortino_daily": 3.191495773652443,
+       "trades": 10,
+       "exposure_pct": 0.18144116122343182
+      }
+     },
+     "test_metrics": {
+      "n_trades": 2,
+      "net_profit": -95.98284572493185,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 95.98284572493185,
+      "max_drawdown_pct": 0.959828457249314,
+      "recovery_factor": -1.0,
+      "sharpe": -11.585572607402744,
+      "sortino": -10.036006719926634,
+      "trades": 2,
+      "sharpe_daily": -4.584277183957639,
+      "engine_metrics": {
+       "net_profit": -95.98284572493185,
+       "profit_factor": 0.0,
+       "win_rate": 0.0,
+       "expectancy": -47.991422862465924,
+       "avg_r": -1.0,
+       "max_drawdown": 95.9828457249314,
+       "max_drawdown_pct": 0.959828457249314,
+       "recovery_factor": -1.0000000000000047,
+       "sharpe_daily": -4.584277183957639,
+       "sortino_daily": -4.4879338398429,
+       "trades": 2,
+       "exposure_pct": 0.09970089730807577
+      }
+     },
+     "wfe": -1.5916445997339623,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-05-31"
+     ],
+     "test": [
+      "2025-05-31",
+      "2025-06-30"
+     ],
+     "params": {
+      "ema_fast": 20,
+      "ema_slow": 140,
+      "rsi_period": 21,
+      "rsi_low": 30,
+      "rsi_high": 60,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 22,
+      "net_profit": 254.48430107111653,
+      "profit_factor": 1.4840983538584043,
+      "win_rate": 0.45454545454545453,
+      "max_drawdown": 132.94539424484356,
+      "max_drawdown_pct": 1.318780539337487,
+      "recovery_factor": 1.9142017105341504,
+      "sharpe": 1.4166143638559192,
+      "sortino": 2.721734978115603,
+      "trades": 22,
+      "sharpe_daily": 1.1721713984648428,
+      "engine_metrics": {
+       "net_profit": 254.48430107111653,
+       "profit_factor": 1.4840983538584043,
+       "win_rate": 45.45454545454545,
+       "expectancy": 11.567468230505296,
+       "avg_r": 0.3824250280357892,
+       "max_drawdown": 184.14723228176263,
+       "max_drawdown_pct": 1.8309463950869111,
+       "recovery_factor": 1.3819610423562139,
+       "sharpe_daily": 1.1721713984648428,
+       "sortino_daily": 1.8268519805042314,
+       "trades": 22,
+       "exposure_pct": 17.660975108002468
+      }
+     },
+     "test_metrics": {
+      "n_trades": 5,
+      "net_profit": -99.02479804051336,
+      "profit_factor": 0.4118282218645438,
+      "win_rate": 0.2,
+      "max_drawdown": 99.02479804051336,
+      "max_drawdown_pct": 0.9902479804051292,
+      "recovery_factor": -1.0,
+      "sharpe": -3.19741911492111,
+      "sortino": -4.152910161979337,
+      "trades": 5,
+      "sharpe_daily": -3.2245532998632425,
+      "engine_metrics": {
+       "net_profit": -99.02479804051336,
+       "profit_factor": 0.4118282218645438,
+       "win_rate": 20.0,
+       "expectancy": -19.80495960810267,
+       "avg_r": -0.4114101892089435,
+       "max_drawdown": 99.0247980405129,
+       "max_drawdown_pct": 0.9902479804051292,
+       "recovery_factor": -1.0000000000000047,
+       "sharpe_daily": -3.2245532998632425,
+       "sortino_daily": -3.9591553506406303,
+       "trades": 5,
+       "exposure_pct": 19.53210010881393
+      }
+     },
+     "wfe": -1.9455973830943805,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "test": [
+      "2025-06-30",
+      "2025-07-30"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 117,
+      "net_profit": 588.7767488014892,
+      "profit_factor": 1.1959668200638518,
+      "win_rate": 0.36752136752136755,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 1.192759833751209,
+      "sharpe": 1.1484119334576897,
+      "sortino": 1.9134257307623401,
+      "trades": 117,
+      "sharpe_daily": 1.075126292907813,
+      "engine_metrics": {
+       "net_profit": 588.7767488014892,
+       "profit_factor": 1.1959668200638518,
+       "win_rate": 36.75213675213676,
+       "expectancy": 5.0322799042862325,
+       "avg_r": 0.08723729308701238,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 1.093008083647516,
+       "sharpe_daily": 1.075126292907813,
+       "sortino_daily": 1.7217310128025016,
+       "trades": 117,
+       "exposure_pct": 90.87370242214533
+      }
+     },
+     "test_metrics": {
+      "n_trades": 20,
+      "net_profit": 334.60563767070926,
+      "profit_factor": 1.7696703592260388,
+      "win_rate": 0.45,
+      "max_drawdown": 203.65584880390952,
+      "max_drawdown_pct": 2.0255078116881275,
+      "recovery_factor": 1.6429954731763439,
+      "sharpe": 3.409370454629251,
+      "sortino": 7.4724764748022485,
+      "trades": 20,
+      "sharpe_daily": 5.413635310988447,
+      "engine_metrics": {
+       "net_profit": 334.60563767070926,
+       "profit_factor": 1.7696703592260388,
+       "win_rate": 45.0,
+       "expectancy": 16.73028188353546,
+       "avg_r": 0.36850973180540064,
+       "max_drawdown": 219.13584880390954,
+       "max_drawdown_pct": 2.1794678433252517,
+       "recovery_factor": 1.5269324462293987,
+       "sharpe_daily": 5.413635310988447,
+       "sortino_daily": 13.635548900114976,
+       "trades": 20,
+       "exposure_pct": 92.62948207171314
+      }
+     },
+     "wfe": 3.409838839782624,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-07-30"
+     ],
+     "test": [
+      "2025-07-30",
+      "2025-08-29"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 134,
+      "net_profit": 1058.2111587774793,
+      "profit_factor": 1.3160996307855657,
+      "win_rate": 0.3805970149253731,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 2.143752735457729,
+      "sharpe": 1.748427166479751,
+      "sortino": 3.113921547402689,
+      "trades": 134,
+      "sharpe_daily": 1.6294613018430988,
+      "engine_metrics": {
+       "net_profit": 1058.2111587774793,
+       "profit_factor": 1.3160996307855657,
+       "win_rate": 38.059701492537314,
+       "expectancy": 7.897098199831936,
+       "avg_r": 0.1445536913142389,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 1.9644684561749872,
+       "sharpe_daily": 1.6294613018430988,
+       "sortino_daily": 2.6958018646663526,
+       "trades": 134,
+       "exposure_pct": 91.23673349056604
+      }
+     },
+     "test_metrics": {
+      "n_trades": 7,
+      "net_profit": -112.36323306434542,
+      "profit_factor": 0.4475688327218149,
+      "win_rate": 0.14285714285714285,
+      "max_drawdown": 197.4967076600442,
+      "max_drawdown_pct": 1.974967076600442,
+      "recovery_factor": -0.5689372465780996,
+      "sharpe": -3.070438712686876,
+      "sortino": -4.260040739700989,
+      "trades": 7,
+      "sharpe_daily": -2.1550862418123815,
+      "engine_metrics": {
+       "net_profit": -112.36323306434542,
+       "profit_factor": 0.4475688327218149,
+       "win_rate": 14.285714285714285,
+       "expectancy": -16.051890437763632,
+       "avg_r": -0.4487229299325222,
+       "max_drawdown": 250.14954255161865,
+       "max_drawdown_pct": 2.4974199271715425,
+       "recovery_factor": -0.44918424362562703,
+       "sharpe_daily": -2.1550862418123815,
+       "sortino_daily": -2.875292832629143,
+       "trades": 7,
+       "exposure_pct": 96.93675889328063
+      }
+     },
+     "wfe": -0.7432756921209259,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-08-29"
+     ],
+     "test": [
+      "2025-08-29",
+      "2025-09-28"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 141,
+      "net_profit": 1193.5287488873691,
+      "profit_factor": 1.3413604405913377,
+      "win_rate": 0.3829787234042553,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 2.4178827628605335,
+      "sharpe": 1.7979046857856424,
+      "sortino": 3.2283987955696682,
+      "trades": 141,
+      "sharpe_daily": 1.6449422120891466,
+      "engine_metrics": {
+       "net_profit": 1193.5287488873691,
+       "profit_factor": 1.3413604405913377,
+       "win_rate": 38.297872340425535,
+       "expectancy": 8.46474289991042,
+       "avg_r": 0.15502793964874004,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 2.2156727032022037,
+       "sharpe_daily": 1.6449422120891466,
+       "sortino_daily": 2.7450560759585705,
+       "trades": 141,
+       "exposure_pct": 92.11133914828117
+      }
+     },
+     "test_metrics": {
+      "n_trades": 15,
+      "net_profit": 117.4285753840536,
+      "profit_factor": 1.3763901942477628,
+      "win_rate": 0.4,
+      "max_drawdown": 141.80909437176706,
+      "max_drawdown_pct": 1.3976264830315677,
+      "recovery_factor": 0.8280750674297558,
+      "sharpe": 2.4156032138637493,
+      "sortino": 4.083361411711085,
+      "trades": 15,
+      "sharpe_daily": 2.160091431245805,
+      "engine_metrics": {
+       "net_profit": 117.4285753840536,
+       "profit_factor": 1.3763901942477628,
+       "win_rate": 40.0,
+       "expectancy": 7.82857169227024,
+       "avg_r": 0.2543108296940143,
+       "max_drawdown": 192.07109437176769,
+       "max_drawdown_pct": 1.8868319403278906,
+       "recovery_factor": 0.6113807794355667,
+       "sharpe_daily": 2.160091431245805,
+       "sortino_daily": 3.452966009821322,
+       "trades": 15,
+       "exposure_pct": 96.08150470219435
+      }
+     },
+     "wfe": 0.7871017802865515,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-09-28"
+     ],
+     "test": [
+      "2025-09-28",
+      "2025-10-28"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 155,
+      "net_profit": 1553.5619931651095,
+      "profit_factor": 1.4085113366632747,
+      "win_rate": 0.3935483870967742,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 3.147247829439297,
+      "sharpe": 2.1197033731029906,
+      "sortino": 3.854281354430467,
+      "trades": 155,
+      "sharpe_daily": 1.87432541486183,
+      "engine_metrics": {
+       "net_profit": 1553.5619931651095,
+       "profit_factor": 1.4085113366632747,
+       "win_rate": 39.35483870967742,
+       "expectancy": 10.022980601065223,
+       "avg_r": 0.1859010480349046,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 2.884040207826761,
+       "sharpe_daily": 1.87432541486183,
+       "sortino_daily": 3.152748065215583,
+       "trades": 155,
+       "exposure_pct": 92.59682394607563
+      }
+     },
+     "test_metrics": {
+      "n_trades": 24,
+      "net_profit": 313.6523330207456,
+      "profit_factor": 1.6132576545972144,
+      "win_rate": 0.4583333333333333,
+      "max_drawdown": 145.04648999832807,
+      "max_drawdown_pct": 1.4034515472202234,
+      "recovery_factor": 2.1624262195132125,
+      "sharpe": 3.9075523823252896,
+      "sortino": 7.6380356282166995,
+      "trades": 24,
+      "sharpe_daily": 4.422821460643579,
+      "engine_metrics": {
+       "net_profit": 313.6523330207456,
+       "profit_factor": 1.6132576545972144,
+       "win_rate": 45.83333333333333,
+       "expectancy": 13.068847209197733,
+       "avg_r": 0.327781381007132,
+       "max_drawdown": 176.0919173820257,
+       "max_drawdown_pct": 1.7270880442276977,
+       "recovery_factor": 1.7811852905223753,
+       "sharpe_daily": 4.422821460643579,
+       "sortino_daily": 7.704828296414024,
+       "trades": 24,
+       "exposure_pct": 77.01030927835052
+      }
+     },
+     "wfe": 1.8170314474774234,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-10-28"
+     ],
+     "test": [
+      "2025-10-28",
+      "2025-11-27"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 180,
+      "net_profit": 2072.7985767617915,
+      "profit_factor": 1.4680925348019065,
+      "win_rate": 0.40555555555555556,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.199131319045532,
+      "sharpe": 2.4574024106520995,
+      "sortino": 4.555505644926424,
+      "trades": 180,
+      "sharpe_daily": 2.188626661702512,
+      "engine_metrics": {
+       "net_profit": 2072.7985767617915,
+       "profit_factor": 1.4680925348019065,
+       "win_rate": 40.55555555555556,
+       "expectancy": 11.51554764867662,
+       "avg_r": 0.22054545698507283,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.8479535830610123,
+       "sharpe_daily": 2.188626661702512,
+       "sortino_daily": 3.7226311237672807,
+       "trades": 180,
+       "exposure_pct": 91.74123213000102
+      }
+     },
+     "test_metrics": {
+      "n_trades": 23,
+      "net_profit": -323.46691316998795,
+      "profit_factor": 0.5421939431030933,
+      "win_rate": 0.2608695652173913,
+      "max_drawdown": 429.19310231567715,
+      "max_drawdown_pct": 4.258665230887924,
+      "recovery_factor": -0.7536628883939374,
+      "sharpe": -5.263106849413312,
+      "sortino": -6.277349571124681,
+      "trades": 23,
+      "sharpe_daily": -3.9005150729410576,
+      "engine_metrics": {
+       "net_profit": -323.46691316998795,
+       "profit_factor": 0.5421939431030933,
+       "win_rate": 26.08695652173913,
+       "expectancy": -14.063778833477738,
+       "avg_r": -0.26214599431127483,
+       "max_drawdown": 452.0591023156794,
+       "max_drawdown_pct": 4.484689652257604,
+       "recovery_factor": -0.7155412013894288,
+       "sharpe_daily": -3.9005150729410576,
+       "sortino_daily": -5.2408777027661815,
+       "trades": 23,
+       "exposure_pct": 85.34653465346534
+      }
+     },
+     "wfe": -1.5605323006122516,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-11-27"
+     ],
+     "test": [
+      "2025-11-27",
+      "2025-12-27"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 191,
+      "net_profit": 1982.286665551862,
+      "profit_factor": 1.4139514497113528,
+      "win_rate": 0.39790575916230364,
+      "max_drawdown": 493.6255666405168,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.01576984563983,
+      "sharpe": 2.1704340967591347,
+      "sortino": 3.9367866577701696,
+      "trades": 191,
+      "sharpe_daily": 1.9442492532155167,
+      "engine_metrics": {
+       "net_profit": 1982.286665551862,
+       "profit_factor": 1.4139514497113528,
+       "win_rate": 39.79057591623037,
+       "expectancy": 10.378464217549014,
+       "avg_r": 0.19786570019715644,
+       "max_drawdown": 538.6755666405152,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.679926821100352,
+       "sharpe_daily": 1.9442492532155167,
+       "sortino_daily": 3.2722793672931085,
+       "trades": 191,
+       "exposure_pct": 92.06652380508712
+      }
+     },
+     "test_metrics": {
+      "n_trades": 16,
+      "net_profit": -96.1574265757472,
+      "profit_factor": 0.7624833721920335,
+      "win_rate": 0.3125,
+      "max_drawdown": 217.57500287431412,
+      "max_drawdown_pct": 2.175750028743132,
+      "recovery_factor": -0.4419507080567254,
+      "sharpe": -1.3770528605351076,
+      "sortino": -1.8411548043707837,
+      "trades": 16,
+      "sharpe_daily": -0.4890364175411809,
+      "engine_metrics": {
+       "net_profit": -96.1574265757472,
+       "profit_factor": 0.7624833721920335,
+       "win_rate": 31.25,
+       "expectancy": -6.0098391609842,
+       "avg_r": -0.0980545466311899,
+       "max_drawdown": 244.3810028743137,
+       "max_drawdown_pct": 2.4435446597930834,
+       "recovery_factor": -0.39347341014555626,
+       "sharpe_daily": -0.4890364175411809,
+       "sortino_daily": -0.6809121781897982,
+       "trades": 16,
+       "exposure_pct": 94.09282700421942
+      }
+     },
+     "wfe": -0.5335916902002417,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2025-12-27"
+     ],
+     "test": [
+      "2025-12-27",
+      "2026-01-26"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 207,
+      "net_profit": 1901.1845286560247,
+      "profit_factor": 1.3561015923306552,
+      "win_rate": 0.391304347826087,
+      "max_drawdown": 521.7276593868605,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 3.644017131256402,
+      "sharpe": 1.91137971318274,
+      "sortino": 3.3590648341146627,
+      "trades": 207,
+      "sharpe_daily": 1.731091281349861,
+      "engine_metrics": {
+       "net_profit": 1901.1845286560247,
+       "profit_factor": 1.3561015923306552,
+       "win_rate": 39.130434782608695,
+       "expectancy": 9.184466322009781,
+       "avg_r": 0.17082872632101231,
+       "max_drawdown": 618.2589718998861,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.0750617703351035,
+       "sharpe_daily": 1.731091281349861,
+       "sortino_daily": 2.865574188475363,
+       "trades": 207,
+       "exposure_pct": 92.25665610820991
+      }
+     },
+     "test_metrics": {
+      "n_trades": 20,
+      "net_profit": 417.9876909016293,
+      "profit_factor": 1.9811096259904861,
+      "win_rate": 0.5,
+      "max_drawdown": 118.70467973190807,
+      "max_drawdown_pct": 1.1805627268585261,
+      "recovery_factor": 3.5212402059097028,
+      "sharpe": 5.334824864736976,
+      "sortino": 10.567929831538576,
+      "trades": 20,
+      "sharpe_daily": 6.906547534491888,
+      "engine_metrics": {
+       "net_profit": 417.9876909016293,
+       "profit_factor": 1.9811096259904861,
+       "win_rate": 50.0,
+       "expectancy": 20.899384545081467,
+       "avg_r": 0.5,
+       "max_drawdown": 151.54200586400657,
+       "max_drawdown_pct": 1.4563701801951545,
+       "recovery_factor": 2.7582298948631476,
+       "sharpe_daily": 6.906547534491888,
+       "sortino_daily": 15.277060974899186,
+       "trades": 20,
+       "exposure_pct": 89.09299655568313
+      }
+     },
+     "wfe": 2.6382774608235064,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2026-01-26"
+     ],
+     "test": [
+      "2026-01-26",
+      "2026-02-25"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 225,
+      "net_profit": 2153.2426309190314,
+      "profit_factor": 1.3696059247901795,
+      "win_rate": 0.39555555555555555,
+      "max_drawdown": 521.7276593868605,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.127139115931755,
+      "sharpe": 2.005593057317202,
+      "sortino": 3.5143482598593856,
+      "trades": 225,
+      "sharpe_daily": 1.8280149551155103,
+      "engine_metrics": {
+       "net_profit": 2153.2426309190314,
+       "profit_factor": 1.3696059247901795,
+       "win_rate": 39.55555555555556,
+       "expectancy": 9.569967248529029,
+       "avg_r": 0.1863574181979937,
+       "max_drawdown": 618.2589718998861,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.4827519353292997,
+       "sharpe_daily": 1.8280149551155103,
+       "sortino_daily": 3.0328218919033723,
+       "trades": 225,
+       "exposure_pct": 92.23629700446145
+      }
+     },
+     "test_metrics": {
+      "n_trades": 11,
+      "net_profit": 206.33113784101442,
+      "profit_factor": 1.9036367895179358,
+      "win_rate": 0.5454545454545454,
+      "max_drawdown": 138.10299015382043,
+      "max_drawdown_pct": 1.3752533020626674,
+      "recovery_factor": 1.494038163918108,
+      "sharpe": 3.3330730824800017,
+      "sortino": 7.2685686975197745,
+      "trades": 11,
+      "sharpe_daily": 4.052641236364948,
+      "engine_metrics": {
+       "net_profit": 206.33113784101442,
+       "profit_factor": 1.9036367895179358,
+       "win_rate": 54.54545454545454,
+       "expectancy": 18.75737616736495,
+       "avg_r": 0.4935959738323753,
+       "max_drawdown": 157.60299015382043,
+       "max_drawdown_pct": 1.5694376521650981,
+       "recovery_factor": 1.3091828882157335,
+       "sharpe_daily": 4.052641236364948,
+       "sortino_daily": 8.602754225742254,
+       "trades": 11,
+       "exposure_pct": 35.84905660377358
+      }
+     },
+     "wfe": 1.2457048515653555,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2026-02-25"
+     ],
+     "test": [
+      "2026-02-25",
+      "2026-03-27"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 238,
+      "net_profit": 2135.8036234366946,
+      "profit_factor": 1.340025018929821,
+      "win_rate": 0.3907563025210084,
+      "max_drawdown": 521.7276593868605,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.093713616691728,
+      "sharpe": 1.872111491980628,
+      "sortino": 3.2630832014017126,
+      "trades": 238,
+      "sharpe_daily": 1.6942296854635401,
+      "engine_metrics": {
+       "net_profit": 2135.8036234366946,
+       "profit_factor": 1.340025018929821,
+       "win_rate": 39.075630252100844,
+       "expectancy": 8.973964804355859,
+       "avg_r": 0.17617396215804582,
+       "max_drawdown": 618.2589718998861,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.4545452965663435,
+       "sharpe_daily": 1.6942296854635401,
+       "sortino_daily": 2.771035318972643,
+       "trades": 238,
+       "exposure_pct": 89.56412714801976
+      }
+     },
+     "test_metrics": {
+      "n_trades": 10,
+      "net_profit": -195.3854508009872,
+      "profit_factor": 0.47491036158979916,
+      "win_rate": 0.2,
+      "max_drawdown": 244.27524795179033,
+      "max_drawdown_pct": 2.442752479517912,
+      "recovery_factor": -0.7998577524299477,
+      "sharpe": -3.6684979594522704,
+      "sortino": -4.657422280921056,
+      "trades": 10,
+      "sharpe_daily": -2.0217104936568386,
+      "engine_metrics": {
+       "net_profit": -195.3854508009872,
+       "profit_factor": 0.47491036158979916,
+       "win_rate": 20.0,
+       "expectancy": -19.53854508009872,
+       "avg_r": -0.4,
+       "max_drawdown": 280.9947661489423,
+       "max_drawdown_pct": 2.8096435124664474,
+       "recovery_factor": -0.6953348401422624,
+       "sharpe_daily": -2.0217104936568386,
+       "sortino_daily": -2.6075925894615275,
+       "trades": 10,
+       "exposure_pct": 40.03944773175542
+      }
+     },
+     "wfe": -1.2807339968888756,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2026-03-27"
+     ],
+     "test": [
+      "2026-03-27",
+      "2026-04-26"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 253,
+      "net_profit": 2148.4311498378174,
+      "profit_factor": 1.3142078027052746,
+      "win_rate": 0.38735177865612647,
+      "max_drawdown": 521.7276593868605,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.117916907765011,
+      "sharpe": 1.7258008572241443,
+      "sortino": 2.9893180181119763,
+      "trades": 253,
+      "sharpe_daily": 1.592778377185186,
+      "engine_metrics": {
+       "net_profit": 2148.4311498378174,
+       "profit_factor": 1.3142078027052746,
+       "win_rate": 38.73517786561265,
+       "expectancy": 8.491822726631689,
+       "avg_r": 0.1672762096735771,
+       "max_drawdown": 618.2589718998861,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.4749696283998452,
+       "sharpe_daily": 1.592778377185186,
+       "sortino_daily": 2.5834595497099646,
+       "trades": 253,
+       "exposure_pct": 87.23667055513621
+      }
+     },
+     "test_metrics": {
+      "n_trades": 15,
+      "net_profit": -480.8703847547795,
+      "profit_factor": 0.2350891281310419,
+      "win_rate": 0.13333333333333333,
+      "max_drawdown": 486.542544758031,
+      "max_drawdown_pct": 4.86542544758031,
+      "recovery_factor": -0.9883419033661848,
+      "sharpe": -7.702667930363663,
+      "sortino": -7.743888498290879,
+      "trades": 15,
+      "sharpe_daily": -6.845402957290523,
+      "engine_metrics": {
+       "net_profit": -480.8703847547795,
+       "profit_factor": 0.2350891281310419,
+       "win_rate": 13.333333333333334,
+       "expectancy": -32.05802565031863,
+       "avg_r": -0.7278729126386512,
+       "max_drawdown": 508.66038475478126,
+       "max_drawdown_pct": 5.086603847547813,
+       "recovery_factor": -0.9453662977638823,
+       "sharpe_daily": -6.845402957290523,
+       "sortino_daily": -7.2348566458015675,
+       "trades": 15,
+       "exposure_pct": 61.40829694323144
+      }
+     },
+     "wfe": -3.3573595187661462,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-01-01",
+      "2026-04-26"
+     ],
+     "test": [
+      "2026-04-26",
+      "2026-05-26"
+     ],
+     "params": {
+      "ema_fast": 5,
+      "ema_slow": 20,
+      "rsi_period": 2,
+      "rsi_low": 50,
+      "rsi_high": 70,
+      "stop_mult": 4.0
+     },
+     "train_metrics": {
+      "n_trades": 267,
+      "net_profit": 2271.3336819964434,
+      "profit_factor": 1.3125309466673822,
+      "win_rate": 0.3857677902621723,
+      "max_drawdown": 521.7276593868605,
+      "max_drawdown_pct": 4.852044750148247,
+      "recovery_factor": 4.353485273649738,
+      "sharpe": 1.7087694839414296,
+      "sortino": 2.9733456096002175,
+      "trades": 267,
+      "sharpe_daily": 1.5772163845627305,
+      "engine_metrics": {
+       "net_profit": 2271.3336819964434,
+       "profit_factor": 1.3125309466673822,
+       "win_rate": 38.57677902621723,
+       "expectancy": 8.506867722833121,
+       "avg_r": 0.16590262164908687,
+       "max_drawdown": 618.2589718998861,
+       "max_drawdown_pct": 5.2850669698975885,
+       "recovery_factor": 3.6737577378242037,
+       "sharpe_daily": 1.5772163845627305,
+       "sortino_daily": 2.5769974448130446,
+       "trades": 267,
+       "exposure_pct": 87.11020724385048
+      }
+     },
+     "test_metrics": {
+      "n_trades": 24,
+      "net_profit": -351.78588199969727,
+      "profit_factor": 0.5091810556862686,
+      "win_rate": 0.20833333333333334,
+      "max_drawdown": 403.80861411662136,
+      "max_drawdown_pct": 4.017187633553843,
+      "recovery_factor": -0.87116983071119,
+      "sharpe": -4.383331171201191,
+      "sortino": -5.844699760533561,
+      "trades": 24,
+      "sharpe_daily": -4.067292440167586,
+      "engine_metrics": {
+       "net_profit": -351.78588199969727,
+       "profit_factor": 0.5091810556862686,
+       "win_rate": 20.833333333333336,
+       "expectancy": -14.65774508332072,
+       "avg_r": -0.3488847842727849,
+       "max_drawdown": 426.97861411662234,
+       "max_drawdown_pct": 4.24056326116209,
+       "recovery_factor": -0.8238957886158031,
+       "sharpe_daily": -4.067292440167586,
+       "sortino_daily": -4.87524736092354,
+       "trades": 24,
+       "exposure_pct": 86.32124352331606
+      }
+     },
+     "wfe": -2.478092125613083,
+     "status": "OK"
+    }
+   ],
+   "mode": "expanding",
+   "objective": "sharpe",
+   "wfe_definition": "mean over OK windows with IS>0 of (OOS net/test_days)/(IS net/train_days)",
+   "status": "OK"
+  },
+  "parameter_stability": {
+   "base_net_profit": -1882.1298788903641,
+   "base_objective": -1882.1298788903641,
+   "objective": "net_profit",
+   "neighbours": [
+    {
+     "param": "ema_fast",
+     "value": 18,
+     "net_profit": -2159.6029691758354,
+     "objective": -2159.6029691758354,
+     "n_trades": 330,
+     "rel_change": -0.14742504935369252
+    },
+    {
+     "param": "ema_fast",
+     "value": 22,
+     "net_profit": -1244.4490624330992,
+     "objective": -1244.4490624330992,
+     "n_trades": 373,
+     "rel_change": 0.3388080831240076
+    },
+    {
+     "param": "ema_slow",
+     "value": 45,
+     "net_profit": -1991.6472854212489,
+     "objective": -1991.6472854212489,
+     "n_trades": 328,
+     "rel_change": -0.058188017606655415
+    },
+    {
+     "param": "ema_slow",
+     "value": 55,
+     "net_profit": -1384.9468919633623,
+     "objective": -1384.9468919633623,
+     "n_trades": 379,
+     "rel_change": 0.26415976522306894
+    },
+    {
+     "param": "rsi_period",
+     "value": 13,
+     "net_profit": -2640.7648905717906,
+     "objective": -2640.7648905717906,
+     "n_trades": 404,
+     "rel_change": -0.4030726148020615
+    },
+    {
+     "param": "rsi_period",
+     "value": 15,
+     "net_profit": -1629.8537445027614,
+     "objective": -1629.8537445027614,
+     "n_trades": 292,
+     "rel_change": 0.1340375800932163
+    },
+    {
+     "param": "rsi_low",
+     "value": 36,
+     "net_profit": 532.8445446164701,
+     "objective": 532.8445446164701,
+     "n_trades": 238,
+     "rel_change": 1.2831072130530206
+    },
+    {
+     "param": "rsi_low",
+     "value": 44,
+     "net_profit": -681.1278282815019,
+     "objective": -681.1278282815019,
+     "n_trades": 488,
+     "rel_change": 0.6381079563525817
+    },
+    {
+     "param": "rsi_high",
+     "value": 54,
+     "net_profit": -3018.5541471267006,
+     "objective": -3018.5541471267006,
+     "n_trades": 501,
+     "rel_change": -0.6037969435490452
+    },
+    {
+     "param": "rsi_high",
+     "value": 66,
+     "net_profit": -2015.8990610882015,
+     "objective": -2015.8990610882015,
+     "n_trades": 252,
+     "rel_change": -0.07107330035943261
+    },
+    {
+     "param": "stop_mult",
+     "value": 1.35,
+     "net_profit": -2652.0743542996943,
+     "objective": -2652.0743542996943,
+     "n_trades": 364,
+     "rel_change": -0.4090814794690267
+    },
+    {
+     "param": "stop_mult",
+     "value": 1.65,
+     "net_profit": -1648.494841312449,
+     "objective": -1648.494841312449,
+     "n_trades": 339,
+     "rel_change": 0.12413332374047323
+    }
+   ],
+   "n_neighbours": 12,
+   "rel_step": 0.1,
+   "frac_positive": 0.08333333333333333,
+   "mean_rel_change": 0.09080970970387119,
+   "worst_rel_change": -0.6037969435490452,
+   "status": "OK"
+  },
+  "pbo_result": {
+   "pbo": 0.2571428571428571,
+   "n_splits": 8,
+   "logits": [
+    2.4849066497880012,
+    2.4849066497880012,
+    2.4849066497880012,
+    0.47000362924573574,
+    -0.15415067982725822,
+    -0.15415067982725822,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    -0.4700036292457356,
+    2.4849066497880012,
+    -0.4700036292457356,
+    2.4849066497880012,
+    2.4849066497880012,
+    0.15415067982725816,
+    -0.4700036292457356,
+    2.4849066497880012,
+    0.15415067982725816,
+    -0.15415067982725822,
+    -0.15415067982725822,
+    1.2039728043259361,
+    -0.8109302162163287,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    -0.15415067982725822,
+    2.4849066497880012,
+    -0.15415067982725822,
+    -0.15415067982725822,
+    1.2039728043259361,
+    -0.15415067982725822,
+    1.2039728043259361,
+    -0.15415067982725822,
+    1.2039728043259361,
+    1.7047480922384253,
+    1.7047480922384253,
+    1.7047480922384253,
+    2.4849066497880012,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    -0.4700036292457356,
+    0.15415067982725816,
+    -0.15415067982725822,
+    -0.15415067982725822,
+    1.7047480922384253,
+    1.7047480922384253,
+    2.4849066497880012,
+    1.7047480922384253,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    1.7047480922384253,
+    2.4849066497880012,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    -0.4700036292457356,
+    2.4849066497880012,
+    2.4849066497880012,
+    -0.15415067982725822,
+    0.8109302162163288,
+    1.7047480922384253,
+    1.7047480922384253,
+    2.4849066497880012,
+    2.4849066497880012,
+    2.4849066497880012
+   ],
+   "status": "OK",
+   "n_combinations": 70,
+   "logit_mean": 1.3813875451359414,
+   "logit_median": 1.7047480922384253,
+   "prob_oos_loss": 0.3142857142857143,
+   "is_oos_slope": -0.6091666466847845,
+   "n_trials": 12,
+   "n_periods": 8,
+   "metric": "mean",
+   "n_candidates": 12
+  },
+  "pbo": 0.2571428571428571,
+  "monte_carlo": {
+   "method": "block_bootstrap",
+   "n_sims": 1000,
+   "n_trades": 351,
+   "capital": 10000.0,
+   "seed": 0,
+   "cost_shock_per_trade": 0.0,
+   "ruin_drawdown_pct": 50,
+   "notes_nl": [],
+   "block": 7,
+   "status": "OK",
+   "final_equity": {
+    "mean": 8089.401002715591,
+    "std": 1109.640934286025,
+    "min": 4268.690435279002,
+    "max": 11477.179707976105,
+    "p5": 6289.522156106325,
+    "p25": 7350.293857610572,
+    "p50": 8067.374178254684,
+    "p75": 8877.705466724317,
+    "p95": 9932.51129457967
+   },
+   "max_drawdown_pct": {
+    "mean": 23.911136693571848,
+    "std": 8.958848438199666,
+    "min": 5.554291399067128,
+    "max": 57.69766184986958,
+    "p5": 10.768065975974555,
+    "p25": 16.988813979340815,
+    "p50": 23.426944391838852,
+    "p75": 30.068577181991014,
+    "p95": 39.38358146176122
+   },
+   "max_drawdown_abs": {
+    "mean": 2448.3614425562732,
+    "std": 903.0455839003766,
+    "min": 610.6083435256005,
+    "max": 5806.309317958565,
+    "p5": 1106.5765212579697,
+    "p25": 1779.4379354691137,
+    "p50": 2398.0097368578504,
+    "p75": 3064.1105906891316,
+    "p95": 3985.369857776297
+   },
+   "prob_loss": 0.957,
+   "risk_of_ruin": 0.003,
+   "equity_bands": {
+    "trade_index": [
+     0,
+     7,
+     14,
+     21,
+     28,
+     35,
+     42,
+     50,
+     57,
+     64,
+     71,
+     78,
+     85,
+     93,
+     100,
+     107,
+     114,
+     121,
+     128,
+     136,
+     143,
+     150,
+     157,
+     164,
+     171,
+     179,
+     186,
+     193,
+     200,
+     207,
+     214,
+     222,
+     229,
+     236,
+     243,
+     250,
+     257,
+     265,
+     272,
+     279,
+     286,
+     293,
+     300,
+     308,
+     315,
+     322,
+     329,
+     336,
+     343,
+     351
+    ],
+    "p5": [
+     10000.0,
+     9717.378365760545,
+     9545.907868305281,
+     9451.764111149856,
+     9334.681313017545,
+     9254.961161983209,
+     9187.484356362324,
+     9093.857941608998,
+     9008.351510622038,
+     8943.894214293574,
+     8850.85839715271,
+     8758.799122450871,
+     8714.687422782006,
+     8606.052276293996,
+     8536.615202389938,
+     8475.223335167197,
+     8362.826994679552,
+     8348.480995070833,
+     8282.507058806314,
+     8224.622097763102,
+     8120.698578917898,
+     8055.57610567544,
+     7998.723709107623,
+     7956.141883229865,
+     7909.709533784701,
+     7824.478655359611,
+     7736.07077310891,
+     7688.453761521097,
+     7620.216527584759,
+     7577.311022460381,
+     7448.253915764006,
+     7397.618884922079,
+     7352.896960214398,
+     7211.0182950725275,
+     7144.168222190654,
+     7109.678072841295,
+     7086.3272595368135,
+     7002.932868417898,
+     6983.082561443143,
+     6906.236066459864,
+     6833.520417844748,
+     6741.490828862242,
+     6676.3842639825425,
+     6636.211027777185,
+     6587.413263426496,
+     6521.351380336991,
+     6426.375549530715,
+     6413.920174438647,
+     6338.9922354697055,
+     6289.522156106325
+    ],
+    "p25": [
+     10000.0,
+     9839.292536574154,
+     9784.186693588339,
+     9724.892794599255,
+     9626.456841613977,
+     9573.335968981493,
+     9526.166212782762,
+     9452.734120250816,
+     9407.40074484214,
+     9353.827094470907,
+     9308.853040701777,
+     9266.499534292352,
+     9192.621819179541,
+     9110.868821096357,
+     9074.444489629168,
+     9065.804978424881,
+     9018.41096768696,
+     8949.211765845846,
+     8899.73792961127,
+     8827.04776742703,
+     8763.135096390663,
+     8726.718900052687,
+     8692.903417203,
+     8645.145170276915,
+     8570.861524756825,
+     8494.822779652,
+     8460.125366666656,
+     8442.247035358483,
+     8357.91736460062,
+     8306.028617410044,
+     8266.7780185593,
+     8193.124337431513,
+     8159.115138278498,
+     8114.837148683233,
+     8088.340897861535,
+     8032.178125600591,
+     7970.21996951164,
+     7932.326035552486,
+     7871.460486314606,
+     7826.498693372161,
+     7782.005802131111,
+     7732.422044992611,
+     7689.94975796708,
+     7640.563817136482,
+     7606.820411985199,
+     7553.652314648395,
+     7529.842613924511,
+     7463.936126143418,
+     7404.594403018059,
+     7350.293857610572
+    ],
+    "p50": [
+     10000.0,
+     9958.469595736304,
+     9914.652319498899,
+     9886.091927634543,
+     9851.756996122815,
+     9815.457329685643,
+     9788.890283557166,
+     9725.738528949505,
+     9670.326925999336,
+     9660.431242338676,
+     9608.51724454622,
+     9577.633411020057,
+     9534.27082030051,
+     9504.62626523191,
+     9485.813646676863,
+     9431.215158091625,
+     9386.434437410577,
+     9361.35098181694,
+     9317.773429638917,
+     9271.502461661019,
+     9211.907461535997,
+     9178.171558071073,
+     9128.490589449939,
+     9100.420895729983,
+     9051.71729725561,
+     9025.336503368577,
+     8939.3940886775,
+     8918.241525788622,
+     8886.701526009343,
+     8876.961344559033,
+     8850.197168167573,
+     8814.335685228152,
+     8742.340309355892,
+     8708.392510640946,
+     8706.235975753589,
+     8659.004891265397,
+     8593.427930313885,
+     8547.43139740499,
+     8533.003547263786,
+     8480.36175387924,
+     8444.162117998821,
+     8388.628382799272,
+     8356.14815463492,
+     8297.597405126413,
+     8273.620466381526,
+     8244.419091709795,
+     8202.545852626785,
+     8148.943969886325,
+     8095.255476049063,
+     8067.374178254684
+    ],
+    "p75": [
+     10000.0,
+     10074.90660876303,
+     10054.617588467441,
+     10086.398519748951,
+     10065.188280865814,
+     10042.380430457702,
+     10026.287646711527,
+     10007.60449486004,
+     9987.399180266417,
+     9964.925889121227,
+     9945.525844062657,
+     9942.215923819556,
+     9892.827559225141,
+     9894.540977811415,
+     9863.341001166973,
+     9862.026534506593,
+     9832.689893465216,
+     9790.061822287647,
+     9760.458049476487,
+     9746.03636013863,
+     9705.531289861863,
+     9679.499078757904,
+     9668.914723131646,
+     9636.966779413811,
+     9585.320554340391,
+     9579.132051367716,
+     9547.056520078875,
+     9537.468173093386,
+     9482.942898025776,
+     9439.58544295853,
+     9453.224976731099,
+     9429.244581806484,
+     9392.67625902338,
+     9334.941230991952,
+     9330.427838728254,
+     9287.188244411554,
+     9248.705173566315,
+     9264.03566528055,
+     9232.1328630807,
+     9190.724703445267,
+     9159.220976748704,
+     9105.816029199343,
+     9069.698793657451,
+     9050.976759058907,
+     9057.36478160396,
+     9017.50551186528,
+     8999.883723407873,
+     8954.888834441364,
+     8911.769389190547,
+     8877.705466724317
+    ],
+    "p95": [
+     10000.0,
+     10213.988317558642,
+     10298.423795374776,
+     10333.424802429778,
+     10344.184511745556,
+     10380.752222175259,
+     10373.53129642336,
+     10379.063783480407,
+     10399.357330423029,
+     10433.666966643197,
+     10422.286317439053,
+     10430.295357886047,
+     10406.905741129138,
+     10440.833642283256,
+     10416.325616573109,
+     10441.742521911017,
+     10445.271705185938,
+     10444.992961461832,
+     10419.6468193417,
+     10350.609538731362,
+     10378.100632601547,
+     10380.919513520685,
+     10327.9980789302,
+     10258.731612352845,
+     10271.307434910175,
+     10284.350191460431,
+     10257.597772946378,
+     10260.281417061467,
+     10225.956370983442,
+     10239.269512302217,
+     10229.953753612914,
+     10274.026816376841,
+     10218.234608035178,
+     10181.91911205625,
+     10207.002734933249,
+     10149.723488815767,
+     10195.664320147956,
+     10140.186167726224,
+     10173.471098414293,
+     10118.98312165405,
+     10106.724600160145,
+     10051.390488418927,
+     10046.299095420793,
+     10059.940834244884,
+     10069.766116280114,
+     10018.761863886872,
+     9987.596295065478,
+     9992.599123290369,
+     9932.348716368635,
+     9932.51129457967
+    ]
+   }
+  },
+  "drop_best": {
+   "n_trades": 351,
+   "baseline_net": -1882.1298788903641,
+   "by_trades": {
+    "1": {
+     "removed_pnl": 100.25090930941587,
+     "net_after": -1982.380788199781,
+     "profit_factor_after": 0.8020603432215733,
+     "still_positive": false
+    },
+    "3": {
+     "removed_pnl": 298.2652213297624,
+     "net_after": -2180.3951002201266,
+     "profit_factor_after": 0.7822887205384675,
+     "still_positive": false
+    },
+    "5": {
+     "removed_pnl": 491.1489237991609,
+     "net_after": -2373.278802689525,
+     "profit_factor_after": 0.7630293864628908,
+     "still_positive": false
+    }
+   },
+   "by_days": {
+    "1": {
+     "removed_pnl": 164.78699861967016,
+     "net_after": -2046.9168775100334,
+     "profit_factor_after": 0.7543512606931747,
+     "still_positive": false
+    },
+    "3": {
+     "removed_pnl": 447.79225971176675,
+     "net_after": -2329.92213860213,
+     "profit_factor_after": 0.7203880419771126,
+     "still_positive": false
+    },
+    "5": {
+     "removed_pnl": 665.0084737216384,
+     "net_after": -2547.1383526120017,
+     "profit_factor_after": 0.6943201103894681,
+     "still_positive": false
+    }
+   },
+   "status": "OK"
+  },
+  "yearly": {
+   "years": {
+    "2025": {
+     "n_trades": 262,
+     "net_profit": -1479.1197015923672,
+     "profit_factor": 0.8119725826035007,
+     "win_rate": 0.3015267175572519,
+     "avg_r": -0.11943512552382031
+    },
+    "2026": {
+     "n_trades": 89,
+     "net_profit": -403.01017729799696,
+     "profit_factor": 0.8124282700765884,
+     "win_rate": 0.2808988764044944,
+     "avg_r": -0.15730337078651685
+    }
+   },
+   "n_years": 2,
+   "frac_positive": 0.0,
+   "status": "OK"
+  },
+  "n_trials": 132,
+  "psr": {
+   "value": 0.040897340080595215,
+   "sr": -0.09052920162568838,
+   "n": 370,
+   "skew": -0.11852649139422179,
+   "kurtosis": 5.4760352465718185,
+   "sr_benchmark": 0.0,
+   "status": "OK"
+  },
+  "dsr": {
+   "value": 1.2042313348208478e-12,
+   "sr": -0.09052920162568838,
+   "sr0": 0.27403540261642423,
+   "n": 370,
+   "n_trials": 132,
+   "sr_variance_across_trials": 0.01088339055170351,
+   "status": "OK"
+  },
+  "min_trl": {
+   "value": null,
+   "n": 370,
+   "sr": -0.09052920162568838,
+   "confidence": 0.95,
+   "status": "NOT_REACHABLE"
+  },
+  "haircut_sharpe": {
+   "sr": -0.09052920162568838,
+   "n_trials": 132,
+   "n_obs": 370,
+   "p_raw": 0.9591900995048043,
+   "p_adjusted": 1.0,
+   "sr_adjusted": 0.0,
+   "haircut": null,
+   "status": "OK"
+  },
+  "holdout": {
+   "start": "2026-05-27",
+   "end": "2026-10-01",
+   "metrics": {
+    "n_trades": 92,
+    "net_profit": 647.2648872176687,
+    "profit_factor": 1.2488960395242905,
+    "win_rate": 0.3804347826086957,
+    "max_drawdown": 324.3632527832715,
+    "max_drawdown_pct": 3.4372271497645457,
+    "recovery_factor": 1.9954938842907373,
+    "sharpe": 1.681475555946359,
+    "sortino": 2.926307566607877,
+    "trades": 92,
+    "sharpe_daily": 1.397743906153362,
+    "engine_metrics": {
+     "net_profit": 647.2648872176687,
+     "profit_factor": 1.2488960395242905,
+     "win_rate": 38.04347826086957,
+     "expectancy": 7.0354879045398775,
+     "avg_r": 0.15654890338198296,
+     "max_drawdown": 375.48325278326956,
+     "max_drawdown_pct": 3.4372271497645457,
+     "recovery_factor": 1.7238182593226672,
+     "sharpe_daily": 1.397743906153362,
+     "sortino_daily": 2.578379805396778,
+     "trades": 92,
+     "exposure_pct": 15.498199279711885
+    }
+   },
+   "trades": 92,
+   "previous_exposures": 73,
+   "untouched": false
+  }
+ },
+ "report_md": "# Validatierapport\n\n**Verdict: REJECT** - Afgewezen: het bewijs spreekt de strategie tegen.\n\n_Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs._\n\n## Wat is aangetoond?\n- 351 trades; minimaal 100 nodig voor betekenisvolle statistiek.\n- Maximale drawdown 22.4% (limiet 30.0%).\n- Kans op backtest-overfitting 0.26 (max 0.5).\n\n## Wat is onzeker?\n- [FAIL] net_after_costs: Netto resultaat na kosten is niet positief: harde afwijzing.\n- [FAIL] profit_factor: Profit factor 0.81 (drempel 1.2).\n- [FAIL] psr: PSR = 0.041 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [FAIL] dsr: DSR = 0.000 bij 132 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [FAIL] walk_forward_efficiency: WFE 0.07: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).\n- [FAIL] oos_profitability: Out-of-sample resultaat niet positief of niet consistent over vensters.\n- [FAIL] cost_stress: Resultaat wordt negatief bij +50% spread: kostengevoelig.\n- [FAIL] parameter_stability: 8% van de naburige parameterwaarden is winstgevend.\n- [FAIL] drop_best_trades: Zonder de beste 3 trades is het resultaat niet meer positief.\n- [FAIL] yearly_consistency: 0% van de jaren winstgevend (min 60%).\n\n## Waar verdient de strategie geld?\n- Geen regime-uitsplitsing aangeleverd (niet getest).\n\n## Wanneer verliest zij?\n- Jaar 2025: netto -1,479.12.\n- Jaar 2026: netto -403.01.\n- Monte Carlo (block_bootstrap): 95e percentiel max drawdown 39.38%, kans op ruin-drempel 0.3% (eigenschap van de herbemonsterde historie, geen voorspelling).\n\n## Kostengevoeligheid?\n- [FAIL] Resultaat wordt negatief bij +50% spread: kostengevoelig.\n  - baseline: netto -1,882.13, PF 0.81\n  - spread_+25%: netto -2,434.52, PF 0.76\n  - spread_+50%: netto -2,514.90, PF 0.75\n  - commission_x2: netto -2,372.68, PF 0.77\n  - slippage_+1pt: netto -1,880.91, PF 0.81\n  - entry_delay_1bar: netto -2,650.21, PF 0.72\n  - exit_delay_1bar: netto -1,510.60, PF 0.84\n\n## Hoeveel hypotheses geprobeerd?\n- 132 geprobeerde configuraties; de DSR corrigeert hiervoor.\n\n## Genoeg OOS-data?\n- [FAIL] Out-of-sample resultaat niet positief of niet consistent over vensters.\n- [FAIL] WFE 0.07: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).\n\n## Parameters stabiel?\n- [FAIL] 8% van de naburige parameterwaarden is winstgevend.\n\n## Statistisch overtuigend?\n- [FAIL] PSR = 0.041 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [FAIL] DSR = 0.000 bij 132 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [PASS] Kans op backtest-overfitting 0.26 (max 0.5).\n- [FAIL] Zonder de beste 3 trades is het resultaat niet meer positief.\n- [FAIL] 0% van de jaren winstgevend (min 60%).\n\n## Open risico's\n- Trades zijn niet iid; p-waarden en CI's zijn op dagrendementen met blokbootstrap berekend.\n- Historische resultaten zeggen niets zeker over de toekomst (regimewissel, kosten, liquiditeit).\n- Backtest-aannames (fills, spread, slippage) kunnen afwijken van de werkelijkheid.\n- Open check: net_after_costs (FAIL).\n- Open check: profit_factor (FAIL).\n- Open check: psr (FAIL).\n- Open check: dsr (FAIL).\n- Open check: walk_forward_efficiency (FAIL).\n- Open check: oos_profitability (FAIL).\n- Open check: cost_stress (FAIL).\n- Open check: parameter_stability (FAIL).\n- Open check: drop_best_trades (FAIL).\n- Open check: yearly_consistency (FAIL).\n- Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.\n\n## Checks\n\n| Check | Status | Waarde | Drempel |\n|---|---|---|---|\n| sample_size | PASS | 351 | 100 |\n| net_after_costs | FAIL | -1882.130 | 0.0 |\n| profit_factor | FAIL | 0.812 | 1.2 |\n| max_drawdown | PASS | 22.363 | 30.0 |\n| psr | FAIL | 0.041 | 0.95 |\n| dsr | FAIL | 0.000 | 0.95 |\n| pbo | PASS | 0.257 | 0.5 |\n| walk_forward_efficiency | FAIL | 0.069 | 0.5 |\n| oos_profitability | FAIL | -365.032 | 0.0 |\n| cost_stress | FAIL | -2514.895 | 0.0 |\n| parameter_stability | FAIL | 0.083 | 0.7 |\n| drop_best_trades | FAIL | -2180.395 | 0.0 |\n| yearly_consistency | FAIL | 0.000 | 0.6 |\n\n## Engine en beperkingen\n- Builder-regels op de Dukascopy Bid/Ask-engine (kopen op Ask, verkopen op Bid, echte spread).\n- Forward test is dagelijks vertraagd op nieuwe Dukascopy-data (geen realtime papertrading).\n\n## Niet uitgevoerde stappen\n- Alle stappen zijn uitgevoerd.\n\n## Getelde configuraties (trial accounting)\n- Logboek (deze markt+timeframe): 100; zelfde familie elders: 0; optimizer-trials niet in logboek: 8 (van 8); nieuwe configuraties in deze validatie: 24 (van 24).\n- Totaal N = 132; gebruikt voor DSR en de Sharpe-haircut.\n- N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).\n\n## Holdout\n- Periode 2026-05-27 – 2026-10-01: netto 647.2648872176687, 92 trades.\n- Let op: deze periode is al 73 keer eerder gebruikt in het researchlogboek en telt daardoor niet meer als volledig onaangeroerd.\n\n## Nog nodig vóór een prospectieve forward test\n- Netto resultaat na kosten moet positief zijn (net_after_costs: gefaald). Netto resultaat na kosten is niet positief: harde afwijzing.\n- Profit factor moet de drempel halen (profit_factor: gefaald). Profit factor 0.81 (drempel 1.2).\n- PSR (kans dat de echte Sharpe > 0) moet de drempel halen (psr: gefaald). PSR = 0.041 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- DSR (Sharpe gecorrigeerd voor alle geprobeerde configuraties) moet de drempel halen (dsr: gefaald). DSR = 0.000 bij 132 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- Walk-forward efficiency moet aantonen dat out-of-sample het tempo bijhoudt (walk_forward_efficiency: gefaald). WFE 0.07: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).\n- Out-of-sample resultaat moet positief en consistent over vensters zijn (oos_profitability: gefaald). Out-of-sample resultaat niet positief of niet consistent over vensters.\n- Resultaat moet positief blijven bij +50% spread (cost_stress: gefaald). Resultaat wordt negatief bij +50% spread: kostengevoelig.\n- Naburige parameterwaarden moeten ook winstgevend zijn (parameter_stability: gefaald). 8% van de naburige parameterwaarden is winstgevend.\n- Resultaat moet positief blijven zonder de beste trades (drop_best_trades: gefaald). Zonder de beste 3 trades is het resultaat niet meer positief.\n- Voldoende jaren moeten winstgevend zijn (yearly_consistency: gefaald). 0% van de jaren winstgevend (min 60%).\n- Verdict is REJECT; alleen FORWARD_ELIGIBLE mag worden bevroren voor een forward test.\n- De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.\n- Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data.\n",
+ "ledger_id": "86be97db505643b894103f4ead3a2bfd",
+ "n_trials": 132,
+ "trial_accounting": {
+  "ledger_prior": 100,
+  "family_prior": 52,
+  "family_prior_other_markets": 0,
+  "optimizer_trials": 8,
+  "optimizer_trials_not_in_ledger": 8,
+  "in_run_configs": 24,
+  "in_run_configs_new": 24,
+  "total": 132,
+  "definition_nl": "N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).",
+  "stages": {
+   "base": 1,
+   "cost_stress": 1,
+   "walk_forward": 12,
+   "parameter_stability": 13,
+   "pbo": 12
+  }
+ },
+ "config": {
+  "strategy": {
+   "kind": "builder",
+   "name": "EmaRsiPullback",
+   "family": "builder:EmaRsiPullback"
+  },
+  "symbol": "XAUUSD",
+  "timeframe": "M15",
+  "capital": 10000.0,
+  "data_ranges": {
+   "full": [
+    "2025-01-01",
+    "2026-10-01"
+   ],
+   "development": [
+    "2025-01-01",
+    "2026-05-27"
+   ],
+   "holdout": [
+    "2026-05-27",
+    "2026-10-01"
+   ],
+   "holdout_percent": 20.0,
+   "convention": "halfopen [start, end) kalenderdagen UTC"
+  },
+  "dataset_sha256": "68880651690fd58fb60e55d08534f82e2189ace9b044c876499d7e94995f44e1",
+  "code_sha256": "831248db4ca1284ccb32d492ca7f9d5bb312e151d946c7ae0e542a20ed425ec6",
+  "spec_sha256": "2bd09d228fa0772d53670dd16b442cc11e4ea7dfe19644050a94f5a007f823db",
+  "engine_nl": "Builder-regels op de Dukascopy Bid/Ask-engine (kopen op Ask, verkopen op Bid, echte spread).",
+  "params": {
+   "ema_fast": 20,
+   "ema_slow": 50,
+   "rsi_period": 14,
+   "rsi_low": 40,
+   "rsi_high": 60,
+   "stop_mult": 1.5
+  },
+  "defaults": {
+   "ema_fast": 20,
+   "ema_slow": 50,
+   "rsi_period": 14,
+   "rsi_low": 40,
+   "rsi_high": 60,
+   "stop_mult": 1.5
+  },
+  "param_specs": {
+   "ema_fast": {
+    "type": "int",
+    "min": 5,
+    "max": 50,
+    "default": 20
+   },
+   "ema_slow": {
+    "type": "int",
+    "min": 20,
+    "max": 200,
+    "default": 50
+   },
+   "rsi_period": {
+    "type": "int",
+    "min": 2,
+    "max": 30,
+    "default": 14
+   },
+   "rsi_low": {
+    "type": "int",
+    "min": 20,
+    "max": 50,
+    "default": 40
+   },
+   "rsi_high": {
+    "type": "int",
+    "min": 50,
+    "max": 80,
+    "default": 60
+   },
+   "stop_mult": {
+    "type": "float",
+    "min": 0.5,
+    "max": 4,
+    "default": 1.5
+   }
+  },
+  "fixed_params": [],
+  "grid": {
+   "ema_fast": [
+    5,
+    20,
+    35,
+    50
+   ],
+   "ema_slow": [
+    20,
+    50,
+    80,
+    140,
+    200
+   ],
+   "rsi_period": [
+    2,
+    11,
+    14,
+    21,
+    30
+   ],
+   "rsi_low": [
+    20,
+    30,
+    40,
+    50
+   ],
+   "rsi_high": [
+    50,
+    60,
+    70,
+    80
+   ],
+   "stop_mult": [
+    0.5,
+    1.5,
+    1.666667,
+    2.833333,
+    4.0
+   ]
+  },
+  "walk_forward": {
+   "enabled": true,
+   "mode": "expanding",
+   "train_days": 120,
+   "test_days": 30,
+   "step_days": 30,
+   "objective": "sharpe",
+   "min_trades": 10,
+   "seed": 0,
+   "max_combos": 12,
+   "candidates": [
+    {
+     "ema_fast": 20,
+     "ema_slow": 50,
+     "rsi_period": 14,
+     "rsi_low": 40,
+     "rsi_high": 60,
+     "stop_mult": 1.5
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 140,
+     "rsi_period": 14,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 50,
+     "rsi_high": 70,
+     "stop_mult": 4.0
+    },
+    {
+     "ema_fast": 35,
+     "ema_slow": 140,
+     "rsi_period": 30,
+     "rsi_low": 40,
+     "rsi_high": 70,
+     "stop_mult": 1.666667
+    },
+    {
+     "ema_fast": 35,
+     "ema_slow": 200,
+     "rsi_period": 11,
+     "rsi_low": 50,
+     "rsi_high": 70,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 20,
+     "ema_slow": 200,
+     "rsi_period": 14,
+     "rsi_low": 20,
+     "rsi_high": 80,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 50,
+     "rsi_high": 50,
+     "stop_mult": 1.666667
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 50,
+     "rsi_period": 14,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 40,
+     "rsi_high": 70,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 20,
+     "ema_slow": 140,
+     "rsi_period": 21,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 4.0
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 200,
+     "rsi_period": 11,
+     "rsi_low": 40,
+     "rsi_high": 80,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 140,
+     "rsi_period": 21,
+     "rsi_low": 30,
+     "rsi_high": 80,
+     "stop_mult": 0.5
+    }
+   ],
+   "windows": [
+    [
+     "2025-01-01",
+     "2025-05-01",
+     "2025-05-31"
+    ],
+    [
+     "2025-01-01",
+     "2025-05-31",
+     "2025-06-30"
+    ],
+    [
+     "2025-01-01",
+     "2025-06-30",
+     "2025-07-30"
+    ],
+    [
+     "2025-01-01",
+     "2025-07-30",
+     "2025-08-29"
+    ],
+    [
+     "2025-01-01",
+     "2025-08-29",
+     "2025-09-28"
+    ],
+    [
+     "2025-01-01",
+     "2025-09-28",
+     "2025-10-28"
+    ],
+    [
+     "2025-01-01",
+     "2025-10-28",
+     "2025-11-27"
+    ],
+    [
+     "2025-01-01",
+     "2025-11-27",
+     "2025-12-27"
+    ],
+    [
+     "2025-01-01",
+     "2025-12-27",
+     "2026-01-26"
+    ],
+    [
+     "2025-01-01",
+     "2026-01-26",
+     "2026-02-25"
+    ],
+    [
+     "2025-01-01",
+     "2026-02-25",
+     "2026-03-27"
+    ],
+    [
+     "2025-01-01",
+     "2026-03-27",
+     "2026-04-26"
+    ],
+    [
+     "2025-01-01",
+     "2026-04-26",
+     "2026-05-26"
+    ]
+   ]
+  },
+  "stability": {
+   "enabled": true,
+   "rel_step": 0.1,
+   "params": [
+    "ema_fast",
+    "ema_slow",
+    "rsi_high",
+    "rsi_low",
+    "rsi_period",
+    "stop_mult"
+   ]
+  },
+  "pbo": {
+   "enabled": true,
+   "n_splits": 8,
+   "seed": 0,
+   "max_combos": 12,
+   "candidates": [
+    {
+     "ema_fast": 20,
+     "ema_slow": 50,
+     "rsi_period": 14,
+     "rsi_low": 40,
+     "rsi_high": 60,
+     "stop_mult": 1.5
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 140,
+     "rsi_period": 14,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 50,
+     "rsi_high": 70,
+     "stop_mult": 4.0
+    },
+    {
+     "ema_fast": 35,
+     "ema_slow": 140,
+     "rsi_period": 30,
+     "rsi_low": 40,
+     "rsi_high": 70,
+     "stop_mult": 1.666667
+    },
+    {
+     "ema_fast": 35,
+     "ema_slow": 200,
+     "rsi_period": 11,
+     "rsi_low": 50,
+     "rsi_high": 70,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 20,
+     "ema_slow": 200,
+     "rsi_period": 14,
+     "rsi_low": 20,
+     "rsi_high": 80,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 50,
+     "rsi_high": 50,
+     "stop_mult": 1.666667
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 50,
+     "rsi_period": 14,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 0.5
+    },
+    {
+     "ema_fast": 5,
+     "ema_slow": 20,
+     "rsi_period": 2,
+     "rsi_low": 40,
+     "rsi_high": 70,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 20,
+     "ema_slow": 140,
+     "rsi_period": 21,
+     "rsi_low": 30,
+     "rsi_high": 60,
+     "stop_mult": 4.0
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 200,
+     "rsi_period": 11,
+     "rsi_low": 40,
+     "rsi_high": 80,
+     "stop_mult": 2.833333
+    },
+    {
+     "ema_fast": 50,
+     "ema_slow": 140,
+     "rsi_period": 21,
+     "rsi_low": 30,
+     "rsi_high": 80,
+     "stop_mult": 0.5
+    }
+   ]
+  },
+  "monte_carlo": {
+   "enabled": true,
+   "n": 1000,
+   "method": "block_bootstrap",
+   "seed": 0
+  },
+  "cost_stress": {
+   "enabled": true,
+   "scenarios": {
+    "baseline": {},
+    "spread_+25%": {
+     "spread_multiplier": 1.25
+    },
+    "spread_+50%": {
+     "spread_multiplier": 1.5
+    },
+    "commission_x2": {
+     "commission_per_lot": 14.0
+    },
+    "slippage_+1pt": {
+     "slippage_points": 1.0
+    },
+    "entry_delay_1bar": {
+     "entry_delay_bars": 1
+    },
+    "exit_delay_1bar": {
+     "exit_delay_bars": 1
+    }
+   },
+   "unsupported": []
+  },
+  "seeds": {
+   "walk_forward": 0,
+   "pbo": 0,
+   "monte_carlo": 0
+  },
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "sr_variance": {
+   "value": 0.01088339055170351,
+   "source": "pbo_candidates_per_observation"
+  },
+  "commission_per_lot": 0.0
+ },
+ "capabilities": {
+  "backtest": true,
+  "optimize": true,
+  "inspect": true,
+  "validate": true,
+  "walk_forward": true,
+  "stability": true,
+  "cost_stress_spread": true,
+  "forward": true
+ },
+ "limitations_nl": [
+  "Forward test is dagelijks vertraagd op nieuwe Dukascopy-data (geen realtime papertrading)."
+ ],
+ "forward_gaps_nl": [
+  "Netto resultaat na kosten moet positief zijn (net_after_costs: gefaald). Netto resultaat na kosten is niet positief: harde afwijzing.",
+  "Profit factor moet de drempel halen (profit_factor: gefaald). Profit factor 0.81 (drempel 1.2).",
+  "PSR (kans dat de echte Sharpe > 0) moet de drempel halen (psr: gefaald). PSR = 0.041 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.",
+  "DSR (Sharpe gecorrigeerd voor alle geprobeerde configuraties) moet de drempel halen (dsr: gefaald). DSR = 0.000 bij 132 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.",
+  "Walk-forward efficiency moet aantonen dat out-of-sample het tempo bijhoudt (walk_forward_efficiency: gefaald). WFE 0.07: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).",
+  "Out-of-sample resultaat moet positief en consistent over vensters zijn (oos_profitability: gefaald). Out-of-sample resultaat niet positief of niet consistent over vensters.",
+  "Resultaat moet positief blijven bij +50% spread (cost_stress: gefaald). Resultaat wordt negatief bij +50% spread: kostengevoelig.",
+  "Naburige parameterwaarden moeten ook winstgevend zijn (parameter_stability: gefaald). 8% van de naburige parameterwaarden is winstgevend.",
+  "Resultaat moet positief blijven zonder de beste trades (drop_best_trades: gefaald). Zonder de beste 3 trades is het resultaat niet meer positief.",
+  "Voldoende jaren moeten winstgevend zijn (yearly_consistency: gefaald). 0% van de jaren winstgevend (min 60%).",
+  "Verdict is REJECT; alleen FORWARD_ELIGIBLE mag worden bevroren voor een forward test.",
+  "De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.",
+  "Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data."
+ ],
+ "oos_equity": [
+  {
+   "time": "2025-05-16T11:45:00+00:00",
+   "equity": 9953.348959240935,
+   "pnl": -46.651040759065836
+  },
+  {
+   "time": "2025-05-22T11:30:00+00:00",
+   "equity": 9904.017154275069,
+   "pnl": -49.33180496586601
+  },
+  {
+   "time": "2025-06-02T06:00:00+00:00",
+   "equity": 9858.51073211235,
+   "pnl": -45.50642216271899
+  },
+  {
+   "time": "2025-06-10T11:15:00+00:00",
+   "equity": 9822.615129011956,
+   "pnl": -35.89560310039542
+  },
+  {
+   "time": "2025-06-19T06:00:00+00:00",
+   "equity": 9891.950666712863,
+   "pnl": 69.33553770090657
+  },
+  {
+   "time": "2025-06-22T22:00:00+00:00",
+   "equity": 9845.024666712863,
+   "pnl": -46.925999999999476
+  },
+  {
+   "time": "2025-06-26T02:45:00+00:00",
+   "equity": 9804.992356234558,
+   "pnl": -40.032310478306044
+  },
+  {
+   "time": "2025-06-30T05:15:00+00:00",
+   "equity": 9756.994945199544,
+   "pnl": -47.99741103501401
+  },
+  {
+   "time": "2025-06-30T09:30:00+00:00",
+   "equity": 9722.226665993883,
+   "pnl": -34.7682792056612
+  },
+  {
+   "time": "2025-06-30T19:15:00+00:00",
+   "equity": 9685.381572198763,
+   "pnl": -36.84509379511928
+  },
+  {
+   "time": "2025-07-01T06:30:00+00:00",
+   "equity": 9768.187645597563,
+   "pnl": 82.80607339880042
+  },
+  {
+   "time": "2025-07-02T22:15:00+00:00",
+   "equity": 9852.943584091074,
+   "pnl": 84.75593849351117
+  },
+  {
+   "time": "2025-07-03T06:00:00+00:00",
+   "equity": 9810.870333643259,
+   "pnl": -42.073250447813734
+  },
+  {
+   "time": "2025-07-03T09:30:00+00:00",
+   "equity": 9768.25132688546,
+   "pnl": -42.61900675779952
+  },
+  {
+   "time": "2025-07-03T12:30:00+00:00",
+   "equity": 9859.549916008884,
+   "pnl": 91.29858912342297
+  },
+  {
+   "time": "2025-07-03T13:30:00+00:00",
+   "equity": 9809.608333338352,
+   "pnl": -49.941582670531716
+  },
+  {
+   "time": "2025-07-11T13:30:00+00:00",
+   "equity": 9781.980747958665,
+   "pnl": -27.627585379686938
+  },
+  {
+   "time": "2025-07-15T15:15:00+00:00",
+   "equity": 9741.20148056514,
+   "pnl": -40.779267393525515
+  },
+  {
+   "time": "2025-07-16T15:00:00+00:00",
+   "equity": 9697.907700661835,
+   "pnl": -43.2937799033034
+  },
+  {
+   "time": "2025-07-17T12:30:00+00:00",
+   "equity": 9655.894067204974,
+   "pnl": -42.01363345686195
+  },
+  {
+   "time": "2025-07-21T05:15:00+00:00",
+   "equity": 9738.502982951142,
+   "pnl": 82.60891574616835
+  },
+  {
+   "time": "2025-07-21T13:45:00+00:00",
+   "equity": 9835.841645523544,
+   "pnl": 97.33866257240152
+  },
+  {
+   "time": "2025-07-23T00:15:00+00:00",
+   "equity": 9907.370870780798,
+   "pnl": 71.52922525725444
+  },
+  {
+   "time": "2025-07-23T16:00:00+00:00",
+   "equity": 10001.3301574012,
+   "pnl": 93.95928662040296
+  },
+  {
+   "time": "2025-07-25T08:15:00+00:00",
+   "equity": 10085.944278193545,
+   "pnl": 84.61412079234469
+  },
+  {
+   "time": "2025-07-28T13:45:00+00:00",
+   "equity": 10166.377993905266,
+   "pnl": 80.43371571172064
+  },
+  {
+   "time": "2025-07-29T23:45:00+00:00",
+   "equity": 10139.597993905265,
+   "pnl": -26.780000000000655
+  },
+  {
+   "time": "2025-07-30T12:45:00+00:00",
+   "equity": 10096.83082879684,
+   "pnl": -42.76716510842516
+  },
+  {
+   "time": "2025-08-01T12:30:00+00:00",
+   "equity": 10060.374259750626,
+   "pnl": -36.45656904621319
+  },
+  {
+   "time": "2025-08-19T16:15:00+00:00",
+   "equity": 10030.62094525863,
+   "pnl": -29.753314491997116
+  },
+  {
+   "time": "2025-08-20T11:45:00+00:00",
+   "equity": 9984.402628263162,
+   "pnl": -46.218316995467376
+  },
+  {
+   "time": "2025-08-22T12:30:00+00:00",
+   "equity": 9942.10128624522,
+   "pnl": -42.30134201794135
+  },
+  {
+   "time": "2025-08-28T16:45:00+00:00",
+   "equity": 10033.13576084092,
+   "pnl": 91.03447459569907
+  },
+  {
+   "time": "2025-08-28T23:45:00+00:00",
+   "equity": 10027.23476084092,
+   "pnl": -5.901000000000294
+  },
+  {
+   "time": "2025-08-29T13:30:00+00:00",
+   "equity": 9981.361271871201,
+   "pnl": -45.87348896971889
+  },
+  {
+   "time": "2025-09-01T02:45:00+00:00",
+   "equity": 10048.352614998928,
+   "pnl": 66.9913431277273
+  },
+  {
+   "time": "2025-09-02T19:00:00+00:00",
+   "equity": 10105.940571404335,
+   "pnl": 57.58795640540575
+  },
+  {
+   "time": "2025-09-04T03:00:00+00:00",
+   "equity": 10061.220587773967,
+   "pnl": -44.719983630368006
+  },
+  {
+   "time": "2025-09-04T13:30:00+00:00",
+   "equity": 10035.955468519187,
+   "pnl": -25.265119254780533
+  },
+  {
+   "time": "2025-09-08T07:00:00+00:00",
+   "equity": 10092.063229989737,
+   "pnl": 56.10776147054912
+  },
+  {
+   "time": "2025-09-09T02:30:00+00:00",
+   "equity": 10173.65772101347,
+   "pnl": 81.59449102373219
+  },
+  {
+   "time": "2025-09-09T15:15:00+00:00",
+   "equity": 10137.887122709035,
+   "pnl": -35.770598304433406
+  },
+  {
+   "time": "2025-09-15T15:45:00+00:00",
+   "equity": 10104.82028534411,
+   "pnl": -33.066837364924595
+  },
+  {
+   "time": "2025-09-17T18:00:00+00:00",
+   "equity": 10062.377386333075,
+   "pnl": -42.44289901103639
+  },
+  {
+   "time": "2025-09-22T01:00:00+00:00",
+   "equity": 10031.848626641702,
+   "pnl": -30.52875969137267
+  },
+  {
+   "time": "2025-09-22T09:15:00+00:00",
+   "equity": 10126.871523474201,
+   "pnl": 95.0228968324991
+  },
+  {
+   "time": "2025-09-23T08:30:00+00:00",
+   "equity": 10198.98192694889,
+   "pnl": 72.11040347468952
+  },
+  {
+   "time": "2025-09-23T18:45:00+00:00",
+   "equity": 10149.863336224975,
+   "pnl": -49.11859072391508
+  },
+  {
+   "time": "2025-09-26T20:45:00+00:00",
+   "equity": 10144.663336224974,
+   "pnl": -5.199999999999818
+  },
+  {
+   "time": "2025-09-29T01:00:00+00:00",
+   "equity": 10103.423630923375,
+   "pnl": -41.239705301599315
+  },
+  {
+   "time": "2025-09-29T15:00:00+00:00",
+   "equity": 10155.856965319459,
+   "pnl": 52.43333439608432
+  },
+  {
+   "time": "2025-09-30T09:00:00+00:00",
+   "equity": 10126.902191718033,
+   "pnl": -28.954773601426954
+  },
+  {
+   "time": "2025-09-30T14:00:00+00:00",
+   "equity": 10092.960874331859,
+   "pnl": -33.94131738617352
+  },
+  {
+   "time": "2025-10-05T23:00:00+00:00",
+   "equity": 10172.346358020386,
+   "pnl": 79.38548368852753
+  },
+  {
+   "time": "2025-10-06T14:30:00+00:00",
+   "equity": 10223.128630216146,
+   "pnl": 50.782272195760925
+  },
+  {
+   "time": "2025-10-08T04:45:00+00:00",
+   "equity": 10287.302715118252,
+   "pnl": 64.17408490210619
+  },
+  {
+   "time": "2025-10-08T23:45:00+00:00",
+   "equity": 10242.451974224321,
+   "pnl": -44.8507408939322
+  },
+  {
+   "time": "2025-10-09T13:00:00+00:00",
+   "equity": 10207.74762538564,
+   "pnl": -34.70434883868165
+  },
+  {
+   "time": "2025-10-12T23:00:00+00:00",
+   "equity": 10164.45679773623,
+   "pnl": -43.29082764941131
+  },
+  {
+   "time": "2025-10-14T01:15:00+00:00",
+   "equity": 10259.552219880698,
+   "pnl": 95.0954221444681
+  },
+  {
+   "time": "2025-10-14T06:00:00+00:00",
+   "equity": 10227.26524832351,
+   "pnl": -32.28697155718601
+  },
+  {
+   "time": "2025-10-16T02:45:00+00:00",
+   "equity": 10325.797903955143,
+   "pnl": 98.53265563163222
+  },
+  {
+   "time": "2025-10-16T05:30:00+00:00",
+   "equity": 10296.57342253824,
+   "pnl": -29.224481416901654
+  },
+  {
+   "time": "2025-10-16T13:15:00+00:00",
+   "equity": 10261.544884438781,
+   "pnl": -35.02853809945918
+  },
+  {
+   "time": "2025-10-16T22:00:00+00:00",
+   "equity": 10342.563168471572,
+   "pnl": 81.01828403279069
+  },
+  {
+   "time": "2025-10-20T19:00:00+00:00",
+   "equity": 10442.770250325,
+   "pnl": 100.20708185342846
+  },
+  {
+   "time": "2025-10-21T05:30:00+00:00",
+   "equity": 10399.885663892866,
+   "pnl": -42.88458643213289
+  },
+  {
+   "time": "2025-10-21T08:00:00+00:00",
+   "equity": 10479.647132824039,
+   "pnl": 79.7614689311722
+  },
+  {
+   "time": "2025-10-23T06:00:00+00:00",
+   "equity": 10428.598122231435,
+   "pnl": -51.049010592603736
+  },
+  {
+   "time": "2025-10-24T08:00:00+00:00",
+   "equity": 10378.007507258011,
+   "pnl": -50.59061497342373
+  },
+  {
+   "time": "2025-10-24T13:00:00+00:00",
+   "equity": 10334.60064282571,
+   "pnl": -43.40686443230061
+  },
+  {
+   "time": "2025-10-27T08:45:00+00:00",
+   "equity": 10418.232669245717,
+   "pnl": 83.6320264200076
+  },
+  {
+   "time": "2025-10-27T23:45:00+00:00",
+   "equity": 10458.315669245718,
+   "pnl": 40.083000000000084
+  },
+  {
+   "time": "2025-10-28T08:30:00+00:00",
+   "equity": 10536.428858391408,
+   "pnl": 78.11318914568983
+  },
+  {
+   "time": "2025-10-28T15:00:00+00:00",
+   "equity": 10486.384700035494,
+   "pnl": -50.04415835591317
+  },
+  {
+   "time": "2025-10-28T22:00:00+00:00",
+   "equity": 10443.335130799744,
+   "pnl": -43.04956923575173
+  },
+  {
+   "time": "2025-10-29T19:30:00+00:00",
+   "equity": 10398.875187997335,
+   "pnl": -44.45994280240757
+  },
+  {
+   "time": "2025-10-30T17:45:00+00:00",
+   "equity": 10352.749254985454,
+   "pnl": -46.12593301188099
+  },
+  {
+   "time": "2025-11-04T14:15:00+00:00",
+   "equity": 10308.7673370448,
+   "pnl": -43.98191794065406
+  },
+  {
+   "time": "2025-11-06T11:45:00+00:00",
+   "equity": 10260.629545580214,
+   "pnl": -48.137791464585916
+  },
+  {
+   "time": "2025-11-06T14:15:00+00:00",
+   "equity": 10216.001068058715,
+   "pnl": -44.62847752149992
+  },
+  {
+   "time": "2025-11-07T16:30:00+00:00",
+   "equity": 10182.288701892736,
+   "pnl": -33.7123661659798
+  },
+  {
+   "time": "2025-11-10T08:00:00+00:00",
+   "equity": 10258.506810361996,
+   "pnl": 76.2181084692611
+  },
+  {
+   "time": "2025-11-11T00:45:00+00:00",
+   "equity": 10309.729072544333,
+   "pnl": 51.22226218233619
+  },
+  {
+   "time": "2025-11-11T15:15:00+00:00",
+   "equity": 10262.458010146405,
+   "pnl": -47.27106239792738
+  },
+  {
+   "time": "2025-11-12T00:00:00+00:00",
+   "equity": 10231.439847182737,
+   "pnl": -31.018162963669056
+  },
+  {
+   "time": "2025-11-12T04:00:00+00:00",
+   "equity": 10182.782942297308,
+   "pnl": -48.65690488542896
+  },
+  {
+   "time": "2025-11-12T15:30:00+00:00",
+   "equity": 10237.556650713941,
+   "pnl": 54.77370841663378
+  },
+  {
+   "time": "2025-11-13T18:30:00+00:00",
+   "equity": 10202.549619655307,
+   "pnl": -35.00703105863522
+  },
+  {
+   "time": "2025-11-14T13:15:00+00:00",
+   "equity": 10297.70127098433,
+   "pnl": 95.15165132902257
+  },
+  {
+   "time": "2025-11-17T05:30:00+00:00",
+   "equity": 10255.344734672393,
+   "pnl": -42.356536311936
+  },
+  {
+   "time": "2025-11-17T19:30:00+00:00",
+   "equity": 10220.635244344017,
+   "pnl": -34.70949032837552
+  },
+  {
+   "time": "2025-11-19T05:15:00+00:00",
+   "equity": 10182.674667538911,
+   "pnl": -37.96057680510512
+  },
+  {
+   "time": "2025-11-19T17:00:00+00:00",
+   "equity": 10154.058326109744,
+   "pnl": -28.61634142916864
+  },
+  {
+   "time": "2025-11-24T20:30:00+00:00",
+   "equity": 10107.235756075732,
+   "pnl": -46.82257003401173
+  },
+  {
+   "time": "2025-11-26T23:45:00+00:00",
+   "equity": 10134.848756075731,
+   "pnl": 27.612999999999378
+  },
+  {
+   "time": "2025-11-27T02:45:00+00:00",
+   "equity": 10096.294327014271,
+   "pnl": -38.554429061459814
+  },
+  {
+   "time": "2025-11-28T00:15:00+00:00",
+   "equity": 10056.096428995394,
+   "pnl": -40.19789801887782
+  },
+  {
+   "time": "2025-11-28T07:45:00+00:00",
+   "equity": 10018.984693932047,
+   "pnl": -37.111735063346714
+  },
+  {
+   "time": "2025-11-28T14:30:00+00:00",
+   "equity": 9984.353219251616,
+   "pnl": -34.63147468043098
+  },
+  {
+   "time": "2025-12-11T16:45:00+00:00",
+   "equity": 10056.861840478048,
+   "pnl": 72.5086212264323
+  },
+  {
+   "time": "2025-12-12T13:30:00+00:00",
+   "equity": 10123.957530012281,
+   "pnl": 67.09568953423332
+  },
+  {
+   "time": "2025-12-12T15:15:00+00:00",
+   "equity": 10090.200803278967,
+   "pnl": -33.75672673331519
+  },
+  {
+   "time": "2025-12-15T05:45:00+00:00",
+   "equity": 10044.40044590256,
+   "pnl": -45.80035737640628
+  },
+  {
+   "time": "2025-12-15T14:15:00+00:00",
+   "equity": 10002.602799032447,
+   "pnl": -41.79764687011266
+  },
+  {
+   "time": "2025-12-17T05:15:00+00:00",
+   "equity": 9967.004778686516,
+   "pnl": -35.59802034593122
+  },
+  {
+   "time": "2025-12-17T08:00:00+00:00",
+   "equity": 9942.020766617783,
+   "pnl": -24.984012068733136
+  },
+  {
+   "time": "2025-12-17T13:45:00+00:00",
+   "equity": 9917.273753201418,
+   "pnl": -24.747013416365917
+  },
+  {
+   "time": "2025-12-22T05:15:00+00:00",
+   "equity": 9982.128865040288,
+   "pnl": 64.85511183886956
+  },
+  {
+   "time": "2025-12-22T23:00:00+00:00",
+   "equity": 10032.037046982115,
+   "pnl": 49.908181941827934
+  },
+  {
+   "time": "2025-12-23T15:00:00+00:00",
+   "equity": 9984.371329499985,
+   "pnl": -47.665717482130276
+  },
+  {
+   "time": "2025-12-26T21:45:00+00:00",
+   "equity": 10038.691329499985,
+   "pnl": 54.319999999999716
+  },
+  {
+   "time": "2025-12-29T07:00:00+00:00",
+   "equity": 9989.850644037215,
+   "pnl": -48.840685462770125
+  },
+  {
+   "time": "2025-12-29T14:30:00+00:00",
+   "equity": 10085.48115832217,
+   "pnl": 95.630514284956
+  },
+  {
+   "time": "2025-12-30T10:30:00+00:00",
+   "equity": 10038.020223573985,
+   "pnl": -47.46093474818554
+  },
+  {
+   "time": "2025-12-30T14:45:00+00:00",
+   "equity": 10004.548321756738,
+   "pnl": -33.47190181724818
+  },
+  {
+   "time": "2025-12-31T05:45:00+00:00",
+   "equity": 10093.614886825904,
+   "pnl": 89.06656506916624
+  },
+  {
+   "time": "2026-01-02T00:45:00+00:00",
+   "equity": 10053.102786544045,
+   "pnl": -40.51210028186051
+  },
+  {
+   "time": "2026-01-02T16:15:00+00:00",
+   "equity": 10018.91491184248,
+   "pnl": -34.187874701566216
+  },
+  {
+   "time": "2026-01-04T23:15:00+00:00",
+   "equity": 9974.910207093999,
+   "pnl": -44.004704748481345
+  },
+  {
+   "time": "2026-01-06T23:00:00+00:00",
+   "equity": 10067.361662155557,
+   "pnl": 92.45145506155859
+  },
+  {
+   "time": "2026-01-07T01:00:00+00:00",
+   "equity": 10018.786457068438,
+   "pnl": -48.575205087119684
+  },
+  {
+   "time": "2026-01-08T12:15:00+00:00",
+   "equity": 10081.918494374762,
+   "pnl": 63.1320373063245
+  },
+  {
+   "time": "2026-01-08T15:45:00+00:00",
+   "equity": 10052.428243151251,
+   "pnl": -29.490251223510317
+  },
+  {
+   "time": "2026-01-11T23:15:00+00:00",
+   "equity": 10132.919715922095,
+   "pnl": 80.49147277084376
+  },
+  {
+   "time": "2026-01-18T23:15:00+00:00",
+   "equity": 10224.228548768733,
+   "pnl": 91.30883284663832
+  },
+  {
+   "time": "2026-01-20T17:45:00+00:00",
+   "equity": 10321.79014983932,
+   "pnl": 97.56160107058713
+  },
+  {
+   "time": "2026-01-21T01:30:00+00:00",
+   "equity": 10392.100595611839,
+   "pnl": 70.3104457725185
+  },
+  {
+   "time": "2026-01-21T19:30:00+00:00",
+   "equity": 10342.025836761466,
+   "pnl": -50.074758850371836
+  },
+  {
+   "time": "2026-01-22T14:30:00+00:00",
+   "equity": 10292.608589747832,
+   "pnl": -49.41724701363455
+  },
+  {
+   "time": "2026-01-22T18:45:00+00:00",
+   "equity": 10371.894272151641,
+   "pnl": 79.28568240380991
+  },
+  {
+   "time": "2026-01-25T23:00:00+00:00",
+   "equity": 10456.679020401616,
+   "pnl": 84.78474824997465
+  },
+  {
+   "time": "2026-01-26T19:00:00+00:00",
+   "equity": 10407.457822209464,
+   "pnl": -49.22119819215186
+  },
+  {
+   "time": "2026-01-27T20:45:00+00:00",
+   "equity": 10498.68291500687,
+   "pnl": 91.22509279740552
+  },
+  {
+   "time": "2026-02-09T23:00:00+00:00",
+   "equity": 10452.806962883036,
+   "pnl": -45.875952123833486
+  },
+  {
+   "time": "2026-02-10T15:30:00+00:00",
+   "equity": 10405.380019529877,
+   "pnl": -47.426943353159004
+  },
+  {
+   "time": "2026-02-12T16:00:00+00:00",
+   "equity": 10360.57992485305,
+   "pnl": -44.80009467682794
+  },
+  {
+   "time": "2026-02-17T05:15:00+00:00",
+   "equity": 10445.233782478257,
+   "pnl": 84.65385762520782
+  },
+  {
+   "time": "2026-02-18T15:00:00+00:00",
+   "equity": 10517.092562761678,
+   "pnl": 71.85878028342086
+  },
+  {
+   "time": "2026-02-20T20:15:00+00:00",
+   "equity": 10601.14459269396,
+   "pnl": 84.05202993228158
+  },
+  {
+   "time": "2026-02-23T23:00:00+00:00",
+   "equity": 10684.140119451466,
+   "pnl": 82.99552675750601
+  },
+  {
+   "time": "2026-02-24T01:00:00+00:00",
+   "equity": 10643.130158242631,
+   "pnl": -41.00996120883519
+  },
+  {
+   "time": "2026-02-24T23:45:00+00:00",
+   "equity": 10663.010158242632,
+   "pnl": 19.88000000000011
+  },
+  {
+   "time": "2026-02-25T01:15:00+00:00",
+   "equity": 10616.889326541746,
+   "pnl": -46.12083170088499
+  },
+  {
+   "time": "2026-02-26T15:15:00+00:00",
+   "equity": 10571.181433442604,
+   "pnl": -45.70789309914289
+  },
+  {
+   "time": "2026-02-27T21:30:00+00:00",
+   "equity": 10651.812676439784,
+   "pnl": 80.63124299718038
+  },
+  {
+   "time": "2026-03-05T06:00:00+00:00",
+   "equity": 10603.8149084903,
+   "pnl": -47.997767949484114
+  },
+  {
+   "time": "2026-03-05T13:15:00+00:00",
+   "equity": 10558.986901189272,
+   "pnl": -44.828007301028265
+  },
+  {
+   "time": "2026-03-06T09:45:00+00:00",
+   "equity": 10511.301551913806,
+   "pnl": -47.68534927546534
+  },
+  {
+   "time": "2026-03-06T15:00:00+00:00",
+   "equity": 10464.439496115123,
+   "pnl": -46.86205579868238
+  },
+  {
+   "time": "2026-03-12T15:00:00+00:00",
+   "equity": 10418.734910290841,
+   "pnl": -45.70458582428273
+  },
+  {
+   "time": "2026-03-15T23:15:00+00:00",
+   "equity": 10514.817447764024,
+   "pnl": 96.08253747318304
+  },
+  {
+   "time": "2026-03-18T10:30:00+00:00",
+   "equity": 10467.624707441644,
+   "pnl": -47.192740322379905
+  },
+  {
+   "time": "2026-03-27T14:00:00+00:00",
+   "equity": 10423.214612519396,
+   "pnl": -44.41009492224839
+  },
+  {
+   "time": "2026-03-31T00:15:00+00:00",
+   "equity": 10374.200104559468,
+   "pnl": -49.01450795992787
+  },
+  {
+   "time": "2026-04-06T17:00:00+00:00",
+   "equity": 10327.647493831122,
+   "pnl": -46.552610728346735
+  },
+  {
+   "time": "2026-04-07T19:15:00+00:00",
+   "equity": 10278.492938841193,
+   "pnl": -49.15455498992924
+  },
+  {
+   "time": "2026-04-09T13:30:00+00:00",
+   "equity": 10234.618095409929,
+   "pnl": -43.87484343126289
+  },
+  {
+   "time": "2026-04-10T08:45:00+00:00",
+   "equity": 10187.803142019366,
+   "pnl": -46.81495339056346
+  },
+  {
+   "time": "2026-04-10T12:30:00+00:00",
+   "equity": 10152.968230329554,
+   "pnl": -34.83491168981163
+  },
+  {
+   "time": "2026-04-12T22:00:00+00:00",
+   "equity": 10014.704230329553,
+   "pnl": -138.26400000000012
+  },
+  {
+   "time": "2026-04-14T14:15:00+00:00",
+   "equity": 10106.276158796107,
+   "pnl": 91.5719284665538
+  },
+  {
+   "time": "2026-04-19T23:30:00+00:00",
+   "equity": 10059.579732751728,
+   "pnl": -46.696426044377404
+  },
+  {
+   "time": "2026-04-20T13:15:00+00:00",
+   "equity": 10021.01913234806,
+   "pnl": -38.560600403669014
+  },
+  {
+   "time": "2026-04-21T05:45:00+00:00",
+   "equity": 9981.082162683611,
+   "pnl": -39.93696966444804
+  },
+  {
+   "time": "2026-04-21T14:45:00+00:00",
+   "equity": 10037.301831452201,
+   "pnl": 56.21966876859006
+  },
+  {
+   "time": "2026-04-23T00:00:00+00:00",
+   "equity": 9994.184322686862,
+   "pnl": -43.11750876533824
+  },
+  {
+   "time": "2026-04-24T20:45:00+00:00",
+   "equity": 9986.754322686862,
+   "pnl": -7.43000000000029
+  },
+  {
+   "time": "2026-04-27T01:00:00+00:00",
+   "equity": 9958.248776414559,
+   "pnl": -28.505546272303945
+  },
+  {
+   "time": "2026-04-27T03:30:00+00:00",
+   "equity": 9923.900218659357,
+   "pnl": -34.348557755201
+  },
+  {
+   "time": "2026-04-27T14:15:00+00:00",
+   "equity": 9895.509634787866,
+   "pnl": -28.390583871490886
+  },
+  {
+   "time": "2026-04-28T07:45:00+00:00",
+   "equity": 9954.644380387157,
+   "pnl": 59.13474559929091
+  },
+  {
+   "time": "2026-04-29T13:15:00+00:00",
+   "equity": 10038.777054803786,
+   "pnl": 84.13267441662902
+  },
+  {
+   "time": "2026-04-30T06:45:00+00:00",
+   "equity": 9993.43723976659,
+   "pnl": -45.339815037196786
+  },
+  {
+   "time": "2026-05-01T07:15:00+00:00",
+   "equity": 9953.213370422643,
+   "pnl": -40.22386934394763
+  },
+  {
+   "time": "2026-05-01T12:15:00+00:00",
+   "equity": 9923.57305165302,
+   "pnl": -29.640318769622354
+  },
+  {
+   "time": "2026-05-04T10:00:00+00:00",
+   "equity": 9883.478891298451,
+   "pnl": -40.094160354567975
+  },
+  {
+   "time": "2026-05-06T00:30:00+00:00",
+   "equity": 9839.22875508215,
+   "pnl": -44.25013621630296
+  },
+  {
+   "time": "2026-05-06T10:45:00+00:00",
+   "equity": 9908.016563948879,
+   "pnl": 68.78780886672939
+  },
+  {
+   "time": "2026-05-07T01:45:00+00:00",
+   "equity": 9872.876772504977,
+   "pnl": -35.13979144390214
+  },
+  {
+   "time": "2026-05-11T00:45:00+00:00",
+   "equity": 9837.392445088019,
+   "pnl": -35.48432741695797
+  },
+  {
+   "time": "2026-05-11T13:30:00+00:00",
+   "equity": 9793.215088348077,
+   "pnl": -44.17735673994139
+  },
+  {
+   "time": "2026-05-12T13:15:00+00:00",
+   "equity": 9745.137356884281,
+   "pnl": -48.077731463796226
+  },
+  {
+   "time": "2026-05-12T22:00:00+00:00",
+   "equity": 9703.714047268051,
+   "pnl": -41.423309616228835
+  },
+  {
+   "time": "2026-05-13T12:15:00+00:00",
+   "equity": 9668.395687567136,
+   "pnl": -35.3183597009147
+  },
+  {
+   "time": "2026-05-15T00:30:00+00:00",
+   "equity": 9731.33438363547,
+   "pnl": 62.938696068335055
+  },
+  {
+   "time": "2026-05-15T13:30:00+00:00",
+   "equity": 9821.287062411411,
+   "pnl": 89.95267877594051
+  },
+  {
+   "time": "2026-05-18T00:15:00+00:00",
+   "equity": 9777.592352793748,
+   "pnl": -43.69470961766365
+  },
+  {
+   "time": "2026-05-19T13:15:00+00:00",
+   "equity": 9729.44294382432,
+   "pnl": -48.149408969428805
+  },
+  {
+   "time": "2026-05-21T01:00:00+00:00",
+   "equity": 9681.549511347119,
+   "pnl": -47.89343247720262
+  },
+  {
+   "time": "2026-05-24T23:00:00+00:00",
+   "equity": 9648.728440687166,
+   "pnl": -32.821070659952056
+  },
+  {
+   "time": "2026-05-25T23:45:00+00:00",
+   "equity": 9634.968440687166,
+   "pnl": -13.76000000000022
+  }
+ ],
+ "steps": {
+  "base": {
+   "status": "DONE",
+   "seconds": 0.2,
+   "backtests": 1
+  },
+  "cost_stress": {
+   "status": "DONE",
+   "seconds": 1.48,
+   "backtests": 7
+  },
+  "walk_forward": {
+   "status": "DONE",
+   "seconds": 22.38,
+   "backtests": 169
+  },
+  "parameter_stability": {
+   "status": "DONE",
+   "seconds": 2.81,
+   "backtests": 13
+  },
+  "pbo": {
+   "status": "DONE",
+   "seconds": 2.75,
+   "backtests": 12
+  },
+  "monte_carlo": {
+   "status": "DONE",
+   "seconds": 0.01,
+   "backtests": 0
+  },
+  "statistics": {
+   "status": "DONE",
+   "seconds": 0.0,
+   "backtests": 0
+  },
+  "holdout": {
+   "status": "DONE",
+   "seconds": 0.06,
+   "backtests": 1
+  }
+ },
+ "timing": {
+  "total_seconds": 29.7,
+  "backtests": 203,
+  "distinct_configs": 24
+ },
+ "strategy": {
+  "kind": "builder",
+  "name": "EmaRsiPullback"
+ }
+}

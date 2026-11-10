@@ -1,0 +1,432 @@
+{
+  "slippage_points": 3,
+  "commission_per_lot_side": 3.5,
+  "contract_assumed_not_broker_verified": {
+    "account_currency": "USD",
+    "contract_size": 100,
+    "tick_size": 0.01,
+    "quote_to_account": 1,
+    "volume_step": 0.01,
+    "commission_per_lot_side": 3.5,
+    "slippage_points": 3
+  },
+  "fill_checks": {
+    "rich_m1_market": {
+      "case": "rich_m1_market",
+      "days": "2026-09-21..2026-09-25",
+      "order": "market",
+      "trades": 357,
+      "entry_side_ok": 357,
+      "entry_price_rule_ok": 357,
+      "exit_side_rule_ok": 357,
+      "exit_price_rule_ok": 357,
+      "spread_open_ok": 357,
+      "pnl_formula_ok": 357,
+      "lot_step_ok": 357,
+      "sizing_ok": 357,
+      "sl_wins_when_both": 3,
+      "ambiguous_exits": 3,
+      "pending": {
+        "submitted": 0,
+        "cancelled": 0,
+        "cancel_exact_expiry_candle": 0,
+        "cancelled_without_touch": 0,
+        "filled": 0,
+        "filled_on_first_touch": 0
+      },
+      "sl_first_counterfactual_cost_if_tp_were_taken": 151.31848064801852,
+      "order_rejections": []
+    },
+    "rich_m1_stop": {
+      "case": "rich_m1_stop",
+      "days": "2026-09-21..2026-09-25",
+      "order": "stop",
+      "trades": 326,
+      "entry_side_ok": 326,
+      "entry_price_rule_ok": 326,
+      "exit_side_rule_ok": 326,
+      "exit_price_rule_ok": 326,
+      "spread_open_ok": 326,
+      "pnl_formula_ok": 326,
+      "lot_step_ok": 326,
+      "sizing_ok": 326,
+      "sl_wins_when_both": 2,
+      "ambiguous_exits": 2,
+      "pending": {
+        "submitted": 366,
+        "cancelled": 40,
+        "cancel_exact_expiry_candle": 40,
+        "cancelled_without_touch": 40,
+        "filled": 326,
+        "filled_on_first_touch": 326
+      },
+      "sl_first_counterfactual_cost_if_tp_were_taken": 86.60506438598804,
+      "order_rejections": []
+    },
+    "rich_m1_limit": {
+      "case": "rich_m1_limit",
+      "days": "2026-09-21..2026-09-25",
+      "order": "limit",
+      "trades": 210,
+      "entry_side_ok": 210,
+      "entry_price_rule_ok": 210,
+      "exit_side_rule_ok": 210,
+      "exit_price_rule_ok": 210,
+      "spread_open_ok": 210,
+      "pnl_formula_ok": 210,
+      "lot_step_ok": 210,
+      "sizing_ok": 210,
+      "sl_wins_when_both": 1,
+      "ambiguous_exits": 1,
+      "pending": {
+        "submitted": 352,
+        "cancelled": 142,
+        "cancel_exact_expiry_candle": 142,
+        "cancelled_without_touch": 142,
+        "filled": 210,
+        "filled_on_first_touch": 210
+      },
+      "sl_first_counterfactual_cost_if_tp_were_taken": 91.68644675009091,
+      "order_rejections": []
+    }
+  },
+  "real_spread_and_price_grid": {
+    "XAUUSD": {
+      "rows": 8244053,
+      "rows_with_bid_and_ask": 8244051,
+      "spread_open_mean": 0.40790103117993826,
+      "spread_open_median": 0.37400000000002365,
+      "spread_open_p99": 0.9239999999999782,
+      "spread_open_max": 14.926999999999907,
+      "rows_negative_open_or_close_spread": 1,
+      "days_refused_by_daily_store_for_negative_spread": 1,
+      "days_refused_since_2025": 1,
+      "last_refused_day": "2026-10-12",
+      "rows_zero_open_spread": 0,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": [
+        100.0,
+        0.01,
+        0.01
+      ]
+    },
+    "EURUSD": {
+      "rows": 8530555,
+      "rows_with_bid_and_ask": 8530555,
+      "spread_open_mean": 6.987344082536235e-05,
+      "spread_open_median": 4.0000000000040004e-05,
+      "spread_open_p99": 0.00029999999999996696,
+      "spread_open_max": 0.003310000000000146,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 76,
+      "observed_price_grid_last_2m_rows": 1e-05,
+      "assumed_default_contract": [
+        100000.0,
+        1e-05,
+        0.01
+      ]
+    },
+    "GBPUSD": {
+      "rows": 8530555,
+      "rows_with_bid_and_ask": 8530555,
+      "spread_open_mean": 0.00014601980527644424,
+      "spread_open_median": 0.00010999999999983245,
+      "spread_open_p99": 0.0006500000000000394,
+      "spread_open_max": 0.0040000000000000036,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 0,
+      "observed_price_grid_last_2m_rows": 1e-05,
+      "assumed_default_contract": [
+        100000.0,
+        1e-05,
+        0.01
+      ]
+    },
+    "AUDUSD": {
+      "rows": 8530555,
+      "rows_with_bid_and_ask": 8530555,
+      "spread_open_mean": 0.00014332378139523172,
+      "spread_open_median": 0.0001100000000000545,
+      "spread_open_p99": 0.00046999999999997044,
+      "spread_open_max": 0.003649999999999931,
+      "rows_negative_open_or_close_spread": 6876,
+      "days_refused_by_daily_store_for_negative_spread": 774,
+      "days_refused_since_2025": 0,
+      "last_refused_day": "2010-10-29",
+      "rows_zero_open_spread": 992,
+      "observed_price_grid_last_2m_rows": 1e-05,
+      "assumed_default_contract": [
+        100000.0,
+        1e-05,
+        0.01
+      ]
+    },
+    "USDJPY": {
+      "rows": 8530555,
+      "rows_with_bid_and_ask": 8530555,
+      "spread_open_mean": 0.008682110249567571,
+      "spread_open_median": 0.006000000000000227,
+      "spread_open_p99": 0.036000000000001364,
+      "spread_open_max": 0.5369999999999777,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 0,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": null
+    },
+    "USDCAD": {
+      "rows": 8530555,
+      "rows_with_bid_and_ask": 8530555,
+      "spread_open_mean": 0.00017404855838805313,
+      "spread_open_median": 0.00012999999999996348,
+      "spread_open_p99": 0.0007499999999999174,
+      "spread_open_max": 0.0035000000000000586,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 0,
+      "observed_price_grid_last_2m_rows": 1e-05,
+      "assumed_default_contract": null
+    },
+    "BTCUSD": {
+      "rows": 4920508,
+      "rows_with_bid_and_ask": 4920506,
+      "spread_open_mean": 81.41957186923466,
+      "spread_open_median": 77.09999999999854,
+      "spread_open_p99": 145.10000000000036,
+      "spread_open_max": 1595.2999999999993,
+      "rows_negative_open_or_close_spread": 842,
+      "days_refused_by_daily_store_for_negative_spread": 30,
+      "days_refused_since_2025": 0,
+      "last_refused_day": "2017-12-28",
+      "rows_zero_open_spread": 57203,
+      "observed_price_grid_last_2m_rows": 0.1,
+      "assumed_default_contract": [
+        1.0,
+        0.01,
+        0.01
+      ]
+    },
+    "DE40": {
+      "rows": 4416821,
+      "rows_with_bid_and_ask": 4416819,
+      "spread_open_mean": 2.697174970719934,
+      "spread_open_median": 1.9979999999995925,
+      "spread_open_p99": 8.006000000001222,
+      "spread_open_max": 100.0,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 0,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": [
+        1.0,
+        0.1,
+        0.01
+      ]
+    },
+    "US30": {
+      "rows": 4415140,
+      "rows_with_bid_and_ask": 4415140,
+      "spread_open_mean": 3.208870509202192,
+      "spread_open_median": 2.860000000000582,
+      "spread_open_p99": 7.493000000002212,
+      "spread_open_max": 79.64400000000023,
+      "rows_negative_open_or_close_spread": 0,
+      "days_refused_by_daily_store_for_negative_spread": 0,
+      "days_refused_since_2025": 0,
+      "last_refused_day": null,
+      "rows_zero_open_spread": 1,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": null
+    },
+    "US500": {
+      "rows": 5098720,
+      "rows_with_bid_and_ask": 5098720,
+      "spread_open_mean": 0.47819089653874625,
+      "spread_open_median": 0.5039999999999054,
+      "spread_open_p99": 1.1089999999999236,
+      "spread_open_max": 22.15800000000013,
+      "rows_negative_open_or_close_spread": 589,
+      "days_refused_by_daily_store_for_negative_spread": 3,
+      "days_refused_since_2025": 0,
+      "last_refused_day": "2012-10-10",
+      "rows_zero_open_spread": 350583,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": [
+        1.0,
+        0.1,
+        0.01
+      ]
+    },
+    "USATECHIDXUSD": {
+      "rows": 5094715,
+      "rows_with_bid_and_ask": 5092045,
+      "spread_open_mean": 1.5615096909002073,
+      "spread_open_median": 1.5799999999981083,
+      "spread_open_p99": 22.04559999999619,
+      "spread_open_max": 104.38000000000011,
+      "rows_negative_open_or_close_spread": 112334,
+      "days_refused_by_daily_store_for_negative_spread": 111,
+      "days_refused_since_2025": 0,
+      "last_refused_day": "2012-12-16",
+      "rows_zero_open_spread": 166376,
+      "observed_price_grid_last_2m_rows": 0.001,
+      "assumed_default_contract": [
+        1.0,
+        0.1,
+        0.01
+      ]
+    }
+  },
+  "contract_verification": {
+    "XAUUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        100.0,
+        0.01,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NOT_VERIFIED: data price grid 0.001 differs from default tick 0.01",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "EURUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        100000.0,
+        1e-05,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "MATCHES_DATA_PRICE_GRID 1e-05 (necessary, not sufficient: no broker spec)",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "GBPUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        100000.0,
+        1e-05,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "MATCHES_DATA_PRICE_GRID 1e-05 (necessary, not sufficient: no broker spec)",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "AUDUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        100000.0,
+        1e-05,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "MATCHES_DATA_PRICE_GRID 1e-05 (necessary, not sufficient: no broker spec)",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "USDJPY": {
+      "quote_currency": "JPY",
+      "default_contract_in_backtest_py": null,
+      "contract_size": "NO_DEFAULT (backtest falls back to size 1)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NO_DEFAULT",
+      "quote_to_account": "WRONG_IF_USED: quote currency JPY vs USD account, default 1.0",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "USDCAD": {
+      "quote_currency": "CAD",
+      "default_contract_in_backtest_py": null,
+      "contract_size": "NO_DEFAULT (backtest falls back to size 1)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NO_DEFAULT",
+      "quote_to_account": "WRONG_IF_USED: quote currency CAD vs USD account, default 1.0",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "BTCUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        1.0,
+        0.01,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NOT_VERIFIED: data price grid 0.1 differs from default tick 0.01",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "DE40": {
+      "quote_currency": "EUR",
+      "default_contract_in_backtest_py": [
+        1.0,
+        0.1,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NOT_VERIFIED: data price grid 0.001 differs from default tick 0.1",
+      "quote_to_account": "WRONG_IF_USED: quote currency EUR vs USD account, default 1.0",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "US30": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": null,
+      "contract_size": "NO_DEFAULT (backtest falls back to size 1)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NO_DEFAULT",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "US500": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        1.0,
+        0.1,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NOT_VERIFIED: data price grid 0.001 differs from default tick 0.1",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    },
+    "USATECHIDXUSD": {
+      "quote_currency": "USD",
+      "default_contract_in_backtest_py": [
+        1.0,
+        0.1,
+        0.01
+      ],
+      "contract_size": "ASSUMED (no broker/symbol-spec source in repo or data)",
+      "volume_step": "ASSUMED",
+      "tick_size": "NOT_VERIFIED: data price grid 0.001 differs from default tick 0.1",
+      "quote_to_account": "ASSUMED 1.0 (valid only for USD-quoted symbols on a USD account)",
+      "commission_and_slippage": "USER INPUT (never from broker)"
+    }
+  },
+  "rules": {
+    "sl_tp_same_candle": "stop loss wins (conservative_ohlc_exit); flagged ambiguous=True on the trade",
+    "tp_on_stop_or_limit_fill_candle": "ignored (intrabar path unknown), SL still active",
+    "gap": "stop exit fills at min(open, stop) long / max(open, stop) short; target at max(open,target) long / min(open,target) short",
+    "slippage": "adverse on market entry, stop-order fills, STOP_LOSS and TIME_EXIT; none on TAKE_PROFIT and limit fills",
+    "commission": "2 x lots x commission_per_lot_side per round trip"
+  }
+}

@@ -1,0 +1,27 @@
+# Offline restart test — 2026-11-06
+
+**Production offline restart: NOT TESTED. Isolated Windows launcher handoff: PASS.** The Docker cold-start validation stopped and restarted Docker Desktop while the computer remained online. A disposable Windows launcher/Compose copy has since started Jesse/PostgreSQL and the hidden Strategy Lab server while its Jesse network had no egress, then opened the temporary Edge app window. This does not prove production Compose startup while the host is offline.
+
+No system-wide network interface, firewall, or VPN settings were changed. Fonts/assets, Docker startup with an enforced network deny, new offline backtest/optimizer runs, and offline layout persistence remain unverified. Docker Desktop, Jesse, PostgreSQL, Strategy Lab, and local Dukascopy data were healthy after the ordinary cold-start test.
+
+
+## Isolated offline component checks — 2026-11-06
+
+- **Browser-facing Strategy Lab: PASS, scoped.** A fresh headless Chrome context used a request route that aborts every non-loopback HTTP(S) request. The current dashboard, CSS, JavaScript, local Plotly, favicon, health endpoint, dataset list, saved XAUUSD historical backtest, trade metrics, saved optimization results, heatmap, sensitivity chart and stored layout profiles all loaded from localhost. Browser emitted no errors and no remote request was attempted. The saved backtest and optimizer manifests resolve to `C:\AI\Dukascopy_data`. No new run was started and source files remained unchanged. Evidence: `evidence/test_outputs/offline_browser_smoke_20261106.json`; screenshot: `evidence/screenshots/offline-browser-smoke-20261106.png`.
+- **Jesse image `install-live`: PASS, scoped.** In a fresh disposable container using the already cached `salehmir/jesse:latest` image with `--pull=never --network=none`, `import jesse` and `jesse install-live --no-strict` exited 0. Evidence: `evidence/test_outputs/offline_jesse_image_network_none_20261106.txt`. No project, `.env`, API credentials, market data, or writable host path was mounted.
+
+**Full production Windows offline restart remains NOT TESTED.** The isolated-stack continuation below covers a fresh PostgreSQL + Jesse server start and actual Dukascopy backtest/optimization with Docker egress disabled. The follow-up launcher acceptance at the end of this report used a disposable Compose project and confirmed the hidden service plus visible Edge app-window handoff with container egress denied. It does not restart the production Compose services, deny host-wide network access, or reboot Windows. Existing production services and the PC network remain untouched.
+
+
+## Isolated full Jesse stack and offline computations — 2026-11-06
+
+A disposable test project was assembled from the local Jesse project template and copied Strategy Lab runner/strategy code. A temporary TimescaleDB container used tmpfs only, Docker `network=none`, no published ports, and generated test-only credentials. Jesse shared only that isolated network namespace, had no default IPv4 route, completed `jesse install-live --no-strict`, and returned HTTP 200 from its local dashboard/API. Both containers were removed after the test; the existing production Jesse/PostgreSQL containers were not touched.
+
+Inside this network-isolated stack, the copied Duka-derived candle inputs completed a new XAUUSD M1 September 2026 backtest (30,209 trading candles, 210 warmup candles, 230 trades) and a new one-trial Random optimization (1/1 completed, 0 errors). All inputs are tied to existing manifests with source root exactly `C:\AI\Dukascopy_data`. The backtest metrics, trade count and event count matched the saved baseline exactly; the optimizer's status, parameters and score matched its saved baseline exactly. Optimizer score was 0 and no profitability inference is made. The original Dukascopy files and MT5 data were not mounted into the disposable stack or modified. Evidence: `evidence/test_outputs/offline_jesse_stack_20261106.py` and `.json`.
+
+The browser-deny test above separately confirms that the current localhost Strategy Lab UI, local assets, saved historical views, optimizer plots, font fallbacks and saved layout profiles work with all non-loopback browser HTTP(S) requests blocked.
+
+**Still NOT TESTED:** invoking the production desktop launcher with host external networking denied, a Windows reboot in that state, the user's production PostgreSQL volume/Jesse container cold start, or a newly calculated result surfaced through the production Strategy Lab UI during that isolated run. No system-wide network/firewall settings were changed.
+# Offline Windows launcher acceptance — 2026-11-06
+
+Disposable Windows launcher copy with Jesse/PostgreSQL on Docker `internal:true` network. Host loopback proxy delivered Jesse HTTP 200; PostgreSQL health was healthy; direct TCP to 1.1.1.1:443 failed with errno 101 from the Jesse container; Strategy Lab returned HTTP 200 on test port 18767 and reported only `C:\AI\Dukascopy_data`. The first run exposed a test-title mismatch. The corrected run logged Edge app-window open/focus; CUA confirmed the temporary window. Test containers/networks were removed without volumes, the copied server was stopped, ports 18767/19000 closed, and production listener 8767 remained. Evidence: `evidence/test_outputs/offline_windows_launcher_acceptance_20261106.json` and `evidence/logs/offline_launcher_windows_20261106_success.log`. Production offline restart, host-wide network denial and reboot remain untested.

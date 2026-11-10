@@ -1,0 +1,619 @@
+{
+ "run_id": "fr_20261110_192949_b91ae5",
+ "status": "done",
+ "phase": "selecting",
+ "started_at": "2026-11-10T19:29:50.164043+00:00",
+ "finished_at": "2026-11-10T19:32:42.310376+00:00",
+ "config_request": {
+  "markets": [
+   "XAUUSD",
+   "US30",
+   "DE40",
+   "EURUSD",
+   "USDJPY"
+  ],
+  "timeframes": [
+   "M15",
+   "H1",
+   "H4"
+  ],
+  "profile": "uitgebreid",
+  "quality": "regelmatig",
+  "max_candidates": 240,
+  "trials": 24,
+  "workers": 22,
+  "max_minutes": 45.0
+ },
+ "final_test": false,
+ "preregistration_sha256": "84d6876d7c4a82e288022ea532f02bd265c507f94ba216a2b32edfda621219e2",
+ "counts": {
+  "generated": 336,
+  "technically_valid": 238,
+  "rejected": 329,
+  "quick_passed": 40,
+  "dev_validated": 13,
+  "wf_passed": 0,
+  "frozen": 0,
+  "final_tested": 0,
+  "oos_approved": 0,
+  "forward_ready": 0,
+  "errors": 0,
+  "outcomes": {
+   "PASSED": 0,
+   "REJECTED": 329,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "TECHNICAL_BLOCKED": 0,
+   "IN_PROGRESS": 7
+  },
+  "promotion": {
+   "EXPERIMENT": 7,
+   "DEVELOPMENT_PASS": 0,
+   "WALK_FORWARD_PASS": 0,
+   "ROBUSTNESS_PASS": 0,
+   "FROZEN_CANDIDATE": 0,
+   "HISTORICAL_OOS_PASS": 0,
+   "FORWARD_ELIGIBLE": 0,
+   "PROSPECTIVE_FORWARD": 0,
+   "REJECTED": 329,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "TECHNICAL_BLOCKED": 0
+  },
+  "highest_promotion": {
+   "EXPERIMENT": 324,
+   "DEVELOPMENT_PASS": 12,
+   "WALK_FORWARD_PASS": 0,
+   "ROBUSTNESS_PASS": 0,
+   "FROZEN_CANDIDATE": 0,
+   "HISTORICAL_OOS_PASS": 0,
+   "FORWARD_ELIGIBLE": 0,
+   "PROSPECTIVE_FORWARD": 0
+  },
+  "in_progress": 7
+ },
+ "stage_status_counts": {
+  "L1:PASS": 238,
+  "L2:REJECTED": 198,
+  "L2:PASS": 40,
+  "L3:PASS": 19,
+  "L4:PASS": 13,
+  "L5:REJECTED": 12,
+  "L3:REJECTED": 21,
+  "L1:REJECTED": 2,
+  "L4:REJECTED": 6
+ },
+ "outcomes": {
+  "REJECTED": 329,
+  "IN_PROGRESS": 7
+ },
+ "outcome_kinds": {
+  "REJECTED|statistisch": 231,
+  "IN_PROGRESS|None": 7,
+  "REJECTED|technisch": 98
+ },
+ "top_missing_nl": [],
+ "top_rejection_reasons": [
+  [
+   "L2: geen voorlopige edge na kosten",
+   114
+  ],
+  [
+   "L2: te weinig trades voor dit profiel",
+   50
+  ],
+  [
+   "L2: geen trades in de representatieve vensters",
+   49
+  ],
+  [
+   "L2: resultaat hangt aan een enkele trade",
+   26
+  ],
+  [
+   "L3: ontwikkelperiode verliesgevend na kosten",
+   18
+  ],
+  [
+   "L5: Overfit-signalen",
+   9
+  ],
+  [
+   "L5: OOS-resultaat leunt op een enkel venster.",
+   7
+  ],
+  [
+   "L5: scorecard REJECT",
+   7
+  ],
+  [
+   "L5: WAARSCHUWING",
+   6
+  ],
+  [
+   "L5: Verliesgevend bij +50% spread.",
+   5
+  ],
+  [
+   "L3: te weinig trades over de ontwikkelperiode",
+   4
+  ],
+  [
+   "L4: frequentie na optimalisatie te laag",
+   3
+  ],
+  [
+   "L5: ontwikkelbacktest niet positief na kosten",
+   2
+  ],
+  [
+   "L5: 0.66 trades per handelsweek",
+   2
+  ],
+  [
+   "L5: OOS recovery factor -0.47",
+   2
+  ],
+  [
+   "L5: Maximale OOS-drawdown 15.6%",
+   2
+  ],
+  [
+   "L5: Langste periode zonder trade",
+   2
+  ],
+  [
+   "L4: profit factor na optimalisatie te laag",
+   2
+  ],
+  [
+   "L5: 50% van de buurparameters winstgevend.",
+   1
+  ],
+  [
+   "L2: drawdown in een venster 33.2% > 30%",
+   1
+  ],
+  [
+   "L1: data_available",
+   1
+  ],
+  [
+   "L5: OOS profit factor 0.95",
+   1
+  ],
+  [
+   "L5: Maximale OOS-drawdown 26.4%",
+   1
+  ],
+  [
+   "L5: Gemiddelde trade -1.58; 95%-block-bootstrap-CI [-6.50, 3.15]",
+   1
+  ],
+  [
+   "L4: drawdown ontwikkelperiode 22.5% > 22.5%",
+   1
+  ],
+  [
+   "L5: OOS profit factor 0.99",
+   1
+  ],
+  [
+   "L5: OOS recovery factor -0.05",
+   1
+  ],
+  [
+   "L5: Gemiddelde trade -0.42; 95%-block-bootstrap-CI [-12.16, 10.51]",
+   1
+  ],
+  [
+   "L2: drawdown in een venster 42.2% > 30%",
+   1
+  ],
+  [
+   "L5: Maximale OOS-drawdown 15.4%",
+   1
+  ]
+ ],
+ "l5_candidates": [
+  {
+   "cand_id": "0d79561c7a626822",
+   "market": "DE40:H1",
+   "family": "vwap_deviation",
+   "status": "REJECTED",
+   "trades": 721,
+   "pf": 1.073009748645655,
+   "net": 1536.6794559243338,
+   "dev_net_chosen": -1769.4396052696711,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": 0.37933331051033947,
+   "raw_n": 17753,
+   "effective_n": 5442.0249794680385,
+   "T": 1580,
+   "T_eff": 1572.841877487162,
+   "skew": 1.050666223944346,
+   "kurtosis": 5.000521722879868,
+   "nc_dsr": 0.0025936193763552847,
+   "paper_dsr": 0.001014093142526037,
+   "dep_dsr": 0.0026627484877472215,
+   "sr0_ann_nc": 1.4847089056993328,
+   "sr0_ann_paper": 1.5969798611704749,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "13d78bce2772355b",
+   "market": "XAUUSD:H1",
+   "family": "hybrid_sweep_mss",
+   "status": "REJECTED",
+   "trades": 197,
+   "pf": 1.1196822685219519,
+   "net": 655.7189911515125,
+   "dev_net_chosen": 844.8231246550693,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.25624275896834214,
+   "raw_n": 17343,
+   "effective_n": 5328.59689463724,
+   "T": 1546,
+   "T_eff": 1546.0,
+   "skew": 4.439242384687619,
+   "kurtosis": 29.868017339779506,
+   "nc_dsr": 0.0007333163958427205,
+   "paper_dsr": 0.00024965891415888746,
+   "dep_dsr": 0.0007333163958427205,
+   "sr0_ann_nc": 1.4953856977563116,
+   "sr0_ann_paper": 1.6122089567906386,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "1c26fe930a9b7438",
+   "market": "DE40:H1",
+   "family": "breakout_retest",
+   "status": "REJECTED",
+   "trades": 888,
+   "pf": 0.9540772757264983,
+   "net": -1406.1377512887198,
+   "dev_net_chosen": 1662.136287075,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.2176026172941639,
+   "raw_n": 17338,
+   "effective_n": 5326.583012788928,
+   "T": 1575,
+   "T_eff": 1512.7978573637588,
+   "skew": 1.0433712678866192,
+   "kurtosis": 5.5556366319901285,
+   "nc_dsr": 1.3046325085623234e-05,
+   "paper_dsr": 3.3472947065376704e-06,
+   "dep_dsr": 1.799549273313613e-05,
+   "sr0_ann_nc": 1.5116674759786874,
+   "sr0_ann_paper": 1.59727008363915,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "48be98619b84fa4e",
+   "market": "DE40:H1",
+   "family": "breakout_atr_expansion",
+   "status": "REJECTED",
+   "trades": 199,
+   "pf": 0.9891434159940702,
+   "net": -84.50724024968531,
+   "dev_net_chosen": 337.25525500000094,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.0004986369461464452,
+   "raw_n": 17753,
+   "effective_n": 5442.0249794680385,
+   "T": 1553,
+   "T_eff": 1553.0,
+   "skew": 2.8535853995378275,
+   "kurtosis": 18.59976658625655,
+   "nc_dsr": 0.00010399649922564071,
+   "paper_dsr": 3.186552884758092e-05,
+   "dep_dsr": 0.00010399649922564071,
+   "sr0_ann_nc": 1.4941634812467628,
+   "sr0_ann_paper": 1.6108023520618946,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 7,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "4ebe6aa65579b9ca",
+   "market": "DE40:H1",
+   "family": "breakout_ny",
+   "status": "REJECTED",
+   "trades": 436,
+   "pf": 1.00317550055753,
+   "net": 38.5941434025691,
+   "dev_net_chosen": 2776.16243625495,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.04041610297481862,
+   "raw_n": 17348,
+   "effective_n": 5330.610776485554,
+   "T": 1563,
+   "T_eff": 1563.0,
+   "skew": 1.9981861683533935,
+   "kurtosis": 9.728622268913572,
+   "nc_dsr": 0.00015230520804383058,
+   "paper_dsr": 4.783468276497085e-05,
+   "dep_dsr": 0.00015230520804383058,
+   "sr0_ann_nc": 1.4872696701624613,
+   "sr0_ann_paper": 1.6034448266349977,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "89bf859d2c961dfd",
+   "market": "EURUSD:H1",
+   "family": "breakout_asian_range",
+   "status": "REJECTED",
+   "trades": 759,
+   "pf": 0.8285655986086524,
+   "net": -3738.5914247645505,
+   "dev_net_chosen": -1721.5458924592922,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.7707302779582746,
+   "raw_n": 17444,
+   "effective_n": 5333.5136139870165,
+   "T": 1567,
+   "T_eff": 1567.0,
+   "skew": 0.859725066087878,
+   "kurtosis": 5.149922990778061,
+   "nc_dsr": 1.8567143801550407e-08,
+   "paper_dsr": 3.558051227680774e-09,
+   "dep_dsr": 1.8567143801550407e-08,
+   "sr0_ann_nc": 1.485425618471551,
+   "sr0_ann_paper": 1.6019217952509266,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "95f075df78a5d632",
+   "market": "DE40:H4",
+   "family": "trend_momentum_persistence",
+   "status": "REJECTED",
+   "trades": 364,
+   "pf": 1.000479993089121,
+   "net": 5.726489678245343,
+   "dev_net_chosen": -30.862459954284915,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": 0.03517139849492641,
+   "raw_n": 17253,
+   "effective_n": 5288.485978058861,
+   "T": 1559,
+   "T_eff": 1559.0,
+   "skew": 6.157695100220053,
+   "kurtosis": 68.74144251782138,
+   "nc_dsr": 0.00013733975399301805,
+   "paper_dsr": 4.24707669183113e-05,
+   "dep_dsr": 0.00013733975399301805,
+   "sr0_ann_nc": 1.4883668001232377,
+   "sr0_ann_paper": 1.6049768412077636,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "9984e84bd317e959",
+   "market": "XAUUSD:M15",
+   "family": "breakout_prev_day",
+   "status": "REJECTED",
+   "trades": 324,
+   "pf": 1.0050329412524959,
+   "net": 60.48259026380504,
+   "dev_net_chosen": 4309.796935000005,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.04603688922233493,
+   "raw_n": 17764,
+   "effective_n": 5447.100749359334,
+   "T": 1567,
+   "T_eff": 1543.468999592944,
+   "skew": 1.8153667406681546,
+   "kurtosis": 8.550747396508115,
+   "nc_dsr": 0.0001567776661589404,
+   "paper_dsr": 4.948158733766935e-05,
+   "dep_dsr": 0.00017456992191291866,
+   "sr0_ann_nc": 1.49886511551998,
+   "sr0_ann_paper": 1.6036493764588715,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "a013ea32c1e6628b",
+   "market": "XAUUSD:H1",
+   "family": "stat_vol_clustering",
+   "status": "REJECTED",
+   "trades": 704,
+   "pf": 1.0386506359124648,
+   "net": 726.2384017178402,
+   "dev_net_chosen": 533.5098073351857,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.20699056580013633,
+   "raw_n": 17787,
+   "effective_n": 5448.7605644652385,
+   "T": 1570,
+   "T_eff": 1551.1598625049369,
+   "skew": 1.0235912027615222,
+   "kurtosis": 6.040641289793984,
+   "nc_dsr": 0.0006496046481209372,
+   "paper_dsr": 0.0002286818161155271,
+   "dep_dsr": 0.000702336852037273,
+   "sr0_ann_nc": 1.4951758292117816,
+   "sr0_ann_paper": 1.6022392816154998,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "c5ea0ad8a627bcd8",
+   "market": "DE40:M15",
+   "family": "hybrid_vwap_pullback_trend",
+   "status": "REJECTED",
+   "trades": 1060,
+   "pf": 1.006869109708091,
+   "net": 188.8121199612001,
+   "dev_net_chosen": 2338.4963816284417,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.07779423446769429,
+   "raw_n": 17787,
+   "effective_n": 5448.7605644652385,
+   "T": 1580,
+   "T_eff": 1580.0,
+   "skew": 1.6120175721102994,
+   "kurtosis": 8.937420637361933,
+   "nc_dsr": 0.00020974240255615834,
+   "paper_dsr": 6.719888241523659e-05,
+   "dep_dsr": 0.00020974240255615834,
+   "sr0_ann_nc": 1.4814670734829578,
+   "sr0_ann_paper": 1.5971608559035435,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "POSITIVE_UNCERTAIN"
+  },
+  {
+   "cand_id": "c8debf0648fd64d3",
+   "market": "DE40:H4",
+   "family": "mr_rsi_extremes",
+   "status": "REJECTED",
+   "trades": 137,
+   "pf": 0.9145723299128773,
+   "net": -369.93759336203084,
+   "dev_net_chosen": 837.1973981674554,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.18645720190144388,
+   "raw_n": 17487,
+   "effective_n": 5369.496118541964,
+   "T": 1554,
+   "T_eff": 1373.3657226887494,
+   "skew": 2.413277633031314,
+   "kurtosis": 18.588466717971084,
+   "nc_dsr": 2.242627855699898e-05,
+   "paper_dsr": 5.573278374064327e-06,
+   "dep_dsr": 5.6198596838377195e-05,
+   "sr0_ann_nc": 1.5874215108866976,
+   "sr0_ann_paper": 1.6088433394770172,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 9,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "ee6398132b6dc956",
+   "market": "EURUSD:H4",
+   "family": "trend_pullback_mean",
+   "status": "REJECTED",
+   "trades": 308,
+   "pf": 0.8792995084932943,
+   "net": -1304.8350858006863,
+   "dev_net_chosen": 2690.2976437775606,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.26895698879055707,
+   "raw_n": 17274,
+   "effective_n": 5306.5784918759055,
+   "T": 1546,
+   "T_eff": 1532.1536954502997,
+   "skew": 2.754502784512333,
+   "kurtosis": 15.066577800738873,
+   "nc_dsr": 1.0034350135085123e-05,
+   "paper_dsr": 2.685290469598848e-06,
+   "dep_dsr": 1.0789474545222485e-05,
+   "sr0_ann_nc": 1.501701321266874,
+   "sr0_ann_paper": 1.6118271869530965,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  }
+ ],
+ "ledger": {
+  "rows_for_run": 1607,
+  "store_trials": 844,
+  "stage_results": 549,
+  "holdout_rows_for_run": 0
+ },
+ "resources": {
+  "cpu_pct": 4.2,
+  "cpu_pct_of_one_core": 100.0,
+  "machine_cpu_pct": 18.6,
+  "pool_size": 22,
+  "priority": "psutil",
+  "ram_mb": 5277.3,
+  "ram_pauses": 0,
+  "supervisor_pid": 46420,
+  "worker_pids": [
+   46792,
+   43088,
+   10692,
+   4772,
+   6140,
+   21920,
+   47264,
+   35920,
+   3484,
+   26460,
+   39432,
+   22056,
+   29548,
+   24332,
+   40408,
+   16464,
+   29968,
+   38676,
+   7440,
+   41424,
+   26228,
+   20668
+  ],
+  "workers": 1
+ }
+}

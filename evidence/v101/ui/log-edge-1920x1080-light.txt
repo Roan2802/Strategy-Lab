@@ -1,0 +1,36 @@
+PASS home loads with KPI tiles
+PASS home shows compact market-data line with Details - Marktdata: gedeeltelijk achter 6 van 9 instrumenten lopen achter · laatste controle 2026-11-10 19:39 UTC Details
+PASS home has no permanent 7-step stepper
+PASS home data line never green while instruments lag - lagging=True
+PASS home shows running research, forward strategies and critical errors only
+PASS strategieen subtabs are ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek'] - ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']
+PASS onderzoeken subtabs are ['Testen', 'Analyse'] - ['Testen', 'Analyse']
+PASS all sections/subtabs open without JS errors
+PASS no drag handles, resize grips, layout editor or data-panel widgets in the page
+PASS Weergave menu has no widget/layout items
+PASS old hashes redirect to the new routes
+PASS data page lists markets with status - 9
+PASS data page has one sync button
+PASS library lists strategies - 469
+PASS library columns - ['Naam', 'Type / familie', 'Markt / TF', 'Versie', 'Onderzoeksstatus', '']
+PASS library search filters - 1
+PASS library type filter - 2/469
+PASS library sortable
+PASS Onderzoeken opens Testen with strategy preselected - LabBreakout
+PASS multi-market drawer opens with markets and timeframes - 11 markets
+PASS discovery default view: start button, depth, markets, timeframes
+PASS discovery: quality, risk and drawdown live under Geavanceerd
+PASS candidate report opens with Samenvatting (test, periode, trials, kosten, trades, zekerheid) - SAMENVATTING
+Afgewezen
+Statistische reden
+Wat is getest?
+Gen trend_ma_slope DE40
+PASS candidate summary has a status chip
+PASS tester blocks do not overlap (fixed layout) - {'bad': [], 'hscroll': False, 'blocks': ['toolbar', 'center', 'panel', 'panel']}
+PASS no horizontal page scroll
+PASS tester has exactly one primary action - 1
+PASS main chart is big - 691.1875
+PASS settings open in a side drawer
+PASS restart restores route - #onderzoeken/testen
+PASS restart restores strategy/market/timeframe/period - {'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None} -> {'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None, 'route': '#onderzoeken/testen'}
+{"tag": "msedge-1920x1080-light", "passed": 31, "failed": 0} JS errors: 0

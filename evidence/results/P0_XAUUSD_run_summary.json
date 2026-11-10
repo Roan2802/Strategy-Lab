@@ -1,0 +1,91 @@
+{
+  "log_lines": 1591,
+  "structured_events": 1432,
+  "event_types": {
+    "CANDLE": 1380,
+    "ORDER_SUBMITTED": 13,
+    "POSITION_OPEN": 13,
+    "ORDER_CANCEL_HOOK": 13,
+    "POSITION_CLOSE": 13
+  },
+  "candle_decisions": {
+    "SKIP": 1358,
+    "PASS": 13,
+    "FAIL": 9
+  },
+  "candle_reasons": {
+    "NOT_SCHEDULED": 1355,
+    "ENTRY_CONDITIONS_MET": 13,
+    "EMA_CONDITION": 9,
+    "POSITION_OR_PENDING_ORDER": 3
+  },
+  "trade_rows": 13,
+  "trade_rows_with_entry_timestamp": 13,
+  "structured_events_jsonl": "P0_XAUUSD_inspector_events.jsonl",
+  "sample_trade": {
+    "id": "5c6e37a3-cb20-4423-b6d7-c4da7120f8f8",
+    "strategy_name": "P0AuditProbe",
+    "symbol": "XAU-USD",
+    "exchange": "Custom Data",
+    "type": "long",
+    "entry_price": "4341.277",
+    "exit_price": "4340.277",
+    "qty": "1.0",
+    "fee": "5.20736990028",
+    "size": "4341.277",
+    "PNL": "-6.206769900279999",
+    "PNL_percentage": "-0.14297106358981468",
+    "holding_period": "60.0",
+    "opened_at": "1789347660000.0",
+    "closed_at": "1789347720000.0"
+  },
+  "sample_position_open": {
+    "event": "POSITION_OPEN",
+    "position_id": "694aa14d-2b30-4316-8f35-63c0a17068dc",
+    "entry_order_id": "44d16459-ff32-4725-b271-6f504f236ea8",
+    "entry_order_side": "buy",
+    "entry_order_type": "MARKET",
+    "signal_timestamp_ms": 1789347600000,
+    "fill_timestamp_ms": 1789347600000,
+    "entry_price": 4341.277,
+    "qty": 0.9994,
+    "stop_loss": 4340.277,
+    "take_profit": 4342.277
+  },
+  "sample_position_close": {
+    "event": "POSITION_CLOSE",
+    "trade_id": "8b0d38b1-426a-4b18-9dd0-22233d8dbbe7",
+    "exit_order_id": "c36c7537-21cf-4fee-b510-c756a94975ac",
+    "exit_order_side": "sell",
+    "exit_order_type": "STOP",
+    "entry_price": 4341.277,
+    "exit_price": 4340.277,
+    "qty": 1.0,
+    "pnl": -6.206769900279999,
+    "fee": 5.20736990028,
+    "opened_at_ms": 1789347660000.0,
+    "closed_at_ms": 1789347720000.0,
+    "orders": [
+      {
+        "id": "44d16459-ff32-4725-b271-6f504f236ea8",
+        "side": "buy",
+        "type": "MARKET",
+        "qty": 1.0,
+        "filled_qty": 1.0,
+        "price": 4341.277,
+        "executed_at": 1789347660000.0,
+        "submitted_via": "None"
+      },
+      {
+        "id": "c36c7537-21cf-4fee-b510-c756a94975ac",
+        "side": "sell",
+        "type": "STOP",
+        "qty": -0.9994,
+        "filled_qty": -0.9994,
+        "price": 4340.277,
+        "executed_at": 1789347720000.0,
+        "submitted_via": "stop-loss"
+      }
+    ]
+  }
+}

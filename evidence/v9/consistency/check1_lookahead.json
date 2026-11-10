@@ -1,0 +1,553 @@
+{
+  "symbol": "XAUUSD",
+  "data_end": "2026-10-12",
+  "source": "C:/AI/Dukascopy_data via DataManager (read-only)",
+  "sample": {
+    "signals_per_spec": 50,
+    "random_bars": 40
+  },
+  "aggregation": {
+    "M5": {
+      "bars": 7974,
+      "labels_aligned_to_utc_multiples": true,
+      "max_abs_diff_vs_independent_aggregation": 0.0,
+      "bars_with_fewer_m1_than_nominal": 1,
+      "truncation_tests": 15,
+      "truncation_closed_bar_changed": 0,
+      "truncation_last_bar_partial_cases": 13,
+      "forward_aggregate_vs_research_mismatch_tests": 0,
+      "pass": true
+    },
+    "M15": {
+      "bars": 2658,
+      "labels_aligned_to_utc_multiples": true,
+      "max_abs_diff_vs_independent_aggregation": 0.0,
+      "bars_with_fewer_m1_than_nominal": 1,
+      "truncation_tests": 15,
+      "truncation_closed_bar_changed": 0,
+      "truncation_last_bar_partial_cases": 15,
+      "forward_aggregate_vs_research_mismatch_tests": 0,
+      "pass": true
+    },
+    "H1": {
+      "bars": 665,
+      "labels_aligned_to_utc_multiples": true,
+      "max_abs_diff_vs_independent_aggregation": 0.0,
+      "bars_with_fewer_m1_than_nominal": 1,
+      "truncation_tests": 15,
+      "truncation_closed_bar_changed": 0,
+      "truncation_last_bar_partial_cases": 14,
+      "forward_aggregate_vs_research_mismatch_tests": 0,
+      "pass": true
+    },
+    "H4": {
+      "bars": 180,
+      "labels_aligned_to_utc_multiples": true,
+      "max_abs_diff_vs_independent_aggregation": 0.0,
+      "bars_with_fewer_m1_than_nominal": 36,
+      "truncation_tests": 15,
+      "truncation_closed_bar_changed": 0,
+      "truncation_last_bar_partial_cases": 15,
+      "forward_aggregate_vs_research_mismatch_tests": 0,
+      "pass": true
+    },
+    "D1": {
+      "bars": 35,
+      "labels_aligned_to_utc_multiples": true,
+      "max_abs_diff_vs_independent_aggregation": 0.0,
+      "bars_with_fewer_m1_than_nominal": 35,
+      "truncation_tests": 15,
+      "truncation_closed_bar_changed": 0,
+      "truncation_last_bar_partial_cases": 15,
+      "forward_aggregate_vs_research_mismatch_tests": 0,
+      "pass": true
+    }
+  },
+  "prefix": {
+    "M1": {
+      "first_bar": "2026-10-07 19:00:00+00:00",
+      "last_bar": "2026-10-11 23:59:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 3000,
+          "long_signals": 28,
+          "short_signals": 14,
+          "bars_tested": 85,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 3000,
+          "long_signals": 92,
+          "short_signals": 101,
+          "bars_tested": 52,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 3000,
+          "long_signals": 207,
+          "short_signals": 172,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 3000,
+          "long_signals": 58,
+          "short_signals": 43,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 3000,
+          "long_signals": 142,
+          "short_signals": 104,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 3000,
+          "long_signals": 402,
+          "short_signals": 26,
+          "bars_tested": 52,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 3000,
+          "long_signals": 1733,
+          "short_signals": 1566,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 3000,
+          "long_signals": 98,
+          "short_signals": 363,
+          "bars_tested": 89,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_htf": {
+          "bars": 3000,
+          "long_signals": 1751,
+          "short_signals": 0,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    },
+    "M5": {
+      "first_bar": "2026-09-25 03:00:00+00:00",
+      "last_bar": "2026-10-11 23:55:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 3000,
+          "long_signals": 12,
+          "short_signals": 27,
+          "bars_tested": 79,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 3000,
+          "long_signals": 217,
+          "short_signals": 270,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 3000,
+          "long_signals": 172,
+          "short_signals": 197,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 3000,
+          "long_signals": 43,
+          "short_signals": 47,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 3000,
+          "long_signals": 111,
+          "short_signals": 98,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 3000,
+          "long_signals": 153,
+          "short_signals": 205,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 3000,
+          "long_signals": 1641,
+          "short_signals": 1481,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 3000,
+          "long_signals": 91,
+          "short_signals": 705,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_htf": {
+          "bars": 3000,
+          "long_signals": 1382,
+          "short_signals": 16,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    },
+    "M15": {
+      "first_bar": "2026-08-26 06:30:00+00:00",
+      "last_bar": "2026-10-11 23:45:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 3000,
+          "long_signals": 18,
+          "short_signals": 23,
+          "bars_tested": 83,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 3000,
+          "long_signals": 189,
+          "short_signals": 244,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 3000,
+          "long_signals": 164,
+          "short_signals": 174,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 3000,
+          "long_signals": 47,
+          "short_signals": 51,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 3000,
+          "long_signals": 92,
+          "short_signals": 120,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 3000,
+          "long_signals": 114,
+          "short_signals": 269,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 3000,
+          "long_signals": 1680,
+          "short_signals": 1445,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 3000,
+          "long_signals": 92,
+          "short_signals": 1152,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_htf": {
+          "bars": 3000,
+          "long_signals": 753,
+          "short_signals": 9,
+          "bars_tested": 90,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    },
+    "H1": {
+      "first_bar": "2026-04-10 01:00:00+00:00",
+      "last_bar": "2026-10-11 23:00:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 3000,
+          "long_signals": 12,
+          "short_signals": 29,
+          "bars_tested": 84,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 3000,
+          "long_signals": 0,
+          "short_signals": 0,
+          "bars_tested": 43,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 3000,
+          "long_signals": 149,
+          "short_signals": 160,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 3000,
+          "long_signals": 43,
+          "short_signals": 36,
+          "bars_tested": 90,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 3000,
+          "long_signals": 116,
+          "short_signals": 153,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 3000,
+          "long_signals": 179,
+          "short_signals": 252,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 3000,
+          "long_signals": 1658,
+          "short_signals": 1444,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 3000,
+          "long_signals": 92,
+          "short_signals": 1567,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_htf": {
+          "bars": 3000,
+          "long_signals": 1183,
+          "short_signals": 47,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    },
+    "H4": {
+      "first_bar": "2025-03-19 12:00:00+00:00",
+      "last_bar": "2026-10-11 20:00:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 2500,
+          "long_signals": 16,
+          "short_signals": 13,
+          "bars_tested": 72,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 2500,
+          "long_signals": 0,
+          "short_signals": 0,
+          "bars_tested": 43,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 2500,
+          "long_signals": 218,
+          "short_signals": 103,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 2500,
+          "long_signals": 31,
+          "short_signals": 39,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 2500,
+          "long_signals": 140,
+          "short_signals": 118,
+          "bars_tested": 93,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 2500,
+          "long_signals": 138,
+          "short_signals": 107,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 2500,
+          "long_signals": 1418,
+          "short_signals": 1252,
+          "bars_tested": 88,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 2500,
+          "long_signals": 86,
+          "short_signals": 1315,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_htf": {
+          "bars": 2500,
+          "long_signals": 1370,
+          "short_signals": 29,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    },
+    "D1": {
+      "first_bar": "2021-12-15 00:00:00+00:00",
+      "last_bar": "2026-10-11 00:00:00+00:00",
+      "specs": {
+        "ema_rsi_pullback": {
+          "bars": 1500,
+          "long_signals": 5,
+          "short_signals": 6,
+          "bars_tested": 54,
+          "mismatches": [],
+          "pass": true
+        },
+        "opening_range_breakout": {
+          "bars": 1500,
+          "long_signals": 0,
+          "short_signals": 0,
+          "bars_tested": 43,
+          "mismatches": [],
+          "pass": true
+        },
+        "donchian_breakout": {
+          "bars": 1500,
+          "long_signals": 151,
+          "short_signals": 55,
+          "bars_tested": 90,
+          "mismatches": [],
+          "pass": true
+        },
+        "bollinger_mean_reversion": {
+          "bars": 1500,
+          "long_signals": 16,
+          "short_signals": 31,
+          "bars_tested": 89,
+          "mismatches": [],
+          "pass": true
+        },
+        "nr4_inside_bar_breakout": {
+          "bars": 1500,
+          "long_signals": 132,
+          "short_signals": 77,
+          "bars_tested": 91,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_levels": {
+          "bars": 1500,
+          "long_signals": 0,
+          "short_signals": 0,
+          "bars_tested": 43,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_patterns": {
+          "bars": 1500,
+          "long_signals": 872,
+          "short_signals": 769,
+          "bars_tested": 90,
+          "mismatches": [],
+          "pass": true
+        },
+        "stress_indicators": {
+          "bars": 1500,
+          "long_signals": 47,
+          "short_signals": 885,
+          "bars_tested": 92,
+          "mismatches": [],
+          "pass": true
+        }
+      }
+    }
+  },
+  "summary": {
+    "specs_tested": 53,
+    "specs_failed": [],
+    "specs_with_no_signals": [
+      [
+        "H1",
+        "opening_range_breakout"
+      ],
+      [
+        "H4",
+        "opening_range_breakout"
+      ],
+      [
+        "D1",
+        "opening_range_breakout"
+      ],
+      [
+        "D1",
+        "stress_levels"
+      ]
+    ],
+    "specs_skipped": [],
+    "total_prefix_evaluations": 4492,
+    "runtime_s": 18.9
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title">
+<title id="title">Dukascopy Strategy Lab</title>
+<defs>
+  <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#172a40"/><stop offset="1" stop-color="#091321"/>
+  </linearGradient>
+  <linearGradient id="signal" x1="0" y1="1" x2="1" y2="0">
+    <stop stop-color="#4bd2c6"/><stop offset="1" stop-color="#a1f0d8"/>
+  </linearGradient>
+  <linearGradient id="bars" x1="0" y1="1" x2="0" y2="0">
+    <stop stop-color="#e6ad3e"/><stop offset="1" stop-color="#ffdc7a"/>
+  </linearGradient>
+</defs>
+<!-- Rounded, high-contrast tile with a quiet edge that survives taskbar scaling. -->
+<rect x="36" y="36" width="952" height="952" rx="224" fill="url(#tile)"/>
+<rect x="48" y="48" width="928" height="928" rx="212" fill="none" stroke="#70ded1" stroke-opacity=".45" stroke-width="8"/>
+<!-- Simple market bars: broad silhouettes stay distinct at 16–32 px. -->
+<path d="M220 786V654a22 22 0 0 1 22-22h112a22 22 0 0 1 22 22v132zm208 0V520a22 22 0 0 1 22-22h112a22 22 0 0 1 22 22v266zm208 0V386a22 22 0 0 1 22-22h112a22 22 0 0 1 22 22v400z" fill="url(#bars)"/>
+<!-- One clean upward signal line, with a restrained shadow for contrast. -->
+<path d="m190 552 218-92 190-119 195-137" fill="none" stroke="#06111c" stroke-opacity=".48" stroke-width="76" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m190 534 218-92 190-119 195-137" fill="none" stroke="url(#signal)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m728 164 130-26-37 125-23-75z" fill="#a1f0d8"/>
+</svg>

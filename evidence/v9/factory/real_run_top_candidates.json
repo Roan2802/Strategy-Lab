@@ -1,0 +1,4220 @@
+{
+ "run_id": "fr_20261110_094132_eafc58",
+ "note": "Geen kandidaat haalde L5; dit zijn de 24 kandidaten die L5 bereikten, gesorteerd op OOS profit factor. Allemaal REJECTED.",
+ "candidates": [
+  {
+   "id": "e0a55476747937e4",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "family": "breakout_prev_day",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.18967631789090572,
+    "dsr": 1.0588377950358303e-20,
+    "expanding_net": 2402.755750000031,
+    "expectancy": 8.70042818181832,
+    "max_drawdown_pct": 5.523930892544875,
+    "net_profit": 2392.6177500000376,
+    "net_return_pct": 23.926177500000374,
+    "pbo": 0.05714285714285714,
+    "profit_factor": 1.31581827160012,
+    "psr": 0.986396048044378,
+    "recovery_factor": 4.092358313877489,
+    "sharpe_daily": 0.8331357043209229,
+    "spread50_net": 1414.4432500000294,
+    "trades": 275,
+    "trades_per_week": 0.9166666666666666,
+    "verdict": "REJECT",
+    "wfe": 1.6095155707442963,
+    "win_rate": 0.3709090909090909
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "275 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 275
+    },
+    {
+     "explanation_nl": "0.92 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "FAIL",
+     "threshold": 1.0,
+     "value": 0.9166666666666666
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.32 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "PASS",
+     "threshold": 1.2,
+     "value": 1.31581827160012
+    },
+    {
+     "explanation_nl": "OOS recovery factor 4.09 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "PASS",
+     "threshold": 1.5,
+     "value": 4.092358313877489
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 5.5% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 5.523930892544875
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 8.70; 95%-block-bootstrap-CI [0.73, 17.08]",
+     "name": "expectancy",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 8.70042818181832
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": 0.18217097152271733
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 78 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "FAIL",
+     "threshold": 60,
+     "value": 77.71875
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 1414.4432500000294
+    },
+    {
+     "explanation_nl": "100% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 1.0
+    },
+    {
+     "explanation_nl": "Geen overfit-signalen (PBO, WFE, expanding).",
+     "name": "overfit_flags",
+     "status": "PASS",
+     "threshold": 0,
+     "value": 0
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "d66cb82d3933cabb",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD M15"
+     },
+     {
+      "id": "9308abffb0e401e5",
+      "metrics": {
+       "max_drawdown_pct": 75.68023032434391,
+       "net_profit": -7325.891062516699,
+       "net_return_pct": -73.25891062516699,
+       "profit_factor": 0.8487416690101299,
+       "recovery_factor": -0.9032865353692583,
+       "sharpe_daily": -1.5092637056648726,
+       "trades": 2793,
+       "trades_per_week": 9.31,
+       "win_rate": 0.30182599355531686
+      },
+      "name": "Baseline baseline_random_entry XAUUSD M15"
+     },
+     {
+      "id": "d56037538ec16ffb",
+      "metrics": {
+       "max_drawdown_pct": 74.96170242775432,
+       "net_profit": -7496.17024277542,
+       "net_return_pct": -74.96170242775419,
+       "profit_factor": 0.809295201677943,
+       "recovery_factor": -0.9999999999999984,
+       "sharpe_daily": -1.611466067169696,
+       "trades": 2143,
+       "trades_per_week": 7.1433333333333335,
+       "win_rate": 0.28838077461502565
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD M15"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 57.46081711483264,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "0.92 trades per handelsweek (minimaal 1.0).",
+    "Langste periode zonder trade: 78 dagen (maximaal 60).",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: dsr."
+   ],
+   "params": {
+    "cooldown": 1,
+    "sl_swing": 21,
+    "tp_r": 2.0
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_prev_day XAUUSD M15 e0a554 - XAUUSD M15 - richting: long en short\nVorige dag/week high-low breakout: Slot kruist de vorige dag- of weekhigh/-low.\n\nWANNEER: geen sessiefilter; na een trade 7 candle(s) wachten (cooldown); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: close kruist omhoog door prev_week_high\nENTRY SHORT: close kruist omlaag door prev_week_low\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: laagste low (long) / hoogste high (short) van de laatste 25 candles\nTAKE PROFIT: 3.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: sl_swing=25 (2-30), tp_r=3.75 (1.0-4.0), cooldown=7 (1-12)"
+  },
+  {
+   "id": "93e2dc19e4fc2899",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "family": "hybrid_orb_adx_atr",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.11240729194222776,
+    "dsr": 1.0278472599299123e-18,
+    "expanding_net": 6370.817049257896,
+    "expectancy": 5.473210523417436,
+    "max_drawdown_pct": 8.522182063402859,
+    "net_profit": 6370.817049257896,
+    "net_return_pct": 63.70817049257895,
+    "pbo": 0.17142857142857143,
+    "profit_factor": 1.1850516353636555,
+    "psr": 0.990926126795667,
+    "recovery_factor": 5.985612446103537,
+    "sharpe_daily": 0.8668994249148333,
+    "spread50_net": 6581.275288762853,
+    "trades": 1164,
+    "trades_per_week": 3.88,
+    "verdict": "REJECT",
+    "wfe": 0.996446040947482,
+    "win_rate": 0.18384879725085912
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "1164 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 1164
+    },
+    {
+     "explanation_nl": "3.88 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.88
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.19 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.1850516353636555
+    },
+    {
+     "explanation_nl": "OOS recovery factor 5.99 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "PASS",
+     "threshold": 1.5,
+     "value": 5.985612446103537
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 8.5% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 8.522182063402859
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 5.47; 95%-block-bootstrap-CI [0.80, 10.29]",
+     "name": "expectancy",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 5.473210523417436
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": 0.1601534973145696
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 14 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 13.8125
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 6581.275288762853
+    },
+    {
+     "explanation_nl": "100% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 1.0
+    },
+    {
+     "explanation_nl": "Geen overfit-signalen (PBO, WFE, expanding).",
+     "name": "overfit_flags",
+     "status": "PASS",
+     "threshold": 0,
+     "value": 0
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "2ed8608d4f089401",
+      "metrics": {
+       "max_drawdown_pct": 0.6697160199999962,
+       "net_profit": -66.97160199999999,
+       "net_return_pct": -0.6697160199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2282208569760504,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 M15"
+     },
+     {
+      "id": "4355c55ca69b28b4",
+      "metrics": {
+       "max_drawdown_pct": 121.17956040002566,
+       "net_profit": -12117.956040002568,
+       "net_return_pct": -121.17956040002566,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -12.458235752808209,
+       "trades": 4,
+       "trades_per_week": 0.013333333333333334,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_random_entry DE40 M15"
+     },
+     {
+      "id": "f00756704c5ff128",
+      "metrics": {
+       "max_drawdown_pct": 69.93350130439306,
+       "net_profit": -6964.506492013239,
+       "net_return_pct": -69.6450649201324,
+       "profit_factor": 0.8370137145554057,
+       "recovery_factor": -0.9958755620856844,
+       "sharpe_daily": -1.403487292692077,
+       "trades": 2099,
+       "trades_per_week": 6.996666666666667,
+       "win_rate": 0.2968080038113387
+      },
+      "name": "Baseline baseline_ma_cross DE40 M15"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.19 (minimaal 1.2).",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, dsr."
+   ],
+   "params": {
+    "adx_min": 20,
+    "be_r": 1.5,
+    "sl_atr": 2.5,
+    "tp_r": 3.75
+   },
+   "rules_nl": "STRATEGIE: Gen hybrid_orb_adx_atr DE40 M15 93e2dc - DE40 M15 - richting: long en short\nORB + ADX + ATR-stop: Opening range break met ADX-filter, max 1 trade per dag. Ge\u00efnspireerd op Matteo Conti (IQ Capital dossiers 06_matteo_overnight_bias_orb), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 09:00 en 15:00 (Europe/Berlin, zomertijd-correct; candle-openingstijd telt); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close is groter dan opening_range_high(30m) EN adx(14) is groter dan 30)\nENTRY SHORT: (close is kleiner dan opening_range_low(30m) EN adx(14) is groter dan 30)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 4.0 x ATR(14) vanaf de instap\nTAKE PROFIT: 2.5 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: break-even: stop naar instapprijs zodra +1.25R is bereikt\nPARAMETERS: adx_min=30 (15-30), sl_atr=4.0 (0.75-4.0), tp_r=2.5 (1.0-4.0), be_r=1.25 (0.5-1.5)"
+  },
+  {
+   "id": "b121b63278f6311c",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "family": "trend_swing_structure",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.06700389415751846,
+    "dsr": 3.2175940744598166e-34,
+    "expanding_net": 1879.7350493369445,
+    "expectancy": 2.984813483769053,
+    "max_drawdown_pct": 9.805350110638578,
+    "net_profit": 1486.4371149169885,
+    "net_return_pct": 14.864371149169886,
+    "pbo": 0.8142857142857143,
+    "profit_factor": 1.122074690653176,
+    "psr": 0.8565120348728783,
+    "recovery_factor": 1.4265389259690484,
+    "sharpe_daily": 0.3946277916617367,
+    "spread50_net": 1117.6884796556747,
+    "trades": 498,
+    "trades_per_week": 1.66,
+    "verdict": "REJECT",
+    "wfe": 0.8015263829103768,
+    "win_rate": 0.40963855421686746
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "498 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 498
+    },
+    {
+     "explanation_nl": "1.66 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.66
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.12 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.122074690653176
+    },
+    {
+     "explanation_nl": "OOS recovery factor 1.43 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 1.4265389259690484
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 9.8% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 9.805350110638578
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 2.98; 95%-block-bootstrap-CI [-2.39, 8.61] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 2.984813483769053
+    },
+    {
+     "explanation_nl": "WAARSCHUWING: 76% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+     "name": "concentration",
+     "status": "FAIL",
+     "threshold": 0.5,
+     "value": 0.7559088704094815
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 32 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 31.75
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 1117.6884796556747
+    },
+    {
+     "explanation_nl": "86% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 0.8571428571428571
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.81 > 0.5",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 1
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "bb1155ea1bd7c3d9",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD H1"
+     },
+     {
+      "id": "78f1871197fefbc6",
+      "metrics": {
+       "max_drawdown_pct": 13.536681740275549,
+       "net_profit": 634.8615943733963,
+       "net_return_pct": 6.3486159437339635,
+       "profit_factor": 1.0252859596525041,
+       "recovery_factor": 0.3880101324138092,
+       "sharpe_daily": 0.12896482122200525,
+       "trades": 742,
+       "trades_per_week": 2.473333333333333,
+       "win_rate": 0.34097035040431267
+      },
+      "name": "Baseline baseline_random_entry XAUUSD H1"
+     },
+     {
+      "id": "4108e75732ab7762",
+      "metrics": {
+       "max_drawdown_pct": 10.967960835838996,
+       "net_profit": 642.2508703519511,
+       "net_return_pct": 6.422508703519511,
+       "profit_factor": 1.0388712133190166,
+       "recovery_factor": 0.5699377976098552,
+       "sharpe_daily": 0.1673647880918473,
+       "trades": 551,
+       "trades_per_week": 1.8366666666666667,
+       "win_rate": 0.3430127041742287
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD H1"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 57.1049757750566,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.12 (minimaal 1.2).",
+    "OOS recovery factor 1.43 (minimaal 1.5).",
+    "WAARSCHUWING: 76% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+    "Overfit-signalen: PBO 0.81 > 0.5",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, psr, dsr, pbo."
+   ],
+   "params": {
+    "sl_atr": 1.75,
+    "swing_k": 2,
+    "trail_activate_r": 1.0,
+    "trail_atr": 2.25
+   },
+   "rules_nl": "STRATEGIE: Gen trend_swing_structure XAUUSD H1 b121b6 - XAUUSD H1 - richting: long en short\nHH/HL-swingstructuur: Hogere highs en lows (bevestigde pivots) en een slot boven de laatste swing high. Ge\u00efnspireerd op Andre Witzel, Patrick Nill (IQ Capital dossiers 08_patrick_pbd_structure, 32_andre_trend_color_change), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (hogere highs en hogere lows (laatste twee bevestigde swings, sterkte 2) EN slot kruist boven de laatst bevestigde swing high (sterkte 2) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (lagere highs en lagere lows (laatste twee bevestigde swings, sterkte 2) EN slot kruist onder de laatst bevestigde swing low (sterkte 2) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 1.25 x ATR(14) vanaf de instap\nTAKE PROFIT: geen\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: trailing stop: vanaf +1.5R op 2.75 x ATR(14) onder de hoogste high sinds instap (short: omgekeerd)\nPARAMETERS: swing_k=2 (2-5), sl_atr=1.25 (0.75-4.0), trail_activate_r=1.5 (0.0-2.0), trail_atr=2.75 (1.0-4.0)"
+  },
+  {
+   "id": "03c41e5721a67390",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "family": "breakout_london",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.07071335288166583,
+    "dsr": 1.2402951328864907e-32,
+    "expanding_net": 2020.9903037500164,
+    "expectancy": 3.6177355818159844,
+    "max_drawdown_pct": 9.101302459301627,
+    "net_profit": 1179.3817996720109,
+    "net_return_pct": 11.793817996720108,
+    "pbo": 0.22857142857142856,
+    "profit_factor": 1.1210401232577596,
+    "psr": 0.8404518197780166,
+    "recovery_factor": 1.2430695416794706,
+    "sharpe_daily": 0.37735911722953813,
+    "spread50_net": 1395.5966531024783,
+    "trades": 326,
+    "trades_per_week": 1.0866666666666667,
+    "verdict": "REJECT",
+    "wfe": 1.4343578488964563,
+    "win_rate": 0.3987730061349693
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "326 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 326
+    },
+    {
+     "explanation_nl": "1.09 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.0866666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.12 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.1210401232577596
+    },
+    {
+     "explanation_nl": "OOS recovery factor 1.24 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 1.2430695416794706
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 9.1% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 9.101302459301627
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 3.62; 95%-block-bootstrap-CI [-3.96, 11.41] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 3.6177355818159844
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": 0.44320519285733145
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 41 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 40.958333333333336
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 1395.5966531024783
+    },
+    {
+     "explanation_nl": "100% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 1.0
+    },
+    {
+     "explanation_nl": "Geen overfit-signalen (PBO, WFE, expanding).",
+     "name": "overfit_flags",
+     "status": "PASS",
+     "threshold": 0,
+     "value": 0
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "1bf0372a61bd4d7e",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 H1"
+     },
+     {
+      "id": "88dc297a772fd5e9",
+      "metrics": {
+       "max_drawdown_pct": 20.904233162665832,
+       "net_profit": 698.5514471797566,
+       "net_return_pct": 6.985514471797566,
+       "profit_factor": 1.0234802742516294,
+       "recovery_factor": 0.26397146235428165,
+       "sharpe_daily": 0.12014939606253354,
+       "trades": 796,
+       "trades_per_week": 2.6533333333333333,
+       "win_rate": 0.3417085427135678
+      },
+      "name": "Baseline baseline_random_entry US30 H1"
+     },
+     {
+      "id": "e70b605edcf192e4",
+      "metrics": {
+       "max_drawdown_pct": 26.300686277008044,
+       "net_profit": -2528.893168270036,
+       "net_return_pct": -25.288931682700362,
+       "profit_factor": 0.8498187300095137,
+       "recovery_factor": -0.9615312473731091,
+       "sharpe_daily": -0.7225556712430877,
+       "trades": 584,
+       "trades_per_week": 1.9466666666666668,
+       "win_rate": 0.3013698630136986
+      },
+      "name": "Baseline baseline_ma_cross US30 H1"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.12 (minimaal 1.2).",
+    "OOS recovery factor 1.24 (minimaal 1.5).",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, psr, dsr, oos_profitability, yearly_consistency."
+   ],
+   "params": {
+    "sl_atr": 1.25,
+    "tp_r": 2.75
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_london US30 H1 03c41e - US30 H1 - richting: long en short\nLondon breakout: Doorbraak van de eerste 30-60 minuten van Londen. Ge\u00efnspireerd op Jonas Bertram (IQ Capital dossiers 33_jonas_london_us_orb), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 08:00 en 12:00 (Europe/London, zomertijd-correct; candle-openingstijd telt); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close kruist omhoog door opening_range_high(60m) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (close kruist omlaag door opening_range_low(60m) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 1.5 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.0 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: sl_atr=1.5 (0.75-4.0), tp_r=1.0 (1.0-4.0)"
+  },
+  {
+   "id": "1e4d6fabc86dd26b",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "family": "stat_hour_of_day",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.02095629570671092,
+    "dsr": 2.3830640963919034e-19,
+    "expanding_net": 122.78980287629514,
+    "expectancy": 1.020643807357533,
+    "max_drawdown_pct": 7.516108411469544,
+    "net_profit": 859.3820857950428,
+    "net_return_pct": 8.593820857950428,
+    "pbo": 0.12857142857142856,
+    "profit_factor": 1.06496615681946,
+    "psr": 0.785390527563701,
+    "recovery_factor": 1.0626723153754254,
+    "sharpe_daily": 0.2966933167787514,
+    "spread50_net": -61.36198895711425,
+    "trades": 842,
+    "trades_per_week": 2.8066666666666666,
+    "verdict": "REJECT",
+    "wfe": 0.5431095865840941,
+    "win_rate": 0.502375296912114
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "842 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 842
+    },
+    {
+     "explanation_nl": "2.81 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 2.8066666666666666
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.06 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.06496615681946
+    },
+    {
+     "explanation_nl": "OOS recovery factor 1.06 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 1.0626723153754254
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 7.5% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 7.516108411469544
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 1.02; 95%-block-bootstrap-CI [-1.55, 3.47] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 1.020643807357533
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": 0.48185428260865604
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 7 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 7.0
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -61.36198895711425
+    },
+    {
+     "explanation_nl": "90% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 0.9
+    },
+    {
+     "explanation_nl": "Geen overfit-signalen (PBO, WFE, expanding).",
+     "name": "overfit_flags",
+     "status": "PASS",
+     "threshold": 0,
+     "value": 0
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "1bf0372a61bd4d7e",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 H1"
+     },
+     {
+      "id": "88dc297a772fd5e9",
+      "metrics": {
+       "max_drawdown_pct": 20.904233162665832,
+       "net_profit": 698.5514471797566,
+       "net_return_pct": 6.985514471797566,
+       "profit_factor": 1.0234802742516294,
+       "recovery_factor": 0.26397146235428165,
+       "sharpe_daily": 0.12014939606253354,
+       "trades": 796,
+       "trades_per_week": 2.6533333333333333,
+       "win_rate": 0.3417085427135678
+      },
+      "name": "Baseline baseline_random_entry US30 H1"
+     },
+     {
+      "id": "e70b605edcf192e4",
+      "metrics": {
+       "max_drawdown_pct": 26.300686277008044,
+       "net_profit": -2528.893168270036,
+       "net_return_pct": -25.288931682700362,
+       "profit_factor": 0.8498187300095137,
+       "recovery_factor": -0.9615312473731091,
+       "sharpe_daily": -0.7225556712430877,
+       "trades": 584,
+       "trades_per_week": 1.9466666666666668,
+       "win_rate": 0.3013698630136986
+      },
+      "name": "Baseline baseline_ma_cross US30 H1"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.06 (minimaal 1.2).",
+    "OOS recovery factor 1.06 (minimaal 1.5).",
+    "Verliesgevend bij +50% spread.",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, psr, dsr, cost_stress."
+   ],
+   "params": {
+    "cooldown": 5,
+    "entry_hour": 18,
+    "sl_pct": 1.45,
+    "time_exit": 20,
+    "tp_r": 1.25
+   },
+   "rules_nl": "STRATEGIE: Gen stat_hour_of_day US30 H1 1e4d6f - US30 H1 - richting: alleen long\nUur-van-de-dag seizoenspatroon: Instap op een vast uur met tijd-exit; test alleen de tijdsbias. Ge\u00efnspireerd op Lewis/Luis Trumpeter (IQ Capital dossiers 22_lewis_seasonality), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; na een trade 7 candle(s) wachten (cooldown); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: uur van de candle-opening in [19] (America/New_York)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 0.4% van de instapprijs\nTAKE PROFIT: 3.5 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 28 candle(s)\nPARAMETERS: entry_hour=19 (0-23), sl_pct=0.4 (0.1-1.5), tp_r=3.5 (1.0-4.0), time_exit=28 (2-48), cooldown=7 (1-12)"
+  },
+  {
+   "id": "91693c6192953ca0",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "family": "vwap_breakout",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.02760628837607797,
+    "dsr": 7.807389360839194e-23,
+    "expanding_net": 2093.16112779441,
+    "expectancy": 1.2969505039688969,
+    "max_drawdown_pct": 13.91785175691535,
+    "net_profit": 1234.6968797783898,
+    "net_return_pct": 12.346968797783898,
+    "pbo": 0.8142857142857143,
+    "profit_factor": 1.0457102307361565,
+    "psr": 0.7495918167621386,
+    "recovery_factor": 0.7834123843713882,
+    "sharpe_daily": 0.23214951318566404,
+    "spread50_net": -1203.8092903994414,
+    "trades": 952,
+    "trades_per_week": 3.1733333333333333,
+    "verdict": "REJECT",
+    "wfe": 2.7905079354077005,
+    "win_rate": 0.38865546218487396
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "952 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 952
+    },
+    {
+     "explanation_nl": "3.17 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.1733333333333333
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.05 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.0457102307361565
+    },
+    {
+     "explanation_nl": "OOS recovery factor 0.78 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 0.7834123843713882
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 13.9% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 13.91785175691535
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 1.30; 95%-block-bootstrap-CI [-2.53, 5.34] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 1.2969505039688969
+    },
+    {
+     "explanation_nl": "WAARSCHUWING: 52% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen.",
+     "name": "concentration",
+     "status": "FAIL",
+     "threshold": 0.5,
+     "value": 0.5163652988974111
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 15 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 14.854166666666666
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1203.8092903994414
+    },
+    {
+     "explanation_nl": "75% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 0.75
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.81 > 0.5",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 1
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "2ed8608d4f089401",
+      "metrics": {
+       "max_drawdown_pct": 0.6697160199999962,
+       "net_profit": -66.97160199999999,
+       "net_return_pct": -0.6697160199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2282208569760504,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 M15"
+     },
+     {
+      "id": "4355c55ca69b28b4",
+      "metrics": {
+       "max_drawdown_pct": 121.17956040002566,
+       "net_profit": -12117.956040002568,
+       "net_return_pct": -121.17956040002566,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -12.458235752808209,
+       "trades": 4,
+       "trades_per_week": 0.013333333333333334,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_random_entry DE40 M15"
+     },
+     {
+      "id": "f00756704c5ff128",
+      "metrics": {
+       "max_drawdown_pct": 69.93350130439306,
+       "net_profit": -6964.506492013239,
+       "net_return_pct": -69.6450649201324,
+       "profit_factor": 0.8370137145554057,
+       "recovery_factor": -0.9958755620856844,
+       "sharpe_daily": -1.403487292692077,
+       "trades": 2099,
+       "trades_per_week": 6.996666666666667,
+       "win_rate": 0.2968080038113387
+      },
+      "name": "Baseline baseline_ma_cross DE40 M15"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.05 (minimaal 1.2).",
+    "OOS recovery factor 0.78 (minimaal 1.5).",
+    "WAARSCHUWING: 52% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen.",
+    "Verliesgevend bij +50% spread.",
+    "Overfit-signalen: PBO 0.81 > 0.5",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, psr, dsr, pbo, cost_stress."
+   ],
+   "params": {
+    "sl_atr": 1.5,
+    "tp_r": 2.75
+   },
+   "rules_nl": "STRATEGIE: Gen vwap_breakout DE40 M15 91693c - DE40 M15 - richting: long en short\nVWAP-breakout: Slot kruist de VWAP met VWAP-helling in dezelfde richting, in sessie. Ge\u00efnspireerd op Matteo Conti (IQ Capital dossiers 04_matteo_vault_break), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 09:30 en 14:30 (Europe/Berlin, zomertijd-correct; candle-openingstijd telt); maximaal 2 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close kruist omhoog door vwap EN vwap is groter dan vwap[-1])\nENTRY SHORT: (close kruist omlaag door vwap EN vwap is kleiner dan vwap[-1])\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 1.25 x ATR(14) vanaf de instap\nTAKE PROFIT: 3.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 20 candle(s)\nPARAMETERS: sl_atr=1.25 (0.75-4.0), tp_r=3.75 (1.0-4.0)"
+  },
+  {
+   "id": "33d94065cdf35b54",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "family": "breakout_prev_day",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.03003795155103785,
+    "dsr": 2.8941771742484247e-49,
+    "expanding_net": 1411.4024512582264,
+    "expectancy": 1.4521814960996409,
+    "max_drawdown_pct": 16.648103243176887,
+    "net_profit": 612.8205913540485,
+    "net_return_pct": 6.1282059135404845,
+    "pbo": 0.6714285714285714,
+    "profit_factor": 1.039342762677121,
+    "psr": 0.6731654243317816,
+    "recovery_factor": 0.29942472690614214,
+    "sharpe_daily": 0.13767446716891318,
+    "spread50_net": 401.14772554328465,
+    "trades": 422,
+    "trades_per_week": 1.4066666666666667,
+    "verdict": "REJECT",
+    "wfe": 0.19858845275729817,
+    "win_rate": 0.25829383886255924
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "422 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 422
+    },
+    {
+     "explanation_nl": "1.41 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.4066666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.04 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.039342762677121
+    },
+    {
+     "explanation_nl": "OOS recovery factor 0.30 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 0.29942472690614214
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 16.6% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 16.648103243176887
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 1.45; 95%-block-bootstrap-CI [-6.86, 9.76] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 1.4521814960996409
+    },
+    {
+     "explanation_nl": "WAARSCHUWING: 95% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+     "name": "concentration",
+     "status": "FAIL",
+     "threshold": 0.5,
+     "value": 0.9533185179318335
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 20 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 20.5
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 401.14772554328465
+    },
+    {
+     "explanation_nl": "100% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 1.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.67 > 0.5; WFE 0.20 < 0.5",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "15d603ff2974fcf4",
+      "metrics": {
+       "max_drawdown_pct": 0.6725760199999968,
+       "net_profit": -67.257602,
+       "net_return_pct": -0.67257602,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2273282430981094,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 H1"
+     },
+     {
+      "id": "5e0021d2eb9f8e68",
+      "metrics": {
+       "max_drawdown_pct": 35.786784027685776,
+       "net_profit": -2830.8186286013697,
+       "net_return_pct": -28.308186286013697,
+       "profit_factor": 0.8728014514399458,
+       "recovery_factor": -0.7539462940641753,
+       "sharpe_daily": -0.6968602364663314,
+       "trades": 763,
+       "trades_per_week": 2.5433333333333334,
+       "win_rate": 0.30668414154652685
+      },
+      "name": "Baseline baseline_random_entry DE40 H1"
+     },
+     {
+      "id": "cea0735beb29443d",
+      "metrics": {
+       "max_drawdown_pct": 29.175339375528342,
+       "net_profit": -1881.8153731020643,
+       "net_return_pct": -18.818153731020644,
+       "profit_factor": 0.901528763548958,
+       "recovery_factor": -0.5935185044554311,
+       "sharpe_daily": -0.4769837715411303,
+       "trades": 615,
+       "trades_per_week": 2.05,
+       "win_rate": 0.3121951219512195
+      },
+      "name": "Baseline baseline_ma_cross DE40 H1"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.04 (minimaal 1.2).",
+    "OOS recovery factor 0.30 (minimaal 1.5).",
+    "Maximale OOS-drawdown 16.6% (maximaal 15.0%).",
+    "WAARSCHUWING: 95% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+    "Overfit-signalen: PBO 0.67 > 0.5; WFE 0.20 < 0.5",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, yearly_consistency."
+   ],
+   "params": {
+    "sl_atr": 1.25,
+    "tp_r": 3.5
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_prev_day DE40 H1 33d940 - DE40 H1 - richting: long en short\nVorige dag/week high-low breakout: Slot kruist de vorige dag- of weekhigh/-low.\n\nWANNEER: geen sessiefilter; maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: close kruist omhoog door prev_week_high\nENTRY SHORT: close kruist omlaag door prev_week_low\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.0 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: sl_atr=2.0 (0.75-4.0), tp_r=1.75 (1.0-4.0)"
+  },
+  {
+   "id": "9a51dd38cc0debec",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "family": "stat_large_move_reversal",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 0.009274215659131871,
+    "dsr": 3.695662135506387e-23,
+    "expanding_net": -756.0012740087236,
+    "expectancy": 0.39206843186140417,
+    "max_drawdown_pct": 13.647749620470185,
+    "net_profit": 247.78724893640742,
+    "net_return_pct": 2.4778724893640742,
+    "pbo": 0.38571428571428573,
+    "profit_factor": 1.0157806280174226,
+    "psr": 0.5959771483656283,
+    "recovery_factor": 0.1574023337078923,
+    "sharpe_daily": 0.06456167614826754,
+    "spread50_net": -593.310434649944,
+    "trades": 632,
+    "trades_per_week": 2.1066666666666665,
+    "verdict": "REJECT",
+    "wfe": -2.335195718351831,
+    "win_rate": 0.4319620253164557
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "632 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 632
+    },
+    {
+     "explanation_nl": "2.11 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 2.1066666666666665
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.02 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.0157806280174226
+    },
+    {
+     "explanation_nl": "OOS recovery factor 0.16 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 0.1574023337078923
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 13.6% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 13.647749620470185
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 0.39; 95%-block-bootstrap-CI [-3.97, 5.14] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 0.39206843186140417
+    },
+    {
+     "explanation_nl": "WAARSCHUWING: 225% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+     "name": "concentration",
+     "status": "FAIL",
+     "threshold": 0.5,
+     "value": 2.246524774002474
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 18 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 18.041666666666668
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -593.310434649944
+    },
+    {
+     "explanation_nl": "33% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.3333333333333333
+    },
+    {
+     "explanation_nl": "Overfit-signalen: WFE -2.34 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "1bf0372a61bd4d7e",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 H1"
+     },
+     {
+      "id": "88dc297a772fd5e9",
+      "metrics": {
+       "max_drawdown_pct": 20.904233162665832,
+       "net_profit": 698.5514471797566,
+       "net_return_pct": 6.985514471797566,
+       "profit_factor": 1.0234802742516294,
+       "recovery_factor": 0.26397146235428165,
+       "sharpe_daily": 0.12014939606253354,
+       "trades": 796,
+       "trades_per_week": 2.6533333333333333,
+       "win_rate": 0.3417085427135678
+      },
+      "name": "Baseline baseline_random_entry US30 H1"
+     },
+     {
+      "id": "e70b605edcf192e4",
+      "metrics": {
+       "max_drawdown_pct": 26.300686277008044,
+       "net_profit": -2528.893168270036,
+       "net_return_pct": -25.288931682700362,
+       "profit_factor": 0.8498187300095137,
+       "recovery_factor": -0.9615312473731091,
+       "sharpe_daily": -0.7225556712430877,
+       "trades": 584,
+       "trades_per_week": 1.9466666666666668,
+       "win_rate": 0.3013698630136986
+      },
+      "name": "Baseline baseline_ma_cross US30 H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 1.02 (minimaal 1.2).",
+    "OOS recovery factor 0.16 (minimaal 1.5).",
+    "WAARSCHUWING: 225% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+    "Verliesgevend bij +50% spread.",
+    "33% van de buurparameters winstgevend.",
+    "Overfit-signalen: WFE -2.34 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "move_z": 2.75,
+    "move_z_neg": -2.5,
+    "ret_n": 175,
+    "sl_atr": 3.5,
+    "time_exit": 28,
+    "tp_r": 2.75
+   },
+   "rules_nl": "STRATEGIE: Gen stat_large_move_reversal US30 H1 9a51dd - US30 H1 - richting: long en short\nGrote-beweging reversal: Rendement-z-score extreem (staart van de verdeling) -> fade met tijd-exit.\n\nWANNEER: geen sessiefilter; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: ret_zscore(200) is kleiner dan -2.75\nENTRY SHORT: ret_zscore(200) is groter dan 2.25\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.25 x ATR(14) vanaf de instap\nTAKE PROFIT: 3.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 38 candle(s)\nPARAMETERS: ret_n=200 (50-200), move_z=2.25 (2.0-4.0), move_z_neg=-2.75 (-4.0--2.0), sl_atr=2.25 (0.75-4.0), tp_r=3.75 (1.0-4.0), time_exit=38 (2-48)"
+  },
+  {
+   "id": "fd7080938d593dff",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "family": "stat_autocorr_regime",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": 3.502698394745889e-05,
+    "dsr": 6.938022282967493e-43,
+    "expanding_net": 1414.5067628224028,
+    "expectancy": 0.005942849439530557,
+    "max_drawdown_pct": 19.043171045570713,
+    "net_profit": 1.5629694025965364,
+    "net_return_pct": 0.015629694025965365,
+    "pbo": 0.4714285714285714,
+    "profit_factor": 1.0002086481658123,
+    "psr": 0.5275739111523865,
+    "recovery_factor": 0.0008021106018095627,
+    "sharpe_daily": 0.0004888693707728504,
+    "spread50_net": 1022.4542638721952,
+    "trades": 263,
+    "trades_per_week": 0.8766666666666667,
+    "verdict": "REJECT",
+    "wfe": 1.488419652156742,
+    "win_rate": 0.3155893536121673
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "263 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 263
+    },
+    {
+     "explanation_nl": "0.88 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "FAIL",
+     "threshold": 1.0,
+     "value": 0.8766666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 1.00 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 1.0002086481658123
+    },
+    {
+     "explanation_nl": "OOS recovery factor 0.00 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": 0.0008021106018095627
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 19.0% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 19.043171045570713
+    },
+    {
+     "explanation_nl": "Gemiddelde trade 0.01; 95%-block-bootstrap-CI [-11.24, 11.80] - de edge is niet van nul te onderscheiden",
+     "name": "expectancy",
+     "status": "INSUFFICIENT_EVIDENCE",
+     "threshold": 0.0,
+     "value": 0.005942849439530557
+    },
+    {
+     "explanation_nl": "WAARSCHUWING: 73476% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+     "name": "concentration",
+     "status": "FAIL",
+     "threshold": 0.5,
+     "value": 734.7604185538598
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 97 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "FAIL",
+     "threshold": 60,
+     "value": 97.45833333333333
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 1022.4542638721952
+    },
+    {
+     "explanation_nl": "100% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 1.0
+    },
+    {
+     "explanation_nl": "Geen overfit-signalen (PBO, WFE, expanding).",
+     "name": "overfit_flags",
+     "status": "PASS",
+     "threshold": 0,
+     "value": 0
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "15d603ff2974fcf4",
+      "metrics": {
+       "max_drawdown_pct": 0.6725760199999968,
+       "net_profit": -67.257602,
+       "net_return_pct": -0.67257602,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2273282430981094,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 H1"
+     },
+     {
+      "id": "5e0021d2eb9f8e68",
+      "metrics": {
+       "max_drawdown_pct": 35.786784027685776,
+       "net_profit": -2830.8186286013697,
+       "net_return_pct": -28.308186286013697,
+       "profit_factor": 0.8728014514399458,
+       "recovery_factor": -0.7539462940641753,
+       "sharpe_daily": -0.6968602364663314,
+       "trades": 763,
+       "trades_per_week": 2.5433333333333334,
+       "win_rate": 0.30668414154652685
+      },
+      "name": "Baseline baseline_random_entry DE40 H1"
+     },
+     {
+      "id": "cea0735beb29443d",
+      "metrics": {
+       "max_drawdown_pct": 29.175339375528342,
+       "net_profit": -1881.8153731020643,
+       "net_return_pct": -18.818153731020644,
+       "profit_factor": 0.901528763548958,
+       "recovery_factor": -0.5935185044554311,
+       "sharpe_daily": -0.4769837715411303,
+       "trades": 615,
+       "trades_per_week": 2.05,
+       "win_rate": 0.3121951219512195
+      },
+      "name": "Baseline baseline_ma_cross DE40 H1"
+     }
+    ],
+    "beats_baseline": true,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "0.88 trades per handelsweek (minimaal 1.0).",
+    "OOS profit factor 1.00 (minimaal 1.2).",
+    "OOS recovery factor 0.00 (minimaal 1.5).",
+    "Maximale OOS-drawdown 19.0% (maximaal 15.0%).",
+    "WAARSCHUWING: 73476% van de nettowinst komt uit de beste 3 dagen; het resultaat hangt aan een paar dagen. WAARSCHUWING: zonder de beste 5 dagen is het resultaat niet meer positief.",
+    "Langste periode zonder trade: 97 dagen (maximaal 60).",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: profit_factor, max_drawdown, psr, dsr, oos_profitability, drop_best_trades."
+   ],
+   "params": {
+    "acf_min": 0.0,
+    "acf_n": 20,
+    "breakout_n": 20,
+    "cooldown": 11,
+    "sl_atr": 1.25,
+    "trail_activate_r": 0.25,
+    "trail_atr": 2.25
+   },
+   "rules_nl": "STRATEGIE: Gen stat_autocorr_regime DE40 H1 fd7080 - DE40 H1 - richting: long en short\nAutocorrelatie-regime: Positieve autocorrelatie -> breakout volgen; negatieve -> z-score fade. Ge\u00efnspireerd op Trader Math (anonieme IQ trader) (IQ Capital dossiers 21_trader_math_hurst_autocorr), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; na een trade 11 candle(s) wachten (cooldown); maximaal 2 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (autocorr(60,lag5) is groter dan 0.05 EN close is groter dan donchian_high(10)[-1])\nENTRY SHORT: (autocorr(60,lag5) is groter dan 0.05 EN close is kleiner dan donchian_low(10)[-1])\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.5 x ATR(14) vanaf de instap\nTAKE PROFIT: geen\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: trailing stop: vanaf +2.0R op 4.0 x ATR(14) onder de hoogste high sinds instap (short: omgekeerd)\nPARAMETERS: acf_n=60 (20-80), acf_min=0.05 (0.0-0.3), breakout_n=10 (5-30), sl_atr=2.5 (0.75-4.0), trail_activate_r=2.0 (0.0-2.0), trail_atr=4.0 (1.0-4.0), cooldown=11 (1-12)"
+  },
+  {
+   "id": "666f343c87e91f57",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "family": "vwap_pullback",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.004304863166894473,
+    "dsr": 1.1002237247528184e-22,
+    "expanding_net": -228.7158599930217,
+    "expectancy": -0.1691034237860292,
+    "max_drawdown_pct": 25.786793687466247,
+    "net_profit": -153.88411564528656,
+    "net_return_pct": -1.5388411564528657,
+    "pbo": 0.34285714285714286,
+    "profit_factor": 0.9908926507425722,
+    "psr": 0.5079768691848914,
+    "recovery_factor": -0.054369248311392095,
+    "sharpe_daily": -0.03284484627064686,
+    "spread50_net": -956.8573755854893,
+    "trades": 910,
+    "trades_per_week": 3.033333333333333,
+    "verdict": "REJECT",
+    "wfe": 3.6031589452233246,
+    "win_rate": 0.11648351648351649
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "910 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 910
+    },
+    {
+     "explanation_nl": "3.03 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.033333333333333
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.99 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9908926507425722
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.05 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.054369248311392095
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 25.8% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 25.786793687466247
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -0.17; 95%-block-bootstrap-CI [-3.90, 3.74]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -0.1691034237860292
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 30 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 30.5
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -956.8573755854893
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 1
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "bb1155ea1bd7c3d9",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD H1"
+     },
+     {
+      "id": "78f1871197fefbc6",
+      "metrics": {
+       "max_drawdown_pct": 13.536681740275549,
+       "net_profit": 634.8615943733963,
+       "net_return_pct": 6.3486159437339635,
+       "profit_factor": 1.0252859596525041,
+       "recovery_factor": 0.3880101324138092,
+       "sharpe_daily": 0.12896482122200525,
+       "trades": 742,
+       "trades_per_week": 2.473333333333333,
+       "win_rate": 0.34097035040431267
+      },
+      "name": "Baseline baseline_random_entry XAUUSD H1"
+     },
+     {
+      "id": "4108e75732ab7762",
+      "metrics": {
+       "max_drawdown_pct": 10.967960835838996,
+       "net_profit": 642.2508703519511,
+       "net_return_pct": 6.422508703519511,
+       "profit_factor": 1.0388712133190166,
+       "recovery_factor": 0.5699377976098552,
+       "sharpe_daily": 0.1673647880918473,
+       "trades": 551,
+       "trades_per_week": 1.8366666666666667,
+       "win_rate": 0.3430127041742287
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.1049757750566,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.99 (minimaal 1.2).",
+    "OOS recovery factor -0.05 (minimaal 1.5).",
+    "Maximale OOS-drawdown 25.8% (maximaal 15.0%).",
+    "Gemiddelde trade -0.17; 95%-block-bootstrap-CI [-3.90, 3.74]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "be_r": 1.25,
+    "cooldown": 12,
+    "sl_atr": 4.0,
+    "tp_r": 3.0,
+    "trend_ema": 110
+   },
+   "rules_nl": "STRATEGIE: Gen vwap_pullback XAUUSD H1 666f34 - XAUUSD H1 - richting: long en short\nVWAP-pullback: In EMA-trend raakt de koers de VWAP en sluit aan de trendkant. Ge\u00efnspireerd op Robert Rother (IQ Capital dossiers 23_robert_3vwap_bookmap), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; na een trade 3 candle(s) wachten (cooldown); een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close is groter dan ema(160) EN low is kleiner dan of gelijk aan vwap EN close is groter dan vwap)\nENTRY SHORT: (close is kleiner dan ema(160) EN high is groter dan of gelijk aan vwap EN close is kleiner dan vwap)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 3.5 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: break-even: stop naar instapprijs zodra +1.25R is bereikt\nPARAMETERS: trend_ema=160 (20-200), sl_atr=3.5 (0.75-4.0), tp_r=1.75 (1.0-4.0), be_r=1.25 (0.5-1.5), cooldown=3 (1-12)"
+  },
+  {
+   "id": "4c90fc6c52515305",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "family": "pa_swing_breakout",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.00586278682449118,
+    "dsr": 5.7239161235216256e-64,
+    "expanding_net": -2021.2481586058557,
+    "expectancy": -0.3621262898077113,
+    "max_drawdown_pct": 21.395464332299795,
+    "net_profit": -517.8405944250271,
+    "net_return_pct": -5.1784059442502715,
+    "pbo": 0.6428571428571429,
+    "profit_factor": 0.9870826959360984,
+    "psr": 0.4742177787160914,
+    "recovery_factor": -0.213398469179708,
+    "sharpe_daily": -0.07918738375969678,
+    "spread50_net": -1897.6135857473664,
+    "trades": 1430,
+    "trades_per_week": 4.766666666666667,
+    "verdict": "REJECT",
+    "wfe": -0.7218188049044701,
+    "win_rate": 0.3748251748251748
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "1430 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 1430
+    },
+    {
+     "explanation_nl": "4.77 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 4.766666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.99 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9870826959360984
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.21 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.213398469179708
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 21.4% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 21.395464332299795
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -0.36; 95%-block-bootstrap-CI [-3.60, 2.83]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -0.3621262898077113
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 9 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 9.0
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1897.6135857473664
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.64 > 0.5; WFE -0.72 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "15d603ff2974fcf4",
+      "metrics": {
+       "max_drawdown_pct": 0.6725760199999968,
+       "net_profit": -67.257602,
+       "net_return_pct": -0.67257602,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2273282430981094,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 H1"
+     },
+     {
+      "id": "5e0021d2eb9f8e68",
+      "metrics": {
+       "max_drawdown_pct": 35.786784027685776,
+       "net_profit": -2830.8186286013697,
+       "net_return_pct": -28.308186286013697,
+       "profit_factor": 0.8728014514399458,
+       "recovery_factor": -0.7539462940641753,
+       "sharpe_daily": -0.6968602364663314,
+       "trades": 763,
+       "trades_per_week": 2.5433333333333334,
+       "win_rate": 0.30668414154652685
+      },
+      "name": "Baseline baseline_random_entry DE40 H1"
+     },
+     {
+      "id": "cea0735beb29443d",
+      "metrics": {
+       "max_drawdown_pct": 29.175339375528342,
+       "net_profit": -1881.8153731020643,
+       "net_return_pct": -18.818153731020644,
+       "profit_factor": 0.901528763548958,
+       "recovery_factor": -0.5935185044554311,
+       "sharpe_daily": -0.4769837715411303,
+       "trades": 615,
+       "trades_per_week": 2.05,
+       "win_rate": 0.3121951219512195
+      },
+      "name": "Baseline baseline_ma_cross DE40 H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.99 (minimaal 1.2).",
+    "OOS recovery factor -0.21 (minimaal 1.5).",
+    "Maximale OOS-drawdown 21.4% (maximaal 15.0%).",
+    "Gemiddelde trade -0.36; 95%-block-bootstrap-CI [-3.60, 2.83]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.64 > 0.5; WFE -0.72 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "sl_atr": 2.75,
+    "swing_k": 4,
+    "time_exit": 8,
+    "tp_r": 3.75
+   },
+   "rules_nl": "STRATEGIE: Gen pa_swing_breakout DE40 H1 4c90fc - DE40 H1 - richting: long en short\nSwing breakout: Slot kruist de laatst bevestigde swing high/low. Ge\u00efnspireerd op Patrick (The Profit Zone, NOT Patrick Nill) (IQ Capital dossiers 30_patrick_fvg_last), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (slot kruist boven de laatst bevestigde swing high (sterkte 5) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (slot kruist onder de laatst bevestigde swing low (sterkte 5) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 3.75 x ATR(14) vanaf de instap\nTAKE PROFIT: 3.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 8 candle(s)\nPARAMETERS: swing_k=5 (2-6), sl_atr=3.75 (0.75-4.0), tp_r=3.75 (1.0-4.0), time_exit=8 (2-48)"
+  },
+  {
+   "id": "210858d809d145dc",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "family": "hybrid_vwap_pullback_trend",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.022985483381413967,
+    "dsr": 1.5719805289938242e-60,
+    "expanding_net": -1040.0816338560187,
+    "expectancy": -1.1531415117803874,
+    "max_drawdown_pct": 19.956917962129427,
+    "net_profit": -1042.4399266494702,
+    "net_return_pct": -10.424399266494703,
+    "pbo": 0.7142857142857143,
+    "profit_factor": 0.9449993967214371,
+    "psr": 0.2621559549596403,
+    "recovery_factor": -0.48849678296237187,
+    "sharpe_daily": -0.2821961186628668,
+    "spread50_net": -2113.2705206631094,
+    "trades": 904,
+    "trades_per_week": 3.013333333333333,
+    "verdict": "REJECT",
+    "wfe": -44.8894127950564,
+    "win_rate": 0.44579646017699115
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "904 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 904
+    },
+    {
+     "explanation_nl": "3.01 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.013333333333333
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.94 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9449993967214371
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.49 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.48849678296237187
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 20.0% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 19.956917962129427
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -1.15; 95%-block-bootstrap-CI [-4.38, 1.78]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1.1531415117803874
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 28 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 28.125
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2113.2705206631094
+    },
+    {
+     "explanation_nl": "14% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.14285714285714285
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.71 > 0.5; WFE -44.89 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "788d53c9954b6125",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 M15"
+     },
+     {
+      "id": "92d4a0a077128b07",
+      "metrics": {
+       "max_drawdown_pct": 83.78214604525203,
+       "net_profit": -8195.166021646044,
+       "net_return_pct": -81.95166021646044,
+       "profit_factor": 0.8294110645277143,
+       "recovery_factor": -0.9086361568188025,
+       "sharpe_daily": -0.47619722796081243,
+       "trades": 2684,
+       "trades_per_week": 8.946666666666667,
+       "win_rate": 0.3252608047690015
+      },
+      "name": "Baseline baseline_random_entry US30 M15"
+     },
+     {
+      "id": "b1536a56d9e03d6e",
+      "metrics": {
+       "max_drawdown_pct": 45.52211037454813,
+       "net_profit": -3970.1154552059174,
+       "net_return_pct": -39.70115455205917,
+       "profit_factor": 0.9370646086559465,
+       "recovery_factor": -0.787946193650792,
+       "sharpe_daily": -0.5268012601103199,
+       "trades": 1963,
+       "trades_per_week": 6.543333333333333,
+       "win_rate": 0.3173713703515028
+      },
+      "name": "Baseline baseline_ma_cross US30 M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.94 (minimaal 1.2).",
+    "OOS recovery factor -0.49 (minimaal 1.5).",
+    "Maximale OOS-drawdown 20.0% (maximaal 15.0%).",
+    "Gemiddelde trade -1.15; 95%-block-bootstrap-CI [-4.38, 1.78]",
+    "Verliesgevend bij +50% spread.",
+    "14% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.71 > 0.5; WFE -44.89 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "drift_pct": 0.3,
+    "drift_pct_neg": -0.25,
+    "sl_atr": 1.0,
+    "tp_r": 3.25
+   },
+   "rules_nl": "STRATEGIE: Gen hybrid_vwap_pullback_trend US30 M15 210858 - US30 M15 - richting: long en short\nVWAP-drift pullback: Koers boven stijgende VWAP met positieve 60-min drift; instap op tegenkleur-candle in NY-sessie. Ge\u00efnspireerd op Matteo Conti (IQ Capital dossiers 03_matteo_drift_vwap), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 10:30 en 15:30 (America/New_York, zomertijd-correct; candle-openingstijd telt); maximaal 4 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close is groter dan vwap EN vwap is groter dan vwap[-1] EN roc(4) is groter dan of gelijk aan 0.2 EN close is kleiner dan open)\nENTRY SHORT: (close is kleiner dan vwap EN vwap is kleiner dan vwap[-1] EN roc(4) is kleiner dan of gelijk aan -0.3 EN close is groter dan open)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 1.75 x ATR(14) vanaf de instap\nTAKE PROFIT: 2.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 20 candle(s)\nPARAMETERS: drift_pct=0.2 (0.05-0.3), drift_pct_neg=-0.3 (-0.3--0.05), sl_atr=1.75 (0.75-4.0), tp_r=2.75 (1.0-4.0)"
+  },
+  {
+   "id": "627b93eb2a6445dd",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "family": "trend_ma_slope",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.02616459319345472,
+    "dsr": 1.626693234803725e-28,
+    "expanding_net": -320.2679999999964,
+    "expectancy": -1.775450207469067,
+    "max_drawdown_pct": 11.198050000000311,
+    "net_profit": -427.88350000004516,
+    "net_return_pct": -4.278835000000451,
+    "pbo": 0.4714285714285714,
+    "profit_factor": 0.9449937284775909,
+    "psr": 0.38173488111104603,
+    "recovery_factor": -0.38210536655938576,
+    "sharpe_daily": -0.15242333608398015,
+    "spread50_net": -276.2509374999868,
+    "trades": 241,
+    "trades_per_week": 0.8033333333333333,
+    "verdict": "REJECT",
+    "wfe": 0.06345186406659065,
+    "win_rate": 0.25311203319502074
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "241 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 241
+    },
+    {
+     "explanation_nl": "0.80 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "FAIL",
+     "threshold": 1.0,
+     "value": 0.8033333333333333
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.94 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9449937284775909
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.38 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.38210536655938576
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 11.2% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "PASS",
+     "threshold": 15.0,
+     "value": 11.198050000000311
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -1.78; 95%-block-bootstrap-CI [-9.85, 6.13]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1.775450207469067
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 137 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "FAIL",
+     "threshold": 60,
+     "value": 137.0
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -276.2509374999868
+    },
+    {
+     "explanation_nl": "12% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.125
+    },
+    {
+     "explanation_nl": "Overfit-signalen: WFE 0.06 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "bb1155ea1bd7c3d9",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD H1"
+     },
+     {
+      "id": "78f1871197fefbc6",
+      "metrics": {
+       "max_drawdown_pct": 13.536681740275549,
+       "net_profit": 634.8615943733963,
+       "net_return_pct": 6.3486159437339635,
+       "profit_factor": 1.0252859596525041,
+       "recovery_factor": 0.3880101324138092,
+       "sharpe_daily": 0.12896482122200525,
+       "trades": 742,
+       "trades_per_week": 2.473333333333333,
+       "win_rate": 0.34097035040431267
+      },
+      "name": "Baseline baseline_random_entry XAUUSD H1"
+     },
+     {
+      "id": "4108e75732ab7762",
+      "metrics": {
+       "max_drawdown_pct": 10.967960835838996,
+       "net_profit": 642.2508703519511,
+       "net_return_pct": 6.422508703519511,
+       "profit_factor": 1.0388712133190166,
+       "recovery_factor": 0.5699377976098552,
+       "sharpe_daily": 0.1673647880918473,
+       "trades": 551,
+       "trades_per_week": 1.8366666666666667,
+       "win_rate": 0.3430127041742287
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.1049757750566,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "0.80 trades per handelsweek (minimaal 1.0).",
+    "OOS profit factor 0.94 (minimaal 1.2).",
+    "OOS recovery factor -0.38 (minimaal 1.5).",
+    "Gemiddelde trade -1.78; 95%-block-bootstrap-CI [-9.85, 6.13]",
+    "Langste periode zonder trade: 137 dagen (maximaal 60).",
+    "Verliesgevend bij +50% spread.",
+    "12% van de buurparameters winstgevend.",
+    "Overfit-signalen: WFE 0.06 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "ma_n": 190,
+    "sl_swing": 28,
+    "slope_n": 30,
+    "tp_r": 1.25
+   },
+   "rules_nl": "STRATEGIE: Gen trend_ma_slope XAUUSD H1 627b93 - XAUUSD H1 - richting: long en short\nMA-helling: Lineaire-regressiehelling wordt positief/negatief boven/onder een MA.\n\nWANNEER: geen sessiefilter; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (linreg_slope(30) kruist omhoog door 0 EN close is groter dan ema(190))\nENTRY SHORT: (linreg_slope(30) kruist omlaag door 0 EN close is kleiner dan ema(190))\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: laagste low (long) / hoogste high (short) van de laatste 28 candles\nTAKE PROFIT: 1.25 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: slope_n=30 (10-60), ma_n=190 (20-200), sl_swing=28 (2-30), tp_r=1.25 (1.0-4.0)"
+  },
+  {
+   "id": "92a89d22ad06e8c4",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "family": "breakout_nr",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.03677062340098122,
+    "dsr": 7.506422069044965e-46,
+    "expanding_net": -3691.3796331060717,
+    "expectancy": -1.742955693810704,
+    "max_drawdown_pct": 32.45091272395477,
+    "net_profit": -1796.9873203188358,
+    "net_return_pct": -17.969873203188357,
+    "pbo": 0.7571428571428571,
+    "profit_factor": 0.9413321871325755,
+    "psr": 0.24538202710302007,
+    "recovery_factor": -0.48021665534693786,
+    "sharpe_daily": -0.32006510966574886,
+    "spread50_net": -2280.287943282953,
+    "trades": 1031,
+    "trades_per_week": 3.4366666666666665,
+    "verdict": "REJECT",
+    "wfe": -1.274932384760288,
+    "win_rate": 0.3685741998060136
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "1031 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 1031
+    },
+    {
+     "explanation_nl": "3.44 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.4366666666666665
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.94 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9413321871325755
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.48 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.48021665534693786
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 32.5% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 32.45091272395477
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -1.74; 95%-block-bootstrap-CI [-6.15, 2.46]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1.742955693810704
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 21 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 21.125
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2280.287943282953
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.76 > 0.5; WFE -1.27 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "15d603ff2974fcf4",
+      "metrics": {
+       "max_drawdown_pct": 0.6725760199999968,
+       "net_profit": -67.257602,
+       "net_return_pct": -0.67257602,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2273282430981094,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 H1"
+     },
+     {
+      "id": "5e0021d2eb9f8e68",
+      "metrics": {
+       "max_drawdown_pct": 35.786784027685776,
+       "net_profit": -2830.8186286013697,
+       "net_return_pct": -28.308186286013697,
+       "profit_factor": 0.8728014514399458,
+       "recovery_factor": -0.7539462940641753,
+       "sharpe_daily": -0.6968602364663314,
+       "trades": 763,
+       "trades_per_week": 2.5433333333333334,
+       "win_rate": 0.30668414154652685
+      },
+      "name": "Baseline baseline_random_entry DE40 H1"
+     },
+     {
+      "id": "cea0735beb29443d",
+      "metrics": {
+       "max_drawdown_pct": 29.175339375528342,
+       "net_profit": -1881.8153731020643,
+       "net_return_pct": -18.818153731020644,
+       "profit_factor": 0.901528763548958,
+       "recovery_factor": -0.5935185044554311,
+       "sharpe_daily": -0.4769837715411303,
+       "trades": 615,
+       "trades_per_week": 2.05,
+       "win_rate": 0.3121951219512195
+      },
+      "name": "Baseline baseline_ma_cross DE40 H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.94 (minimaal 1.2).",
+    "OOS recovery factor -0.48 (minimaal 1.5).",
+    "Maximale OOS-drawdown 32.5% (maximaal 15.0%).",
+    "Gemiddelde trade -1.74; 95%-block-bootstrap-CI [-6.15, 2.46]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.76 > 0.5; WFE -1.27 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "cooldown": 11,
+    "offset_atr": 0.5,
+    "sl_atr": 1.75,
+    "trail_activate_r": 1.5,
+    "trail_atr": 2.75,
+    "trend_ema": 50
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_nr DE40 H1 92a89d - DE40 H1 - richting: long en short\nNR4/NR7 breakout: Smalste-range candle; stop-order voorbij de candle in trendrichting. Ge\u00efnspireerd op Trader X (anonymous) (IQ Capital dossiers 35_trader_x_nr4_breakout), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; na een trade 11 candle(s) wachten (cooldown); een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (NR4 (kleinste range van de laatste 4 candles) EN close is groter dan ema(50) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (NR4 (kleinste range van de laatste 4 candles) EN close is kleiner dan ema(50) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: stop-order op slotkoers van signaalcandle +/-0.5 x ATR(14), verloopt na 2 candle(s)\nSTOP LOSS: 1.75 x ATR(14) vanaf de instap\nTAKE PROFIT: geen\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: trailing stop: vanaf +1.5R op 2.75 x ATR(14) onder de hoogste high sinds instap (short: omgekeerd)\nPARAMETERS: trend_ema=50 (20-200), offset_atr=0.5 (0.0-0.5), sl_atr=1.75 (0.75-4.0), trail_activate_r=1.5 (0.0-2.0), trail_atr=2.75 (1.0-4.0), cooldown=11 (1-12)"
+  },
+  {
+   "id": "f328da1c403dac57",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "family": "hybrid_vwap_pullback_trend",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.03816146467678098,
+    "dsr": 3.313983174831094e-37,
+    "expanding_net": -2350.7981710297663,
+    "expectancy": -1.866606465240293,
+    "max_drawdown_pct": 38.58539950410422,
+    "net_profit": -1836.7407617964482,
+    "net_return_pct": -18.36740761796448,
+    "pbo": 0.15714285714285714,
+    "profit_factor": 0.940503605948074,
+    "psr": 0.24150395222403878,
+    "recovery_factor": -0.4211264830500515,
+    "sharpe_daily": -0.3451324799743948,
+    "spread50_net": -6237.960091071716,
+    "trades": 984,
+    "trades_per_week": 3.28,
+    "verdict": "REJECT",
+    "wfe": -1.9005335113574893,
+    "win_rate": 0.3699186991869919
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "984 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 984
+    },
+    {
+     "explanation_nl": "3.28 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.28
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.94 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.940503605948074
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.42 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.4211264830500515
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 38.6% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 38.58539950410422
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -1.87; 95%-block-bootstrap-CI [-6.19, 2.59]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1.866606465240293
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 31 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 31.052083333333332
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -6237.960091071716
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: WFE -1.90 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "2ed8608d4f089401",
+      "metrics": {
+       "max_drawdown_pct": 0.6697160199999962,
+       "net_profit": -66.97160199999999,
+       "net_return_pct": -0.6697160199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2282208569760504,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 M15"
+     },
+     {
+      "id": "4355c55ca69b28b4",
+      "metrics": {
+       "max_drawdown_pct": 121.17956040002566,
+       "net_profit": -12117.956040002568,
+       "net_return_pct": -121.17956040002566,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -12.458235752808209,
+       "trades": 4,
+       "trades_per_week": 0.013333333333333334,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_random_entry DE40 M15"
+     },
+     {
+      "id": "f00756704c5ff128",
+      "metrics": {
+       "max_drawdown_pct": 69.93350130439306,
+       "net_profit": -6964.506492013239,
+       "net_return_pct": -69.6450649201324,
+       "profit_factor": 0.8370137145554057,
+       "recovery_factor": -0.9958755620856844,
+       "sharpe_daily": -1.403487292692077,
+       "trades": 2099,
+       "trades_per_week": 6.996666666666667,
+       "win_rate": 0.2968080038113387
+      },
+      "name": "Baseline baseline_ma_cross DE40 M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.94 (minimaal 1.2).",
+    "OOS recovery factor -0.42 (minimaal 1.5).",
+    "Maximale OOS-drawdown 38.6% (maximaal 15.0%).",
+    "Gemiddelde trade -1.87; 95%-block-bootstrap-CI [-6.19, 2.59]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: WFE -1.90 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "drift_pct": 0.2,
+    "drift_pct_neg": -0.2,
+    "sl_atr": 0.75,
+    "tp_r": 3.25
+   },
+   "rules_nl": "STRATEGIE: Gen hybrid_vwap_pullback_trend DE40 M15 f328da - DE40 M15 - richting: long en short\nVWAP-drift pullback: Koers boven stijgende VWAP met positieve 60-min drift; instap op tegenkleur-candle in NY-sessie. Ge\u00efnspireerd op Matteo Conti (IQ Capital dossiers 03_matteo_drift_vwap), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 10:30 en 15:30 (America/New_York, zomertijd-correct; candle-openingstijd telt); maximaal 4 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close is groter dan vwap EN vwap is groter dan vwap[-1] EN roc(4) is groter dan of gelijk aan 0.15 EN close is kleiner dan open)\nENTRY SHORT: (close is kleiner dan vwap EN vwap is kleiner dan vwap[-1] EN roc(4) is kleiner dan of gelijk aan -0.15 EN close is groter dan open)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 4.0 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: drift_pct=0.15 (0.05-0.3), drift_pct_neg=-0.15 (-0.3--0.05), sl_atr=4.0 (0.75-4.0), tp_r=1.75 (1.0-4.0)"
+  },
+  {
+   "id": "9828a970799a3e32",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "family": "trend_momentum_persistence",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.044706208678754224,
+    "dsr": 5.295518055958919e-38,
+    "expanding_net": -268.2615082500072,
+    "expectancy": -2.5090000403409394,
+    "max_drawdown_pct": 23.096914188064858,
+    "net_profit": -1103.9600177500133,
+    "net_return_pct": -11.039600177500134,
+    "pbo": 0.5571428571428572,
+    "profit_factor": 0.9292712651200311,
+    "psr": 0.3143351949245905,
+    "recovery_factor": -0.46914496571909425,
+    "sharpe_daily": -0.25744184334991865,
+    "spread50_net": 593.1394120000023,
+    "trades": 440,
+    "trades_per_week": 1.4666666666666666,
+    "verdict": "REJECT",
+    "wfe": 0.040453655132668256,
+    "win_rate": 0.21136363636363636
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "440 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 440
+    },
+    {
+     "explanation_nl": "1.47 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.4666666666666666
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.93 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9292712651200311
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.47 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.46914496571909425
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 23.1% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 23.096914188064858
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -2.51; 95%-block-bootstrap-CI [-10.11, 5.03]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2.5090000403409394
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 55 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 55.020833333333336
+    },
+    {
+     "explanation_nl": "Blijft winstgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "PASS",
+     "threshold": 0.0,
+     "value": 593.1394120000023
+    },
+    {
+     "explanation_nl": "88% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "PASS",
+     "threshold": 0.7,
+     "value": 0.875
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.56 > 0.5; WFE 0.04 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "d66cb82d3933cabb",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD M15"
+     },
+     {
+      "id": "9308abffb0e401e5",
+      "metrics": {
+       "max_drawdown_pct": 75.68023032434391,
+       "net_profit": -7325.891062516699,
+       "net_return_pct": -73.25891062516699,
+       "profit_factor": 0.8487416690101299,
+       "recovery_factor": -0.9032865353692583,
+       "sharpe_daily": -1.5092637056648726,
+       "trades": 2793,
+       "trades_per_week": 9.31,
+       "win_rate": 0.30182599355531686
+      },
+      "name": "Baseline baseline_random_entry XAUUSD M15"
+     },
+     {
+      "id": "d56037538ec16ffb",
+      "metrics": {
+       "max_drawdown_pct": 74.96170242775432,
+       "net_profit": -7496.17024277542,
+       "net_return_pct": -74.96170242775419,
+       "profit_factor": 0.809295201677943,
+       "recovery_factor": -0.9999999999999984,
+       "sharpe_daily": -1.611466067169696,
+       "trades": 2143,
+       "trades_per_week": 7.1433333333333335,
+       "win_rate": 0.28838077461502565
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.46081711483264,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.93 (minimaal 1.2).",
+    "OOS recovery factor -0.47 (minimaal 1.5).",
+    "Maximale OOS-drawdown 23.1% (maximaal 15.0%).",
+    "Gemiddelde trade -2.51; 95%-block-bootstrap-CI [-10.11, 5.03]",
+    "Overfit-signalen: PBO 0.56 > 0.5; WFE 0.04 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "cooldown": 6,
+    "roc_n": 30,
+    "sl_pct": 0.7,
+    "tp_r": 3.75
+   },
+   "rules_nl": "STRATEGIE: Gen trend_momentum_persistence XAUUSD M15 9828a9 - XAUUSD M15 - richting: long en short\nMomentumpersistentie: Positief momentum nu en een periode eerder, met een nieuwe kortetermijnhigh.\n\nWANNEER: alleen handelen tussen 08:00 en 14:00 (Europe/London, zomertijd-correct; candle-openingstijd telt); na een trade 12 candle(s) wachten (cooldown); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (roc(35) is groter dan 0 EN roc(35)[-35] is groter dan 0 EN close is groter dan high[-1] EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (roc(35) is kleiner dan 0 EN roc(35)[-35] is kleiner dan 0 EN close is kleiner dan low[-1] EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 1.5% van de instapprijs\nTAKE PROFIT: 2.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: roc_n=35 (10-60), sl_pct=1.5 (0.1-1.5), tp_r=2.75 (1.0-4.0), cooldown=12 (1-12)"
+  },
+  {
+   "id": "3ef2fe7bf4498c5b",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "family": "breakout_nr",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.05408982414310986,
+    "dsr": 1.7501458556858423e-26,
+    "expanding_net": -1218.2753232881573,
+    "expectancy": -2.8131114872935554,
+    "max_drawdown_pct": 43.59795043693837,
+    "net_profit": -3510.7631361423573,
+    "net_return_pct": -35.10763136142357,
+    "pbo": 0.7714285714285715,
+    "profit_factor": 0.9263650031407236,
+    "psr": 0.150667971947683,
+    "recovery_factor": -0.6999011633669141,
+    "sharpe_daily": -0.44989067104811,
+    "spread50_net": -1285.9818949591952,
+    "trades": 1248,
+    "trades_per_week": 4.16,
+    "verdict": "REJECT",
+    "wfe": -4.663095918860557,
+    "win_rate": 0.2219551282051282
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "1248 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 1248
+    },
+    {
+     "explanation_nl": "4.16 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 4.16
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.93 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9263650031407236
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.70 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.6999011633669141
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 43.6% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 43.59795043693837
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -2.81; 95%-block-bootstrap-CI [-7.95, 2.27]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2.8131114872935554
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 37 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 36.989583333333336
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1285.9818949591952
+    },
+    {
+     "explanation_nl": "50% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.5
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.77 > 0.5; WFE -4.66 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "2ed8608d4f089401",
+      "metrics": {
+       "max_drawdown_pct": 0.6697160199999962,
+       "net_profit": -66.97160199999999,
+       "net_return_pct": -0.6697160199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2282208569760504,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 M15"
+     },
+     {
+      "id": "4355c55ca69b28b4",
+      "metrics": {
+       "max_drawdown_pct": 121.17956040002566,
+       "net_profit": -12117.956040002568,
+       "net_return_pct": -121.17956040002566,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -12.458235752808209,
+       "trades": 4,
+       "trades_per_week": 0.013333333333333334,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_random_entry DE40 M15"
+     },
+     {
+      "id": "f00756704c5ff128",
+      "metrics": {
+       "max_drawdown_pct": 69.93350130439306,
+       "net_profit": -6964.506492013239,
+       "net_return_pct": -69.6450649201324,
+       "profit_factor": 0.8370137145554057,
+       "recovery_factor": -0.9958755620856844,
+       "sharpe_daily": -1.403487292692077,
+       "trades": 2099,
+       "trades_per_week": 6.996666666666667,
+       "win_rate": 0.2968080038113387
+      },
+      "name": "Baseline baseline_ma_cross DE40 M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.93 (minimaal 1.2).",
+    "OOS recovery factor -0.70 (minimaal 1.5).",
+    "Maximale OOS-drawdown 43.6% (maximaal 15.0%).",
+    "Gemiddelde trade -2.81; 95%-block-bootstrap-CI [-7.95, 2.27]",
+    "Verliesgevend bij +50% spread.",
+    "50% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.77 > 0.5; WFE -4.66 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "cooldown": 9,
+    "offset_atr": 0.3,
+    "sl_atr": 3.25,
+    "tp_r": 3.25,
+    "trend_ema": 80
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_nr DE40 M15 3ef2fe - DE40 M15 - richting: long en short\nNR4/NR7 breakout: Smalste-range candle; stop-order voorbij de candle in trendrichting. Ge\u00efnspireerd op Trader X (anonymous) (IQ Capital dossiers 35_trader_x_nr4_breakout), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 09:00 en 15:00 (Europe/Berlin, zomertijd-correct; candle-openingstijd telt); na een trade 6 candle(s) wachten (cooldown); een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (NR7 (kleinste range van de laatste 7 candles) EN close is groter dan ema(90))\nENTRY SHORT: (NR7 (kleinste range van de laatste 7 candles) EN close is kleiner dan ema(90))\nORDER: stop-order op slotkoers van signaalcandle +/-0.5 x ATR(14), verloopt na 2 candle(s)\nSTOP LOSS: 3.75 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: trend_ema=90 (20-200), offset_atr=0.5 (0.0-0.5), sl_atr=3.75 (0.75-4.0), tp_r=1.75 (1.0-4.0), cooldown=6 (1-12)"
+  },
+  {
+   "id": "d59a96523d05837a",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "family": "trend_ma_cross",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.050164633294468255,
+    "dsr": 2.7537362639238433e-49,
+    "expanding_net": -4149.394199357512,
+    "expectancy": -2.434647748441934,
+    "max_drawdown_pct": 30.67519605184327,
+    "net_profit": -2924.011945878763,
+    "net_return_pct": -29.240119458787632,
+    "pbo": 0.6142857142857143,
+    "profit_factor": 0.9082188672488644,
+    "psr": 0.041485683194514414,
+    "recovery_factor": -0.946177326235315,
+    "sharpe_daily": -0.6798345488665745,
+    "spread50_net": -3034.9935085299912,
+    "trades": 1201,
+    "trades_per_week": 4.003333333333333,
+    "verdict": "REJECT",
+    "wfe": -3.7443156167452654,
+    "win_rate": 0.4571190674437968
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "1201 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 1201
+    },
+    {
+     "explanation_nl": "4.00 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 4.003333333333333
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.91 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.9082188672488644
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.95 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.946177326235315
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 30.7% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 30.67519605184327
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -2.43; 95%-block-bootstrap-CI [-4.88, 0.18]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2.434647748441934
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 21 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 21.354166666666668
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -3034.9935085299912
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.61 > 0.5; WFE -3.74 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "788d53c9954b6125",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 M15"
+     },
+     {
+      "id": "92d4a0a077128b07",
+      "metrics": {
+       "max_drawdown_pct": 83.78214604525203,
+       "net_profit": -8195.166021646044,
+       "net_return_pct": -81.95166021646044,
+       "profit_factor": 0.8294110645277143,
+       "recovery_factor": -0.9086361568188025,
+       "sharpe_daily": -0.47619722796081243,
+       "trades": 2684,
+       "trades_per_week": 8.946666666666667,
+       "win_rate": 0.3252608047690015
+      },
+      "name": "Baseline baseline_random_entry US30 M15"
+     },
+     {
+      "id": "b1536a56d9e03d6e",
+      "metrics": {
+       "max_drawdown_pct": 45.52211037454813,
+       "net_profit": -3970.1154552059174,
+       "net_return_pct": -39.70115455205917,
+       "profit_factor": 0.9370646086559465,
+       "recovery_factor": -0.787946193650792,
+       "sharpe_daily": -0.5268012601103199,
+       "trades": 1963,
+       "trades_per_week": 6.543333333333333,
+       "win_rate": 0.3173713703515028
+      },
+      "name": "Baseline baseline_ma_cross US30 M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.91 (minimaal 1.2).",
+    "OOS recovery factor -0.95 (minimaal 1.5).",
+    "Maximale OOS-drawdown 30.7% (maximaal 15.0%).",
+    "Gemiddelde trade -2.43; 95%-block-bootstrap-CI [-4.88, 0.18]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.61 > 0.5; WFE -3.74 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "ma_fast": 10,
+    "ma_slow": 50,
+    "sl_pct": 0.8,
+    "tp_r": 1.5
+   },
+   "rules_nl": "STRATEGIE: Gen trend_ma_cross US30 M15 d59a96 - US30 M15 - richting: long en short\nMA-kruising: Snelle EMA/SMA kruist trage EMA/SMA.\n\nWANNEER: geen sessiefilter; maximaal 3 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: ema(10) kruist omhoog door ema(50)\nENTRY SHORT: ema(10) kruist omlaag door ema(50)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 0.8% van de instapprijs\nTAKE PROFIT: 1.5 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: ma_fast=10 (5-30), ma_slow=50 (40-200), sl_pct=0.8 (0.1-1.5), tp_r=1.5 (1.0-4.0)"
+  },
+  {
+   "id": "be5748ed0a4a0910",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "family": "mr_vwap_deviation",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.06109583844321565,
+    "dsr": 3.71990064905842e-69,
+    "expanding_net": -3349.171309480012,
+    "expectancy": -3.019086456573796,
+    "max_drawdown_pct": 30.06493005479647,
+    "net_profit": -2632.64339013235,
+    "net_return_pct": -26.326433901323497,
+    "pbo": 0.4,
+    "profit_factor": 0.8979880649478492,
+    "psr": 0.11806779883471509,
+    "recovery_factor": -0.8487891368199202,
+    "sharpe_daily": -0.5304557745506477,
+    "spread50_net": -1901.1700931236617,
+    "trades": 872,
+    "trades_per_week": 2.9066666666666667,
+    "verdict": "REJECT",
+    "wfe": -4.483031697509144,
+    "win_rate": 0.34059633027522934
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "872 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 872
+    },
+    {
+     "explanation_nl": "2.91 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 2.9066666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.90 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.8979880649478492
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.85 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.8487891368199202
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 30.1% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 30.06493005479647
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -3.02; 95%-block-bootstrap-CI [-6.79, 0.99]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -3.019086456573796
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 11 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 10.916666666666666
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1901.1700931236617
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: WFE -4.48 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "1bf0372a61bd4d7e",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 H1"
+     },
+     {
+      "id": "88dc297a772fd5e9",
+      "metrics": {
+       "max_drawdown_pct": 20.904233162665832,
+       "net_profit": 698.5514471797566,
+       "net_return_pct": 6.985514471797566,
+       "profit_factor": 1.0234802742516294,
+       "recovery_factor": 0.26397146235428165,
+       "sharpe_daily": 0.12014939606253354,
+       "trades": 796,
+       "trades_per_week": 2.6533333333333333,
+       "win_rate": 0.3417085427135678
+      },
+      "name": "Baseline baseline_random_entry US30 H1"
+     },
+     {
+      "id": "e70b605edcf192e4",
+      "metrics": {
+       "max_drawdown_pct": 26.300686277008044,
+       "net_profit": -2528.893168270036,
+       "net_return_pct": -25.288931682700362,
+       "profit_factor": 0.8498187300095137,
+       "recovery_factor": -0.9615312473731091,
+       "sharpe_daily": -0.7225556712430877,
+       "trades": 584,
+       "trades_per_week": 1.9466666666666668,
+       "win_rate": 0.3013698630136986
+      },
+      "name": "Baseline baseline_ma_cross US30 H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.90 (minimaal 1.2).",
+    "OOS recovery factor -0.85 (minimaal 1.5).",
+    "Maximale OOS-drawdown 30.1% (maximaal 15.0%).",
+    "Gemiddelde trade -3.02; 95%-block-bootstrap-CI [-6.79, 0.99]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: WFE -4.48 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "cooldown": 3,
+    "dev_hi": 2.75,
+    "dev_lo": -2.25,
+    "sl_atr": 3.75,
+    "time_exit": 22,
+    "tp_r": 2.0
+   },
+   "rules_nl": "STRATEGIE: Gen mr_vwap_deviation US30 H1 be5748 - US30 H1 - richting: long en short\nVWAP-afwijking (fade): Grote afwijking van VWAP in ATR-eenheden, terug richting VWAP. Ge\u00efnspireerd op Heiko Harder (IQ Capital dossiers 31_heiko_6e_vpoc_reversion), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; na een trade 3 candle(s) wachten (cooldown); maximaal 2 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: vwap_dev_atr(14) kruist omhoog door -1\nENTRY SHORT: vwap_dev_atr(14) kruist omlaag door 1.25\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.75 x ATR(14) vanaf de instap\nTAKE PROFIT: 2.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: tijd-exit na 30 candle(s)\nPARAMETERS: dev_lo=-1.0 (-3.0--1.0), dev_hi=1.25 (1.0-3.0), sl_atr=2.75 (0.75-4.0), tp_r=2.75 (1.0-4.0), time_exit=30 (2-48), cooldown=3 (1-12)"
+  },
+  {
+   "id": "bb028cf631ca893b",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "family": "breakout_ny",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.07768646069011936,
+    "dsr": 7.040519334462786e-26,
+    "expanding_net": -501.0223183970678,
+    "expectancy": -3.7104529742932675,
+    "max_drawdown_pct": 29.37617479144352,
+    "net_profit": -1554.679796228879,
+    "net_return_pct": -15.54679796228879,
+    "pbo": 0.8571428571428571,
+    "profit_factor": 0.8934609024750423,
+    "psr": 0.22911310452880262,
+    "recovery_factor": -0.5141121662137393,
+    "sharpe_daily": -0.3896985923054194,
+    "spread50_net": -1266.1084357366458,
+    "trades": 419,
+    "trades_per_week": 1.3966666666666667,
+    "verdict": "REJECT",
+    "wfe": -0.6594732328813095,
+    "win_rate": 0.22673031026252982
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "419 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 419
+    },
+    {
+     "explanation_nl": "1.40 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.3966666666666667
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.89 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.8934609024750423
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.51 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.5141121662137393
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 29.4% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 29.37617479144352
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -3.71; 95%-block-bootstrap-CI [-11.39, 4.06]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -3.7104529742932675
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 31 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 30.979166666666668
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1266.1084357366458
+    },
+    {
+     "explanation_nl": "33% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.3333333333333333
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.86 > 0.5; WFE -0.66 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "d66cb82d3933cabb",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD M15"
+     },
+     {
+      "id": "9308abffb0e401e5",
+      "metrics": {
+       "max_drawdown_pct": 75.68023032434391,
+       "net_profit": -7325.891062516699,
+       "net_return_pct": -73.25891062516699,
+       "profit_factor": 0.8487416690101299,
+       "recovery_factor": -0.9032865353692583,
+       "sharpe_daily": -1.5092637056648726,
+       "trades": 2793,
+       "trades_per_week": 9.31,
+       "win_rate": 0.30182599355531686
+      },
+      "name": "Baseline baseline_random_entry XAUUSD M15"
+     },
+     {
+      "id": "d56037538ec16ffb",
+      "metrics": {
+       "max_drawdown_pct": 74.96170242775432,
+       "net_profit": -7496.17024277542,
+       "net_return_pct": -74.96170242775419,
+       "profit_factor": 0.809295201677943,
+       "recovery_factor": -0.9999999999999984,
+       "sharpe_daily": -1.611466067169696,
+       "trades": 2143,
+       "trades_per_week": 7.1433333333333335,
+       "win_rate": 0.28838077461502565
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.46081711483264,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.89 (minimaal 1.2).",
+    "OOS recovery factor -0.51 (minimaal 1.5).",
+    "Maximale OOS-drawdown 29.4% (maximaal 15.0%).",
+    "Gemiddelde trade -3.71; 95%-block-bootstrap-CI [-11.39, 4.06]",
+    "Verliesgevend bij +50% spread.",
+    "33% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.86 > 0.5; WFE -0.66 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "sl_atr": 4.0,
+    "tp_r": 3.5
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_ny XAUUSD M15 bb028c - XAUUSD M15 - richting: long en short\nNew York breakout: Doorbraak van de eerste 15-30 minuten na 09:30 New York. Ge\u00efnspireerd op Jonas Bertram (IQ Capital dossiers 33_jonas_london_us_orb), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 09:30 en 12:00 (America/New_York, zomertijd-correct; candle-openingstijd telt); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (close kruist omhoog door opening_range_high(15m) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (close kruist omlaag door opening_range_low(15m) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.25 x ATR(14) vanaf de instap\nTAKE PROFIT: 3.5 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: sl_atr=2.25 (0.75-4.0), tp_r=3.5 (1.0-4.0)"
+  },
+  {
+   "id": "b8bce4b028f461c2",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "family": "breakout_retest",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.09747382501600282,
+    "dsr": 2.341596127942447e-26,
+    "expanding_net": -3390.0416928877094,
+    "expectancy": -4.725847841978392,
+    "max_drawdown_pct": 58.23846134558172,
+    "net_profit": -4286.343992674401,
+    "net_return_pct": -42.863439926744014,
+    "pbo": 0.5428571428571428,
+    "profit_factor": 0.8737667633185674,
+    "psr": 0.14252746439396297,
+    "recovery_factor": -0.7136508872286564,
+    "sharpe_daily": -0.6657859329407921,
+    "spread50_net": -3700.4162636692636,
+    "trades": 907,
+    "trades_per_week": 3.0233333333333334,
+    "verdict": "REJECT",
+    "wfe": -2.785056729363533,
+    "win_rate": 0.18963616317530319
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "907 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 907
+    },
+    {
+     "explanation_nl": "3.02 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 3.0233333333333334
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.87 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.8737667633185674
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.71 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.7136508872286564
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 58.2% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 58.23846134558172
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -4.73; 95%-block-bootstrap-CI [-10.48, 1.34]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -4.725847841978392
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 21 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 21.479166666666668
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -3700.4162636692636
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.54 > 0.5; WFE -2.79 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "d66cb82d3933cabb",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD M15"
+     },
+     {
+      "id": "9308abffb0e401e5",
+      "metrics": {
+       "max_drawdown_pct": 75.68023032434391,
+       "net_profit": -7325.891062516699,
+       "net_return_pct": -73.25891062516699,
+       "profit_factor": 0.8487416690101299,
+       "recovery_factor": -0.9032865353692583,
+       "sharpe_daily": -1.5092637056648726,
+       "trades": 2793,
+       "trades_per_week": 9.31,
+       "win_rate": 0.30182599355531686
+      },
+      "name": "Baseline baseline_random_entry XAUUSD M15"
+     },
+     {
+      "id": "d56037538ec16ffb",
+      "metrics": {
+       "max_drawdown_pct": 74.96170242775432,
+       "net_profit": -7496.17024277542,
+       "net_return_pct": -74.96170242775419,
+       "profit_factor": 0.809295201677943,
+       "recovery_factor": -0.9999999999999984,
+       "sharpe_daily": -1.611466067169696,
+       "trades": 2143,
+       "trades_per_week": 7.1433333333333335,
+       "win_rate": 0.28838077461502565
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.46081711483264,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.87 (minimaal 1.2).",
+    "OOS recovery factor -0.71 (minimaal 1.5).",
+    "Maximale OOS-drawdown 58.2% (maximaal 15.0%).",
+    "Gemiddelde trade -4.73; 95%-block-bootstrap-CI [-10.48, 1.34]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.54 > 0.5; WFE -2.79 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "channel": 35,
+    "retest_shift": 7,
+    "sl_atr": 3.5,
+    "tp_r": 3.75
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_retest XAUUSD M15 b8bce4 - XAUUSD M15 - richting: long en short\nBreakout + retest: Eerdere kanaalhigh is doorbroken; koers test die terug en houdt. Ge\u00efnspireerd op Patrick Nill (IQ Capital dossiers 07_patrick_3touch_range), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (donchian_high(25)[-1] is groter dan donchian_high(25)[-6] EN low is kleiner dan of gelijk aan donchian_high(25)[-6] EN close is groter dan donchian_high(25)[-6] EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (donchian_low(25)[-1] is kleiner dan donchian_low(25)[-6] EN high is groter dan of gelijk aan donchian_low(25)[-6] EN close is kleiner dan donchian_low(25)[-6] EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.5 x ATR(14) vanaf de instap\nTAKE PROFIT: 3.75 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: channel=25 (10-60), retest_shift=6 (3-12), sl_atr=2.5 (0.75-4.0), tp_r=3.75 (1.0-4.0)"
+  },
+  {
+   "id": "1bfbc4e5f229c01a",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "family": "pa_pin_rejection",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.08163854968408137,
+    "dsr": 5.65407732208229e-40,
+    "expanding_net": -2181.539217755003,
+    "expectancy": -4.034413421227663,
+    "max_drawdown_pct": 34.01131061994945,
+    "net_profit": -3308.219005406684,
+    "net_return_pct": -33.08219005406684,
+    "pbo": 0.6285714285714286,
+    "profit_factor": 0.8605195056378343,
+    "psr": 0.023959534883098942,
+    "recovery_factor": -0.9591768054829823,
+    "sharpe_daily": -0.783124073696671,
+    "spread50_net": -1927.282818837938,
+    "trades": 820,
+    "trades_per_week": 2.7333333333333334,
+    "verdict": "REJECT",
+    "wfe": -60.40341408547166,
+    "win_rate": 0.3073170731707317
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "820 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 820
+    },
+    {
+     "explanation_nl": "2.73 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 2.7333333333333334
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.86 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.8605195056378343
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.96 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.9591768054829823
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 34.0% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 34.01131061994945
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -4.03; 95%-block-bootstrap-CI [-7.88, -0.33]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -4.034413421227663
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 18 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 18.416666666666668
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -1927.282818837938
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.63 > 0.5; WFE -60.40 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "1bf0372a61bd4d7e",
+      "metrics": {
+       "max_drawdown_pct": 0.4952466199999981,
+       "net_profit": -49.52466199999999,
+       "net_return_pct": -0.4952466199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": 0.0,
+       "trades": 1,
+       "trades_per_week": 0.0033333333333333335,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold US30 H1"
+     },
+     {
+      "id": "88dc297a772fd5e9",
+      "metrics": {
+       "max_drawdown_pct": 20.904233162665832,
+       "net_profit": 698.5514471797566,
+       "net_return_pct": 6.985514471797566,
+       "profit_factor": 1.0234802742516294,
+       "recovery_factor": 0.26397146235428165,
+       "sharpe_daily": 0.12014939606253354,
+       "trades": 796,
+       "trades_per_week": 2.6533333333333333,
+       "win_rate": 0.3417085427135678
+      },
+      "name": "Baseline baseline_random_entry US30 H1"
+     },
+     {
+      "id": "e70b605edcf192e4",
+      "metrics": {
+       "max_drawdown_pct": 26.300686277008044,
+       "net_profit": -2528.893168270036,
+       "net_return_pct": -25.288931682700362,
+       "profit_factor": 0.8498187300095137,
+       "recovery_factor": -0.9615312473731091,
+       "sharpe_daily": -0.7225556712430877,
+       "trades": 584,
+       "trades_per_week": 1.9466666666666668,
+       "win_rate": 0.3013698630136986
+      },
+      "name": "Baseline baseline_ma_cross US30 H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 50.960133589282265,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.86 (minimaal 1.2).",
+    "OOS recovery factor -0.96 (minimaal 1.5).",
+    "Maximale OOS-drawdown 34.0% (maximaal 15.0%).",
+    "Gemiddelde trade -4.03; 95%-block-bootstrap-CI [-7.88, -0.33]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.63 > 0.5; WFE -60.40 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "be_r": 1.0,
+    "sl_atr": 1.5,
+    "support_n": 25,
+    "tp_r": 3.0
+   },
+   "rules_nl": "STRATEGIE: Gen pa_pin_rejection US30 H1 1bfbc4 - US30 H1 - richting: long en short\nPin bar / rejection: Pin bar aan een N-candle extreem. Ge\u00efnspireerd op Anonieme MNQ-trader (IQ reverse engineering) (IQ Capital dossiers 20_mnq_shooting_star_short), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: geen sessiefilter; maximaal 3 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (bullish pin bar (onderste lont >= 60% van de range, body <= 35%) EN low is kleiner dan of gelijk aan donchian_low(30)[-1])\nENTRY SHORT: (bearish pin bar (bovenste lont >= 60% van de range, body <= 35%) EN high is groter dan of gelijk aan donchian_high(30)[-1])\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 3.5 x ATR(14) vanaf de instap\nTAKE PROFIT: 1.25 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: break-even: stop naar instapprijs zodra +1.5R is bereikt\nPARAMETERS: support_n=30 (10-50), sl_atr=3.5 (0.75-4.0), tp_r=1.25 (1.0-4.0), be_r=1.5 (0.5-1.5)"
+  },
+  {
+   "id": "8da27e5744d23665",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "family": "trend_ma_cross",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.12348274782201589,
+    "dsr": 1.1564096846499407e-32,
+    "expanding_net": -3879.4537277491145,
+    "expectancy": -6.313700786102455,
+    "max_drawdown_pct": 32.623902494153626,
+    "net_profit": -2954.811967895949,
+    "net_return_pct": -29.548119678959488,
+    "pbo": 0.9428571428571428,
+    "profit_factor": 0.8366064790731044,
+    "psr": 0.07559557733640354,
+    "recovery_factor": -0.8743376344379187,
+    "sharpe_daily": -0.6486172184419249,
+    "spread50_net": -2718.1760719117706,
+    "trades": 468,
+    "trades_per_week": 1.56,
+    "verdict": "REJECT",
+    "wfe": null,
+    "win_rate": 0.21794871794871795
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "468 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 468
+    },
+    {
+     "explanation_nl": "1.56 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.56
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.84 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.8366064790731044
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.87 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.8743376344379187
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 32.6% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 32.623902494153626
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -6.31; 95%-block-bootstrap-CI [-11.91, -0.18]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -6.313700786102455
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 40 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "PASS",
+     "threshold": 60,
+     "value": 40.104166666666664
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -2718.1760719117706
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: PBO 0.94 > 0.5; WFE niet berekenbaar; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 3
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "2ed8608d4f089401",
+      "metrics": {
+       "max_drawdown_pct": 0.6697160199999962,
+       "net_profit": -66.97160199999999,
+       "net_return_pct": -0.6697160199999999,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -1.2282208569760504,
+       "trades": 2,
+       "trades_per_week": 0.006666666666666667,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold DE40 M15"
+     },
+     {
+      "id": "4355c55ca69b28b4",
+      "metrics": {
+       "max_drawdown_pct": 121.17956040002566,
+       "net_profit": -12117.956040002568,
+       "net_return_pct": -121.17956040002566,
+       "profit_factor": 0.0,
+       "recovery_factor": -1.0,
+       "sharpe_daily": -12.458235752808209,
+       "trades": 4,
+       "trades_per_week": 0.013333333333333334,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_random_entry DE40 M15"
+     },
+     {
+      "id": "f00756704c5ff128",
+      "metrics": {
+       "max_drawdown_pct": 69.93350130439306,
+       "net_profit": -6964.506492013239,
+       "net_return_pct": -69.6450649201324,
+       "profit_factor": 0.8370137145554057,
+       "recovery_factor": -0.9958755620856844,
+       "sharpe_daily": -1.403487292692077,
+       "trades": 2099,
+       "trades_per_week": 6.996666666666667,
+       "win_rate": 0.2968080038113387
+      },
+      "name": "Baseline baseline_ma_cross DE40 M15"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 29.964978947477295,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.84 (minimaal 1.2).",
+    "OOS recovery factor -0.87 (minimaal 1.5).",
+    "Maximale OOS-drawdown 32.6% (maximaal 15.0%).",
+    "Gemiddelde trade -6.31; 95%-block-bootstrap-CI [-11.91, -0.18]",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: PBO 0.94 > 0.5; WFE niet berekenbaar; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, pbo, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "ma_fast": 25,
+    "ma_slow": 170,
+    "sl_atr": 3.75,
+    "tp_r": 3.75
+   },
+   "rules_nl": "STRATEGIE: Gen trend_ma_cross DE40 M15 8da27e - DE40 M15 - richting: long en short\nMA-kruising: Snelle EMA/SMA kruist trage EMA/SMA.\n\nWANNEER: geen sessiefilter; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: (ema(20) kruist omhoog door ema(190) EN sma(1)@H4 is groter dan ema(50)@H4)\nENTRY SHORT: (ema(20) kruist omlaag door ema(190) EN sma(1)@H4 is kleiner dan ema(50)@H4)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.75 x ATR(14) vanaf de instap\nTAKE PROFIT: 4.0 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: alleen stop loss / take profit\nPARAMETERS: ma_fast=20 (5-30), ma_slow=190 (40-200), sl_atr=2.75 (0.75-4.0), tp_r=4.0 (1.0-4.0)"
+  },
+  {
+   "id": "f3f863dca18ce41f",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "family": "breakout_london",
+   "status": "REJECTED",
+   "l5_metrics": {
+    "avg_r": -0.11015951066986568,
+    "dsr": 1.7612849333672277e-57,
+    "expanding_net": -1519.6232079748488,
+    "expectancy": -4.815129716394986,
+    "max_drawdown_pct": 21.770304318279816,
+    "net_profit": -1762.3374762005649,
+    "net_return_pct": -17.623374762005646,
+    "pbo": 0.5,
+    "profit_factor": 0.7992407814040111,
+    "psr": 0.10526598642633946,
+    "recovery_factor": -0.8051606566420128,
+    "sharpe_daily": -0.5776259359702587,
+    "spread50_net": -932.6045731521324,
+    "trades": 366,
+    "trades_per_week": 1.22,
+    "verdict": "REJECT",
+    "wfe": -3.528915298102412,
+    "win_rate": 0.12295081967213115
+   },
+   "quality_checks": [
+    {
+     "explanation_nl": "366 OOS-trades.",
+     "name": "oos_trades",
+     "status": "PASS",
+     "threshold": 150,
+     "value": 366
+    },
+    {
+     "explanation_nl": "1.22 trades per handelsweek (minimaal 1.0).",
+     "name": "frequency",
+     "status": "PASS",
+     "threshold": 1.0,
+     "value": 1.22
+    },
+    {
+     "explanation_nl": "OOS profit factor 0.80 (minimaal 1.2).",
+     "name": "profit_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.2,
+     "value": 0.7992407814040111
+    },
+    {
+     "explanation_nl": "OOS recovery factor -0.81 (minimaal 1.5).",
+     "name": "recovery_factor_oos",
+     "status": "FAIL",
+     "threshold": 1.5,
+     "value": -0.8051606566420128
+    },
+    {
+     "explanation_nl": "Maximale OOS-drawdown 21.8% (maximaal 15.0%).",
+     "name": "max_dd_oos",
+     "status": "FAIL",
+     "threshold": 15.0,
+     "value": 21.770304318279816
+    },
+    {
+     "explanation_nl": "Gemiddelde trade -4.82; 95%-block-bootstrap-CI [-9.90, 0.72]",
+     "name": "expectancy",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -4.815129716394986
+    },
+    {
+     "explanation_nl": "Winst niet geconcentreerd in een paar dagen.",
+     "name": "concentration",
+     "status": "PASS",
+     "threshold": 0.5,
+     "value": null
+    },
+    {
+     "explanation_nl": "Langste periode zonder trade: 62 dagen (maximaal 60).",
+     "name": "inactivity",
+     "status": "FAIL",
+     "threshold": 60,
+     "value": 61.916666666666664
+    },
+    {
+     "explanation_nl": "Verliesgevend bij +50% spread.",
+     "name": "spread_stress",
+     "status": "FAIL",
+     "threshold": 0.0,
+     "value": -932.6045731521324
+    },
+    {
+     "explanation_nl": "0% van de buurparameters winstgevend.",
+     "name": "param_stability",
+     "status": "FAIL",
+     "threshold": 0.7,
+     "value": 0.0
+    },
+    {
+     "explanation_nl": "Overfit-signalen: WFE -3.53 < 0.5; expanding walk-forward OOS niet winstgevend",
+     "name": "overfit_flags",
+     "status": "FAIL",
+     "threshold": 0,
+     "value": 2
+    }
+   ],
+   "scorecard_verdict": "REJECT",
+   "baseline": {
+    "baselines": [
+     {
+      "id": "bb1155ea1bd7c3d9",
+      "metrics": {
+       "max_drawdown_pct": 0.0,
+       "net_profit": 0.0,
+       "net_return_pct": 0.0,
+       "profit_factor": 0.0,
+       "recovery_factor": 0.0,
+       "sharpe_daily": 0.0,
+       "trades": 0,
+       "trades_per_week": 0.0,
+       "win_rate": 0.0
+      },
+      "name": "Baseline baseline_buy_hold XAUUSD H1"
+     },
+     {
+      "id": "78f1871197fefbc6",
+      "metrics": {
+       "max_drawdown_pct": 13.536681740275549,
+       "net_profit": 634.8615943733963,
+       "net_return_pct": 6.3486159437339635,
+       "profit_factor": 1.0252859596525041,
+       "recovery_factor": 0.3880101324138092,
+       "sharpe_daily": 0.12896482122200525,
+       "trades": 742,
+       "trades_per_week": 2.473333333333333,
+       "win_rate": 0.34097035040431267
+      },
+      "name": "Baseline baseline_random_entry XAUUSD H1"
+     },
+     {
+      "id": "4108e75732ab7762",
+      "metrics": {
+       "max_drawdown_pct": 10.967960835838996,
+       "net_profit": 642.2508703519511,
+       "net_return_pct": 6.422508703519511,
+       "profit_factor": 1.0388712133190166,
+       "recovery_factor": 0.5699377976098552,
+       "sharpe_daily": 0.1673647880918473,
+       "trades": 551,
+       "trades_per_week": 1.8366666666666667,
+       "win_rate": 0.3430127041742287
+      },
+      "name": "Baseline baseline_ma_cross XAUUSD H1"
+     }
+    ],
+    "beats_baseline": false,
+    "buy_and_hold_return_pct": 57.1049757750566,
+    "note_nl": "Baselines over dezelfde walk-forward OOS-periode met standaardparameters. Buy-and-hold wordt getoond als marktreferentie (geen gelijke risico-inzet, dus geen harde eis)."
+   },
+   "reasons_nl": [
+    "OOS profit factor 0.80 (minimaal 1.2).",
+    "OOS recovery factor -0.81 (minimaal 1.5).",
+    "Maximale OOS-drawdown 21.8% (maximaal 15.0%).",
+    "Gemiddelde trade -4.82; 95%-block-bootstrap-CI [-9.90, 0.72]",
+    "Langste periode zonder trade: 62 dagen (maximaal 60).",
+    "Verliesgevend bij +50% spread.",
+    "0% van de buurparameters winstgevend.",
+    "Overfit-signalen: WFE -3.53 < 0.5; expanding walk-forward OOS niet winstgevend",
+    "scorecard REJECT: Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: net_after_costs, profit_factor, max_drawdown, psr, dsr, walk_forward_efficiency, oos_profitability, cost_stress, parameter_stability, drop_best_trades, yearly_consistency.",
+    "verslaat de naive baseline niet over dezelfde OOS-periode"
+   ],
+   "params": {
+    "be_r": 1.0,
+    "cooldown": 3,
+    "sl_atr": 2.0,
+    "tp_r": 3.25
+   },
+   "rules_nl": "STRATEGIE: Gen breakout_london XAUUSD H1 f3f863 - XAUUSD H1 - richting: long en short\nLondon breakout: Doorbraak van de eerste 30-60 minuten van Londen. Ge\u00efnspireerd op Jonas Bertram (IQ Capital dossiers 33_jonas_london_us_orb), eigen onderzoeksvariant; GEEN exacte reconstructie. Bron gebruikt futures/andere instrumenten; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese.\n\nWANNEER: alleen handelen tussen 08:00 en 12:00 (Europe/London, zomertijd-correct; candle-openingstijd telt); na een trade 10 candle(s) wachten (cooldown); maximaal 1 trade(s) per dag; een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle\nENTRY LONG: close kruist omhoog door opening_range_high(30m)\nENTRY SHORT: close kruist omlaag door opening_range_low(30m)\nORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid)\nSTOP LOSS: 2.25 x ATR(14) vanaf de instap\nTAKE PROFIT: 4.0 x R (afstand tot de stop)\nRISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand)\nEXIT: break-even: stop naar instapprijs zodra +1.25R is bereikt\nPARAMETERS: sl_atr=2.25 (0.75-4.0), tp_r=4.0 (1.0-4.0), be_r=1.25 (0.5-1.5), cooldown=10 (1-12)"
+  }
+ ]
+}

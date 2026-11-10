@@ -1,0 +1,2667 @@
+{
+ "schema": "strategy_lab.iq_components/1",
+ "sources": [
+  "strategy_lab/data_cache/library/catalogue.json (strategy.json per dossier)",
+  "dossiers/*/build_spec.md",
+  "dossiers/*/EVIDENCE_MATRIX.md",
+  "dossiers/*/README.md"
+ ],
+ "grade_note_nl": "A/B/C beschrijft alleen de volledigheid van de regels, NIET winstgevendheid.",
+ "naming_rule_nl": "Kandidaten die deze componenten gebruiken heten 'geinspireerd op ..., eigen onderzoeksvariant'; nooit een exacte reconstructie.",
+ "provenance_legend": {
+  "SOURCE_RULE": "Direct in het dossier vermeld en met Dukascopy Bid/Ask OHLC uitvoerbaar.",
+  "RESEARCH_VARIANT": "Eigen interpretatie/invulling van open of discretionaire punten.",
+  "PROXY": "Vereist data die ontbreekt (volume profile, echt volume, VWAP op futuresvolume); benaderd met OHLC.",
+  "NOT_IMPLEMENTABLE": "Niet implementeerbaar met beschikbare data of de rule-spec; reden vermeld."
+ },
+ "totals": {
+  "SOURCE_RULE": 60,
+  "RESEARCH_VARIANT": 68,
+  "PROXY": 24,
+  "NOT_IMPLEMENTABLE": 34
+ },
+ "dossiers": [
+  {
+   "dossier": "01_bruni_low_effort_value_area",
+   "trader": "Gianluca Bruni",
+   "title": "Low Effort / High Result – Value Area Continuation",
+   "kind": "Volume profile / continuation",
+   "evidence_grade": "B",
+   "evidence_status": "B: expliciete onderdelen + externe reconstructie",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "NQ futures in video; andere instrumenten uitsluitend apart valideren",
+   "original_timeframes": [
+    "M15"
+   ],
+   "data_requirements": [
+    "M15 OHLCV met werkelijke futures-volumevoorkeur",
+    "Volume Profile per voltooide sessie: VAH/VAL/POC",
+    "Ontwikkelende huidige-session Value Area",
+    "Structuur-high/-low met vooraf bepaalde definitie",
+    "Nieuwskalender indien nieuwsfilter actief"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "bruni_close_above_prev_high",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Candle sluit boven de high van de vorige candle (short: onder vorige low).",
+     "engine_mapping": "close > high[1]"
+    },
+    {
+     "id": "bruni_vah_level",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "Slot boven vorige sessie-VAH; VAH vervangen door vorige-dag high / sessierange.",
+     "engine_mapping": "close > prev_day_high of window_high",
+     "reason_nl": "geen volume-at-price data (Volume Profile)"
+    },
+    {
+     "id": "bruni_low_volume",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "Volume lager dan vorige candle of SMA(volume,20).",
+     "engine_mapping": "volume_ratio(20) < 1",
+     "reason_nl": "Dukascopy-volume is tick/activiteitsvolume; in deze dataset is het constant 1 per M1-bar, dus geen echt futuresvolume"
+    },
+    {
+     "id": "bruni_tp_2r",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Take profit 2R.",
+     "engine_mapping": "target r_multiple 2"
+    },
+    {
+     "id": "bruni_sl_signal_low",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Stop op low van signaalcandle (secundaire reconstructie).",
+     "engine_mapping": "stop swing lookback 1-2"
+    },
+    {
+     "id": "bruni_developing_va",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Developing value area van de lopende sessie.",
+     "engine_mapping": null,
+     "reason_nl": "vereist volume-at-price; niet te reconstrueren uit OHLC"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 2,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "02_bruni_outcome_regime_risk",
+   "trader": "Gianluca Bruni",
+   "title": "Trade Outcome Autocorrelation & Regime-age Risk",
+   "kind": "Meta-strategy / position sizing",
+   "evidence_grade": "C",
+   "evidence_status": "C: concept bevestigd; exacte algoritmische drempels onbekend",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Portfolio van bewezen basistrategieën",
+   "original_timeframes": [
+    "Trade events + marktperioden"
+   ],
+   "data_requirements": [
+    "Gelogde opeenvolgende trade-uitkomsten, inclusief niet-uitgevoerde signalen",
+    "Punt-in-tijd regimeclassificatie",
+    "Out-of-sample verificatie"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "bruni_meta_risk",
+     "kind": "risk",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Risico conditioneel op eigen trade-uitkomsten/regimeleeftijd (3 staten).",
+     "engine_mapping": null,
+     "reason_nl": "meta-sizing over trade-reeksen valt buiten de rule-spec; criteria en multipliers niet publiek"
+    },
+    {
+     "id": "bruni_no_martingale",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Geen lotverhoging om verliezen terug te winnen.",
+     "engine_mapping": "vaste risk.percent; scale_in standaard uit"
+    },
+    {
+     "id": "bruni_causal_regime",
+     "kind": "context",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Regime alleen uit historie t/m t-1.",
+     "engine_mapping": "causale rule_engine"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "03_matteo_drift_vwap",
+   "trader": "Matteo Conti",
+   "title": "Drift VWAP Pullback – M15 regime + M5 trigger",
+   "kind": "VWAP pullback",
+   "evidence_grade": "A",
+   "evidence_status": "A: gedetailleerd openbaar; timingambiguïteiten",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ/MNQ futures",
+   "original_timeframes": [
+    "M15 voor regime, M5 voor trigger"
+   ],
+   "data_requirements": [
+    "Futures OHLCV en sessie-VWAP vanaf 09:30 America/New_York",
+    "M5- en M15-data correct gesynchroniseerd"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "drift_close_vs_vwap",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "M15-close boven (short: onder) sessie-VWAP.",
+     "engine_mapping": "close > vwap",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "drift_vwap_slope",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "VWAP stijgt (short: daalt).",
+     "engine_mapping": "vwap > vwap[1]",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "drift_60m_return",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Rendement laatste 60 minuten >= +0,1% (short <= -0,1%).",
+     "engine_mapping": "roc(60 min) >= 0.1"
+    },
+    {
+     "id": "drift_counter_candle",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Eerste tegenkleur-candle in de regime-richting.",
+     "engine_mapping": "close < open op signaal-TF (geen apart M5-trigger-TF)"
+    },
+    {
+     "id": "drift_entry_window",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Geen nieuwe entries 09:30-10:30 ET en na 15:30 ET.",
+     "engine_mapping": "session 10:30-15:30 America/New_York"
+    },
+    {
+     "id": "drift_max_trades",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Max 4 nieuwe posities per dag.",
+     "engine_mapping": "max_trades_per_day 4"
+    },
+    {
+     "id": "drift_two_losses_stop",
+     "kind": "risk",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Stop na 2 verliestrades per dag.",
+     "engine_mapping": null,
+     "reason_nl": "geen dagverlies-teller in backtester"
+    },
+    {
+     "id": "drift_points_sl_tp",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "SL 80 / TP 40-50 NQ-punten.",
+     "engine_mapping": "stop/target in ATR of R",
+     "reason_nl": "NQ-puntafstanden zijn niet overdraagbaar naar CFD/FX"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 2,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "04_matteo_vault_break",
+   "trader": "Matteo Conti",
+   "title": "Vault Break – Midnight Noise Barrier + VWAP",
+   "kind": "Long breakout",
+   "evidence_grade": "A",
+   "evidence_status": "A: vaste regels uit transcript",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ mini futures",
+   "original_timeframes": [
+    "M30"
+   ],
+   "data_requirements": [
+    "RTH / Globex data met 00:00 America/Chicago opening",
+    "Dagelijkse ATR-waarden van de voorgaande vijftien VOLTOOIDE sessies",
+    "RTH/actuele sessie-VWAP"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "vault_noise_barrier",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Close boven middernacht-open + 0,30 x gemiddelde sessie-ATR.",
+     "engine_mapping": "close > day_open met ATR-expansiefilter",
+     "reason_nl": "rule_engine kent geen rekenkundige operanden (niveau + x% of + k*ATR)"
+    },
+    {
+     "id": "vault_vwap_confirm",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "Close boven sessie-VWAP.",
+     "engine_mapping": "close > vwap",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "vault_entry_window",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Entries alleen 10:00-14:30 America/Chicago.",
+     "engine_mapping": "session 10:00-14:30 America/Chicago"
+    },
+    {
+     "id": "vault_max_entries",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Max 3 entries per sessie.",
+     "engine_mapping": "max_trades_per_day 3"
+    },
+    {
+     "id": "vault_session_exit",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Sluit om 14:30 CT als SL/TP niet geraakt.",
+     "engine_mapping": "time_exit_bars",
+     "reason_nl": "backtester kent geen klok-exit; benaderd met time_exit_bars"
+    },
+    {
+     "id": "vault_usd_sl_tp",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "TP 800 / SL 1500 USD per NQ-contract.",
+     "engine_mapping": "ATR-stop + R-target",
+     "reason_nl": "contractspecifieke dollarbedragen niet overdraagbaar"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "05_matteo_new_vwap_adx",
+   "trader": "Matteo Conti",
+   "title": "Golden Trio VWAP Pullback – ORB + ADX M1",
+   "kind": "Trend pullback",
+   "evidence_grade": "A",
+   "evidence_status": "A: transcript beschrijft kernregels",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ mini futures, long-only",
+   "original_timeframes": [
+    "M1"
+   ],
+   "data_requirements": [
+    "M1 OHLCV, VWAP en ADX (standaard Wilder) uit historische futures ticks/volume",
+    "Opening Range 08:30-09:00 America/Chicago"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "gt_orb_activation",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Model actief na close boven 30-min opening-range high.",
+     "engine_mapping": "close > opening_range_high(30) als gelijktijdige voorwaarde",
+     "reason_nl": "rule_engine heeft geen dag-state 'geactiveerd'"
+    },
+    {
+     "id": "gt_vwap_reclaim",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Candle sluit opnieuw boven VWAP na aanraking.",
+     "engine_mapping": "close crosses_above vwap",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "gt_adx_falling",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "ADX > 20 en ADX(t) <= ADX(t-1).",
+     "engine_mapping": "adx(14) > 20 en adx <= adx[1]"
+    },
+    {
+     "id": "gt_tp_5bar_high",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP op hoogste high van de vorige 5 bars.",
+     "engine_mapping": "target level donchian_high(5)"
+    },
+    {
+     "id": "gt_sl_20bar_low",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL op laagste low van de vorige 20 bars.",
+     "engine_mapping": "stop swing lookback 20"
+    },
+    {
+     "id": "gt_close_1555",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Sluiten om 15:55.",
+     "engine_mapping": "time_exit_bars",
+     "reason_nl": "backtester kent geen klok-exit; benaderd met time_exit_bars"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "06_matteo_overnight_bias_orb",
+   "trader": "Matteo Conti",
+   "title": "Overnight Bias – Top/Bottom Third + ORB + ADX",
+   "kind": "Opening range breakout",
+   "evidence_grade": "A",
+   "evidence_status": "A: kernregels uit transcript",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ mini futures",
+   "original_timeframes": [
+    "M15"
+   ],
+   "data_requirements": [
+    "Overnight high/low 23:00-08:30 America/Chicago",
+    "RTH open om 08:30 CT",
+    "ADX M15",
+    "ATR van laatste 15 voltooide sessies"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "onb_overnight_third",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Open in bovenste/onderste derde van overnight range bepaalt richting.",
+     "engine_mapping": "close vs window_mid van pre-open venster (helften i.p.v. derden)",
+     "reason_nl": "rule_engine kent geen rekenkundige operanden (niveau + x% of + k*ATR); venster over middernacht niet ondersteund"
+    },
+    {
+     "id": "onb_orb15_break",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Gesloten candle boven OR-high (08:30-08:45 CT), short gespiegeld.",
+     "engine_mapping": "close > opening_range_high(15), session 08:30 CT"
+    },
+    {
+     "id": "onb_adx20",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "ADX > 20, hoeft niet te stijgen.",
+     "engine_mapping": "adx(14) > 20"
+    },
+    {
+     "id": "onb_max1",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Max 1 trade per dag.",
+     "engine_mapping": "max_trades_per_day 1"
+    },
+    {
+     "id": "onb_tp_3r",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP = 3R.",
+     "engine_mapping": "target r_multiple 3"
+    },
+    {
+     "id": "onb_stop_session_atr",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Stop = 0,30 x gemiddelde ATR van 15 sessies.",
+     "engine_mapping": "ATR-stop op signaal-TF",
+     "reason_nl": "sessie-ATR-gemiddelde niet als operand beschikbaar"
+    },
+    {
+     "id": "onb_exit_1430",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Sluit om 14:30 CT.",
+     "engine_mapping": "time_exit_bars",
+     "reason_nl": "backtester kent geen klok-exit; benaderd met time_exit_bars"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 4,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "07_patrick_3touch_range",
+   "trader": "Patrick Nill",
+   "title": "Three Touch – Fair Value Range Break/Retest",
+   "kind": "Range breakout / reclaim",
+   "evidence_grade": "B",
+   "evidence_status": "B: principe openbaar; cruciale zone-identificatie is discretionair",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "Indexfutures (o.a. NQ), discretionair",
+   "original_timeframes": [
+    "Range op hoger TF / entry lager TF"
+   ],
+   "data_requirements": [
+    "Session Volume Profile/Market Profile voor de range",
+    "Swing/structuur-eventlog",
+    "OHLCV"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "p3t_three_touch",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Dezelfde rangegrens driemaal getest.",
+     "engine_mapping": "range_touch_low/high touches=3, tolerantie in ATR",
+     "reason_nl": "Patrick publiceert zijn exacte range-regels niet"
+    },
+    {
+     "id": "p3t_sweep_reclaim",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Doorsteek onder/boven rangegrens en reclaim.",
+     "engine_mapping": "range_touch_* pattern"
+    },
+    {
+     "id": "p3t_breakout_retest",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Alternatief: breakout/retest na herhaalde bevestiging.",
+     "engine_mapping": "breakout + pullback"
+    },
+    {
+     "id": "p3t_value_range",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "Fair-value-range op basis van Volume Profile.",
+     "engine_mapping": "donchian range",
+     "reason_nl": "geen volume-at-price data"
+    },
+    {
+     "id": "p3t_tp_other_side",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP andere rangezijde.",
+     "engine_mapping": "target level donchian (tegenoverliggende grens)"
+    },
+    {
+     "id": "p3t_stop_behind_level",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Stop achter het niveau waar het idee ongeldig wordt.",
+     "engine_mapping": "stop swing"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 4,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "08_patrick_pbd_structure",
+   "trader": "Patrick Nill",
+   "title": "P / B / D Market Structure and Rotation",
+   "kind": "Market structure classification",
+   "evidence_grade": "B",
+   "evidence_status": "B: macroconcept, geen volledig mechanisch systeem",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "Indexfutures",
+   "original_timeframes": [
+    "Multi-timeframe"
+   ],
+   "data_requirements": [
+    "OHLCV",
+    "Structure labels",
+    "Market/volume profile indien beschikbaar"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "pbd_impulse_balance",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Sterke impuls gevolgd door consolidatie.",
+     "engine_mapping": "efficiency_ratio hoog daarna range_width_atr laag"
+    },
+    {
+     "id": "pbd_no_mid_range",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Niet in het midden van de balans handelen.",
+     "engine_mapping": "afstand tot range_mid"
+    },
+    {
+     "id": "pbd_tp_next_boundary",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "TP bij volgende rangegrens.",
+     "engine_mapping": "target level"
+    },
+    {
+     "id": "pbd_labels",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Formele P/B/D-labels.",
+     "engine_mapping": null,
+     "reason_nl": "wiskundige definitie niet gegeven"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "09_pietro_effort_result",
+   "trader": "Pietro Valastro",
+   "title": "Effort vs Result – Four Orderflow States",
+   "kind": "Volume/price regime feature",
+   "evidence_grade": "B",
+   "evidence_status": "B: vier concepten duidelijk; drempels nog te kiezen",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "NQ futures, volume-data",
+   "original_timeframes": [
+    "M1/M5/event-level"
+   ],
+   "data_requirements": [
+    "Echt verhandeld futuresvolume",
+    "Candle-range/ATR",
+    "Relatief volume per time-of-day",
+    "Delta/footprint voor authentieke bevestiging"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "er_relative_range",
+     "kind": "context",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "relativized_range = (H-L)/ATR.",
+     "engine_mapping": "range_atr"
+    },
+    {
+     "id": "er_relative_volume",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "relativized_volume = V / verwacht volume per tijdstip.",
+     "engine_mapping": "volume_ratio",
+     "reason_nl": "Dukascopy-volume is tick/activiteitsvolume; in deze dataset is het constant 1 per M1-bar, dus geen echt futuresvolume"
+    },
+    {
+     "id": "er_continuation",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Grote range + laag volume -> voortzetting in bias.",
+     "engine_mapping": "range_atr hoog & volume_ratio laag",
+     "reason_nl": "Dukascopy-volume is tick/activiteitsvolume; in deze dataset is het constant 1 per M1-bar, dus geen echt futuresvolume"
+    },
+    {
+     "id": "er_reversal",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Hoog volume + kleine range bij extreem -> reversal.",
+     "engine_mapping": "range_atr laag & volume_ratio hoog",
+     "reason_nl": "Dukascopy-volume is tick/activiteitsvolume; in deze dataset is het constant 1 per M1-bar, dus geen echt futuresvolume"
+    },
+    {
+     "id": "er_fixed_horizon",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Test op horizon 1/3/6/12 candles met vaste R.",
+     "engine_mapping": "time_exit_bars + R-stop/target"
+    },
+    {
+     "id": "er_delta",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Delta/footprint-bevestiging.",
+     "engine_mapping": null,
+     "reason_nl": "geen bid/ask-delta of footprint data"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 3,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "10_fabio_nasdaq_effort",
+   "trader": "Fabio Valentini",
+   "title": "Nasdaq Effort – Value Migration + Aggression/Absorption",
+   "kind": "Institutional scalping",
+   "evidence_grade": "B",
+   "evidence_status": "B: concept openbaar; eigen model proprietary",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "NQ futures",
+   "original_timeframes": [
+    "Intraday scalping / orderflow"
+   ],
+   "data_requirements": [
+    "Intraday Volume Profile",
+    "Bid/ask delta en footprint",
+    "Geclassificeerde grote marktorders",
+    "Tick-data / volume-at-price"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "fab_value_migration",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "Value migration omhoog/omlaag.",
+     "engine_mapping": "VWAP-helling / vorige-dag range",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "fab_aggression",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Agressie vs absorptie omslagpunt.",
+     "engine_mapping": null,
+     "reason_nl": "orderflow/footprint vereist"
+    },
+    {
+     "id": "fab_large_trades",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Grote transacties in dezelfde bias.",
+     "engine_mapping": null,
+     "reason_nl": "time & sales met aggressor vereist"
+    },
+    {
+     "id": "fab_avoid_chop",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Choppy regime vermijden.",
+     "engine_mapping": "efficiency_ratio / ADX-filter"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 2
+   }
+  },
+  {
+   "dossier": "11_imre_one_time_framing",
+   "trader": "Imre Gams",
+   "title": "One-Time Framing – M/W/D Regime Filter",
+   "kind": "Multi-timeframe regime gate",
+   "evidence_grade": "A",
+   "evidence_status": "A-: filter expliciet, complete entrystrategie niet",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Futures en brede markten",
+   "original_timeframes": [
+    "Maand, week, dag"
+   ],
+   "data_requirements": [
+    "Gesloten maand-, week- en dagcandles met goed rolloverbeleid"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "otf_daily_state",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Bullish: H>H[1], L>L[1], C>H[1] op afgesloten candles (bearish gespiegeld).",
+     "engine_mapping": "sma(1, source=high/low/close)@D1 met shift"
+    },
+    {
+     "id": "otf_weekly_monthly",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Week- en maandframing.",
+     "engine_mapping": null,
+     "reason_nl": "rule_engine ondersteunt geen W1/MN timeframe"
+    },
+    {
+     "id": "otf_neutral",
+     "kind": "context",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Niet-overeenstemmende staten = neutraal (geen trendtrades).",
+     "engine_mapping": "geen entry zonder state"
+    },
+    {
+     "id": "otf_range_when_neutral",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Range-modellen apart testen bij neutraal.",
+     "engine_mapping": "mean-reversion familie"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "12_imre_put_insurance_edge",
+   "trader": "Imre Gams",
+   "title": "Institutional Put Demand / Insurance Premium",
+   "kind": "Volatility risk premium",
+   "evidence_grade": "C",
+   "evidence_status": "C: economische verklaring, geen kopieerbaar handelssysteem",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Indexopties",
+   "original_timeframes": [
+    "Dagen/maanden"
+   ],
+   "data_requirements": [
+    "Option chain history",
+    "IV skew and Greeks",
+    "Margin, fees, tail hedging",
+    "Exercise/assignment"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "put_premium",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Volatiliteitsrisicopremie via putverkoop.",
+     "engine_mapping": null,
+     "reason_nl": "optieketen/IV/Greeks niet beschikbaar"
+    },
+    {
+     "id": "put_tail_hedge",
+     "kind": "risk",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Tail-hedge en margin-stress.",
+     "engine_mapping": null,
+     "reason_nl": "optiedata vereist"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 2
+   }
+  },
+  {
+   "dossier": "13_andrea_failed_auction",
+   "trader": "Andrea Cimi",
+   "title": "Failed Auction at Previous Value Area Low",
+   "kind": "Auction Market Theory / orderflow",
+   "evidence_grade": "B",
+   "evidence_status": "B: A+ setup inclusief voorbeeldvolumes, discretionaire rest",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "ES futures",
+   "original_timeframes": [
+    "M1/footprint"
+   ],
+   "data_requirements": [
+    "ES tick trades en echte contractvolumes",
+    "Bid-ask delta, footprint, session Volume Profile",
+    "VAH, VAL en macro/gamma context"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "fa_dip_below_val",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Prijs duikt onder vorige VAL en keert terug in value.",
+     "engine_mapping": "liquidity sweep onder prev_day_low",
+     "reason_nl": "VAL vervangen door vorige-dag low"
+    },
+    {
+     "id": "fa_absorption",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Volume-drop en absorptie van verkopers.",
+     "engine_mapping": null,
+     "reason_nl": "footprint/delta vereist"
+    },
+    {
+     "id": "fa_stop_rejected_low",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "SL achter de verworpen low.",
+     "engine_mapping": "stop swing (kleine lookback)"
+    },
+    {
+     "id": "fa_target_value",
+     "kind": "exit",
+     "provenance": "PROXY",
+     "text_nl": "Doel richting acceptatie in value area.",
+     "engine_mapping": "target level prev_day_close / range_mid",
+     "reason_nl": "value area niet beschikbaar"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 2,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "14_candace_turtle_soup",
+   "trader": "Candace Lau",
+   "title": "Turtle Soup – Liquidity Sweep Reversal",
+   "kind": "ICT liquidity reversal",
+   "evidence_grade": "B",
+   "evidence_status": "B: model besproken, exacte thresholds onvolledig",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ futures met ES intermarket check",
+   "original_timeframes": [
+    "M1–M15 (video bevestigen)"
+   ],
+   "data_requirements": [
+    "OHLCV NQ en ES synchroon",
+    "Session/swing liquidity levels",
+    "Eventvolgorde voor sweep/reclaim"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ts_sweep_reclaim",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Sweep van een low en snelle reclaim (short gespiegeld).",
+     "engine_mapping": "liquidity_sweep_low/high pattern"
+    },
+    {
+     "id": "ts_liquidity_level",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Vooraf bestaande liquidity highs/lows.",
+     "engine_mapping": "vorige N-bar extreme of prev_day high/low"
+    },
+    {
+     "id": "ts_structure_confirm",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Structuurbevestiging op execution-TF.",
+     "engine_mapping": "mss_bull/bear"
+    },
+    {
+     "id": "ts_sl_beyond_sweep",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL onder sweep-low / boven sweep-high.",
+     "engine_mapping": "stop swing"
+    },
+    {
+     "id": "ts_target_opposite",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Target tegenoverliggende liquiditeit.",
+     "engine_mapping": "target level donchian/prev_day"
+    },
+    {
+     "id": "ts_es_check",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "NQ tegen ES als bevestiging.",
+     "engine_mapping": null,
+     "reason_nl": "tweede instrument niet in rule-spec"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "15_candace_ict_2022",
+   "trader": "Candace Lau",
+   "title": "ICT 2022 – Displacement + Fair Value Gap Retest",
+   "kind": "FVG continuation",
+   "evidence_grade": "B",
+   "evidence_status": "B: kernmodel, detailverificatie nodig",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ futures",
+   "original_timeframes": [
+    "M1/M5; hogere context"
+   ],
+   "data_requirements": [
+    "OHLCV",
+    "FVG zones met punt-in-tijd constructie",
+    "Swing structure + ES confirmation"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ict_displacement",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Displacement / market structure shift.",
+     "engine_mapping": "mss_* of swing_break_*"
+    },
+    {
+     "id": "ict_fvg_def",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Bullish FVG: high candle1 < low candle3 (bearish omgekeerd).",
+     "engine_mapping": "fvg_bull / fvg_bear"
+    },
+    {
+     "id": "ict_fvg_retest",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Eerste terugkeer in de FVG (limit).",
+     "engine_mapping": "fvg_*_retest met slotbevestiging, geen limit",
+     "reason_nl": "intrabar limit-fill niet reconstrueerbaar op OHLC"
+    },
+    {
+     "id": "ict_stop_swing",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Stop onder de swing/sweep.",
+     "engine_mapping": "stop swing"
+    },
+    {
+     "id": "ict_target_external",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Target externe liquiditeit.",
+     "engine_mapping": "target level prev_day_high/low"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "16_chris_creamer_3layer",
+   "trader": "Chris Creamer",
+   "title": "Three-layer Gamma / Discount / Absorption",
+   "kind": "Orderflow scalp",
+   "evidence_grade": "B",
+   "evidence_status": "B: zeer duidelijk framework; orderflowtrigger discretionair",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "MNQ/NQ futures",
+   "original_timeframes": [
+    "Higher timeframes plus M1/M5"
+   ],
+   "data_requirements": [
+    "Options gamma exposure and daily levels",
+    "Volume Profile and VWAP/fib zone",
+    "Footprint delta and bid/ask volume"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "cc_gamma",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Gamma-regime.",
+     "engine_mapping": null,
+     "reason_nl": "optie-gammadata niet beschikbaar"
+    },
+    {
+     "id": "cc_discount_zone",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "Discount/premium zone.",
+     "engine_mapping": "onder/boven VWAP of range_mid",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "cc_first_90min",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Eerste 90 minuten na US cash open.",
+     "engine_mapping": "session 09:30-11:00 America/New_York"
+    },
+    {
+     "id": "cc_absorption",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Footprint-absorptie als trigger.",
+     "engine_mapping": null,
+     "reason_nl": "footprint vereist"
+    },
+    {
+     "id": "cc_early_be",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Vroege break-even (expliciet testen).",
+     "engine_mapping": "break_even"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 2
+   }
+  },
+  {
+   "dossier": "17_chris_premarket_scenarios",
+   "trader": "Chris Creamer",
+   "title": "Three Pre-market Scenarios / Live Breakout",
+   "kind": "Pre-market decision tree",
+   "evidence_grade": "B",
+   "evidence_status": "B: planmethodiek geen volledig algoritme",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "NQ/MNQ futures",
+   "original_timeframes": [
+    "M1/M5 + higher context"
+   ],
+   "data_requirements": [
+    "Premarket price/levels",
+    "Gamma/volume profile",
+    "Live tape for authentic execution"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "pm_frozen_levels",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Premarket niveaus vooraf bevriezen.",
+     "engine_mapping": "window_high/low pre-open venster"
+    },
+    {
+     "id": "pm_breakout_scenario",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Breakout-scenario alleen bij bevestiging.",
+     "engine_mapping": "close boven premarket range"
+    },
+    {
+     "id": "pm_orderflow",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Orderflow-bevestiging.",
+     "engine_mapping": null,
+     "reason_nl": "tape/footprint vereist"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "18_mike_crt_3candle",
+   "trader": "Mike Babayan (Nitro Trades)",
+   "title": "CRT Three-Candle Sweep & Break",
+   "kind": "Three-candle reversal",
+   "evidence_grade": "A",
+   "evidence_status": "A-: kernentry/target en risk openbaar",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Indexfutures NQ/ES",
+   "original_timeframes": [
+    "H1, M30 of M15"
+   ],
+   "data_requirements": [
+    "OHLC-data per gekozen timeframe",
+    "NY sessie en economische agenda"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "crt_sweep_inside",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "C2 low < C1 low en C2 sluit binnen C1-range (short omgekeerd).",
+     "engine_mapping": "crt_bull/crt_bear"
+    },
+    {
+     "id": "crt_c3_break",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Entry tijdens C3 op break boven C2-high.",
+     "engine_mapping": "C3 slot boven C2-high, markt op volgende open",
+     "reason_nl": "intrabar trigger vereist M1/ticks"
+    },
+    {
+     "id": "crt_tp_c1",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP = C1 high (short: C1 low).",
+     "engine_mapping": "target level high[2] / low[2]"
+    },
+    {
+     "id": "crt_stop_rr",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Stop afgeleid van 1.5:1 R:R t.o.v. vooraf bepaald TP.",
+     "engine_mapping": "ATR- of swing-stop",
+     "reason_nl": "stop-uit-target niet uitdrukbaar in rule-spec"
+    },
+    {
+     "id": "crt_ny_window",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "New York 09:30-12:00 ET.",
+     "engine_mapping": "session 09:30-12:00 America/New_York"
+    },
+    {
+     "id": "crt_htf_bias",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Bias op higher-TF swing-extremen.",
+     "engine_mapping": "HTF EMA-filter"
+    },
+    {
+     "id": "crt_trades_day",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Een tot twee trades per dag.",
+     "engine_mapping": "max_trades_per_day 2"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 4,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "19_mnq_atr_extreme_long",
+   "trader": "Anonieme MNQ-trader (IQ reverse engineering)",
+   "title": "MNQ ATR Extreme – 3.1 ATR Lower Band",
+   "kind": "Mean-reversion long",
+   "evidence_grade": "A",
+   "evidence_status": "A: IQ video presenteert gereduceerde exacte regels",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "MNQ futures",
+   "original_timeframes": [
+    "M5"
+   ],
+   "data_requirements": [
+    "M5 OHLC",
+    "ATR met niet-lekkende indexering",
+    "Intrabar fill and stop/target sequencing"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "atrx_band",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Band = close vorige bar - 3,1 x ATR vorige bar.",
+     "engine_mapping": "atr_band_lower(mult 3.1)"
+    },
+    {
+     "id": "atrx_touch",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Limit/touch-entry op de band.",
+     "engine_mapping": "low <= band op slot, markt op volgende open",
+     "reason_nl": "limit-fill op de band intrabar niet gemodelleerd"
+    },
+    {
+     "id": "atrx_tp",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP +2 x ATR.",
+     "engine_mapping": "target atr mult 2"
+    },
+    {
+     "id": "atrx_sl",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL -1,5 x ATR.",
+     "engine_mapping": "stop atr mult 1.5"
+    },
+    {
+     "id": "atrx_skip_open",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Openingscandle overslaan.",
+     "engine_mapping": "sessiefilter na open"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "20_mnq_shooting_star_short",
+   "trader": "Anonieme MNQ-trader (IQ reverse engineering)",
+   "title": "MNQ One-Candle Shooting Star – Timed Short",
+   "kind": "Price action scalp",
+   "evidence_grade": "B",
+   "evidence_status": "B: kernconcept, candle thresholds ontbreken",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "MNQ futures",
+   "original_timeframes": [
+    "M5"
+   ],
+   "data_requirements": [
+    "M5 OHLC",
+    "Candle geometry",
+    "intrabar execution"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ss_star",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Shooting star: grote bovenlont, kleine body.",
+     "engine_mapping": "pin_bear (eigen ratio's)",
+     "reason_nl": "exacte wick/body ratio onbekend"
+    },
+    {
+     "id": "ss_time_exit",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Sluit na een candle.",
+     "engine_mapping": "time_exit_bars 1"
+    },
+    {
+     "id": "ss_risk_cap",
+     "kind": "risk",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Noodstop toegevoegd (bron heeft geen prijsstop).",
+     "engine_mapping": "ATR-stop"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "21_trader_math_hurst_autocorr",
+   "trader": "Trader Math (anonieme IQ trader)",
+   "title": "Hurst + Autocorrelation + 5-bar Breakout",
+   "kind": "Statistical breakout",
+   "evidence_grade": "B",
+   "evidence_status": "B: IQ reverse engineered proxy, niet origineel exact algoritme",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Futures / instrument in video nazien",
+   "original_timeframes": [
+    "M5? oorspronkelijke video nazien"
+   ],
+   "data_requirements": [
+    "OHLC, ATR20",
+    "Hurst-proxy per eindbar",
+    "Autocorrelation lag5 over 20 candles"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "tm_hurst",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Hurst-proxy > 0,50.",
+     "engine_mapping": "hurst (eigen aggregated-variance proxy) > 0.5",
+     "reason_nl": "exacte Hurst-estimator onbekend"
+    },
+    {
+     "id": "tm_acf",
+     "kind": "filter",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Autocorrelatie lag 5 over 20 candles <= -0,10.",
+     "engine_mapping": "autocorr(20, lag 5) <= -0.1"
+    },
+    {
+     "id": "tm_breakout5",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Long als close boven hoogste high van vorige 5 candles.",
+     "engine_mapping": "close > donchian_high(5)[1]"
+    },
+    {
+     "id": "tm_exits",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Testvariant: TP 5 x ATR(20), trailing 4 x ATR(20) (IQ-reconstructie).",
+     "engine_mapping": "target atr 5 + trailing atr 4"
+    },
+    {
+     "id": "tm_short_mirror",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Short niet bevestigd; spiegeling is eigen variant.",
+     "engine_mapping": "direction both"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "22_lewis_seasonality",
+   "trader": "Lewis/Luis Trumpeter",
+   "title": "Hedge-Fund Seasonality – Fixed Calendar Bias",
+   "kind": "Calendar/statistical edge",
+   "evidence_grade": "B",
+   "evidence_status": "B: video behandelt code en concrete edge; grenzen niet volledig geïdentificeerd",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Instrument(en) in video verifiëren",
+   "original_timeframes": [
+    "Dagdata / kalender"
+   ],
+   "data_requirements": [
+    "Dagelijkse OHLC op lang historisch bereik",
+    "Exchange kalender incl feestdagen",
+    "Corporate actions bij aandelen",
+    "Tijdzone"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ls_calendar_window",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Entry op vast kalendervenster.",
+     "engine_mapping": "calendar hour/weekday filter",
+     "reason_nl": "exacte data/vensters uit video niet bevestigd"
+    },
+    {
+     "id": "ls_time_exit",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Exit op vooraf vastgelegde tijd.",
+     "engine_mapping": "time_exit_bars"
+    },
+    {
+     "id": "ls_no_stop",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Bron toont variant zonder stop; hier altijd brede stop.",
+     "engine_mapping": "percent/ATR-stop"
+    },
+    {
+     "id": "ls_multiple_testing",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Multiple-testing en selectiebias controleren.",
+     "engine_mapping": "dedup + DSR in factory"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "23_robert_3vwap_bookmap",
+   "trader": "Robert Rother",
+   "title": "Three VWAPs + Bookmap Liquidity Pullback",
+   "kind": "VWAP liquidity scalping",
+   "evidence_grade": "B",
+   "evidence_status": "B: chartconcept + 10tick stop; volledige signalcode ontbreekt",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "ES/NQ futures",
+   "original_timeframes": [
+    "Tick/Bookmap"
+   ],
+   "data_requirements": [
+    "Drie expliciet verschillende VWAP ankers (niet alle anchors publiek vastgelegd)",
+    "Bookmap heatmap / orderbook history",
+    "Executed volumes & trades"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "rv_vwap_pullback",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Pullback naar relevante VWAP.",
+     "engine_mapping": "close crosses vwap in trendrichting",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "rv_bookmap",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Zichtbare grote liquiditeit + agressie.",
+     "engine_mapping": null,
+     "reason_nl": "orderboekhistorie vereist"
+    },
+    {
+     "id": "rv_10tick_stop",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "10-tick stop.",
+     "engine_mapping": "ATR-stop",
+     "reason_nl": "tickafstand niet overdraagbaar"
+    },
+    {
+     "id": "rv_no_averaging",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Niet bijkopen in verliezen.",
+     "engine_mapping": "geen scale_in bij verlies (backtester: winners-only)"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "24_marco_big_trades",
+   "trader": "Marco Boesing",
+   "title": "Big Trades – Accretion vs Absorption with VWAP",
+   "kind": "Institutional orderflow scalp",
+   "evidence_grade": "B",
+   "evidence_status": "B: cause/response beschreven; exacte thresholds onbekend",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "ES/NQ futures",
+   "original_timeframes": [
+    "Tick/print and footprint"
+   ],
+   "data_requirements": [
+    "Times & sales with aggressor classification",
+    "Bookmap / large print markers",
+    "VWAP and standard deviation bands"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "bt_big_prints",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Accretion vs absorption van grote prints.",
+     "engine_mapping": null,
+     "reason_nl": "time & sales met aggressor vereist"
+    },
+    {
+     "id": "bt_vwap_sd_targets",
+     "kind": "exit",
+     "provenance": "PROXY",
+     "text_nl": "Targets VWAP +/- standaarddeviatie.",
+     "engine_mapping": "target level bb_upper/bb_lower",
+     "reason_nl": "VWAP-SD-banden niet in engine; Bollinger als proxy"
+    },
+    {
+     "id": "bt_pyramid_winners",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Alleen winnaars bijbouwen, total risk cap.",
+     "engine_mapping": "scale_in (opt-in allow_scale_in)"
+    },
+    {
+     "id": "bt_no_martingale",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Geen martingale.",
+     "engine_mapping": "scale_in alleen bij winst"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "25_matthias_bookmap_scalp",
+   "trader": "Matthias",
+   "title": "Bookmap VWAP/Market Structure Scalping",
+   "kind": "Live liquidity scalp",
+   "evidence_grade": "B",
+   "evidence_status": "B: live execution beschreven; geen complete mechanische tabel",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NQ/ES futures",
+   "original_timeframes": [
+    "Tick / seconds / M1"
+   ],
+   "data_requirements": [
+    "L2 liquidity heatmap",
+    "Times & sales",
+    "VWAP and structure highs/lows"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "mb_l2",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "L2-liquidity heatmap.",
+     "engine_mapping": null,
+     "reason_nl": "orderboekdata vereist"
+    },
+    {
+     "id": "mb_vwap_structure",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "VWAP + structuur.",
+     "engine_mapping": "vwap + swing_break",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    },
+    {
+     "id": "mb_max3",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Ca. drie trades per dag.",
+     "engine_mapping": "max_trades_per_day 3"
+    },
+    {
+     "id": "mb_add_on_confirm",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Size pas toevoegen na bevestiging.",
+     "engine_mapping": "scale_in (opt-in)"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "26_henrik_profile_singleprints",
+   "trader": "Henrik",
+   "title": "Previous Day VAH/VAL/VPOC/Single Prints Tight Stop",
+   "kind": "Volume Profile scalping",
+   "evidence_grade": "B",
+   "evidence_status": "B: niveaus en stopfilosofie beschreven",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "NQ futures",
+   "original_timeframes": [
+    "Intraday with daily volume profile"
+   ],
+   "data_requirements": [
+    "TPO/Volume Profile voor vorige sessie",
+    "M1 tick or footprint for entries",
+    "Delta/Orderbook"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "hp_prev_levels",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "Vorige-dag VAH/VAL/VPOC.",
+     "engine_mapping": "prev_day_high/low/close",
+     "reason_nl": "geen volume profile"
+    },
+    {
+     "id": "hp_single_prints",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "TPO single prints.",
+     "engine_mapping": null,
+     "reason_nl": "TPO-data vereist"
+    },
+    {
+     "id": "hp_accept_reject",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Acceptatie/afwijzing bij vorig niveau.",
+     "engine_mapping": "sweep/reclaim van prev_day level"
+    },
+    {
+     "id": "hp_tight_stop",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Krappe structurele stop, groot target.",
+     "engine_mapping": "swing-stop + hoog R-target"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "27_tim_liquidation_sweep",
+   "trader": "Tim Flossbach",
+   "title": "Crypto Liquidation Sweep + Order Block Retest",
+   "kind": "Liquidity sweep / crypto swing",
+   "evidence_grade": "B",
+   "evidence_status": "B: entry-context plus RR zichtbaar, exacte indicators proprietary",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "BTC / crypto",
+   "original_timeframes": [
+    "H1/H4 + lower execution"
+   ],
+   "data_requirements": [
+    "Exchange OHLCV",
+    "Liquidation heatmap/position data vendor",
+    "Order blocks uit historische structurele candles"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "tl_liq_clusters",
+     "kind": "context",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Liquidatieclusters (heatmap).",
+     "engine_mapping": null,
+     "reason_nl": "proprietary liquidatiedata"
+    },
+    {
+     "id": "tl_sweep_proxy",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "Sweep van geclusterde liquiditeit.",
+     "engine_mapping": "liquidity_sweep op vorige extremen",
+     "reason_nl": "OHLC-extremen als proxy voor liquidatieclusters"
+    },
+    {
+     "id": "tl_ob_retest",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Retest van order block.",
+     "engine_mapping": "fvg_*_retest / pullback"
+    },
+    {
+     "id": "tl_tp_2r",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Minimaal 2:1.",
+     "engine_mapping": "target r_multiple >= 2"
+    },
+    {
+     "id": "tl_htf_bias",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Higher-TF bias.",
+     "engine_mapping": "HTF EMA-filter"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "28_darius_gold_volume_profile",
+   "trader": "Darius FX",
+   "title": "Darius FX – One-Timeframe Volume Profile Gold Short",
+   "kind": "Gold volume profile scalp",
+   "evidence_grade": "C",
+   "evidence_status": "C: video-hoofdstukken bekend, feitelijke drempels niet volledig uitgeschreven",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "XAUUSD / gold futures depending feed",
+   "original_timeframes": [
+    "Video één timeframe: exacte eenheid te controleren"
+   ],
+   "data_requirements": [
+    "Price-volume-at-price",
+    "Exacte XAU feed/futures vs CFD",
+    "Sessions"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "dg_no_trade_zone",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Volume-profile no-trade-zone.",
+     "engine_mapping": null,
+     "reason_nl": "volume-at-price vereist"
+    },
+    {
+     "id": "dg_session_times",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Referentietijden 08:00/15:30.",
+     "engine_mapping": "sessiefilter"
+    },
+    {
+     "id": "dg_entry_exit",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Entry/SL/TP niet bevestigd.",
+     "engine_mapping": null,
+     "reason_nl": "regels niet openbaar"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 2
+   }
+  },
+  {
+   "dossier": "29_hannes_orb",
+   "trader": "Hannes",
+   "title": "Opening Range Breakout with 0.02% Buffer",
+   "kind": "Opening range breakout",
+   "evidence_grade": "B",
+   "evidence_status": "B: grotendeels openbaar; candletiming dubbelzinnig",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NASDAQ, S&P, DAX futures",
+   "original_timeframes": [
+    "M15"
+   ],
+   "data_requirements": [
+    "M15 OHLC ticks",
+    "Relevante Duitse/US openingsuren en DST",
+    "Symbol tick size"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ho_reference_candle",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "15-minuten referentiecandle rond de opening.",
+     "engine_mapping": "opening_range(15) bij cash open",
+     "reason_nl": "artikel noemt half uur voor open; niet geverifieerd"
+    },
+    {
+     "id": "ho_buffer",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Break met 0,02% buffer.",
+     "engine_mapping": "close boven OR-high (slotbevestiging i.p.v. %-buffer)",
+     "reason_nl": "rule_engine kent geen rekenkundige operanden (niveau + x% of + k*ATR)"
+    },
+    {
+     "id": "ho_sl_pct",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL 0,2% van entry.",
+     "engine_mapping": "stop percent 0.2"
+    },
+    {
+     "id": "ho_tp_2r",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "TP 2R.",
+     "engine_mapping": "target r_multiple 2"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "30_patrick_fvg_last",
+   "trader": "Patrick (The Profit Zone, NOT Patrick Nill)",
+   "title": "Last FVG Before Structure Break – Retest",
+   "kind": "ICT/FVG",
+   "evidence_grade": "B",
+   "evidence_status": "B: basismodel openbaar in IQ artikel",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Futures/indices",
+   "original_timeframes": [
+    "Multi timeframe"
+   ],
+   "data_requirements": [
+    "OHLC",
+    "Market structure identification",
+    "3-candle FVG",
+    "Optional CVD/LVN data"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "pf_structure_break",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Sterke structure break.",
+     "engine_mapping": "swing_break_* / mss_*"
+    },
+    {
+     "id": "pf_last_fvg_retest",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Terugkeer naar laatste FVG voor de break.",
+     "engine_mapping": "fvg_*_retest (laatste gap)"
+    },
+    {
+     "id": "pf_sl_swing",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL buiten recente swing.",
+     "engine_mapping": "stop swing"
+    },
+    {
+     "id": "pf_partial_1r",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Partieel rond 1R.",
+     "engine_mapping": "break_even op 1R",
+     "reason_nl": "geen partiele exits in backtester"
+    },
+    {
+     "id": "pf_cvd_lvn",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "CVD-divergentie / LVN.",
+     "engine_mapping": null,
+     "reason_nl": "delta/volume profile vereist"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "31_heiko_6e_vpoc_reversion",
+   "trader": "Heiko Harder",
+   "title": "6E Renko/VWAP/VPOC Delta Exhaustion Reversal",
+   "kind": "VWAP mean reversion / scalping",
+   "evidence_grade": "B",
+   "evidence_status": "B: beschreven strategie, geen exacte algoritmische triggers",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "6E EURUSD futures",
+   "original_timeframes": [
+    "Renko (brick size onbekend)"
+   ],
+   "data_requirements": [
+    "6E futures tick volumes and bid/ask delta",
+    "Renko bricking without lookahead",
+    "VWAP and VPOC from volume profile"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "hk_renko_delta",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Renko + delta-uitputting.",
+     "engine_mapping": null,
+     "reason_nl": "delta en lookahead-vrije Renko vereist"
+    },
+    {
+     "id": "hk_vwap_reversion",
+     "kind": "exit",
+     "provenance": "PROXY",
+     "text_nl": "Terug naar volgend volumezwaartepunt.",
+     "engine_mapping": "target level vwap",
+     "reason_nl": "VWAP op Dukascopy-volume (constant -> feitelijk tijdgewogen TWAP); geen echte futures-sessie-VWAP"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "32_andre_trend_color_change",
+   "trader": "Andre Witzel",
+   "title": "Strong Trend + One Opposite Candle Pullback",
+   "kind": "Minimal pullback trend following",
+   "evidence_grade": "B",
+   "evidence_status": "B: kwalitatieve regels publiek",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "Indices / unspecified",
+   "original_timeframes": [
+    "M1/M5? verifiëren"
+   ],
+   "data_requirements": [
+    "OHLC",
+    "Trend classifier higher highs/lows"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ac_uptrend_hh_hl",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Uptrend met hogere highs/lows.",
+     "engine_mapping": "structure_up (pivot-sterkte eigen keuze)"
+    },
+    {
+     "id": "ac_one_red",
+     "kind": "context",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Een rode candle binnen stijgende structuur.",
+     "engine_mapping": "close[1] < open[1]"
+    },
+    {
+     "id": "ac_first_green",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Entry bij eerste nieuwe groene candle.",
+     "engine_mapping": "close > open"
+    },
+    {
+     "id": "ac_sl_pullback_low",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "SL onder pullback-low.",
+     "engine_mapping": "stop swing lookback 2-3"
+    },
+    {
+     "id": "ac_tp_atr",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "TP ATR-multiple of structuur.",
+     "engine_mapping": "target atr / R"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 3,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "33_jonas_london_us_orb",
+   "trader": "Jonas Bertram",
+   "title": "London Accumulation → US Opening Range Liquidity Break",
+   "kind": "Session breakout",
+   "evidence_grade": "C",
+   "evidence_status": "C: concept beschreven; triggers grotendeels discretionair",
+   "ohlc_suitability": "OHLC_READY",
+   "original_instrument": "NASDAQ en ES futures",
+   "original_timeframes": [
+    "London range / NY opening"
+   ],
+   "data_requirements": [
+    "Futures OHLC",
+    "Timezones + liquidity heatmap"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "jl_london_range",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "London accumulatie-high/low.",
+     "engine_mapping": "window_high/low 08:00-13:30 Europe/London"
+    },
+    {
+     "id": "jl_us_break",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Entry in richting US-break.",
+     "engine_mapping": "close kruist London-range na 09:30 NY"
+    },
+    {
+     "id": "jl_heatmap",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Liquidity map.",
+     "engine_mapping": null,
+     "reason_nl": "heatmapdata vereist"
+    },
+    {
+     "id": "jl_add_1r",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Bij >= 1R eventueel aanvullen.",
+     "engine_mapping": "scale_in add_every_r 1 (opt-in)"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 2,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "34_tom_balance_vs_trend",
+   "trader": "Tom Vorwald",
+   "title": "Prior Close vs Opening Balance – Day-Type Filter",
+   "kind": "Market regime / context",
+   "evidence_grade": "B",
+   "evidence_status": "B: algemene filterideeën, geen trade entries",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "Futures",
+   "original_timeframes": [
+    "Daily+intraday"
+   ],
+   "data_requirements": [
+    "Session profile and prior close",
+    "Open price and balance bounds"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "tb_open_vs_balance",
+     "kind": "filter",
+     "provenance": "PROXY",
+     "text_nl": "Open binnen/buiten vorige balance.",
+     "engine_mapping": "day_open vs prev_day high/low/mid",
+     "reason_nl": "balance = VA/TPO; vervangen door vorige-dag range"
+    },
+    {
+     "id": "tb_switch",
+     "kind": "context",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Range- of breakoutmodel conditioneel inschakelen.",
+     "engine_mapping": "hybride regime-switch"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "35_trader_x_nr4_breakout",
+   "trader": "Trader X (anonymous)",
+   "title": "Trader X – Adapted NR4 Volatility Breakout",
+   "kind": "Volatility contraction breakout",
+   "evidence_grade": "B",
+   "evidence_status": "B: pattern and management disclosed; entry mathematics unknown",
+   "ohlc_suitability": "UNKNOWN",
+   "original_instrument": "NQ futures (source)",
+   "original_timeframes": [
+    "Unknown in available chapter list; do not assume M1/M5"
+   ],
+   "data_requirements": [
+    "Timestamped NQ OHLCV at validated signal timeframe",
+    "Volatility information known before trade",
+    "Realistic fills, trade-level scaling and trailing for multipositions"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "tx_nr4",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "NR4-formatie (publieke definitie; aangepaste versie onbekend).",
+     "engine_mapping": "nr4 pattern"
+    },
+    {
+     "id": "tx_break_next",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Break van vorige 4-bar range op volgende candle.",
+     "engine_mapping": "stop-order of close boven high"
+    },
+    {
+     "id": "tx_vol_condition",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Volatiliteitsafhankelijk.",
+     "engine_mapping": "atr/realized_vol filter"
+    },
+    {
+     "id": "tx_scale_out",
+     "kind": "exit",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Scale-outs.",
+     "engine_mapping": null,
+     "reason_nl": "geen partiele exits in backtester"
+    },
+    {
+     "id": "tx_trailing",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Trailing stop.",
+     "engine_mapping": "trailing atr"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 4,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "36_gold_reopen_scalp",
+   "trader": "Anonymous gold futures scalper",
+   "title": "Gold Reopen Tick-Momentum Scalp",
+   "kind": "Opening-event / tick momentum scalp",
+   "evidence_grade": "C",
+   "evidence_status": "C: event window shown; tick threshold and execution proprietary",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "Gold futures GC/MGC; NOT automatically XAUUSD CFD",
+   "original_timeframes": [
+    "Tick data; described positions can last seconds"
+   ],
+   "data_requirements": [
+    "GC/MGC tick-by-tick trades and executable bid/ask",
+    "CME trading calendar, exchange breaks, rollover schedules",
+    "Bid/ask spreads, queues, slippage, commissions, intraday liquidation"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "gr_tick_momentum",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Tick-momentum direct na 18:00 ET reopen.",
+     "engine_mapping": null,
+     "reason_nl": "tickdata en seconden-executie vereist"
+    },
+    {
+     "id": "gr_open_range_proxy",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Openingsrange-momentum (OHLC-benadering, geen replicatie).",
+     "engine_mapping": "window range rond 18:00 New York"
+    },
+    {
+     "id": "gr_no_pyramid",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Pyramiding/omkeren geen veilige default; geen martingale.",
+     "engine_mapping": "scale_in uit"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "37_iman_gold_icc",
+   "trader": "Iman (IQ Capital Shark Tank participant)",
+   "title": "Iman – ICC Gold Pitch",
+   "kind": "Price action pitch / not fully disclosed",
+   "evidence_grade": "C",
+   "evidence_status": "C: ICC acronym and claimed return only; entry rules absent",
+   "ohlc_suitability": "UNKNOWN",
+   "original_instrument": "Gold (exact feed unspecified)",
+   "original_timeframes": [
+    "Unconfirmed"
+   ],
+   "data_requirements": [
+    "Gold OHLC on strategy TF (unknown)",
+    "Precise definition of ICC, session, SL/TP, order handling needed"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "ic_signal",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "ICC-signaalregels.",
+     "engine_mapping": null,
+     "reason_nl": "regels niet vastgesteld uit bron"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "38_eli_orderflow_absorption",
+   "trader": "Eli (IQ Capital Shark Tank participant)",
+   "title": "Eli – Orderflow Absorption + Delta/Footprint",
+   "kind": "Futures orderflow / absorption",
+   "evidence_grade": "C",
+   "evidence_status": "C: tools named; operational thresholds not publicly determined",
+   "ohlc_suitability": "OHLC_PROXY_ONLY",
+   "original_instrument": "Futures (instrument not confirmed)",
+   "original_timeframes": [
+    "Orderflow / tape; unconfirmed"
+   ],
+   "data_requirements": [
+    "True futures trades with aggressor classification",
+    "Bid/ask delta, footprint at price, session volume profile",
+    "Historical point-in-time data with intrabar order sequence"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "el_absorption",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Absorptie via footprint/delta.",
+     "engine_mapping": null,
+     "reason_nl": "orderflowdata vereist"
+    },
+    {
+     "id": "el_ohlc_proxy",
+     "kind": "entry",
+     "provenance": "PROXY",
+     "text_nl": "OHLC high-volume narrow-range proxy (aparte hypothese).",
+     "engine_mapping": "range_atr laag & volume_ratio hoog",
+     "reason_nl": "Dukascopy-volume is tick/activiteitsvolume; in deze dataset is het constant 1 per M1-bar, dus geen echt futuresvolume"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "39_saeed_coinflip_model",
+   "trader": "Saeed (IQ Capital Shark Tank participant)",
+   "title": "Saeed – Coin-Flip Prop Evaluation Model",
+   "kind": "Randomized control / challenge payoff",
+   "evidence_grade": "C",
+   "evidence_status": "C: deliberately random direction; no proven trading edge",
+   "ohlc_suitability": "UNKNOWN",
+   "original_instrument": "Prop futures challenge; exact product unspecified",
+   "original_timeframes": [
+    "Trade/event-level; unknown"
+   ],
+   "data_requirements": [
+    "Explicit challenge rules: target, maximum drawdown, trailing drawdown and payout constraints",
+    "Executable bid/ask and transaction costs",
+    "Random seed, path-dependent Monte Carlo and evaluation fee"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "sc_random_direction",
+     "kind": "entry",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Willekeurige richting met vaste seed (nulmodel).",
+     "engine_mapping": "random_entry pattern (baseline)"
+    },
+    {
+     "id": "sc_challenge_rules",
+     "kind": "risk",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Prop-challenge uitbetalingsregels.",
+     "engine_mapping": null,
+     "reason_nl": "challenge-regels/fees niet beschikbaar"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "40_tobias_macro_fx",
+   "trader": "Tobias Knebel",
+   "title": "Tobias Knebel – Macro Currency Strength + H1 Zone Confirmation",
+   "kind": "Macro regime / H1 pullback",
+   "evidence_grade": "B",
+   "evidence_status": "B: expliciete macro-volgorde en RR; triggers deels discretionair",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "Forex (valutaparen)",
+   "original_timeframes": [
+    "Macro/W1 COT; H1 entry"
+   ],
+   "data_requirements": [
+    "Historische PMI/GDP/vertrouwen met PUBLICATIEDATUM en revisies (vintage data)",
+    "Historische centrale-bankbesluiten en statements met tijdstempels",
+    "COT-release en retail-positionering zoals die destijds beschikbaar waren",
+    "H1 OHLC van gekozen valutapaar met bid/ask of spreadmodel"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Zelfde activaklasse (FX), maar zonder de macrodata is het een nieuwe, onvolledige hypothese.",
+   "components": [
+    {
+     "id": "tk_macro_scores",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Macro-, centrale-bank- en COT-scores.",
+     "engine_mapping": null,
+     "reason_nl": "vintage macrodata niet beschikbaar"
+    },
+    {
+     "id": "tk_h1_zone",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "H1 supply/demand-zone met bevestigingscandle.",
+     "engine_mapping": "pullback naar swing-niveau + engulfing"
+    },
+    {
+     "id": "tk_tp_2r",
+     "kind": "exit",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Vaste TP 2R.",
+     "engine_mapping": "target r_multiple 2"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "41_johannes_ict_two_zone",
+   "trader": "Johannes Payr",
+   "title": "Johannes Payr – Liquidity Grab + Golden Pocket/Danger Zone Entries",
+   "kind": "ICT liquidity / two-zone position allocation",
+   "evidence_grade": "C",
+   "evidence_status": "C: setupconcept en risicocap beschreven; entrydrempels ontbreken",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "BTC en enkele valutaparen",
+   "original_timeframes": [
+    "M15/M5"
+   ],
+   "data_requirements": [
+    "BTC/FX M5/M15 OHLC met exchange-/broker-specifieke candles",
+    "Contract-/spreadinfo voor max risico van gecombineerde entries",
+    "Tijdstempels voor objectieve liquidity pool, orderblock en fib-anchors"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "jp_liquidity_grab",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "Liquidity grab.",
+     "engine_mapping": "liquidity_sweep",
+     "reason_nl": "OHLC-proxy"
+    },
+    {
+     "id": "jp_two_tranches",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Tweede tranche in Danger Zone.",
+     "engine_mapping": null,
+     "reason_nl": "tweede entry op slechtere prijs = middelen; uitgesloten uit default-ruimte"
+    },
+    {
+     "id": "jp_total_risk",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Totaal risico max 0,5% per idee.",
+     "engine_mapping": "risk.percent 0.5"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 0,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "42_christian_m1_index_trend",
+   "trader": "Christian Böttger",
+   "title": "Christian Böttger – Selective M1 Index Trend Trading",
+   "kind": "Index trend-following / session selection",
+   "evidence_grade": "C",
+   "evidence_status": "C: handelsstijl, tijden en frequentie; geen objectieve entryregels",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "DAX en Amerikaanse indices",
+   "original_timeframes": [
+    "M1"
+   ],
+   "data_requirements": [
+    "M1 OHLC en passende futures-/CFD-spread en uitvoeringskosten",
+    "Duitse en Amerikaanse lokale openingskalenders met DST",
+    "Objectieve trend- en pullbackdefinitie moet van originele video komen of als eigen onderzoek worden ontworpen"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "cb_sessions",
+     "kind": "filter",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "DAX vroege EU-sessie, US-indices middagvenster.",
+     "engine_mapping": "sessiefilter per symbool"
+    },
+    {
+     "id": "cb_trend_entry",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Zelfgekozen trendvolg-entry (bron geeft geen trigger).",
+     "engine_mapping": "EMA-trend + pullback"
+    },
+    {
+     "id": "cb_trades_day",
+     "kind": "risk",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "2-5 trades per dag (beschrijvend).",
+     "engine_mapping": "max_trades_per_day"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 3,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "43_hannes_crypto_hourly_orb",
+   "trader": "Hannes",
+   "title": "Hannes – Crypto H1 ORB with 0.1% Break Buffer",
+   "kind": "Crypto ORB / higher timeframe",
+   "evidence_grade": "B",
+   "evidence_status": "B: procentuele buffer en H1-vorm bekend; range-definitie mist",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "BTC en ETH",
+   "original_timeframes": [
+    "H1 met D1/H4 context"
+   ],
+   "data_requirements": [
+    "BTC/ETH OHLC H1 plus H4/D1, exacte beurs-/broker-timezone",
+    "Liquiditeitsheatmap alleen als apart filter met tijdhistorische snapshots",
+    "Spread/funding/swap/feestdag-/weekendeffecten bij crypto"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "hc_h1_range_buffer",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "H1-referentierange + 0,1% buffer.",
+     "engine_mapping": "opening_range/window break",
+     "reason_nl": "rule_engine kent geen rekenkundige operanden (niveau + x% of + k*ATR)"
+    },
+    {
+     "id": "hc_heatmap",
+     "kind": "filter",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Liquiditeitsheatmap.",
+     "engine_mapping": null,
+     "reason_nl": "heatmapdata vereist"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 0,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  },
+  {
+   "dossier": "44_patrick_weekly_va_contrarian",
+   "trader": "Patrick Nill",
+   "title": "Patrick Nill – Weekly Value Area Contrarian Rejection",
+   "kind": "Weekly Volume Profile / countertrend",
+   "evidence_grade": "C",
+   "evidence_status": "C: locatie en risicokader bevestigd; entrytrigger niet mechanisch",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "DAX en indexfutures",
+   "original_timeframes": [
+    "W1 value profile + intraday trigger"
+   ],
+   "data_requirements": [
+    "Echte volume-at-price profieldata per GEHEEL afgesloten week",
+    "Historische VAH/VAL van W-1 en eventueel W-2; geen toekomstige weekvolume-info",
+    "Intraday OHLC en bij mogelijke footprintbevestiging echte futures bid/ask trades"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "pw_weekly_va",
+     "kind": "context",
+     "provenance": "PROXY",
+     "text_nl": "Wekelijkse VAH/VAL.",
+     "engine_mapping": "prev_week_high/low",
+     "reason_nl": "geen volume profile"
+    },
+    {
+     "id": "pw_rejection",
+     "kind": "entry",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Bevestigde afwijzing bij weekniveau.",
+     "engine_mapping": "sweep/reclaim van prev_week level"
+    },
+    {
+     "id": "pw_risk_1pct",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Max 1% risico.",
+     "engine_mapping": "risk.percent <= 1"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 1,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 1,
+    "NOT_IMPLEMENTABLE": 0
+   }
+  },
+  {
+   "dossier": "45_marco_loading_the_boat",
+   "trader": "Marco Boesing",
+   "title": "Marco Boesing – Loading the Boat, Winner-Only Pyramiding",
+   "kind": "Winner pyramiding / active risk budgeting",
+   "evidence_grade": "B",
+   "evidence_status": "B: gedrag en risicodoel publiek; add triggers en boekhouding ontbreken",
+   "ohlc_suitability": "NEEDS_EXTERNAL_DATA",
+   "original_instrument": "Futures, instrument afhankelijk van onderliggende Big Trades setup",
+   "original_timeframes": [
+    "Trade/tick management"
+   ],
+   "data_requirements": [
+    "Tick-/bid-ask-gegevens en contractwaarde per futuresinstrument",
+    "Volledige fill-ledger, alle afzonderlijke stops, commissies en slippage",
+    "Orderflow-entry via Marco Big Trades apart implementeren of heldere basistrategie gebruiken"
+   ],
+   "transfer_to_dukascopy_cfd_fx": "NEW_HYPOTHESIS",
+   "transfer_note_nl": "Bron is onderzocht op het originele instrument; toepassing op Dukascopy CFD/FX/index is een NIEUWE hypothese die eigen validatie vereist.",
+   "components": [
+    {
+     "id": "lb_winner_adds",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Alleen toevoegen aan winnaars.",
+     "engine_mapping": "scale_in (alleen met allow_scale_in=True)"
+    },
+    {
+     "id": "lb_risk_cap",
+     "kind": "risk",
+     "provenance": "SOURCE_RULE",
+     "text_nl": "Worst-case risico van alle legs <= beginbudget.",
+     "engine_mapping": "backtester verkrapt stop bij add"
+    },
+    {
+     "id": "lb_be",
+     "kind": "exit",
+     "provenance": "RESEARCH_VARIANT",
+     "text_nl": "Stops naar break-even waar verantwoord.",
+     "engine_mapping": "break_even"
+    },
+    {
+     "id": "lb_entry_big_trades",
+     "kind": "entry",
+     "provenance": "NOT_IMPLEMENTABLE",
+     "text_nl": "Initiële entry via Big Trades.",
+     "engine_mapping": null,
+     "reason_nl": "orderflow vereist"
+    }
+   ],
+   "counts": {
+    "SOURCE_RULE": 2,
+    "RESEARCH_VARIANT": 1,
+    "PROXY": 0,
+    "NOT_IMPLEMENTABLE": 1
+   }
+  }
+ ]
+}

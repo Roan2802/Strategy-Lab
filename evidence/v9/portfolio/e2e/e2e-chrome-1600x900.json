@@ -1,0 +1,47 @@
+{
+  "tag": "chrome-1600x900",
+  "passed": 6,
+  "failed": 1,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows real last-candle dates",
+      "ok": true,
+      "detail": "XAUUSD\nlaatste candle 2026-11-09 23:59\nACTUEEL\nEURUSD\nlaatste candle 2026-11-09 23:59\nACTUEEL\nGBPUSD\nlaatste candle 2026"
+    },
+    {
+      "step": "all sections/subtabs open without JS errors",
+      "ok": false,
+      "detail": "['console: Failed to load resource: the server responded with a status of 404 (Not Found)']"
+    },
+    {
+      "step": "tester panels do not overlap",
+      "ok": true,
+      "detail": "{'bad': [], 'hscroll': False, 'panels': ['market-controls', 'settings', 'chart', 'results', 'dock']}"
+    },
+    {
+      "step": "no horizontal page scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "restart restores route",
+      "ok": true,
+      "detail": "#onderzoeken/trades"
+    },
+    {
+      "step": "restart restores strategy/market/timeframe/period",
+      "ok": true,
+      "detail": "{'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None} -> {'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None, 'route': '#onderzoeken/trades'}"
+    }
+  ],
+  "js_errors": [
+    "console: Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "console: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "console: Failed to load resource: net::ERR_CONNECTION_REFUSED"
+  ]
+}

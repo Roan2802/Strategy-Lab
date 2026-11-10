@@ -1,0 +1,1019 @@
+{
+ "XAUUSD": {
+  "observed": 718568,
+  "expected": 729900,
+  "mismatch_minutes": 11332,
+  "mismatch_days": 28,
+  "match_pct": 98.447,
+  "days": {
+   "2024-11-28": {
+    "wd": "Thu",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2024-11-29": {
+    "wd": "Fri",
+    "mismatch_min": 136,
+    "observed": 1184,
+    "expected": 1320
+   },
+   "2024-12-24": {
+    "wd": "Tue",
+    "mismatch_min": 256,
+    "observed": 1124,
+    "expected": 1380
+   },
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 1320,
+    "observed": 60,
+    "expected": 1380
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 61,
+    "observed": 1319,
+    "expected": 1380
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1320,
+    "observed": 60,
+    "expected": 1380
+   },
+   "2025-01-20": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-02-17": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-04-17": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1259,
+    "expected": 1380
+   },
+   "2025-04-18": {
+    "wd": "Fri",
+    "mismatch_min": 1260,
+    "observed": 0,
+    "expected": 1260
+   },
+   "2025-05-26": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-06-19": {
+    "wd": "Thu",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-07-04": {
+    "wd": "Fri",
+    "mismatch_min": 241,
+    "observed": 1019,
+    "expected": 1260
+   },
+   "2025-09-01": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-11-27": {
+    "wd": "Thu",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2025-11-28": {
+    "wd": "Fri",
+    "mismatch_min": 136,
+    "observed": 1184,
+    "expected": 1320
+   },
+   "2025-12-24": {
+    "wd": "Wed",
+    "mismatch_min": 256,
+    "observed": 1124,
+    "expected": 1380
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 1320,
+    "observed": 60,
+    "expected": 1380
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 61,
+    "observed": 1319,
+    "expected": 1380
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1320,
+    "observed": 60,
+    "expected": 1380
+   },
+   "2026-01-19": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2026-02-16": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2026-04-02": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1259,
+    "expected": 1380
+   },
+   "2026-04-03": {
+    "wd": "Fri",
+    "mismatch_min": 1260,
+    "observed": 0,
+    "expected": 1260
+   },
+   "2026-05-25": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   },
+   "2026-06-19": {
+    "wd": "Fri",
+    "mismatch_min": 241,
+    "observed": 1019,
+    "expected": 1260
+   },
+   "2026-07-03": {
+    "wd": "Fri",
+    "mismatch_min": 241,
+    "observed": 1019,
+    "expected": 1260
+   },
+   "2026-09-07": {
+    "wd": "Mon",
+    "mismatch_min": 151,
+    "observed": 1229,
+    "expected": 1380
+   }
+  }
+ },
+ "EURUSD": {
+  "observed": 757018,
+  "expected": 761580,
+  "mismatch_minutes": 4562,
+  "mismatch_days": 6,
+  "match_pct": 99.401,
+  "days": {
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 840,
+    "observed": 600,
+    "expected": 1440
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 120,
+    "observed": 1320,
+    "expected": 1440
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 841,
+    "observed": 599,
+    "expected": 1440
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 121,
+    "observed": 1319,
+    "expected": 1440
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   }
+  }
+ },
+ "GBPUSD": {
+  "observed": 757018,
+  "expected": 761580,
+  "mismatch_minutes": 4562,
+  "mismatch_days": 6,
+  "match_pct": 99.401,
+  "days": {
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 840,
+    "observed": 600,
+    "expected": 1440
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 120,
+    "observed": 1320,
+    "expected": 1440
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 841,
+    "observed": 599,
+    "expected": 1440
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 121,
+    "observed": 1319,
+    "expected": 1440
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   }
+  }
+ },
+ "USDJPY": {
+  "observed": 757018,
+  "expected": 761580,
+  "mismatch_minutes": 4562,
+  "mismatch_days": 6,
+  "match_pct": 99.401,
+  "days": {
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 840,
+    "observed": 600,
+    "expected": 1440
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 120,
+    "observed": 1320,
+    "expected": 1440
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 841,
+    "observed": 599,
+    "expected": 1440
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 121,
+    "observed": 1319,
+    "expected": 1440
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1320,
+    "observed": 120,
+    "expected": 1440
+   }
+  }
+ },
+ "USA30IDXUSD": {
+  "observed": 694207,
+  "expected": 706095,
+  "mismatch_minutes": 11888,
+  "mismatch_days": 29,
+  "match_pct": 98.316,
+  "days": {
+   "2024-11-28": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2024-11-29": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2024-12-24": {
+    "wd": "Tue",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-01-09": {
+    "wd": "Thu",
+    "mismatch_min": 406,
+    "observed": 929,
+    "expected": 1335
+   },
+   "2025-01-20": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-02-17": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-04-17": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2025-04-18": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2025-06-19": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-03": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-04": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2025-09-01": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-27": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-28": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2025-12-24": {
+    "wd": "Wed",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2026-01-19": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-02-16": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-04-02": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2026-04-03": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2026-05-25": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-06-19": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-07-03": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-09-07": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   }
+  }
+ },
+ "US500": {
+  "observed": 694207,
+  "expected": 706095,
+  "mismatch_minutes": 11888,
+  "mismatch_days": 29,
+  "match_pct": 98.316,
+  "days": {
+   "2024-11-28": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2024-11-29": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2024-12-24": {
+    "wd": "Tue",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-01-09": {
+    "wd": "Thu",
+    "mismatch_min": 406,
+    "observed": 929,
+    "expected": 1335
+   },
+   "2025-01-20": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-02-17": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-04-17": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2025-04-18": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2025-06-19": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-03": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-04": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2025-09-01": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-27": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-28": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2025-12-24": {
+    "wd": "Wed",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2026-01-19": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-02-16": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-04-02": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2026-04-03": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2026-05-25": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-06-19": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-07-03": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-09-07": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   }
+  }
+ },
+ "USATECHIDXUSD": {
+  "observed": 694207,
+  "expected": 706095,
+  "mismatch_minutes": 11888,
+  "mismatch_days": 29,
+  "match_pct": 98.316,
+  "days": {
+   "2024-11-28": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2024-11-29": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2024-12-24": {
+    "wd": "Tue",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-01-09": {
+    "wd": "Thu",
+    "mismatch_min": 406,
+    "observed": 929,
+    "expected": 1335
+   },
+   "2025-01-20": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-02-17": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-04-17": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2025-04-18": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2025-06-19": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-03": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-07-04": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2025-09-01": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-27": {
+    "wd": "Thu",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2025-11-28": {
+    "wd": "Fri",
+    "mismatch_min": 181,
+    "observed": 1094,
+    "expected": 1275
+   },
+   "2025-12-24": {
+    "wd": "Wed",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 61,
+    "observed": 1274,
+    "expected": 1335
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2026-01-19": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-02-16": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-04-02": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2026-04-03": {
+    "wd": "Fri",
+    "mismatch_min": 1215,
+    "observed": 0,
+    "expected": 1215
+   },
+   "2026-05-25": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   },
+   "2026-06-19": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-07-03": {
+    "wd": "Fri",
+    "mismatch_min": 196,
+    "observed": 1019,
+    "expected": 1215
+   },
+   "2026-09-07": {
+    "wd": "Mon",
+    "mismatch_min": 196,
+    "observed": 1139,
+    "expected": 1335
+   }
+  }
+ },
+ "DE40": {
+  "observed": 696047,
+  "expected": 704505,
+  "mismatch_minutes": 8458,
+  "mismatch_days": 19,
+  "match_pct": 98.799,
+  "days": {
+   "2024-12-24": {
+    "wd": "Tue",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2024-12-25": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 76,
+    "observed": 1259,
+    "expected": 1335
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-01-20": {
+    "wd": "Mon",
+    "mismatch_min": 16,
+    "observed": 1319,
+    "expected": 1335
+   },
+   "2025-04-17": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2025-04-18": {
+    "wd": "Fri",
+    "mismatch_min": 1200,
+    "observed": 0,
+    "expected": 1200
+   },
+   "2025-07-03": {
+    "wd": "Thu",
+    "mismatch_min": 16,
+    "observed": 1319,
+    "expected": 1335
+   },
+   "2025-07-04": {
+    "wd": "Fri",
+    "mismatch_min": 1,
+    "observed": 1199,
+    "expected": 1200
+   },
+   "2025-09-01": {
+    "wd": "Mon",
+    "mismatch_min": 16,
+    "observed": 1319,
+    "expected": 1335
+   },
+   "2025-12-24": {
+    "wd": "Wed",
+    "mismatch_min": 241,
+    "observed": 1094,
+    "expected": 1335
+   },
+   "2025-12-25": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 76,
+    "observed": 1259,
+    "expected": 1335
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 1275,
+    "observed": 60,
+    "expected": 1335
+   },
+   "2026-04-02": {
+    "wd": "Thu",
+    "mismatch_min": 121,
+    "observed": 1214,
+    "expected": 1335
+   },
+   "2026-04-03": {
+    "wd": "Fri",
+    "mismatch_min": 1200,
+    "observed": 0,
+    "expected": 1200
+   },
+   "2026-05-25": {
+    "wd": "Mon",
+    "mismatch_min": 16,
+    "observed": 1319,
+    "expected": 1335
+   },
+   "2026-07-03": {
+    "wd": "Fri",
+    "mismatch_min": 1,
+    "observed": 1199,
+    "expected": 1200
+   },
+   "2026-09-07": {
+    "wd": "Mon",
+    "mismatch_min": 16,
+    "observed": 1319,
+    "expected": 1335
+   }
+  }
+ },
+ "BTCUSD": {
+  "observed": 1061398,
+  "expected": 1064160,
+  "mismatch_minutes": 2762,
+  "mismatch_days": 4,
+  "match_pct": 99.74,
+  "days": {
+   "2024-12-31": {
+    "wd": "Tue",
+    "mismatch_min": 541,
+    "observed": 899,
+    "expected": 1440
+   },
+   "2025-01-01": {
+    "wd": "Wed",
+    "mismatch_min": 840,
+    "observed": 600,
+    "expected": 1440
+   },
+   "2025-12-31": {
+    "wd": "Wed",
+    "mismatch_min": 541,
+    "observed": 899,
+    "expected": 1440
+   },
+   "2026-01-01": {
+    "wd": "Thu",
+    "mismatch_min": 840,
+    "observed": 600,
+    "expected": 1440
+   }
+  }
+ }
+}

@@ -1,0 +1,163 @@
+{
+  "tag": "chrome-2560x1440-light",
+  "passed": 31,
+  "failed": 0,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows compact market-data line with Details",
+      "ok": true,
+      "detail": "Marktdata: gedeeltelijk achter 6 van 9 instrumenten lopen achter · laatste controle 2026-11-10 19:39 UTC Details"
+    },
+    {
+      "step": "home has no permanent 7-step stepper",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home data line never green while instruments lag",
+      "ok": true,
+      "detail": "lagging=True"
+    },
+    {
+      "step": "home shows running research, forward strategies and critical errors only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "strategieen subtabs are ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']",
+      "ok": true,
+      "detail": "['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']"
+    },
+    {
+      "step": "onderzoeken subtabs are ['Testen', 'Analyse']",
+      "ok": true,
+      "detail": "['Testen', 'Analyse']"
+    },
+    {
+      "step": "all sections/subtabs open without JS errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "no drag handles, resize grips, layout editor or data-panel widgets in the page",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "Weergave menu has no widget/layout items",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "old hashes redirect to the new routes",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "data page lists markets with status",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "step": "data page has one sync button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "library lists strategies",
+      "ok": true,
+      "detail": "469"
+    },
+    {
+      "step": "library columns",
+      "ok": true,
+      "detail": "['Naam', 'Type / familie', 'Markt / TF', 'Versie', 'Onderzoeksstatus', '']"
+    },
+    {
+      "step": "library search filters",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "step": "library type filter",
+      "ok": true,
+      "detail": "2/469"
+    },
+    {
+      "step": "library sortable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "Onderzoeken opens Testen with strategy preselected",
+      "ok": true,
+      "detail": "LabBreakout"
+    },
+    {
+      "step": "multi-market drawer opens with markets and timeframes",
+      "ok": true,
+      "detail": "11 markets"
+    },
+    {
+      "step": "discovery default view: start button, depth, markets, timeframes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "discovery: quality, risk and drawdown live under Geavanceerd",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "candidate report opens with Samenvatting (test, periode, trials, kosten, trades, zekerheid)",
+      "ok": true,
+      "detail": "SAMENVATTING\nAfgewezen\nStatistische reden\nWat is getest?\nGen trend_ma_slope DE40"
+    },
+    {
+      "step": "candidate summary has a status chip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "tester blocks do not overlap (fixed layout)",
+      "ok": true,
+      "detail": "{'bad': [], 'hscroll': False, 'blocks': ['toolbar', 'center', 'panel', 'panel']}"
+    },
+    {
+      "step": "no horizontal page scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "tester has exactly one primary action",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "step": "main chart is big",
+      "ok": true,
+      "detail": "820"
+    },
+    {
+      "step": "settings open in a side drawer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "restart restores route",
+      "ok": true,
+      "detail": "#onderzoeken/testen"
+    },
+    {
+      "step": "restart restores strategy/market/timeframe/period",
+      "ok": true,
+      "detail": "{'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None} -> {'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None, 'route': '#onderzoeken/testen'}"
+    }
+  ],
+  "js_errors": []
+}

@@ -1,0 +1,273 @@
+{
+  "tag": "chrome-1600x900-dark",
+  "passed": 53,
+  "failed": 0,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows compact market-data line with Details",
+      "ok": true,
+      "detail": "Marktdata: gedeeltelijk achter 6 van 9 instrumenten lopen achter · laatste controle 2026-11-10 19:39 UTC Details"
+    },
+    {
+      "step": "home has no permanent 7-step stepper",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home data line never green while instruments lag",
+      "ok": true,
+      "detail": "lagging=True"
+    },
+    {
+      "step": "home shows running research, forward strategies and critical errors only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "strategieen subtabs are ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']",
+      "ok": true,
+      "detail": "['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']"
+    },
+    {
+      "step": "onderzoeken subtabs are ['Testen', 'Analyse']",
+      "ok": true,
+      "detail": "['Testen', 'Analyse']"
+    },
+    {
+      "step": "all sections/subtabs open without JS errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "no drag handles, resize grips, layout editor or data-panel widgets in the page",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "Weergave menu has no widget/layout items",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "old hashes redirect to the new routes",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "data page lists markets with status",
+      "ok": true,
+      "detail": "9"
+    },
+    {
+      "step": "data page has one sync button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "library lists strategies",
+      "ok": true,
+      "detail": "469"
+    },
+    {
+      "step": "library columns",
+      "ok": true,
+      "detail": "['Naam', 'Type / familie', 'Markt / TF', 'Versie', 'Onderzoeksstatus', '']"
+    },
+    {
+      "step": "library search filters",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "step": "library type filter",
+      "ok": true,
+      "detail": "2/469"
+    },
+    {
+      "step": "library sortable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "Onderzoeken opens Testen with strategy preselected",
+      "ok": true,
+      "detail": "LabBreakout"
+    },
+    {
+      "step": "multi-market drawer opens with markets and timeframes",
+      "ok": true,
+      "detail": "11 markets"
+    },
+    {
+      "step": "discovery default view: start button, depth, markets, timeframes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "discovery: quality, risk and drawdown live under Geavanceerd",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "candidate report opens with Samenvatting (test, periode, trials, kosten, trades, zekerheid)",
+      "ok": true,
+      "detail": "SAMENVATTING\nAfgewezen\nStatistische reden\nWat is getest?\nGen trend_ma_slope DE40"
+    },
+    {
+      "step": "candidate summary has a status chip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "tester blocks do not overlap (fixed layout)",
+      "ok": true,
+      "detail": "{'bad': [], 'hscroll': False, 'blocks': ['toolbar', 'center', 'panel', 'panel']}"
+    },
+    {
+      "step": "no horizontal page scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "tester has exactly one primary action",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "step": "main chart is big",
+      "ok": true,
+      "detail": "576"
+    },
+    {
+      "step": "settings open in a side drawer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "backtest on existing Dukascopy data produces trades (M15)",
+      "ok": true,
+      "detail": "9 trades in 8s; Backtest afgerond · 9 trades · 945 events."
+    },
+    {
+      "step": "interpretation layer rendered",
+      "ok": true,
+      "detail": "Historisch verliesgevend (-46,34) op 9 trades; bewijs is zwak en 3 controle(s) gefaald.✕ResultaatNetto resultaat -46,34 "
+    },
+    {
+      "step": "selected trade shows entry/exit/SL/TP + reason",
+      "ok": true,
+      "detail": "TRADE\n#1 Long\nENTRY\n4.326,595\n2026-09-02 07:15\nEXIT\n4.325,595\n2026-09-02 07:16 · stop loss geraakt\nSTOP LOSS\n4.325,595\nTAKE PROFIT\ngeen\nRESULTAAT\n-6,19\nna koste"
+    },
+    {
+      "step": "selected trade drawn on chart (entry/SL/TP shapes)",
+      "ok": true,
+      "detail": "3 shapes"
+    },
+    {
+      "step": "decision log opens in a drawer with recorded checks",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "Optimaliseren opens the optimizer drawer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "optimisation completes with valid trials",
+      "ok": true,
+      "detail": "Optimalisatie afgerond · 4/4 trials · 4 geldige resultaten · 0 fouten."
+    },
+    {
+      "step": "optimisation results visible in the drawer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "Analyse shows exactly 4 KPIs",
+      "ok": true,
+      "detail": "['Netto rendement', 'Max drawdown', 'Profit Factor', 'Recovery Factor']"
+    },
+    {
+      "step": "Analyse KPIs carry values for the selected run",
+      "ok": true,
+      "detail": "['-0,5%', '-0,5%', '0,00', '—']"
+    },
+    {
+      "step": "Analyse shows equity curve and distribution",
+      "ok": true,
+      "detail": "8"
+    },
+    {
+      "step": "run comparison renders a table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "equity curves are overlaid",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "legacy validatie route opens the Analyse validation section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "validation explains Python-strategy limitation",
+      "ok": true,
+      "detail": "Overgenomen uit de tester: LabBreakout. Dit is een strategie zonder regelspecificatie: walk-forward en stabiliteit draai"
+    },
+    {
+      "step": "statistical validation returns a verdict",
+      "ok": true,
+      "detail": "Afwijzen\nREJECT · 2383 hypotheses meegeteld · 1dd99a5d5f7447f3a49647f77fd1c0ef\ni"
+    },
+    {
+      "step": "multi-market run returns a results table",
+      "ok": true,
+      "detail": "1 rows"
+    },
+    {
+      "step": "multi-market verdict and overlaid equity shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "provisional money note shown when flagged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "Onderzoeksroute toggle shows the 7 steps",
+      "ok": true,
+      "detail": "7"
+    },
+    {
+      "step": "forward step state matches validation verdict",
+      "ok": true,
+      "detail": "1StrategieKlaar2DataKlaar3BacktestKlaar4TradesVolgende5OptimaliserenKlaar6ValiderenKlaar7ForwardGeblokkeerd"
+    },
+    {
+      "step": "restart restores route",
+      "ok": true,
+      "detail": "#onderzoeken/testen"
+    },
+    {
+      "step": "restart restores strategy/market/timeframe/period",
+      "ok": true,
+      "detail": "{'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '561fe497-3f97-4725-991c-2e450167e2fd'} -> {'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '561fe497-3f97-4725-991c-2e450167e2fd', 'route': '#onderzoeken/testen'}"
+    },
+    {
+      "step": "restart restores last run",
+      "ok": true,
+      "detail": "561fe497-3f97-4725-991c-2e450167e2fd"
+    }
+  ],
+  "js_errors": []
+}

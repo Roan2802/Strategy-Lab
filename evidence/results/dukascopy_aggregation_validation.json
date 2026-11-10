@@ -1,0 +1,86 @@
+{
+  "XAUUSD": {
+    "source": "Duka_XAUUSD_M1_20260401_20260928_jesse.csv",
+    "m1_rows": 174475,
+    "timeframes": {
+      "M5": {
+        "bar_count": 34896,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          4695.965,
+          4700.015,
+          4693.195,
+          4698.545,
+          5.0
+        ]
+      },
+      "M15": {
+        "bar_count": 11632,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          4695.965,
+          4704.505,
+          4693.195,
+          4702.785,
+          15.0
+        ]
+      },
+      "H1": {
+        "bar_count": 2909,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          4695.965,
+          4722.385,
+          4693.195,
+          4710.475,
+          60.0
+        ]
+      }
+    }
+  },
+  "US30": {
+    "source": "Duka_US30_M1_20260401_20260928_jesse.csv",
+    "m1_rows": 168760,
+    "timeframes": {
+      "M5": {
+        "bar_count": 33753,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          46394.351,
+          46415.351,
+          46369.303,
+          46410.387,
+          5.0
+        ]
+      },
+      "M15": {
+        "bar_count": 11251,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          46394.351,
+          46415.351,
+          46362.875,
+          46383.099,
+          15.0
+        ]
+      },
+      "H1": {
+        "bar_count": 2905,
+        "invalid_internal_minute_steps": 0,
+        "sample_first_utc_epoch": 1775001600,
+        "sample_first_ohlcv_aggregate": [
+          46394.351,
+          46441.599,
+          46351.399,
+          46439.899,
+          60.0
+        ]
+      }
+    }
+  }
+}

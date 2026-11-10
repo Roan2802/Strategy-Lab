@@ -1,0 +1,564 @@
+{
+ "run_id": "fr_20261110_193539_c1af37",
+ "status": "done",
+ "phase": "done",
+ "started_at": "2026-11-10T19:35:40.160505+00:00",
+ "finished_at": "2026-11-10T19:38:48.982956+00:00",
+ "config_request": {
+  "markets": [
+   "XAUUSD",
+   "US30",
+   "DE40",
+   "EURUSD",
+   "USDJPY"
+  ],
+  "timeframes": [
+   "M15",
+   "H1",
+   "H4"
+  ],
+  "profile": "uitgebreid",
+  "quality": "regelmatig",
+  "max_candidates": 240,
+  "trials": 24,
+  "workers": 22,
+  "max_minutes": 45.0
+ },
+ "final_test": false,
+ "preregistration_sha256": "8ba24d82a5e0dfebf214d7e1b65d5f12024a873ef131e214bc84e4b9e1a44cb1",
+ "counts": {
+  "generated": 370,
+  "technically_valid": 233,
+  "rejected": 370,
+  "quick_passed": 44,
+  "dev_validated": 10,
+  "wf_passed": 0,
+  "frozen": 0,
+  "final_tested": 0,
+  "oos_approved": 0,
+  "forward_ready": 0,
+  "errors": 0,
+  "outcomes": {
+   "PASSED": 0,
+   "REJECTED": 366,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "TECHNICAL_BLOCKED": 4,
+   "IN_PROGRESS": 0
+  },
+  "promotion": {
+   "EXPERIMENT": 0,
+   "DEVELOPMENT_PASS": 0,
+   "WALK_FORWARD_PASS": 0,
+   "ROBUSTNESS_PASS": 0,
+   "FROZEN_CANDIDATE": 0,
+   "HISTORICAL_OOS_PASS": 0,
+   "FORWARD_ELIGIBLE": 0,
+   "PROSPECTIVE_FORWARD": 0,
+   "REJECTED": 370,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "TECHNICAL_BLOCKED": 0
+  },
+  "highest_promotion": {
+   "EXPERIMENT": 360,
+   "DEVELOPMENT_PASS": 10,
+   "WALK_FORWARD_PASS": 0,
+   "ROBUSTNESS_PASS": 0,
+   "FROZEN_CANDIDATE": 0,
+   "HISTORICAL_OOS_PASS": 0,
+   "FORWARD_ELIGIBLE": 0,
+   "PROSPECTIVE_FORWARD": 0
+  },
+  "in_progress": 0
+ },
+ "stage_status_counts": {
+  "L1:PASS": 233,
+  "L2:REJECTED": 189,
+  "L2:PASS": 44,
+  "L3:PASS": 22,
+  "L4:PASS": 10,
+  "L5:REJECTED": 10,
+  "L3:REJECTED": 22,
+  "L4:REJECTED": 12,
+  "L1:REJECTED": 7
+ },
+ "outcomes": {
+  "REJECTED": 366,
+  "TECHNICAL_BLOCKED": 4
+ },
+ "outcome_kinds": {
+  "REJECTED|statistisch": 233,
+  "REJECTED|technisch": 133,
+  "TECHNICAL_BLOCKED|technisch": 4
+ },
+ "top_missing_nl": [
+  [
+   "bruikbare marktdata of instrumentgegevens (zie redenen)",
+   4
+  ]
+ ],
+ "top_rejection_reasons": [
+  [
+   "L2: geen voorlopige edge na kosten",
+   99
+  ],
+  [
+   "L2: te weinig trades voor dit profiel",
+   53
+  ],
+  [
+   "L2: geen trades in de representatieve vensters",
+   50
+  ],
+  [
+   "L2: resultaat hangt aan een enkele trade",
+   33
+  ],
+  [
+   "L3: ontwikkelperiode verliesgevend na kosten",
+   19
+  ],
+  [
+   "L5: OOS-resultaat leunt op een enkel venster.",
+   7
+  ],
+  [
+   "L5: Verliesgevend bij +50% spread.",
+   6
+  ],
+  [
+   "L4: profit factor na optimalisatie te laag",
+   6
+  ],
+  [
+   "L4: frequentie na optimalisatie te laag",
+   6
+  ],
+  [
+   "L5: Overfit-signalen",
+   5
+  ],
+  [
+   "L5: scorecard REJECT",
+   4
+  ],
+  [
+   "L1: data_available",
+   4
+  ],
+  [
+   "L5: WAARSCHUWING",
+   4
+  ],
+  [
+   "L5: 0% van de buurparameters winstgevend.",
+   3
+  ],
+  [
+   "L3: te weinig trades over de ontwikkelperiode",
+   3
+  ],
+  [
+   "L1: no_contradiction",
+   3
+  ],
+  [
+   "L5: ontwikkelbacktest niet positief na kosten",
+   2
+  ],
+  [
+   "L5: verslaat de naive baseline niet over dezelfde OOS-periode",
+   2
+  ],
+  [
+   "L2: drawdown in een venster 39.5% > 30%",
+   1
+  ],
+  [
+   "L5: OOS profit factor 0.92",
+   1
+  ],
+  [
+   "L5: OOS recovery factor -0.57",
+   1
+  ],
+  [
+   "L5: Maximale OOS-drawdown 50.1%",
+   1
+  ],
+  [
+   "L5: Gemiddelde trade -2.47; 95%-block-bootstrap-CI [-5.63, 0.64]",
+   1
+  ],
+  [
+   "L5: OOS profit factor 0.88",
+   1
+  ],
+  [
+   "L5: OOS recovery factor -0.96",
+   1
+  ],
+  [
+   "L5: Maximale OOS-drawdown 28.8%",
+   1
+  ],
+  [
+   "L5: Gemiddelde trade -3.51; 95%-block-bootstrap-CI [-8.00, 1.64]",
+   1
+  ],
+  [
+   "L5: 11% van de buurparameters winstgevend.",
+   1
+  ],
+  [
+   "L2: drawdown in een venster 49.2% > 30%",
+   1
+  ],
+  [
+   "L2: drawdown in een venster 39.6% > 30%",
+   1
+  ]
+ ],
+ "l5_candidates": [
+  {
+   "cand_id": "01c6397b3262294e",
+   "market": "US30:M15",
+   "family": "mr_vwap_deviation",
+   "status": "REJECTED",
+   "trades": 1441,
+   "pf": 0.9204161400760847,
+   "net": -3566.1888485579575,
+   "dev_net_chosen": -940.2533897512619,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.6373712187227235,
+   "raw_n": 18387,
+   "effective_n": 5573.338584718854,
+   "T": 1595,
+   "T_eff": 1595.0,
+   "skew": 0.7246919132773562,
+   "kurtosis": 3.2747815908599627,
+   "nc_dsr": 8.069312490284301e-08,
+   "paper_dsr": 1.6332458144611113e-08,
+   "dep_dsr": 8.069312490284301e-08,
+   "sr0_ann_nc": 1.4767600116217177,
+   "sr0_ann_paper": 1.5927535629672538,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "0586341b9b9e136c",
+   "market": "EURUSD:H1",
+   "family": "breakout_asian_range",
+   "status": "REJECTED",
+   "trades": 797,
+   "pf": 0.8800549840820693,
+   "net": -2798.724245025118,
+   "dev_net_chosen": 2531.3737887330426,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.5466081017196194,
+   "raw_n": 18270,
+   "effective_n": 5608.5532791678,
+   "T": 1556,
+   "T_eff": 1478.2742042202915,
+   "skew": 1.6142880858492992,
+   "kurtosis": 7.841807351619352,
+   "nc_dsr": 4.794813683675165e-07,
+   "paper_dsr": 9.240007389327244e-08,
+   "dep_dsr": 7.603981788407945e-07,
+   "sr0_ann_nc": 1.5346135161909211,
+   "sr0_ann_paper": 1.6119831418108181,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "075130e7d6f73baa",
+   "market": "DE40:M15",
+   "family": "hybrid_range_break_volc",
+   "status": "REJECTED",
+   "trades": 853,
+   "pf": 1.1335252581947244,
+   "net": 3046.301954973267,
+   "dev_net_chosen": -1105.3051934697728,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": 0.5144772044118859,
+   "raw_n": 18707,
+   "effective_n": 5717.544077656237,
+   "T": 1568,
+   "T_eff": 1568.0,
+   "skew": 2.318420980864664,
+   "kurtosis": 9.971945469238843,
+   "nc_dsr": 0.00567911275593117,
+   "paper_dsr": 0.0023131352314421606,
+   "dep_dsr": 0.00567911275593117,
+   "sr0_ann_nc": 1.4920098244836324,
+   "sr0_ann_paper": 1.6080428006413943,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "POSITIVE_UNCERTAIN"
+  },
+  {
+   "cand_id": "869c03e152fac34b",
+   "market": "US30:H1",
+   "family": "stat_autocorr_regime",
+   "status": "REJECTED",
+   "trades": 365,
+   "pf": 1.0003038632790804,
+   "net": 3.1973974716947,
+   "dev_net_chosen": 829.0130216165392,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.029753564508584098,
+   "raw_n": 18404,
+   "effective_n": 5587.887367475364,
+   "T": 1562,
+   "T_eff": 1562.0,
+   "skew": 4.376473451848537,
+   "kurtosis": 34.398772594752245,
+   "nc_dsr": 0.00012826330303358614,
+   "paper_dsr": 3.9380858211515206e-05,
+   "dep_dsr": 0.00012826330303358614,
+   "sr0_ann_nc": 1.4925430343345687,
+   "sr0_ann_paper": 1.609578247208769,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "8a1bd199598d0944",
+   "market": "XAUUSD:M15",
+   "family": "trend_momentum_persistence",
+   "status": "REJECTED",
+   "trades": 421,
+   "pf": 1.0259274746625053,
+   "net": 386.17317484342675,
+   "dev_net_chosen": -5566.292936999978,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": 0.11797521662786731,
+   "raw_n": 18707,
+   "effective_n": 5708.792520732804,
+   "T": 1559,
+   "T_eff": 1559.0,
+   "skew": 2.537675816537367,
+   "kurtosis": 12.748074993091523,
+   "nc_dsr": 0.0002707950079876358,
+   "paper_dsr": 8.779384527967588e-05,
+   "dep_dsr": 0.0002707950079876358,
+   "sr0_ann_nc": 1.496154639814737,
+   "sr0_ann_paper": 1.6126776814166235,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "a1620442c0db93e4",
+   "market": "DE40:M15",
+   "family": "vwap_breakout",
+   "status": "REJECTED",
+   "trades": 838,
+   "pf": 0.9945365387653327,
+   "net": -159.552145394558,
+   "dev_net_chosen": 915.5173710024301,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": 0.026036193751650512,
+   "raw_n": 18583,
+   "effective_n": 5664.194665712621,
+   "T": 1565,
+   "T_eff": 1565.0,
+   "skew": 1.584347832543812,
+   "kurtosis": 5.906481720754569,
+   "nc_dsr": 0.00012706800049936076,
+   "paper_dsr": 3.9308848068418195e-05,
+   "dep_dsr": 0.00012706800049936076,
+   "sr0_ann_nc": 1.4924883866164156,
+   "sr0_ann_paper": 1.608952809460874,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "aa70f7d80aa1ffcb",
+   "market": "XAUUSD:H1",
+   "family": "stat_autocorr_regime",
+   "status": "REJECTED",
+   "trades": 334,
+   "pf": 1.0095439350801103,
+   "net": 137.96762357643001,
+   "dev_net_chosen": 6384.968580142011,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.06811887317203008,
+   "raw_n": 18239,
+   "effective_n": 5587.292779768104,
+   "T": 1552,
+   "T_eff": 1489.916339390855,
+   "skew": 3.1144959658286777,
+   "kurtosis": 18.588124156519463,
+   "nc_dsr": 0.00017653551935372934,
+   "paper_dsr": 5.655060582417783e-05,
+   "dep_dsr": 0.0002349745556905339,
+   "sr0_ann_nc": 1.5282108837439086,
+   "sr0_ann_paper": 1.6138972488374113,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 11,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "abad4956fc521759",
+   "market": "DE40:H1",
+   "family": "trend_ma_slope",
+   "status": "REJECTED",
+   "trades": 412,
+   "pf": 0.8973448803204515,
+   "net": -1809.911242337866,
+   "dev_net_chosen": 3767.0503063900064,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.33034847378699644,
+   "raw_n": 18111,
+   "effective_n": 5563.706470551326,
+   "T": 1554,
+   "T_eff": 1484.3758339104781,
+   "skew": 2.222617034655676,
+   "kurtosis": 9.690671615763053,
+   "nc_dsr": 5.117359704783568e-06,
+   "paper_dsr": 1.2241538617638586e-06,
+   "dep_dsr": 7.457881012039484e-06,
+   "sr0_ann_nc": 1.5306191904978466,
+   "sr0_ann_paper": 1.6121874192691108,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "b855cabb1442622c",
+   "market": "DE40:H1",
+   "family": "breakout_donchian",
+   "status": "REJECTED",
+   "trades": 955,
+   "pf": 1.0465585303517095,
+   "net": 1596.0010519003245,
+   "dev_net_chosen": 1636.654251700083,
+   "dual_positive": "PASS",
+   "oos_sharpe_ann": 0.30447224922725197,
+   "raw_n": 18176,
+   "effective_n": 5556.420116641043,
+   "T": 1576,
+   "T_eff": 1408.6885887457727,
+   "skew": 1.8529999912121238,
+   "kurtosis": 7.9216191589097855,
+   "nc_dsr": 0.0011548627543533838,
+   "paper_dsr": 0.0004834102938375163,
+   "dep_dsr": 0.002248931535287568,
+   "sr0_ann_nc": 1.5710601551881758,
+   "sr0_ann_paper": 1.6012342445099288,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 12,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  },
+  {
+   "cand_id": "f77d9198aa2f48f7",
+   "market": "EURUSD:M15",
+   "family": "volume_expansion",
+   "status": "REJECTED",
+   "trades": 985,
+   "pf": 0.9491169030193304,
+   "net": -1375.6672173621528,
+   "dev_net_chosen": 3146.3165528299646,
+   "dual_positive": "FAIL",
+   "oos_sharpe_ann": -0.18163279486297634,
+   "raw_n": 18377,
+   "effective_n": 5570.749134976924,
+   "T": 1562,
+   "T_eff": 1562.0,
+   "skew": 1.2847919940744592,
+   "kurtosis": 6.8320131714556585,
+   "nc_dsr": 1.772126495887166e-05,
+   "paper_dsr": 4.824136499908743e-06,
+   "dep_dsr": 1.772126495887166e-05,
+   "sr0_ann_nc": 1.4922308172979757,
+   "sr0_ann_paper": 1.6094388239348891,
+   "reliable": true,
+   "single_window": {
+    "flag": true,
+    "n_windows": 11,
+    "decidable": true
+   },
+   "evidence_verdict": "NO_EVIDENCE"
+  }
+ ],
+ "ledger": {
+  "rows_for_run": 1467,
+  "store_trials": 918,
+  "stage_results": 549,
+  "holdout_rows_for_run": 0
+ },
+ "resources": {
+  "cpu_pct": 3.1,
+  "cpu_pct_of_one_core": 74.1,
+  "machine_cpu_pct": 55.2,
+  "pool_size": 22,
+  "priority": "psutil",
+  "ram_mb": 8189.3,
+  "ram_pauses": 0,
+  "supervisor_pid": 11768,
+  "worker_pids": [
+   40308,
+   18836,
+   46180,
+   28900,
+   37340,
+   20916,
+   39384,
+   30832,
+   32260,
+   6228,
+   9348,
+   17056,
+   19836,
+   25676,
+   42256,
+   16936,
+   6472,
+   37320,
+   29976,
+   37468,
+   19692,
+   36640
+  ],
+  "workers": 0
+ }
+}

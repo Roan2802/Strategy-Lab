@@ -1,0 +1,48 @@
+{
+  "active_before": {
+    "running": true,
+    "run_id": "preparing",
+    "strategy": "LabBreakout",
+    "action": "backtest",
+    "source": "tester",
+    "started_at": "2026-11-10T08:37:01.715559+00:00",
+    "elapsed_s": 5.9
+  },
+  "requests": [
+    [
+      0.1,
+      "POST",
+      "api/runs/cancel"
+    ],
+    [
+      5.8,
+      409,
+      "api/runs"
+    ],
+    [
+      5.8,
+      200,
+      "api/runs/cancel"
+    ]
+  ],
+  "cancel_seconds": 6.2,
+  "status_text": "Geannuleerd.",
+  "active_after": {
+    "running": false,
+    "run_id": null,
+    "strategy": null,
+    "action": null,
+    "source": null,
+    "started_at": null,
+    "elapsed_s": null,
+    "last_cancelled": {
+      "run_id": "77d94d18-4af6-4c19-9951-ae16c97a79d6",
+      "strategy": "LabBreakout",
+      "source": "tester",
+      "status": "CANCELLED",
+      "cancelled_at": "2026-11-10T08:37:19.107388+00:00"
+    }
+  },
+  "buttons_enabled": true,
+  "js_errors": []
+}

@@ -1,0 +1,5862 @@
+{
+ "generated_at_utc": "2026-11-10T12:44:53+00:00",
+ "seed": 7,
+ "config": {
+  "symbols": [
+   "XAUUSD",
+   "US30",
+   "DE40"
+  ],
+  "timeframes": [
+   "M15",
+   "H1"
+  ],
+  "families": "all",
+  "max_candidates": 200,
+  "diversity": true
+ },
+ "data_slice": {
+  "start": "2019-01-01",
+  "end": "2019-03-01",
+  "slices": {
+   "XAUUSD M15": {
+    "bars": 3836,
+    "first": "2019-01-01 23:00:00+00:00",
+    "last": "2019-02-28 23:45:00+00:00"
+   },
+   "US30 M15": {
+    "bars": 3827,
+    "first": "2019-01-01 00:00:00+00:00",
+    "last": "2019-02-28 23:45:00+00:00"
+   },
+   "DE40 M15": {
+    "bars": 3819,
+    "first": "2019-01-01 00:00:00+00:00",
+    "last": "2019-02-28 23:45:00+00:00"
+   },
+   "XAUUSD H1": {
+    "bars": 959,
+    "first": "2019-01-01 23:00:00+00:00",
+    "last": "2019-02-28 23:00:00+00:00"
+   },
+   "US30 H1": {
+    "bars": 989,
+    "first": "2019-01-01 00:00:00+00:00",
+    "last": "2019-02-28 23:00:00+00:00"
+   },
+   "DE40 H1": {
+    "bars": 981,
+    "first": "2019-01-01 00:00:00+00:00",
+    "last": "2019-02-28 23:00:00+00:00"
+   }
+  },
+  "source": "Dukascopy Bid/Ask via DataManager (read-only)"
+ },
+ "families_in_catalog": 55,
+ "candidates": 200,
+ "level1_ok": 195,
+ "level1_rejected": 5,
+ "per_group": {
+  "breakout": {
+   "generated": 35,
+   "level1_ok": 35,
+   "rejected": 0
+  },
+  "hybrid": {
+   "generated": 23,
+   "level1_ok": 23,
+   "rejected": 0
+  },
+  "mean_reversion": {
+   "generated": 26,
+   "level1_ok": 26,
+   "rejected": 0
+  },
+  "price_action": {
+   "generated": 38,
+   "level1_ok": 38,
+   "rejected": 0
+  },
+  "statistical": {
+   "generated": 29,
+   "level1_ok": 29,
+   "rejected": 0
+  },
+  "trend": {
+   "generated": 26,
+   "level1_ok": 26,
+   "rejected": 0
+  },
+  "vwap_volume": {
+   "generated": 23,
+   "level1_ok": 18,
+   "rejected": 5
+  }
+ },
+ "per_family": {
+  "breakout_asian_range": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "breakout_atr_expansion": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "breakout_consolidation": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "breakout_donchian": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "breakout_london": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "breakout_nr": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "breakout_ny": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "breakout_orb": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "breakout_prev_day": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "breakout_retest": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "hybrid_momentum_regime": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "hybrid_orb_adx_atr": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "hybrid_range_break_volc": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "hybrid_stat_mr_session": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "hybrid_sweep_mss": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "hybrid_vwap_pullback_trend": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "mr_atr_extreme": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "mr_bollinger": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "mr_failed_breakout": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "mr_range_mid": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "mr_rsi_extremes": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "mr_vwap_deviation": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "mr_zscore": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_crt": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "pa_engulfing": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "pa_fvg": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_inside_bar": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_liquidity_sweep": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_mss": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_pin_rejection": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "pa_range_hl": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "pa_reversal": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "pa_swing_breakout": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "pa_three_touch": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "stat_autocorr_regime": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "stat_day_of_week": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "stat_hour_of_day": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "stat_hurst_regime": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "stat_large_move_reversal": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "stat_momentum_exhaustion": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "stat_trend_range_switch": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "stat_vol_clustering": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "trend_adx_strength": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "trend_ma_cross": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "trend_ma_slope": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "trend_momentum_persistence": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "trend_mtf_filter": {
+   "generated": 3,
+   "level1_ok": 3,
+   "rejected": 0
+  },
+  "trend_pullback_mean": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "trend_swing_structure": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "volume_contraction": {
+   "generated": 4,
+   "level1_ok": 2,
+   "rejected": 2
+  },
+  "volume_effort_result": {
+   "generated": 3,
+   "level1_ok": 2,
+   "rejected": 1
+  },
+  "volume_expansion": {
+   "generated": 4,
+   "level1_ok": 2,
+   "rejected": 2
+  },
+  "vwap_breakout": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "vwap_deviation": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  },
+  "vwap_pullback": {
+   "generated": 4,
+   "level1_ok": 4,
+   "rejected": 0
+  }
+ },
+ "reject_reason_counts": {
+  "data_available": 5
+ },
+ "warning_counts": {
+  "VWAP is tijdgewogen (TWAP) omdat het volume constant is": 20,
+  "geen enkel signaal in deze slice": 20,
+  "entry vrijwel altijd waar (64% van de handelbare bars": 1
+ },
+ "rejects": [
+  {
+   "id": "4db7729f554984ca",
+   "name": "Gen volume_contraction DE40 M15 4db772",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "0eec4a7176568da8faad",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "0be5ac21fdb19644",
+   "name": "Gen volume_expansion XAUUSD H1 0be5ac",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "8458d63d2a638d52e91e",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 242,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "caf260471284644c",
+   "name": "Gen volume_contraction XAUUSD H1 caf260",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "39e21caf871f0559c8e1",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "401c975f9d877a35",
+   "name": "Gen volume_effort_result XAUUSD M15 401c97",
+   "family": "volume_effort_result",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "5342a593f0840a235431",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area",
+    "09_pietro_effort_result"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "20c7af12dd52eec6",
+   "name": "Gen volume_expansion XAUUSD M15 20c7af",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "99579aab78d67176e716",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  }
+ ],
+ "candidates_detail": [
+  {
+   "id": "ff63b35637520f7f",
+   "name": "Gen trend_ma_cross XAUUSD M15 ff63b3",
+   "family": "trend_ma_cross",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "772278eebca72ab08ef5",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 27,
+    "conflicting_signals": 0,
+    "long_signals": 30,
+    "short_signals": 31
+   }
+  },
+  {
+   "id": "fde6926c2319aa95",
+   "name": "Gen breakout_orb US30 M15 fde692",
+   "family": "breakout_orb",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 5,
+   "signature": "873c4284e1538e7bcef5",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb",
+    "29_hannes_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 29,
+    "conflicting_signals": 0,
+    "long_signals": 40,
+    "short_signals": 20
+   }
+  },
+  {
+   "id": "d52fff1d9b6e267c",
+   "name": "Gen mr_bollinger DE40 M15 d52fff",
+   "family": "mr_bollinger",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "848cfa8d961a6f0bdda0",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 218,
+    "trades": 14,
+    "conflicting_signals": 0,
+    "long_signals": 7,
+    "short_signals": 7
+   }
+  },
+  {
+   "id": "91a5c26e3f4599f6",
+   "name": "Gen pa_liquidity_sweep XAUUSD H1 91a5c2",
+   "family": "pa_liquidity_sweep",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "d1d5dcd159aa38cc141a",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "27_tim_liquidation_sweep"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 5,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "e91af6a8acf9af2d",
+   "name": "Gen stat_autocorr_regime US30 H1 e91af6",
+   "family": "stat_autocorr_regime",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "d08aa1667dc2572dbaca",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 418,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "d3884e057ab89e45",
+   "name": "Gen vwap_pullback DE40 H1 d3884e",
+   "family": "vwap_pullback",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "2689c29742f04cee93b7",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "23_robert_3vwap_bookmap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 20,
+    "conflicting_signals": 0,
+    "long_signals": 166,
+    "short_signals": 16
+   }
+  },
+  {
+   "id": "0d8fb7adcba68518",
+   "name": "Gen hybrid_orb_adx_atr XAUUSD M15 0d8fb7",
+   "family": "hybrid_orb_adx_atr",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "f454ba12c99054e6cf88",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 32,
+    "conflicting_signals": 0,
+    "long_signals": 274,
+    "short_signals": 327
+   }
+  },
+  {
+   "id": "dec6403b72ac257a",
+   "name": "Gen trend_ma_slope US30 M15 dec640",
+   "family": "trend_ma_slope",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "cd1bc65561db259dd292",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 31,
+    "conflicting_signals": 0,
+    "long_signals": 78,
+    "short_signals": 47
+   }
+  },
+  {
+   "id": "465d1bb67e2ffb65",
+   "name": "Gen breakout_asian_range DE40 M15 465d1b",
+   "family": "breakout_asian_range",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "1a69924e3bd361d22718",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 29,
+    "conflicting_signals": 0,
+    "long_signals": 25,
+    "short_signals": 33
+   }
+  },
+  {
+   "id": "e84dff6ed3c5ddf4",
+   "name": "Gen mr_rsi_extremes XAUUSD H1 e84dff",
+   "family": "mr_rsi_extremes",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "9a056ef244d2a51e69ca",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 242,
+    "trades": 34,
+    "conflicting_signals": 0,
+    "long_signals": 14,
+    "short_signals": 24
+   }
+  },
+  {
+   "id": "18abb095a5facc64",
+   "name": "Gen pa_mss US30 H1 18abb0",
+   "family": "pa_mss",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 4,
+   "signature": "7e7ee31739b601c26861",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 51,
+    "conflicting_signals": 0,
+    "long_signals": 28,
+    "short_signals": 26
+   }
+  },
+  {
+   "id": "f9d633be8afd82a7",
+   "name": "Gen stat_hurst_regime DE40 H1 f9d633",
+   "family": "stat_hurst_regime",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 14,
+   "signature": "c7760b90934b77b14533",
+   "exit_profile": "atr_target_trail",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1118,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "e37b3b33aebad521",
+   "name": "Gen vwap_breakout XAUUSD M15 e37b3b",
+   "family": "vwap_breakout",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "5266cb806b2a26f089bb",
+   "exit_profile": "session_close",
+   "iq_dossiers": [
+    "04_matteo_vault_break"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 20,
+    "conflicting_signals": 0,
+    "long_signals": 16,
+    "short_signals": 17
+   }
+  },
+  {
+   "id": "74b9c051b37a259a",
+   "name": "Gen hybrid_vwap_pullback_trend US30 M15 74b9c0",
+   "family": "hybrid_vwap_pullback_trend",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 12,
+   "signature": "427af36ba7fa581b76b9",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "03_matteo_drift_vwap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 18,
+    "conflicting_signals": 0,
+    "long_signals": 20,
+    "short_signals": 33
+   }
+  },
+  {
+   "id": "f1b27e155a4d2228",
+   "name": "Gen trend_swing_structure DE40 M15 f1b27e",
+   "family": "trend_swing_structure",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "46bdeaf75d2a42690c95",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure",
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 53,
+    "conflicting_signals": 0,
+    "long_signals": 53,
+    "short_signals": 43
+   }
+  },
+  {
+   "id": "78af39d44a29c68c",
+   "name": "Gen breakout_london XAUUSD H1 78af39",
+   "family": "breakout_london",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "b71c15b508b6ba25a814",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 8
+   }
+  },
+  {
+   "id": "a50e276733efccb6",
+   "name": "Gen mr_vwap_deviation US30 H1 a50e27",
+   "family": "mr_vwap_deviation",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "db21562a55d9e8f67360",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "31_heiko_6e_vpoc_reversion"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 250,
+    "trades": 25,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 31
+   }
+  },
+  {
+   "id": "66932d645c929d08",
+   "name": "Gen pa_swing_breakout DE40 H1 66932d",
+   "family": "pa_swing_breakout",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "00e9a3bef95931ee75ea",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 586,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 48,
+    "short_signals": 40
+   }
+  },
+  {
+   "id": "677b74d41bb25ae6",
+   "name": "Gen stat_hour_of_day XAUUSD M15 677b74",
+   "family": "stat_hour_of_day",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "084b12d7c6e9e30016bf",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 168,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "ce8690c64913c3c2",
+   "name": "Gen vwap_deviation US30 M15 ce8690",
+   "family": "vwap_deviation",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "f9e153f39d7c96dfd168",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 84,
+    "conflicting_signals": 0,
+    "long_signals": 88,
+    "short_signals": 158
+   }
+  },
+  {
+   "id": "76ba282f7a4efe6f",
+   "name": "Gen hybrid_sweep_mss DE40 M15 76ba28",
+   "family": "hybrid_sweep_mss",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 11,
+   "signature": "e68205e29d881e658fff",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 426,
+    "trades": 58,
+    "conflicting_signals": 0,
+    "long_signals": 36,
+    "short_signals": 36
+   }
+  },
+  {
+   "id": "da107c30bfba965c",
+   "name": "Gen trend_adx_strength XAUUSD H1 da107c",
+   "family": "trend_adx_strength",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "7bed65d36277a554b3d6",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "796290654854a234",
+   "name": "Gen breakout_ny US30 H1 796290",
+   "family": "breakout_ny",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "3e480d8d7b3cdbea49f1",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "33_jonas_london_us_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 5,
+    "conflicting_signals": 0,
+    "long_signals": 7,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "b9174be4bcd17f34",
+   "name": "Gen mr_atr_extreme DE40 H1 b9174b",
+   "family": "mr_atr_extreme",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "81ca56961623f8c2dc2f",
+   "exit_profile": "atr_atr",
+   "iq_dossiers": [
+    "19_mnq_atr_extreme_long"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 1,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "a2c55481a4861d4a",
+   "name": "Gen pa_fvg XAUUSD M15 a2c554",
+   "family": "pa_fvg",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "7cd8b17a14375ea7a67a",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "15_candace_ict_2022",
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 150,
+    "conflicting_signals": 0,
+    "long_signals": 277,
+    "short_signals": 248
+   }
+  },
+  {
+   "id": "9cc093b092e47839",
+   "name": "Gen stat_day_of_week US30 M15 9cc093",
+   "family": "stat_day_of_week",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "b482a0ac159fd0915dfd",
+   "exit_profile": "pct_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 36
+   }
+  },
+  {
+   "id": "4db7729f554984ca",
+   "name": "Gen volume_contraction DE40 M15 4db772",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "0eec4a7176568da8faad",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "ebeea7096237c695",
+   "name": "Gen hybrid_range_break_volc XAUUSD H1 ebeea7",
+   "family": "hybrid_range_break_volc",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "74d14722ab5d1e12435e",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 302,
+    "trades": 24,
+    "conflicting_signals": 0,
+    "long_signals": 47,
+    "short_signals": 51
+   }
+  },
+  {
+   "id": "ebe058ed4fa55d1f",
+   "name": "Gen trend_pullback_mean US30 H1 ebe058",
+   "family": "trend_pullback_mean",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "1bdc4083617d5fee2cac",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 22,
+    "conflicting_signals": 0,
+    "long_signals": 33,
+    "short_signals": 11
+   }
+  },
+  {
+   "id": "15f113cb64b084ef",
+   "name": "Gen breakout_prev_day DE40 H1 15f113",
+   "family": "breakout_prev_day",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "72097a6f2004f7891d51",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1010,
+    "trades": 14,
+    "conflicting_signals": 0,
+    "long_signals": 22,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "a533c42b42ce2af7",
+   "name": "Gen mr_zscore XAUUSD M15 a533c4",
+   "family": "mr_zscore",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "8736bc5fc066f25f51d8",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 458,
+    "trades": 60,
+    "conflicting_signals": 0,
+    "long_signals": 42,
+    "short_signals": 46
+   }
+  },
+  {
+   "id": "cd66437956986cb8",
+   "name": "Gen pa_inside_bar US30 M15 cd6643",
+   "family": "pa_inside_bar",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 11,
+   "signature": "3f7766bf4af0685c6a48",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 20,
+    "conflicting_signals": 0,
+    "long_signals": 69,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "98bfbe6d2f4420ea",
+   "name": "Gen stat_vol_clustering DE40 M15 98bfbe",
+   "family": "stat_vol_clustering",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "1b5a32959b1c9097f0d0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 94,
+    "conflicting_signals": 0,
+    "long_signals": 82,
+    "short_signals": 79
+   }
+  },
+  {
+   "id": "0be5ac21fdb19644",
+   "name": "Gen volume_expansion XAUUSD H1 0be5ac",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "8458d63d2a638d52e91e",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 242,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "338259839444f3ed",
+   "name": "Gen hybrid_momentum_regime US30 H1 338259",
+   "family": "hybrid_momentum_regime",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "6ae0f060f1b6fb690ab4",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 13,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "42498e20c015a7ac",
+   "name": "Gen trend_mtf_filter DE40 H1 42498e",
+   "family": "trend_mtf_filter",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "31632a7e69e2c5bdeae4",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1682,
+    "trades": 5,
+    "conflicting_signals": 0,
+    "long_signals": 46,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "0fa84abc19d7dd97",
+   "name": "Gen breakout_donchian XAUUSD M15 0fa84a",
+   "family": "breakout_donchian",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "ed88ce943d9d4c002b74",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 34,
+    "conflicting_signals": 0,
+    "long_signals": 77,
+    "short_signals": 27
+   }
+  },
+  {
+   "id": "6e3c3dde42ad4ad0",
+   "name": "Gen mr_failed_breakout US30 M15 6e3c3d",
+   "family": "mr_failed_breakout",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "5df98886a6fb3b9ee667",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "13_andrea_failed_auction"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 48,
+    "conflicting_signals": 0,
+    "long_signals": 17,
+    "short_signals": 36
+   }
+  },
+  {
+   "id": "0597bf07c2a17b68",
+   "name": "Gen pa_engulfing DE40 M15 0597bf",
+   "family": "pa_engulfing",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "b5632f23ed0abf29bd42",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 290,
+    "trades": 37,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 39
+   }
+  },
+  {
+   "id": "abaeb4b01d563e81",
+   "name": "Gen stat_trend_range_switch XAUUSD H1 abaeb4",
+   "family": "stat_trend_range_switch",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "25d15d425c9f5f710bc1",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "34_tom_balance_vs_trend"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 258,
+    "trades": 18,
+    "conflicting_signals": 0,
+    "long_signals": 20,
+    "short_signals": 14
+   }
+  },
+  {
+   "id": "1e99cfa61ec765d6",
+   "name": "Gen volume_effort_result US30 H1 1e99cf",
+   "family": "volume_effort_result",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "f40e2fa74ac85be13556",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area",
+    "09_pietro_effort_result"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "457401efdd5694e9",
+   "name": "Gen hybrid_stat_mr_session DE40 H1 457401",
+   "family": "hybrid_stat_mr_session",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "d7c9ff6b46536d177bbc",
+   "exit_profile": "session_close",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 378,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "4358c094885de810",
+   "name": "Gen trend_momentum_persistence XAUUSD M15 4358c0",
+   "family": "trend_momentum_persistence",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "05240cd3607ed195a5b6",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 304,
+    "short_signals": 225
+   }
+  },
+  {
+   "id": "534538df619e0ade",
+   "name": "Gen breakout_consolidation US30 M15 534538",
+   "family": "breakout_consolidation",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "e0b1a2c03a9459e7465d",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 108,
+    "conflicting_signals": 0,
+    "long_signals": 208,
+    "short_signals": 150
+   }
+  },
+  {
+   "id": "5016d06ebce80251",
+   "name": "Gen mr_range_mid DE40 M15 5016d0",
+   "family": "mr_range_mid",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "91b3f0c5cb429afe4a4b",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 25,
+    "short_signals": 26
+   }
+  },
+  {
+   "id": "ac9f55fb9994cc04",
+   "name": "Gen pa_pin_rejection XAUUSD H1 ac9f55",
+   "family": "pa_pin_rejection",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "8ae181488034e7ae9ecf",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "20_mnq_shooting_star_short"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 262,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "8c7c1839f833ae25",
+   "name": "Gen stat_momentum_exhaustion US30 H1 8c7c18",
+   "family": "stat_momentum_exhaustion",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "0d58d939c11a8c319df0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 6,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "46c43f0715519e49",
+   "name": "Gen breakout_nr DE40 H1 46c43f",
+   "family": "breakout_nr",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "91705ead3000f98dca59",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 16,
+    "conflicting_signals": 0,
+    "long_signals": 117,
+    "short_signals": 58
+   }
+  },
+  {
+   "id": "13eae615ad8a55ca",
+   "name": "Gen pa_range_hl XAUUSD M15 13eae6",
+   "family": "pa_range_hl",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "f79032d436560da906a3",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "1f3b351ff1dadb05",
+   "name": "Gen stat_large_move_reversal US30 M15 1f3b35",
+   "family": "stat_large_move_reversal",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "89a9716b070f81f4a857",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 85,
+    "conflicting_signals": 0,
+    "long_signals": 92,
+    "short_signals": 17
+   }
+  },
+  {
+   "id": "c0d97859b102deaf",
+   "name": "Gen breakout_atr_expansion DE40 M15 c0d978",
+   "family": "breakout_atr_expansion",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "90b0f96c34e98cbdb175",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 290,
+    "trades": 34,
+    "conflicting_signals": 0,
+    "long_signals": 359,
+    "short_signals": 368
+   }
+  },
+  {
+   "id": "1354406e06eeda71",
+   "name": "Gen pa_three_touch XAUUSD H1 135440",
+   "family": "pa_three_touch",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "c9ebb16581b10ae9b09f",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 410,
+    "trades": 7,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "713b92922b604802",
+   "name": "Gen breakout_retest US30 H1 713b92",
+   "family": "breakout_retest",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "2fac2394fd8b53843208",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 32,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "a525fd53d78a43d5",
+   "name": "Gen pa_crt DE40 H1 a525fd",
+   "family": "pa_crt",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "4a36a7d5d09d8d6a6a13",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "18_mike_crt_3candle"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 290,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 51,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "1e95387ebb661834",
+   "name": "Gen pa_reversal XAUUSD M15 1e9538",
+   "family": "pa_reversal",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "af0f5aac13780a542c4c",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "26_henrik_profile_singleprints"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 61,
+    "conflicting_signals": 0,
+    "long_signals": 97,
+    "short_signals": 142
+   }
+  },
+  {
+   "id": "9363abf6d14389c4",
+   "name": "Gen trend_ma_cross US30 M15 9363ab",
+   "family": "trend_ma_cross",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "4e37c7fe1c255b6be680",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 33,
+    "conflicting_signals": 0,
+    "long_signals": 21,
+    "short_signals": 21
+   }
+  },
+  {
+   "id": "f624c359bd87d647",
+   "name": "Gen breakout_orb DE40 M15 f624c3",
+   "family": "breakout_orb",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "2a228d65a907bc80cfba",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb",
+    "29_hannes_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 15,
+    "conflicting_signals": 0,
+    "long_signals": 15,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "e821a74e4eefca7b",
+   "name": "Gen mr_bollinger XAUUSD H1 e821a7",
+   "family": "mr_bollinger",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "16fdebdbf7fa51ae2e72",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 218,
+    "trades": 24,
+    "conflicting_signals": 0,
+    "long_signals": 15,
+    "short_signals": 10
+   }
+  },
+  {
+   "id": "e6adca8499f933b1",
+   "name": "Gen pa_liquidity_sweep US30 H1 e6adca",
+   "family": "pa_liquidity_sweep",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "486216aef36d93288e6f",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "27_tim_liquidation_sweep"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 306,
+    "trades": 13,
+    "conflicting_signals": 0,
+    "long_signals": 6,
+    "short_signals": 30
+   }
+  },
+  {
+   "id": "a032c0ee82cd2d12",
+   "name": "Gen stat_autocorr_regime DE40 H1 a032c0",
+   "family": "stat_autocorr_regime",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "0c53d8c10d8c8108dc25",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 414,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "eef524ced872ba6c",
+   "name": "Gen vwap_pullback XAUUSD M15 eef524",
+   "family": "vwap_pullback",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "cf1c05caa785ab9d098f",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "23_robert_3vwap_bookmap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 96,
+    "conflicting_signals": 0,
+    "long_signals": 226,
+    "short_signals": 196
+   }
+  },
+  {
+   "id": "d08deb268d9da824",
+   "name": "Gen hybrid_orb_adx_atr US30 M15 d08deb",
+   "family": "hybrid_orb_adx_atr",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "85451ebdf7828ac08aee",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "entry vrijwel altijd waar (64% van de handelbare bars; degeneratie) - toegestaan: baseline of begrensd door max_trades_per_day"
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 28,
+    "conflicting_signals": 0,
+    "long_signals": 445,
+    "short_signals": 219
+   }
+  },
+  {
+   "id": "d7a1e4ce66ec004f",
+   "name": "Gen trend_ma_slope DE40 M15 d7a1e4",
+   "family": "trend_ma_slope",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "bb79ba6d48a9744b7521",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 18,
+    "conflicting_signals": 0,
+    "long_signals": 17,
+    "short_signals": 15
+   }
+  },
+  {
+   "id": "0a2b397992798dc3",
+   "name": "Gen breakout_asian_range XAUUSD H1 0a2b39",
+   "family": "breakout_asian_range",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "863271534b19fae30fd2",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 14,
+    "conflicting_signals": 0,
+    "long_signals": 7,
+    "short_signals": 8
+   }
+  },
+  {
+   "id": "b50f534176e12518",
+   "name": "Gen mr_rsi_extremes US30 H1 b50f53",
+   "family": "mr_rsi_extremes",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "430038c5aef18acb1595",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 22,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 37
+   }
+  },
+  {
+   "id": "19794ddfa281c1fc",
+   "name": "Gen pa_mss DE40 H1 19794d",
+   "family": "pa_mss",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "7c279cdcf05b840a6523",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 26,
+    "short_signals": 22
+   }
+  },
+  {
+   "id": "bb0b1aafa98abd82",
+   "name": "Gen stat_hurst_regime XAUUSD M15 bb0b1a",
+   "family": "stat_hurst_regime",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 12,
+   "signature": "72b55dec2c8c86a46eef",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1118,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "d20253dc7e6af532",
+   "name": "Gen vwap_breakout US30 M15 d20253",
+   "family": "vwap_breakout",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "2d19229eb613db4dea46",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "04_matteo_vault_break"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 37,
+    "conflicting_signals": 0,
+    "long_signals": 23,
+    "short_signals": 27
+   }
+  },
+  {
+   "id": "b5462b2e0a47087d",
+   "name": "Gen hybrid_vwap_pullback_trend DE40 M15 b5462b",
+   "family": "hybrid_vwap_pullback_trend",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 12,
+   "signature": "b1994af6c02be0f68c90",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "03_matteo_drift_vwap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 30,
+    "conflicting_signals": 0,
+    "long_signals": 45,
+    "short_signals": 12
+   }
+  },
+  {
+   "id": "01654109e4752cf2",
+   "name": "Gen trend_swing_structure XAUUSD H1 016541",
+   "family": "trend_swing_structure",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "db847b98b2d6c5bf2649",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure",
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 16,
+    "short_signals": 13
+   }
+  },
+  {
+   "id": "9b51b963e0407b67",
+   "name": "Gen breakout_london US30 H1 9b51b9",
+   "family": "breakout_london",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "ee32a8165e4130a8fecb",
+   "exit_profile": "session_close",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 6,
+    "conflicting_signals": 0,
+    "long_signals": 6,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "a90859b91a9220c4",
+   "name": "Gen mr_vwap_deviation DE40 H1 a90859",
+   "family": "mr_vwap_deviation",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "343cf02d14a5e6ce32d3",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "31_heiko_6e_vpoc_reversion"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 250,
+    "trades": 14,
+    "conflicting_signals": 0,
+    "long_signals": 13,
+    "short_signals": 28
+   }
+  },
+  {
+   "id": "b78704a719c4f2c4",
+   "name": "Gen pa_swing_breakout XAUUSD M15 b78704",
+   "family": "pa_swing_breakout",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 4,
+   "signature": "288a541394a0b19aac0e",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 586,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 170,
+    "short_signals": 157
+   }
+  },
+  {
+   "id": "7e51939bf69c4f60",
+   "name": "Gen stat_hour_of_day US30 M15 7e5193",
+   "family": "stat_hour_of_day",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "a8c3a3592b76dcb6d5b6",
+   "exit_profile": "pct_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 43,
+    "conflicting_signals": 0,
+    "long_signals": 172,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "45ab9f21784dc724",
+   "name": "Gen vwap_deviation DE40 M15 45ab9f",
+   "family": "vwap_deviation",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "6273b86eb48d38029c0f",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 56,
+    "conflicting_signals": 0,
+    "long_signals": 116,
+    "short_signals": 119
+   }
+  },
+  {
+   "id": "ca0920e8a1e096b1",
+   "name": "Gen hybrid_sweep_mss XAUUSD H1 ca0920",
+   "family": "hybrid_sweep_mss",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "93a199fc22105165898f",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 426,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 6,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "2a2ca7197877f396",
+   "name": "Gen trend_adx_strength US30 H1 2a2ca7",
+   "family": "trend_adx_strength",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "6f42d3d7ce1fea2c8eb1",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 458,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 14,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "03b747728aabd019",
+   "name": "Gen breakout_ny DE40 H1 03b747",
+   "family": "breakout_ny",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "33d14f268dc55b6b20ae",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "33_jonas_london_us_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 7,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "d84c6d4cb3907a95",
+   "name": "Gen mr_atr_extreme XAUUSD M15 d84c6d",
+   "family": "mr_atr_extreme",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 5,
+   "signature": "b9051e4e8f4a0dd1ad4a",
+   "exit_profile": "atr_atr",
+   "iq_dossiers": [
+    "19_mnq_atr_extreme_long"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 1,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "0499542d0f1dc0c7",
+   "name": "Gen pa_fvg US30 M15 049954",
+   "family": "pa_fvg",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "f6274402d6f0fe77fe55",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "15_candace_ict_2022",
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 58,
+    "conflicting_signals": 0,
+    "long_signals": 203,
+    "short_signals": 68
+   }
+  },
+  {
+   "id": "b279cb8c7b60272f",
+   "name": "Gen stat_day_of_week DE40 M15 b279cb",
+   "family": "stat_day_of_week",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "1556874dfc8995c98992",
+   "exit_profile": "pct_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 32,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "caf260471284644c",
+   "name": "Gen volume_contraction XAUUSD H1 caf260",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "39e21caf871f0559c8e1",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "f4ee3b9072b0a2ce",
+   "name": "Gen hybrid_range_break_volc US30 H1 f4ee3b",
+   "family": "hybrid_range_break_volc",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "8cdcfe0f377e1551f16a",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 302,
+    "trades": 27,
+    "conflicting_signals": 0,
+    "long_signals": 23,
+    "short_signals": 13
+   }
+  },
+  {
+   "id": "d7456d3308f3b2a6",
+   "name": "Gen trend_pullback_mean DE40 H1 d7456d",
+   "family": "trend_pullback_mean",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "d0a7b14ace42d9c5eb17",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 113,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "47f89a84be01b650",
+   "name": "Gen breakout_prev_day XAUUSD M15 47f89a",
+   "family": "breakout_prev_day",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 4,
+   "signature": "75c137a2ec656ec937a2",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3890,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 20,
+    "short_signals": 15
+   }
+  },
+  {
+   "id": "7e3bf522c65af2ef",
+   "name": "Gen mr_zscore US30 M15 7e3bf5",
+   "family": "mr_zscore",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "7aa27d8f94d62e829ef0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 458,
+    "trades": 52,
+    "conflicting_signals": 0,
+    "long_signals": 51,
+    "short_signals": 31
+   }
+  },
+  {
+   "id": "1f4d1cc0d72ba9b5",
+   "name": "Gen pa_inside_bar DE40 M15 1f4d1c",
+   "family": "pa_inside_bar",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "f94b8c3638b16fc2affa",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 48,
+    "conflicting_signals": 0,
+    "long_signals": 330,
+    "short_signals": 174
+   }
+  },
+  {
+   "id": "46e42b67e4888bc7",
+   "name": "Gen stat_vol_clustering XAUUSD H1 46e42b",
+   "family": "stat_vol_clustering",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "0323aa3ce06989050850",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 18,
+    "short_signals": 16
+   }
+  },
+  {
+   "id": "d34158990d73ec1e",
+   "name": "Gen volume_expansion US30 H1 d34158",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "382111cfb4a3e2ec9ee0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "3ec9414bd6e44a12",
+   "name": "Gen hybrid_momentum_regime DE40 H1 3ec941",
+   "family": "hybrid_momentum_regime",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 13,
+   "signature": "fcb6671459ab25233081",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "d1386153b1dfff02",
+   "name": "Gen trend_mtf_filter XAUUSD M15 d13861",
+   "family": "trend_mtf_filter",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "b69608afd6df4e5f1751",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 6578,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 75,
+    "short_signals": 80
+   }
+  },
+  {
+   "id": "896bb11b71e3572b",
+   "name": "Gen breakout_donchian US30 M15 896bb1",
+   "family": "breakout_donchian",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "b4b821bd63cae31e65a3",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 57,
+    "conflicting_signals": 0,
+    "long_signals": 142,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "86063967901e0f25",
+   "name": "Gen mr_failed_breakout DE40 M15 860639",
+   "family": "mr_failed_breakout",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "61f7de36f4971e5f9879",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "13_andrea_failed_auction"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 306,
+    "trades": 47,
+    "conflicting_signals": 0,
+    "long_signals": 38,
+    "short_signals": 35
+   }
+  },
+  {
+   "id": "6180b67ed4eab9f4",
+   "name": "Gen pa_engulfing XAUUSD H1 6180b6",
+   "family": "pa_engulfing",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "24df702b248683785fb0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 218,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "28c74634f15b82a1",
+   "name": "Gen stat_trend_range_switch US30 H1 28c746",
+   "family": "stat_trend_range_switch",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "c465e7581bc3dc8543ac",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "34_tom_balance_vs_trend"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 258,
+    "trades": 12,
+    "conflicting_signals": 0,
+    "long_signals": 12,
+    "short_signals": 15
+   }
+  },
+  {
+   "id": "23e0e134480d9cf7",
+   "name": "Gen volume_effort_result DE40 H1 23e0e1",
+   "family": "volume_effort_result",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "58fc7068a8b086159146",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area",
+    "09_pietro_effort_result"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "e258fc662306c5f6",
+   "name": "Gen hybrid_stat_mr_session XAUUSD M15 e258fc",
+   "family": "hybrid_stat_mr_session",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 12,
+   "signature": "e980fcfd5276a013e680",
+   "exit_profile": "session_close",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 26,
+    "conflicting_signals": 0,
+    "long_signals": 16,
+    "short_signals": 14
+   }
+  },
+  {
+   "id": "f185f8bd4ab4797b",
+   "name": "Gen trend_momentum_persistence US30 M15 f185f8",
+   "family": "trend_momentum_persistence",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "827f4fa018fa38364fee",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 25,
+    "conflicting_signals": 0,
+    "long_signals": 262,
+    "short_signals": 26
+   }
+  },
+  {
+   "id": "f085736d9c493ee7",
+   "name": "Gen breakout_consolidation DE40 M15 f08573",
+   "family": "breakout_consolidation",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "7046c5300c0ecf2b1771",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 87,
+    "conflicting_signals": 0,
+    "long_signals": 72,
+    "short_signals": 57
+   }
+  },
+  {
+   "id": "429b2d86121d6ea2",
+   "name": "Gen mr_range_mid XAUUSD H1 429b2d",
+   "family": "mr_range_mid",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "5c7ab0dd3796afbe907e",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 382,
+    "trades": 2,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "afef217db6a7648e",
+   "name": "Gen pa_pin_rejection US30 H1 afef21",
+   "family": "pa_pin_rejection",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "0d23b864f25d2a47eb97",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "20_mnq_shooting_star_short"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 262,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 13
+   }
+  },
+  {
+   "id": "ece29e91d39b8c18",
+   "name": "Gen stat_momentum_exhaustion DE40 H1 ece29e",
+   "family": "stat_momentum_exhaustion",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 13,
+   "signature": "0cae3aa8efd05e0e9deb",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 242,
+    "trades": 1,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "a731863e554e3803",
+   "name": "Gen breakout_nr XAUUSD M15 a73186",
+   "family": "breakout_nr",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "cdf521b7c1f3c3bb4199",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 111,
+    "conflicting_signals": 0,
+    "long_signals": 514,
+    "short_signals": 454
+   }
+  },
+  {
+   "id": "833fdbd94581f5c6",
+   "name": "Gen pa_range_hl US30 M15 833fdb",
+   "family": "pa_range_hl",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "7435911e285ece794947",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "054b2ff91983f38e",
+   "name": "Gen stat_large_move_reversal DE40 M15 054b2f",
+   "family": "stat_large_move_reversal",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "7b2d1a3a5c5c0affb4a3",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 17,
+    "conflicting_signals": 0,
+    "long_signals": 23,
+    "short_signals": 39
+   }
+  },
+  {
+   "id": "ce9320827bf497c4",
+   "name": "Gen breakout_atr_expansion XAUUSD H1 ce9320",
+   "family": "breakout_atr_expansion",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "8e2495acc2c4ae2a2be4",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 13,
+    "conflicting_signals": 0,
+    "long_signals": 12,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "a1b55569ea0fd2c0",
+   "name": "Gen pa_three_touch US30 H1 a1b555",
+   "family": "pa_three_touch",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "4680f9b294cd6d84fa54",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 410,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "7d5de5e97177f023",
+   "name": "Gen breakout_retest DE40 H1 7d5de5",
+   "family": "breakout_retest",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "693e79fc4cdf70f974fd",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 346,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 21,
+    "short_signals": 14
+   }
+  },
+  {
+   "id": "19c2d1f60838e591",
+   "name": "Gen pa_crt XAUUSD M15 19c2d1",
+   "family": "pa_crt",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 5,
+   "signature": "712d2590f6646eaaed76",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "18_mike_crt_3candle"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 37,
+    "conflicting_signals": 0,
+    "long_signals": 103,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "530ea452e490a6e1",
+   "name": "Gen pa_reversal US30 M15 530ea4",
+   "family": "pa_reversal",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "3802feac515980c52793",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "26_henrik_profile_singleprints"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 7,
+    "conflicting_signals": 0,
+    "long_signals": 12,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "d0f03d1f2ba205ff",
+   "name": "Gen trend_ma_cross DE40 M15 d0f03d",
+   "family": "trend_ma_cross",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "05890e25fa61ba3caec5",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 33,
+    "conflicting_signals": 0,
+    "long_signals": 24,
+    "short_signals": 24
+   }
+  },
+  {
+   "id": "06d5bf6ba6c71463",
+   "name": "Gen breakout_orb XAUUSD H1 06d5bf",
+   "family": "breakout_orb",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "2ac7f3ea0baef7923c95",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb",
+    "29_hannes_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 23,
+    "conflicting_signals": 0,
+    "long_signals": 20,
+    "short_signals": 23
+   }
+  },
+  {
+   "id": "62f6855ffb94eaed",
+   "name": "Gen mr_bollinger US30 H1 62f685",
+   "family": "mr_bollinger",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "103dd98af5d03ce436fb",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 218,
+    "trades": 6,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "50477ff7202a2f73",
+   "name": "Gen pa_liquidity_sweep DE40 H1 50477f",
+   "family": "pa_liquidity_sweep",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "5b19c2ccc824f0f00922",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "27_tim_liquidation_sweep"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 7,
+    "conflicting_signals": 0,
+    "long_signals": 11,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "85f70f5bff64040f",
+   "name": "Gen stat_autocorr_regime XAUUSD M15 85f70f",
+   "family": "stat_autocorr_regime",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "0ecc63ac9b8d450843f6",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 8,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "28ec8aa53c0b9994",
+   "name": "Gen vwap_pullback US30 M15 28ec8a",
+   "family": "vwap_pullback",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "517b6a5ba63ec9ab01ce",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "23_robert_3vwap_bookmap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 21,
+    "conflicting_signals": 0,
+    "long_signals": 332,
+    "short_signals": 218
+   }
+  },
+  {
+   "id": "66c5dc754fbd553b",
+   "name": "Gen hybrid_orb_adx_atr DE40 M15 66c5dc",
+   "family": "hybrid_orb_adx_atr",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "6f325128f88ff8a5be6a",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 36,
+    "conflicting_signals": 0,
+    "long_signals": 236,
+    "short_signals": 200
+   }
+  },
+  {
+   "id": "d0f62e4e77e6ba72",
+   "name": "Gen trend_ma_slope XAUUSD H1 d0f62e",
+   "family": "trend_ma_slope",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "ffbb6f1cfb887352d036",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 17,
+    "conflicting_signals": 0,
+    "long_signals": 20,
+    "short_signals": 15
+   }
+  },
+  {
+   "id": "f378d3455737dd4e",
+   "name": "Gen breakout_asian_range US30 H1 f378d3",
+   "family": "breakout_asian_range",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "717656002afb39f21294",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 17,
+    "conflicting_signals": 0,
+    "long_signals": 16,
+    "short_signals": 19
+   }
+  },
+  {
+   "id": "bfce162c86026822",
+   "name": "Gen mr_rsi_extremes DE40 H1 bfce16",
+   "family": "mr_rsi_extremes",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "c211d7d410e45ce1b6b0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 242,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "9cc89465b5cf7dae",
+   "name": "Gen pa_mss XAUUSD M15 9cc894",
+   "family": "pa_mss",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 4,
+   "signature": "3bb303817dd25979a27f",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 149,
+    "conflicting_signals": 0,
+    "long_signals": 75,
+    "short_signals": 74
+   }
+  },
+  {
+   "id": "5383e1ef75222936",
+   "name": "Gen stat_hurst_regime US30 M15 5383e1",
+   "family": "stat_hurst_regime",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 13,
+   "signature": "0bdb76e7f49146b5b0d1",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1118,
+    "trades": 1,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "5b1a72261b474fa8",
+   "name": "Gen vwap_breakout DE40 M15 5b1a72",
+   "family": "vwap_breakout",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "26af99bf77bef89dad47",
+   "exit_profile": "session_close",
+   "iq_dossiers": [
+    "04_matteo_vault_break"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 830,
+    "trades": 27,
+    "conflicting_signals": 0,
+    "long_signals": 31,
+    "short_signals": 25
+   }
+  },
+  {
+   "id": "3870d1f6bebec02c",
+   "name": "Gen hybrid_vwap_pullback_trend XAUUSD H1 3870d1",
+   "family": "hybrid_vwap_pullback_trend",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 14,
+   "signature": "f0d0535c439fc9e6d1c2",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "03_matteo_drift_vwap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY.",
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 254,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "26dfefc8a4e60313",
+   "name": "Gen trend_swing_structure US30 H1 26dfef",
+   "family": "trend_swing_structure",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "2cc04f868c5227b434a3",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure",
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 16,
+    "conflicting_signals": 0,
+    "long_signals": 12,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "698aa71d27b2c3da",
+   "name": "Gen breakout_london DE40 H1 698aa7",
+   "family": "breakout_london",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "7462f1c1b27e0c585504",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 17,
+    "conflicting_signals": 0,
+    "long_signals": 12,
+    "short_signals": 8
+   }
+  },
+  {
+   "id": "72843e7d053c02a5",
+   "name": "Gen mr_vwap_deviation XAUUSD M15 72843e",
+   "family": "mr_vwap_deviation",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "34cedb1eb39cdcade722",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "31_heiko_6e_vpoc_reversion"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 826,
+    "trades": 53,
+    "conflicting_signals": 0,
+    "long_signals": 140,
+    "short_signals": 149
+   }
+  },
+  {
+   "id": "ee6d2f6bae2ceee2",
+   "name": "Gen pa_swing_breakout US30 M15 ee6d2f",
+   "family": "pa_swing_breakout",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "441ad57064809042d947",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 48,
+    "conflicting_signals": 0,
+    "long_signals": 54,
+    "short_signals": 27
+   }
+  },
+  {
+   "id": "fb51348dfddcf916",
+   "name": "Gen stat_hour_of_day DE40 M15 fb5134",
+   "family": "stat_hour_of_day",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "c7fdebd307fc7be01480",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 172
+   }
+  },
+  {
+   "id": "82af133451b76623",
+   "name": "Gen vwap_deviation XAUUSD H1 82af13",
+   "family": "vwap_deviation",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "54705ba1487d24664cba",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 254,
+    "trades": 20,
+    "conflicting_signals": 0,
+    "long_signals": 57,
+    "short_signals": 17
+   }
+  },
+  {
+   "id": "5bbf39d0f97bd13b",
+   "name": "Gen hybrid_sweep_mss US30 H1 5bbf39",
+   "family": "hybrid_sweep_mss",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "67ea6ebe993cfcf20de7",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 426,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 1,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "9cf81e7997f4f140",
+   "name": "Gen trend_adx_strength DE40 H1 9cf81e",
+   "family": "trend_adx_strength",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "b8abdaecc7839728cae0",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "a46f7b3daeea197a",
+   "name": "Gen breakout_ny XAUUSD M15 a46f7b",
+   "family": "breakout_ny",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "a726286155e359062c51",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "33_jonas_london_us_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 24,
+    "conflicting_signals": 0,
+    "long_signals": 17,
+    "short_signals": 11
+   }
+  },
+  {
+   "id": "36c6802751f0d55a",
+   "name": "Gen mr_atr_extreme US30 M15 36c680",
+   "family": "mr_atr_extreme",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "16a638310b8af056a2f4",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "19_mnq_atr_extreme_long"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 2,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "66f2c26c401144d9",
+   "name": "Gen pa_fvg DE40 M15 66f2c2",
+   "family": "pa_fvg",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "d7a467ec9e14d921747b",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "15_candace_ict_2022",
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 61,
+    "conflicting_signals": 0,
+    "long_signals": 553,
+    "short_signals": 334
+   }
+  },
+  {
+   "id": "c003b5d961162f60",
+   "name": "Gen stat_day_of_week XAUUSD H1 c003b5",
+   "family": "stat_day_of_week",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "1f20ac37cd58b93034db",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "fe64a525034b1826",
+   "name": "Gen volume_contraction US30 H1 fe64a5",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "b46a7f31061422ee75df",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 2,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "1c5e2cd1f7849ba7",
+   "name": "Gen hybrid_range_break_volc DE40 H1 1c5e2c",
+   "family": "hybrid_range_break_volc",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "07a3e542c791f15aea29",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 302,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "2d77b7460423d92c",
+   "name": "Gen trend_pullback_mean XAUUSD M15 2d77b7",
+   "family": "trend_pullback_mean",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "d808878fa95ca4fc2af2",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 90,
+    "conflicting_signals": 0,
+    "long_signals": 190,
+    "short_signals": 86
+   }
+  },
+  {
+   "id": "4b08cfd7d57eaeb5",
+   "name": "Gen breakout_prev_day US30 M15 4b08cf",
+   "family": "breakout_prev_day",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 5,
+   "signature": "0419f9df4d1a720b8911",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3890,
+    "trades": 2,
+    "conflicting_signals": 0,
+    "long_signals": 21,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "45b90b08dd8ca642",
+   "name": "Gen mr_zscore DE40 M15 45b90b",
+   "family": "mr_zscore",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "04b5953aceabc984485d",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 27,
+    "conflicting_signals": 0,
+    "long_signals": 15,
+    "short_signals": 21
+   }
+  },
+  {
+   "id": "e1dbbf889d890bd8",
+   "name": "Gen pa_inside_bar XAUUSD H1 e1dbbf",
+   "family": "pa_inside_bar",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "88f519c40c14e6800bf9",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 19,
+    "conflicting_signals": 0,
+    "long_signals": 71,
+    "short_signals": 38
+   }
+  },
+  {
+   "id": "a5433561751c16fe",
+   "name": "Gen stat_vol_clustering US30 H1 a54335",
+   "family": "stat_vol_clustering",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "1fbc9f47937116b3c49b",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 13,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "07353bc267b1901c",
+   "name": "Gen volume_expansion DE40 H1 07353b",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "92bae21be257fd1f16ee",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "2bb758f9418aad8c",
+   "name": "Gen hybrid_momentum_regime XAUUSD M15 2bb758",
+   "family": "hybrid_momentum_regime",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "14337b8fdc92e8413fd8",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 14,
+    "conflicting_signals": 0,
+    "long_signals": 21,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "61991c409d874fa1",
+   "name": "Gen trend_mtf_filter US30 M15 61991c",
+   "family": "trend_mtf_filter",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "65c28859135107b551f8",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 6578,
+    "trades": 34,
+    "conflicting_signals": 0,
+    "long_signals": 235,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "8268e24b45ade7f7",
+   "name": "Gen breakout_donchian DE40 M15 8268e2",
+   "family": "breakout_donchian",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "f2998c5878c3e435351a",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 462,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 129,
+    "short_signals": 98
+   }
+  },
+  {
+   "id": "d1bf596d1666fd73",
+   "name": "Gen mr_failed_breakout XAUUSD H1 d1bf59",
+   "family": "mr_failed_breakout",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "c5f503b828121a2fed03",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "13_andrea_failed_auction"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 306,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 8,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "607ce41ca5f5afee",
+   "name": "Gen pa_engulfing US30 H1 607ce4",
+   "family": "pa_engulfing",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "2a9e3271384d22d37d80",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 4,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "c247646a6789bb67",
+   "name": "Gen stat_trend_range_switch DE40 H1 c24764",
+   "family": "stat_trend_range_switch",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 12,
+   "signature": "a2c49d71773cd4cde4b4",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "34_tom_balance_vs_trend"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 258,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 10
+   }
+  },
+  {
+   "id": "401c975f9d877a35",
+   "name": "Gen volume_effort_result XAUUSD M15 401c97",
+   "family": "volume_effort_result",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "5342a593f0840a235431",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area",
+    "09_pietro_effort_result"
+   ],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "056279a218f656b6",
+   "name": "Gen hybrid_stat_mr_session US30 M15 056279",
+   "family": "hybrid_stat_mr_session",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 13,
+   "signature": "9ea4982b0a830a081084",
+   "exit_profile": "session_close",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 818,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "e5d8060c5bb74e7b",
+   "name": "Gen trend_momentum_persistence DE40 M15 e5d806",
+   "family": "trend_momentum_persistence",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "b7acbbcf1eb729eadc0f",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 63,
+    "conflicting_signals": 0,
+    "long_signals": 322,
+    "short_signals": 250
+   }
+  },
+  {
+   "id": "9dcd63bb4167a1ad",
+   "name": "Gen breakout_consolidation XAUUSD H1 9dcd63",
+   "family": "breakout_consolidation",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "962f76b80ccaea64bf84",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "ba4b32acdc8ba336",
+   "name": "Gen mr_range_mid US30 H1 ba4b32",
+   "family": "mr_range_mid",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "efd9d7f46c54b0238938",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 382,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "d0d975eb48905ac6",
+   "name": "Gen pa_pin_rejection DE40 H1 d0d975",
+   "family": "pa_pin_rejection",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "23ba4df5b8baa286f303",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "20_mnq_shooting_star_short"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 262,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 14,
+    "short_signals": 11
+   }
+  },
+  {
+   "id": "9849166309f5735f",
+   "name": "Gen stat_momentum_exhaustion XAUUSD M15 984916",
+   "family": "stat_momentum_exhaustion",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 11,
+   "signature": "923a1d66c5d78ac047e4",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 34,
+    "conflicting_signals": 0,
+    "long_signals": 23,
+    "short_signals": 32
+   }
+  },
+  {
+   "id": "7aac73b7065a29d9",
+   "name": "Gen breakout_nr US30 M15 7aac73",
+   "family": "breakout_nr",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "d35fe1d49d0dd2f4b1b8",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 4,
+    "conflicting_signals": 0,
+    "long_signals": 114,
+    "short_signals": 48
+   }
+  },
+  {
+   "id": "eba3cc8c1f843c84",
+   "name": "Gen pa_range_hl DE40 M15 eba3cc",
+   "family": "pa_range_hl",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "57aeaf9d1263939fc791",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "4fa558f1213df698",
+   "name": "Gen stat_large_move_reversal XAUUSD H1 4fa558",
+   "family": "stat_large_move_reversal",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "1d54abf93a155e094dba",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 31,
+    "conflicting_signals": 0,
+    "long_signals": 8,
+    "short_signals": 25
+   }
+  },
+  {
+   "id": "ef85483cc9ec2d0d",
+   "name": "Gen breakout_atr_expansion US30 H1 ef8548",
+   "family": "breakout_atr_expansion",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "5ea84a5864660f2502ae",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 50,
+    "conflicting_signals": 0,
+    "long_signals": 48,
+    "short_signals": 58
+   }
+  },
+  {
+   "id": "b4fbc4b679e31d6b",
+   "name": "Gen pa_three_touch DE40 H1 b4fbc4",
+   "family": "pa_three_touch",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "c87332e8055d4f797007",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 410,
+    "trades": 5,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "2319290682987e73",
+   "name": "Gen breakout_retest XAUUSD M15 231929",
+   "family": "breakout_retest",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "a56fff65a3d701d8e38f",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [
+    "07_patrick_3touch_range"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "e4341eb151604c8c",
+   "name": "Gen pa_crt US30 M15 e4341e",
+   "family": "pa_crt",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "e0d449fb604637e8309c",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "18_mike_crt_3candle"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 17,
+    "conflicting_signals": 0,
+    "long_signals": 21,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "306dddb5100328b5",
+   "name": "Gen pa_reversal DE40 M15 306ddd",
+   "family": "pa_reversal",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 5,
+   "signature": "313fd95e17d71208728e",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "26_henrik_profile_singleprints"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 31,
+    "conflicting_signals": 0,
+    "long_signals": 111,
+    "short_signals": 102
+   }
+  },
+  {
+   "id": "b78c18dc455b741e",
+   "name": "Gen trend_ma_cross XAUUSD H1 b78c18",
+   "family": "trend_ma_cross",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "b73988b8266032d222d1",
+   "exit_profile": "pct_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 5,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "e260c879dd63f589",
+   "name": "Gen breakout_orb US30 H1 e260c8",
+   "family": "breakout_orb",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 5,
+   "signature": "78e7af1164b75d50b3cc",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb",
+    "29_hannes_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "efab878997a60487",
+   "name": "Gen mr_bollinger DE40 H1 efab87",
+   "family": "mr_bollinger",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 10,
+   "signature": "f5784fccd97ebd983e9a",
+   "exit_profile": "swing_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 290,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "a442492293b4dc68",
+   "name": "Gen pa_liquidity_sweep XAUUSD M15 a44249",
+   "family": "pa_liquidity_sweep",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 11,
+   "signature": "f2d2e49c43f659c948be",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "27_tim_liquidation_sweep"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 27,
+    "short_signals": 17
+   }
+  },
+  {
+   "id": "701f242af76712c4",
+   "name": "Gen stat_autocorr_regime US30 M15 701f24",
+   "family": "stat_autocorr_regime",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "789baea64b0c8b009a04",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 430,
+    "trades": 115,
+    "conflicting_signals": 0,
+    "long_signals": 290,
+    "short_signals": 649
+   }
+  },
+  {
+   "id": "2aaef46866592eec",
+   "name": "Gen vwap_pullback DE40 M15 2aaef4",
+   "family": "vwap_pullback",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "c0898669f5210ecd115a",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "23_robert_3vwap_bookmap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 86,
+    "conflicting_signals": 0,
+    "long_signals": 281,
+    "short_signals": 180
+   }
+  },
+  {
+   "id": "758914bcd6ececca",
+   "name": "Gen hybrid_orb_adx_atr XAUUSD H1 758914",
+   "family": "hybrid_orb_adx_atr",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "2c056bbe8463828fdb8e",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "06_matteo_overnight_bias_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 338,
+    "trades": 25,
+    "conflicting_signals": 0,
+    "long_signals": 35,
+    "short_signals": 43
+   }
+  },
+  {
+   "id": "9ba21a08319b3e81",
+   "name": "Gen trend_ma_slope US30 H1 9ba21a",
+   "family": "trend_ma_slope",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "47151f4e19f48e5500d6",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 11,
+    "conflicting_signals": 0,
+    "long_signals": 11,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "18949db782d4375f",
+   "name": "Gen breakout_asian_range DE40 H1 18949d",
+   "family": "breakout_asian_range",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "48e2a7ec804ffa14b015",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 882,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 8,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "2cf1eb8bad05e07c",
+   "name": "Gen mr_rsi_extremes XAUUSD M15 2cf1eb",
+   "family": "mr_rsi_extremes",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "28a9ffa19a7070c18e2f",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 179,
+    "conflicting_signals": 0,
+    "long_signals": 129,
+    "short_signals": 125
+   }
+  },
+  {
+   "id": "24f19f96a9092448",
+   "name": "Gen pa_mss US30 M15 24f19f",
+   "family": "pa_mss",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "3114a4074e2c5eb43fb0",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 120,
+    "conflicting_signals": 0,
+    "long_signals": 77,
+    "short_signals": 73
+   }
+  },
+  {
+   "id": "d4eede1204470e62",
+   "name": "Gen stat_hurst_regime DE40 M15 d4eede",
+   "family": "stat_hurst_regime",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 11,
+   "signature": "99d7c61d17e4434b23bd",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "21_trader_math_hurst_autocorr"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1118,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "47ace35eb3633661",
+   "name": "Gen vwap_breakout XAUUSD H1 47ace3",
+   "family": "vwap_breakout",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "8f3df8eafaed2e8eb236",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "04_matteo_vault_break"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 290,
+    "trades": 13,
+    "conflicting_signals": 0,
+    "long_signals": 9,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "e73960eb113c75f0",
+   "name": "Gen hybrid_vwap_pullback_trend US30 H1 e73960",
+   "family": "hybrid_vwap_pullback_trend",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 11,
+   "signature": "ebd85d1515cc4a66639f",
+   "exit_profile": "session_close",
+   "iq_dossiers": [
+    "03_matteo_drift_vwap"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY.",
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 254,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "12f0ba4af0bb079b",
+   "name": "Gen trend_swing_structure DE40 H1 12f0ba",
+   "family": "trend_swing_structure",
+   "group": "trend",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "4b8f42a0299b0b559a12",
+   "exit_profile": "swing_r",
+   "iq_dossiers": [
+    "08_patrick_pbd_structure",
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 506,
+    "trades": 2,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "888dad8f88675fae",
+   "name": "Gen breakout_london XAUUSD M15 888dad",
+   "family": "breakout_london",
+   "group": "breakout",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "7dc209fc96cd2ae7ec82",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 35,
+    "conflicting_signals": 0,
+    "long_signals": 23,
+    "short_signals": 33
+   }
+  },
+  {
+   "id": "00161f91de79124e",
+   "name": "Gen mr_vwap_deviation US30 M15 00161f",
+   "family": "mr_vwap_deviation",
+   "group": "mean_reversion",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "87b664420ed15642f95e",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "31_heiko_6e_vpoc_reversion"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 826,
+    "trades": 91,
+    "conflicting_signals": 0,
+    "long_signals": 84,
+    "short_signals": 81
+   }
+  },
+  {
+   "id": "9504fba7c2c5edbb",
+   "name": "Gen pa_swing_breakout DE40 M15 9504fb",
+   "family": "pa_swing_breakout",
+   "group": "price_action",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "7d548e7a7132e7058a48",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 30,
+    "conflicting_signals": 0,
+    "long_signals": 40,
+    "short_signals": 4
+   }
+  },
+  {
+   "id": "dea64fb660e4fb5c",
+   "name": "Gen stat_hour_of_day XAUUSD H1 dea64f",
+   "family": "stat_hour_of_day",
+   "group": "statistical",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "2f03e1bd1a467fdb5742",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 42,
+    "conflicting_signals": 0,
+    "long_signals": 42,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "5d5db63f6d433942",
+   "name": "Gen vwap_deviation US30 H1 5d5db6",
+   "family": "vwap_deviation",
+   "group": "vwap_volume",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 8,
+   "signature": "71132aed35eefb2efbb6",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [
+    "VWAP is tijdgewogen (TWAP) omdat het volume constant is; label PROXY."
+   ],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 254,
+    "trades": 53,
+    "conflicting_signals": 0,
+    "long_signals": 44,
+    "short_signals": 64
+   }
+  },
+  {
+   "id": "a4975d1aa8514ea8",
+   "name": "Gen hybrid_sweep_mss DE40 H1 a4975d",
+   "family": "hybrid_sweep_mss",
+   "group": "hybrid",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 7,
+   "signature": "599a3b28262ea5e7c077",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "14_candace_turtle_soup",
+    "15_candace_ict_2022"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 426,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 11,
+    "short_signals": 9
+   }
+  },
+  {
+   "id": "edb471ed9bbec79d",
+   "name": "Gen trend_adx_strength XAUUSD M15 edb471",
+   "family": "trend_adx_strength",
+   "group": "trend",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "b35efa29ca54c263dfd2",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 458,
+    "trades": 51,
+    "conflicting_signals": 0,
+    "long_signals": 40,
+    "short_signals": 38
+   }
+  },
+  {
+   "id": "8110f8e8765fbce2",
+   "name": "Gen breakout_ny US30 M15 8110f8",
+   "family": "breakout_ny",
+   "group": "breakout",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 8,
+   "signature": "d4f4c685ffc4f537ab5c",
+   "exit_profile": "session_close",
+   "iq_dossiers": [
+    "33_jonas_london_us_orb"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 1202,
+    "trades": 28,
+    "conflicting_signals": 0,
+    "long_signals": 24,
+    "short_signals": 14
+   }
+  },
+  {
+   "id": "14d2981dfcebe6dc",
+   "name": "Gen mr_atr_extreme DE40 M15 14d298",
+   "family": "mr_atr_extreme",
+   "group": "mean_reversion",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "ad699a7f4d41fa7e4ec1",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "19_mnq_atr_extreme_long"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 3,
+    "short_signals": 5
+   }
+  },
+  {
+   "id": "3aa9f9931ee657b8",
+   "name": "Gen pa_fvg XAUUSD H1 3aa9f9",
+   "family": "pa_fvg",
+   "group": "price_action",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "51ef0f30732b7fe1ee02",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "15_candace_ict_2022",
+    "30_patrick_fvg_last"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 9,
+    "conflicting_signals": 0,
+    "long_signals": 31,
+    "short_signals": 26
+   }
+  },
+  {
+   "id": "9116265b531f9fa3",
+   "name": "Gen stat_day_of_week US30 H1 911626",
+   "family": "stat_day_of_week",
+   "group": "statistical",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "e281d6899c78c6e15bec",
+   "exit_profile": "atr_r_time",
+   "iq_dossiers": [
+    "22_lewis_seasonality"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 8,
+    "conflicting_signals": 0,
+    "long_signals": 8,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "19f6e021918c28f7",
+   "name": "Gen volume_contraction DE40 H1 19f6e0",
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 6,
+   "signature": "12397af2787f2551c664",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [
+    "01_bruni_low_effort_value_area"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 222,
+    "trades": 3,
+    "conflicting_signals": 0,
+    "long_signals": 2,
+    "short_signals": 1
+   }
+  },
+  {
+   "id": "e85533330a1f1482",
+   "name": "Gen hybrid_range_break_volc XAUUSD M15 e85533",
+   "family": "hybrid_range_break_volc",
+   "group": "hybrid",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 12,
+   "signature": "4dde32eb35727cd519b3",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "35_trader_x_nr4_breakout"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 302,
+    "trades": 10,
+    "conflicting_signals": 0,
+    "long_signals": 5,
+    "short_signals": 6
+   }
+  },
+  {
+   "id": "64887a2d54d7fdd5",
+   "name": "Gen trend_pullback_mean US30 M15 64887a",
+   "family": "trend_pullback_mean",
+   "group": "trend",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 10,
+   "signature": "2ec78f16b57e1190fb26",
+   "exit_profile": "atr_trail",
+   "iq_dossiers": [
+    "32_andre_trend_color_change"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 101,
+    "conflicting_signals": 0,
+    "long_signals": 280,
+    "short_signals": 20
+   }
+  },
+  {
+   "id": "42497532f8a6550a",
+   "name": "Gen breakout_prev_day DE40 M15 424975",
+   "family": "breakout_prev_day",
+   "group": "breakout",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "complexity": 6,
+   "signature": "19795bda448c20d177a5",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3819,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3890,
+    "trades": 12,
+    "conflicting_signals": 0,
+    "long_signals": 38,
+    "short_signals": 3
+   }
+  },
+  {
+   "id": "6e42ab142cd6eada",
+   "name": "Gen mr_zscore XAUUSD H1 6e42ab",
+   "family": "mr_zscore",
+   "group": "mean_reversion",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "8748c37a856b036b07fb",
+   "exit_profile": "atr_level",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 959,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 458,
+    "trades": 5,
+    "conflicting_signals": 0,
+    "long_signals": 5,
+    "short_signals": 2
+   }
+  },
+  {
+   "id": "c3150a84e3ebfe79",
+   "name": "Gen pa_inside_bar US30 H1 c3150a",
+   "family": "pa_inside_bar",
+   "group": "price_action",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "14317352d84b16468d17",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 989,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 858,
+    "trades": 86,
+    "conflicting_signals": 0,
+    "long_signals": 109,
+    "short_signals": 27
+   }
+  },
+  {
+   "id": "cac329ea7dff4b15",
+   "name": "Gen stat_vol_clustering DE40 H1 cac329",
+   "family": "stat_vol_clustering",
+   "group": "statistical",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "complexity": 9,
+   "signature": "56b4b452f8ec5b754892",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 981,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 538,
+    "trades": 16,
+    "conflicting_signals": 0,
+    "long_signals": 15,
+    "short_signals": 18
+   }
+  },
+  {
+   "id": "20c7af12dd52eec6",
+   "name": "Gen volume_expansion XAUUSD M15 20c7af",
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "complexity": 7,
+   "signature": "99579aab78d67176e716",
+   "exit_profile": "atr_r",
+   "iq_dossiers": [],
+   "level1_ok": false,
+   "reasons": [
+    "data_available: volume-proxy niet informatief (variatiecoefficient 0.000; Dukascopy-volume is in deze dataset constant per M1-bar)"
+   ],
+   "warnings": [
+    "geen enkel signaal in deze slice"
+   ],
+   "stats": {
+    "bars": 3836,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 162,
+    "trades": 0,
+    "conflicting_signals": 0,
+    "long_signals": 0,
+    "short_signals": 0
+   }
+  },
+  {
+   "id": "598aa75eb5bb5d9b",
+   "name": "Gen hybrid_momentum_regime US30 M15 598aa7",
+   "family": "hybrid_momentum_regime",
+   "group": "hybrid",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "complexity": 9,
+   "signature": "97f549e78a0eeff76404",
+   "exit_profile": "atr_r_be",
+   "iq_dossiers": [
+    "11_imre_one_time_framing"
+   ],
+   "level1_ok": true,
+   "reasons": [],
+   "warnings": [],
+   "stats": {
+    "bars": 3827,
+    "missing_ask_fraction": 0.0,
+    "lookback_bars": 3378,
+    "trades": 62,
+    "conflicting_signals": 0,
+    "long_signals": 74,
+    "short_signals": 9
+   }
+  }
+ ],
+ "baselines": [
+  {
+   "id": "d66cb82d3933cabb",
+   "family": "baseline_buy_hold",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "643c5b98987acdda",
+   "family": "baseline_random_entry",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "d56037538ec16ffb",
+   "family": "baseline_ma_cross",
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "bb1155ea1bd7c3d9",
+   "family": "baseline_buy_hold",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "0be5c1f7ead9fa1e",
+   "family": "baseline_random_entry",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "4108e75732ab7762",
+   "family": "baseline_ma_cross",
+   "symbol": "XAUUSD",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "788d53c9954b6125",
+   "family": "baseline_buy_hold",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "1069ca7486cfe832",
+   "family": "baseline_random_entry",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "b1536a56d9e03d6e",
+   "family": "baseline_ma_cross",
+   "symbol": "US30",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "1bf0372a61bd4d7e",
+   "family": "baseline_buy_hold",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "dba07ebeb1835800",
+   "family": "baseline_random_entry",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "e70b605edcf192e4",
+   "family": "baseline_ma_cross",
+   "symbol": "US30",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "2ed8608d4f089401",
+   "family": "baseline_buy_hold",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "d9ffe1540409d8e8",
+   "family": "baseline_random_entry",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "f00756704c5ff128",
+   "family": "baseline_ma_cross",
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "15d603ff2974fcf4",
+   "family": "baseline_buy_hold",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "b33ebefa1db76962",
+   "family": "baseline_random_entry",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  },
+  {
+   "id": "cea0735beb29443d",
+   "family": "baseline_ma_cross",
+   "symbol": "DE40",
+   "timeframe": "H1",
+   "level1_ok": true,
+   "reasons": []
+  }
+ ],
+ "iq_components_totals": {
+  "SOURCE_RULE": 60,
+  "RESEARCH_VARIANT": 68,
+  "PROXY": 24,
+  "NOT_IMPLEMENTABLE": 34
+ },
+ "complexity": {
+  "min": 4,
+  "median": 8.0,
+  "max": 14
+ },
+ "seconds": {
+  "generate": 0.09,
+  "total": 14.58
+ },
+ "notes_nl": [
+  "Level 1 is een goedkope poort (schema, data, warm-up, no-lookahead prefix/mutatie, reproduceerbaarheid, tegenstrijdigheden, duplicaten); het zegt NIETS over winstgevendheid.",
+  "Dukascopy-volume is in deze dataset constant 1 per M1-bar: volume-proxyfamilies worden daarom op data_available afgewezen; VWAP is feitelijk TWAP."
+ ]
+}

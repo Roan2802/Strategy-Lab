@@ -1,0 +1,98 @@
+# Dagelijkse Dukascopy-pipeline
+
+**Status PARTIAL.** Lokale intake, inhaalsynchronisatie, sessiedekking en historische queries zijn getest met gecontroleerde fixtures. Een tijdelijke Windows-taak heeft de worker daadwerkelijk gestart en één Bid/Ask-minuut ingelezen. De productietaak is nog niet geregistreerd en automatische levering via JForex SDK moet nog met providerdata worden geverifieerd.
+
+De worker draait zonder dashboard via `python -m strategy_lab.daily_sync --config <config.json>`. Gebruik `--now` voor een handmatige run vóór de ingestelde lokale tijd. Laat Windows Taakplanner het proces vanuit de projectmap starten. De worker beoordeelt per symbool de ingestelde tijd, haalt per run een begrensd aantal gemiste dagen in en stopt voor dat symbool bij de eerste nog niet afgehandelde dag. Een vertraagde, onvolledige of mislukte run heeft exitcode 1 voor herhaalpogingen. Laat de planner gemiste starts inhalen en voorkom gelijktijdige instanties.
+
+Plaats de productieconfiguratie in `strategy_lab/daily_sync.local.json` zodat ook het Datamonitor deze vindt. Controleer de taakdefinitie met `.\install-daily-sync.ps1 -WhatIf`. Zonder `-WhatIf` wordt de taak voor de aangemelde Windows-gebruiker geregistreerd. Het Datamonitor en Taakplanner gebruiken dezelfde vergrendeling. Het logboek toont intakepogingen, achterstand, forwardvoortgang en waar beschikbaar afzonderlijke slaap-, hervattings- en opstartgebeurtenissen uit het Windows-systeemlogboek.
+
+## Configuratie
+
+- `export_directory`: lokale exportmap, absoluut of relatief aan het configuratiebestand.
+- `max_days_per_symbol`: maximaal 1–31 dagen per run, standaard 3.
+- `symbols`: per symbool `first_day` als eerste UTC-dag die gecontroleerd moet worden, `update_at` als lokale HH:MM, `timezone` als IANA-tijdzone en `weekly` met alle weekdagen 0–6. Gebruik intervallen zoals `[["09:00","17:00"]]` en een lege lijst voor een expliciete sluiting. Splits nachtelijke intervallen om middernacht.
+- `overrides` per symbool: optionele lokale datums met aangepaste intervallen voor feestdagen en afwijkende sessies. Gebruik een bevestigde sessiekalender per instrument. De code behandelt DST door werkelijke UTC-minuten naar lokale tijd om te rekenen.
+- `jforex_command`: optionele lijst met het uitvoerbare bestand en vaste argumenten van een lokaal geconfigureerde JForex SDK-adapter. De worker voegt provider-symbool, UTC-datum en een tijdelijke uitvoermap toe. Die adapter moet beide bestanden publiceren voordat hij succesvol afsluit. Houd toegangsgegevens in de eigen configuratie van de adapter, buiten deze JSON.
+
+Het exportcontract is `<providersymbool>_<YYYY-MM-DD>_BID.csv` plus `_ASK.csv`, met kop `time_utc,open,high,low,close,volume` en expliciete UTC-minuten, bijvoorbeeld `2026-10-16T12:00:00Z`. Dat is het invoerformaat van Strategy Lab. Eventuele JForex-exports met andere kolomnamen of tijdzones vereisen conversie via de adapter. Als de SDK-route nog niet is ingesteld, kan de worker bestaande officiële exports in dit formaat lezen.
+
+De lokale partitionering staat in `strategy_lab/data_cache/daily_dukascopy.sqlite3`. De transactie bewaart een volledige UTC-dag, een SHA-256-hash, eerste waarneming, eventuele opvolgende revisies en intakepogingen. Historische queries voegen alleen minuten ná de grens van de oorspronkelijke CSV toe. Het bestaande CSV-bestand en zijn cache blijven apart. Afgesloten sessies komen uit de geconfigureerde kalender. Een ontbrekend exportbestand of een ontbrekende quote telt niet als marktsluiting.
+
+Dukascopy beschrijft de officiële [historische export](https://www.dukascopy.com/swiss/english/marketwatch/historical/) en de [JForex SDK voor historische data](https://www.dukascopy.com/wiki/en/development/get-started-api/use-jforex-sdk/download-jforex-sdk/). Voor geautomatiseerde toegang tot websitegegevens gelden de [websitevoorwaarden](https://www.dukascopy.com/swiss/english/legal-pages/terms-of-use/). Deze worker roept zelf geen website aan.
+
+## Inbox-modus: handmatige JForex-export (werkende route)
+
+**Eerlijke status.** Automatisch downloaden van de officiële Dukascopy-data is GEBLOKKEERD: de publieke datafeed (datafeed.dukascopy.com) antwoordt met HTTP 429 en een AWS WAF-uitdaging, en die beperking wordt bewust niet omzeild. De JForex SDK vereist een Dukascopy demo-account en een SDK-download; beide vragen eerst toestemming van de gebruiker. Inbox-modus met handmatige exports uit de officiële Historical Data Manager is daarom de werkende route met officiële data.
+
+**Exporteren.** Open in JForex de Historical Data Manager (of de exportfunctie op de Dukascopy-website), kies per instrument 1 Min, exporteer Bid en Ask voor dezelfde periode als CSV en zet beide bestanden in de inbox-map. Bestandsnaam: `<SYMBOOL>_1 Min_Bid_<van>_<tot>*.csv` en `<SYMBOOL>_1 Min_Ask_<van>_<tot>*.csv`, bijvoorbeeld `XAUUSD_1 Min_Bid_2026.10.16_2026.10.20.csv`. Het achtervoegsel `_TickVolume_1` is toegestaan. Kolomkoppen: `Time (EET)` (Europe/Helsinki, identiek aan `DataManager._read_side`, inclusief de dubbele herfstuur in bronvolgorde), `Time (UTC)`, `Time (GMT)` of `Gmt time` (UTC); volume als `Volume` of `TickVolume`.
+
+**Configuratie.** `inbox_directory` (absoluut of relatief aan het configuratiebestand) schakelt de modus in; `source_directory` wijst naar de alleen-lezen originele historie (standaard `C:\AI\Dukascopy_data`). `strategy_lab/daily_sync.example.json` toont een volledige configuratie met negen symbolen en per symbool een kalender. Die kalenders zijn bij benadering en moeten nog worden bevestigd; afwijkingen verschijnen als INCOMPLETE of ERROR in het logboek.
+
+**Werking.** De worker splitst elk exportpaar in volledige UTC-dagen en voert elke dag door het bestaande `DailyPartitionStore.ingest`-pad (SHA-256, eerste waarneming, revisies, idempotentie). Kandidaat zijn alleen dagen na de laatste dag van de originele CSV; de originele historie wordt nooit in partities gekopieerd. Dagen die al in de partitiestore staan, worden niet dubbel opgeslagen: een identieke herhaling voegt niets toe en een afwijkende kaars uit een overlappende export wordt als nieuwe revisie vastgelegd. De laatste dag van een export is ONVOLLEDIG tenzij het bestand aantoonbaar tot 23:59 UTC loopt of er latere rijen bestaan; die dag wordt als INCOMPLETE gelogd en bij een volgende, overlappende export alsnog opgenomen. Een dag wordt geweigerd met reden bij negatieve spread (ask onder bid), dubbele of niet-oplopende tijdstempels, prijzen <= 0 of high < low.
+
+**Bestanden.** Bid en Ask zijn verplicht als paar; een onpaar bestand levert een ERROR en voor dat symbool wordt niets ingelezen. Verwerkte bestanden gaan naar `<inbox>/processed/<tijdstempel>/` pas nadat alle dagen zijn vastgelegd (elke dag in een eigen atomaire transactie; de bestanden zelf worden pas daarna verplaatst). Bij een fout of een geweigerde dag blijven de bestanden staan en staat de reden onder `inbox` in de synchronisatiegeschiedenis. In inbox-modus gebruikt de worker de per-dag-bestanden en `jforex_command` niet.
+
+
+## JForex SDK-adapter (automatische dagelijkse download)
+
+**Werking.** `tools/jforex_adapter` bevat een kleine, alleen-lezen Java-adapter (`DukascopyDayExport`) die de bestaande JForex4-jars gebruikt (niets gedownload of gekopieerd). De worker roept per aanroep precies 1 UTC-dag voor 1 symbool aan: `run.cmd <SYMBOOL> <JJJJ-MM-DD> <stagingmap>`. De adapter logt eenmalig in op het demo-account, leest via een strategie die uitsluitend `history.getBars(...)` aanroept de M1-candles (Bid en Ask, `Filter.WEEKENDS`, dus geen vlakke candles voor gesloten markten; minuten waarin beide kanten volume 0 hebben worden bovendien weggelaten), schrijft `<symbool>_<datum>_BID.csv` en `_ASK.csv` (kop `time_utc,open,high,low,close,volume`, UTC-openingstijd van de minuut) atomair (tmp, daarna rename) en meldt zich af. De catch-up loopt sequentieel per symbool (max. 3 dagen per run, een mislukte open dag blokkeert latere dagen) en is idempotent: reeds vastgelegde dagen worden overgeslagen, her-uitvoeren is veilig. Er wordt nooit gehandeld of een orders geplaatst.
+
+**Exitcodes.** 0 klaar; 2 dag nog niet compleet bij de provider (of datum >= vandaag UTC; er worden geen deelbestanden geschreven); 3 inlog-/configuratiefout; 4 netwerk/tijdelijk (ook time-out na 120 s); 5 onbekend instrument. De worker (`JForexExport.fetch`) behandelt elke code ongelijk aan 0 als harde fout voor die dag (status ERROR, volgende run probeert opnieuw); de specifieke codes worden dus niet onderscheiden.
+
+**Wat jij moet doen.**
+1. Kopieer `strategy_lab/jforex_credentials.example.json` naar `strategy_lab/jforex_credentials.local.json` en vul je Dukascopy demo-gebruikersnaam en -wachtwoord in (zelfde login als je JForex4-demoaccount). Het bestand staat alleen lokaal; deel of commit het niet. Alternatief pad: omgevingsvariabele `JFOREX_CREDENTIALS`.
+2. Gebruik `strategy_lab/daily_sync.local.json` (9 symbolen, `first_day` = dag na de laatste dag van de originele CSV). Let op: die config heeft bewust geen `inbox_directory`, want met een inbox negeert de worker `jforex_command`. De `update_at`-tijden zijn omgerekend naar de kalender-tijdzone van elk symbool (07:30 Amsterdam = 01:30 New York).
+
+**Handmatig testen.** Bouwen: `powershell -File tools\jforex_adapter\build.ps1`. Zelftest zonder netwerk: `tools\jforex_adapter\run.cmd --self-test`. Echte dag: `tools\jforex_adapter\run.cmd XAUUSD 2026-11-06 C:\temp\stage` (controleer exitcode en de twee CSV-bestanden). Volledige worker: `python -m strategy_lab.daily_sync --config strategy_lab/daily_sync.local.json --now`.
+
+**Eerlijke status.** Gecompileerd en zelfgetest (instrumenttoewijzing voor alle 9 symbolen en het schrijven van de CSV-bestanden met synthetische data). Zonder inloggegevens geeft de adapter exitcode 3 met een Nederlandse melding. De daadwerkelijke login en het ophalen van echte data zijn NIET GETEST totdat het credentialsbestand bestaat; ook de beschikbaarheidscontrole (laatste tick van de provider) en de gekozen filter moeten bij de eerste echte run worden bekeken.
+
+
+## Automatische dagelijkse download via de publieke Dukascopy-datafeed (terugvalketen)
+
+**Status PARTIAL (code en tests PASS, livebewijs nog open).** De worker haalt nieuwe M1-dagen op zonder account en zonder verlopende demo-login. De tests in `strategy_lab/tests/test_dukascopy_datafeed.py` draaien met nagebootste HTTP en dekken alle onderstaande regels. Een echte end-to-end run (XAUUSD, 1 dag, tijdelijke store) op 2026-11-09 rond 09:30 UTC leverde GEEN data: `datafeed.dukascopy.com` was vanaf deze machine niet bruikbaar (DNS gaf eerst twee AWS-adressen met HTTP 503 "No server is available", daarna alleen 194.8.15.180 met verbindingstime-out; het TLS-certificaat op het AWS-adres was het echte `dukascopy.com`-certificaat). Dit is geen 429 en geen WAF-uitdaging; de worker meldt het als DELAYED, zet backoff en probeert later opnieuw (getest met de echte uitval: tweede run stuurde geen verzoek). De eerdere handmatige probe (HTTP 200, XAUUSD 2026-11-06) blijft het enige livebewijs.
+
+**Configuratie.** `"providers": ["datafeed", "datafeed_ticks", "jforex", "inbox"]` is een geordende terugvalketen per symbool-dag (een enkele `"provider"` mag ook). Zonder beide sleutels: `inbox` bij `inbox_directory`, `jforex` bij `jforex_command` of `export_directory`, anders `datafeed`. Productie (`daily_sync.local.json`) gebruikt de volledige keten, `max_days_per_symbol` 31 en `inbox_directory` `data_cache/dukascopy_inbox`. De productiestore is de standaard `strategy_lab/data_cache/daily_dukascopy.sqlite3` (`--store` van `python -m strategy_lab.daily_sync`).
+
+1. **datafeed**: `https://datafeed.dukascopy.com/datafeed/{SYMBOL}/{YYYY}/{MM0}/{DD}/{BID|ASK}_candles_min_1.bi5`, MM0 is de NUL-gebaseerde maand (november = 10). LZMA (de decoder accepteert zowel de "alone"- als de xz-container), records van 24 bytes big-endian `>5if` = (seconden sinds 00:00 UTC, open, close, low, high, volume); prijs = geheel getal / puntfactor. Een dag is pas compleet als BEIDE bestanden bestaan (BID eerst; ontbreekt die, dan volgt geen ASK-verzoek).
+2. **datafeed_ticks**: alleen als het dagbestand ontbreekt (404 of leeg) op een open handelsdag. Bouwt M1 uit `{HH}h_ticks.bi5` (records `>3i2f` = ms sinds het uur, ask, bid, ask-volume, bid-volume) van uitsluitend de uren waarin de kalender sessieminuten verwacht (hooguit 24 bestanden). Bid en Ask OHLC komen uit de bid- resp. ask-prijzen; volume is het aantal ticks van die minuut.
+3. **jforex**: bestaande `jforex_command`, alleen als `strategy_lab/jforex_credentials.local.json` (of `JFOREX_CREDENTIALS`) bestaat; anders wordt de stap overgeslagen en in het detail vermeld.
+4. **inbox**: handmatige exports (zie boven) worden na de downloadstappen verwerkt.
+
+Alleen een ONTBREKENDE dag leidt tot de volgende methode. HTTP 429, 5xx, time-out of een WAF-blokkade stopt de poging voor alle methoden op dezelfde host. Welke methode slaagde staat per dag in het run-resultaat van de synchronisatiegeschiedenis (`method`, `method_detail`) en in de tabel `fetch_methods` in dezelfde SQLite (de partitietabel zelf is ongewijzigd).
+
+**Toegangsregels (vast, niet configureerbaar).** Eerlijke vaste User-Agent `DukascopyStrategyLab/1.0 (local research)`; maximaal 1 verzoek per seconde procesbreed; maximaal 2 candlebestanden per symbool-dag (24 uurbestanden bij de tick-terugval, op uitdrukkelijk verzoek); alleen dagen strikt voor vandaag (UTC); geen omleidingen gevolgd; time-outs van 30 s. HTTP 429: `Retry-After` wordt gerespecteerd (zonder header 1 uur), daarna geen verzoeken meer voor welk symbool dan ook tot die tijd verstreken is. HTTP 202, 403 of elke `x-amzn-waf-*`-header: de hele run stopt direct met status BLOCKED en de header als bewijs in het resultaat; er wordt niets opgelost, omzeild, geproxied of vermomd. Na BLOCKED volgt 6 uur afkoeling zonder verzoeken.
+
+**Backoff.** Een tijdelijke fout (429, time-out, 5xx, ontbrekend bestand, afgewezen dag) laat de dag openstaan. De geplande taak (elke 30 minuten) probeert dezelfde dag pas weer na 30 min, daarna 1 u, 2 u, 4 u en maximaal 6 u (bij 429 minstens `Retry-After`). Een storing van de host (429, time-out, 5xx, BLOCKED) geldt voor alle symbolen tegelijk; een ontbrekend bestand of afgewezen dag alleen voor dat symbool-dag. De teller staat in de tabel `fetch_backoff` en wordt gewist zodra de dag is vastgelegd. De dagvolgorde blijft strikt: een latere dag springt nooit over een open dag heen.
+
+**Veiligheid van de data.** (a) Runtime-controle: alle gedecodeerde Bid/Ask-prijzen moeten binnen +-30% van de laatste bekende slotkoers liggen (nieuwste partitie, anders de staart van de originele CSV), anders wordt de dag geweigerd (ERROR, "wrong point factor") en niets vastgelegd; zonder referentiekoers wordt niets opgehaald. (b) Alles gaat door `DailyPartitionStore.ingest` (negatieve spread, OHLC-controle, sessiedekking, SHA-256, revisies). (c) Er worden geen candles verzonnen die de provider niet stuurde.
+
+**Platte nulvolume-minuten (besluit).** De originele CSV's bevatten GEEN rijen buiten de handelssessie (zondag 180 min, vrijdag 1260 min voor FX), maar de FX-bestanden (EURUSD, GBPUSD, USDJPY) bewaren binnen de sessie wel vlakke minuten met volume 0 (bijvoorbeeld 281 in de laatste ruim 51.000 EURUSD-rijen); XAUUSD, de indices en BTCUSD tonen geen nulvolume-rijen. Daarom: (1) uit candlebestanden vervalt een vlakke minuut met volume 0 alleen als hij buiten de kalender-sessie valt; binnen de sessie blijft hij staan, precies zoals in de originelen. Echte ticks buiten de sessie worden niet weggefilterd maar leveren ERROR "outside configured session" (kalender controleren). (2) Een in-sessie minuut die ontbreekt in het candlebestand blijft ontbreken (INCOMPLETE) en wordt nooit aangevuld. (3) Alleen bij de tick-terugval worden in-sessie minuten zonder enige tick na de eerste tick van de dag als vlakke minuut (vorige close, volume 0) toegevoegd, omdat dat de weergave van de provider zelf voor no-tick-minuten is en anders elke rustige FX-dag blijvend INCOMPLETE zou blijven; het aantal staat in `method_detail.filled_flat_minutes`. Tickvolume uit ticks is een telling, geen candle-volume van de provider.
+
+**Puntfactoren (prijs = geheel getal / factor).**
+
+| Symbool | Factor | Bewijs |
+| :--- | :--- | :--- |
+| XAUUSD | 1000 | LIVE geverifieerd (2026-11-06, eerste bid-open 4085470 wordt 4085.470) en 3 decimalen in de originele CSV (laatste close 4157.155) |
+| EURUSD | 100000 | 5 decimalen in de originele CSV (laatste close 1.12045) |
+| GBPUSD | 100000 | 5 decimalen (1.32381) |
+| USDJPY | 1000 | 3 decimalen (158.186) |
+| USA30IDXUSD | 1000 | 3 decimalen (51747.187) |
+| USA500IDXUSD | 1000 | 3 decimalen (7829.069) |
+| USATECHIDXUSD | 1000 | 3 decimalen (31033.397) |
+| DEUIDXEUR | 1000 | 3 decimalen (25289.666) |
+| BTCUSD | 10 | 1 decimaal (81549.5) |
+
+**Eerlijk over het bewijs.** Alleen XAUUSD is live tegen de datafeed bevestigd. De overige acht factoren volgen uit het aantal decimalen van de originele CSV's (de provider schrijft dezelfde precisie) en staan NIET als live gemeten vast: de geplande verificatie (een dag per symbool, 9 verzoeken minstens 1,5 s uit elkaar, vergeleken met de laatste close van de originele CSV) kon niet draaien omdat de host niet bereikbaar was. Een fout in een factor wordt wel altijd door de +-30%-controle afgevangen (een tien keer te grote of te kleine prijs wordt geweigerd), dus er komt geen stil verkeerde data in de store. Herhaal de verificatie zodra de host bereikbaar is.
+
+**Startdagen.** `first_day` is nu de UTC-dag van de laatste rij van de originele CSV, niet de dag erna: XAUUSD 2026-10-15 (CSV eindigt 08:25 UTC), DEUIDXEUR en BTCUSD 2026-10-14 (eindigen 16:05 resp. 16:02 UTC). `DataManager` gebruikt van die dag alleen minuten na het einde van de CSV, zodat de restminuten van die dag niet verloren gaan. De FX- en indexsymbolen eindigen op 2026-10-11 23:59 UTC (first_day 2026-10-12). De achterstand tot 2026-11-08 is hooguit 27 dagen per symbool en past in een budget van 31.
+
+**Kalender en feestdagen.** Een open dag die de provider niet heeft (ook een feestdag zonder `overrides`) blijft DELAYED en blokkeert latere dagen van dat symbool. Voeg feestdagen toe onder `overrides`.
+
+## Automatisch aanvullen terwijl de app open staat (2026-11-09)
+
+- `strategy_lab/trickle.py` draait als achtergrondthread in de server. Per stap haalt hij **één ontbrekende symbool-dag** op (BID én ASK `*_candles_min_1.bi5`), om de beurt per markt, en gebruikt daarvoor dezelfde validatie, partitieopslag, lock en backoff als de dagelijkse taak. Een markt in backoff blokkeert de andere niet.
+- Tempo: elke 20 s een volgende dag zolang er gaten zijn; daarna elke 15 min een controle. Draait de geplande taak, dan slaat de aanvuller die beurt over.
+- Storingen: een 5xx of onbereikbare host wordt eerst 2× kort opnieuw geprobeerd (na 5 en 15 s). Daarna volgt een wachttijd van 2, 5, 15 en 30 min, en daarna steeds 1 uur. Bij een 429 respecteert hij Retry-After; bij een blokkade wacht hij 6 uur, zonder omzeiling. De timeout per verzoek is 90 s, omdat de feed ~20 s per bestand kan duren.
+- Zichtbaar in Data Manager → "Automatisch aanvullen" (`GET /api/data/trickle`, knop "Nu proberen" = `POST /api/data/trickle/nudge`).
+- Live bewijs 2026-11-09: XAUUSD 2026-10-15 t/m 10-25 (9 dagen) en EURUSD 2026-10-12 (1440 minuten, BID+ASK) zijn opgehaald, gevalideerd en toegevoegd. De prijsschaal van XAUUSD en EURUSD is bevestigd. Dukascopy gaf die middag bij ~3 van 4 verzoeken direct HTTP 503 (eigen loadbalancer), dus het aanvullen ging traag maar correct door. Tests: `test_trickle.py` (3) en `test_dukascopy_datafeed.py` (37).

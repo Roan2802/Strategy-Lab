@@ -1,0 +1,10 @@
+{
+  "days": "2026-09-21..2026-09-23",
+  "trades_with_scale_in": 204,
+  "trades_forward_equivalent": 194,
+  "net_pnl_with_scale_in": -2906.596055293321,
+  "net_pnl_forward_equivalent": -2317.7718718002643,
+  "scale_in_adds": 126,
+  "silent_divergence_if_frozen": -588.8241834930568,
+  "freeze_guard": "DataError: scale_in is not supported by the forward model (RULES_BIDASK_V1); the research backtest would add to positions that the forward run never adds to"
+}

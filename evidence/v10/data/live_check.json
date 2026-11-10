@@ -1,0 +1,341 @@
+{
+  "collected_at": "2026-11-10T13:58:09.322737+00:00",
+  "supervisor": {
+    "overall": "PARTIAL",
+    "overall_nl": "2 van 9 instrumenten actueel, 7 lopen achter.",
+    "computed_at": "2026-11-10T13:58:07+00:00",
+    "last_check": "2026-11-10T13:57:56.054335+00:00",
+    "last_success": "2026-11-10T13:57:56.054335+00:00",
+    "scheduler": {
+      "installed": true,
+      "enabled": true,
+      "state": "Ready",
+      "last_run": "2026-11-10T13:52:47.0000000Z",
+      "last_run_age_s": 320,
+      "last_result": 0,
+      "last_result_class": "OK",
+      "last_result_nl": "geslaagd",
+      "next_run": "2026-11-10T14:00:15.0000000Z",
+      "catch_up": true,
+      "wake_to_run": false,
+      "missed_runs": 0,
+      "triggers": [
+        "MSFT_TaskTimeTrigger",
+        "MSFT_TaskLogonTrigger"
+      ],
+      "stale": false,
+      "runs_when_app_closed": true,
+      "error": null
+    },
+    "worker": {
+      "alive": false,
+      "state": "OFF",
+      "heartbeat_age_s": null,
+      "stuck": false
+    },
+    "updater": {
+      "running": false,
+      "lock_held": false,
+      "run_started_at": null,
+      "run_age_s": null,
+      "stuck": false,
+      "last_run_status": "RETRY",
+      "last_run_finished_at": "2026-11-10T13:52:04.594358+00:00"
+    },
+    "issues": [
+      {
+        "code": "WORKER_DOWN",
+        "nl": "Achtergrondworker in de app draait niet"
+      }
+    ],
+    "symbols": [
+      {
+        "symbol": "XAUUSD",
+        "last_candle": "2026-11-09T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 0,
+        "first_missing_day": null,
+        "market_closed": false,
+        "status": "UP_TO_DATE",
+        "reason_nl": "Actueel tot de verwachte dag",
+        "last_check": "2026-11-10T07:48:21.504190+00:00",
+        "last_success": "2026-11-10T07:48:21.504190+00:00",
+        "next_attempt": "2026-11-11T06:30:00+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 0,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "d43a544ac15380b0a379b7f137df40167ff5d71ef52078511eb971f44a20fc30"
+      },
+      {
+        "symbol": "EURUSD",
+        "last_candle": "2026-11-09T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 0,
+        "first_missing_day": null,
+        "market_closed": false,
+        "status": "UP_TO_DATE",
+        "reason_nl": "Actueel tot de verwachte dag",
+        "last_check": "2026-11-10T07:50:12.845414+00:00",
+        "last_success": "2026-11-10T07:50:12.845414+00:00",
+        "next_attempt": "2026-11-11T06:30:00+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 0,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "555efbf798bc1d1d65f3e560ddbb6e889a4e169cf50e8e0dd1fc38414f948daa"
+      },
+      {
+        "symbol": "GBPUSD",
+        "last_candle": "2026-10-29T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 9,
+        "first_missing_day": "2026-10-30",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Achterstand wordt ingehaald (een dag per stap)",
+        "last_check": "2026-11-10T13:57:56.054335+00:00",
+        "last_success": "2026-11-10T13:57:56.054335+00:00",
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 9,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "8a10d4412f79fd45924f6c5c8c4f2e9611e70fd2f675bf0639335305d6c84e96"
+      },
+      {
+        "symbol": "USDJPY",
+        "last_candle": "2026-10-19T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 18,
+        "first_missing_day": "2026-10-20",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Achterstand wordt ingehaald (een dag per stap)",
+        "last_check": "2026-11-10T13:29:14.541188+00:00",
+        "last_success": "2026-11-10T13:29:14.541188+00:00",
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 18,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "a846fe57a0f5bf7c15e6c550f8a917a7af04cf5da0f164c3f200a025355fa434"
+      },
+      {
+        "symbol": "USA30IDXUSD",
+        "last_candle": "2026-10-14T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 22,
+        "first_missing_day": "2026-10-15",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd",
+        "last_check": "2026-11-10T13:31:00.467363+00:00",
+        "last_success": "2026-11-09T20:32:59.472925+00:00",
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 22,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "5ef52fac741593e29d2e945db5a6a25c343785b86eea41c64815ca52ac0d9722"
+      },
+      {
+        "symbol": "US500",
+        "last_candle": "2026-10-11T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 25,
+        "first_missing_day": "2026-10-12",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd",
+        "last_check": "2026-11-10T10:08:38.649640+00:00",
+        "last_success": null,
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": null,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": null,
+          "incomplete_days": 0,
+          "gaps": 25,
+          "revisions": 0,
+          "utc": null
+        },
+        "snapshot_sha": "663b7cbcf2492ed8cdf3f666cf5eac14788c335c747f36c4c85b6ab97a7051b8"
+      },
+      {
+        "symbol": "USATECHIDXUSD",
+        "last_candle": "2026-10-13T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 23,
+        "first_missing_day": "2026-10-14",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Achterstand wordt ingehaald (een dag per stap)",
+        "last_check": "2026-11-10T10:39:59.017945+00:00",
+        "last_success": "2026-11-10T10:39:59.017945+00:00",
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 23,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "88efc75ba54d49f7bb98e386804ed0a79821942145d4665a0762d64e3a305808"
+      },
+      {
+        "symbol": "DE40",
+        "last_candle": "2026-10-14T16:05:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 20,
+        "first_missing_day": "2026-10-14",
+        "market_closed": false,
+        "status": "ERROR",
+        "reason_nl": "Sessiekalender klopt niet met de aanbieder; controle nodig",
+        "last_check": "2026-11-10T10:40:45.966571+00:00",
+        "last_success": null,
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": null,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": null,
+          "incomplete_days": 0,
+          "gaps": 20,
+          "revisions": 0,
+          "utc": null
+        },
+        "snapshot_sha": "f952311487be5f5e12cc4142250aaab311c8ffc2599ee7ee9340b253f1b6f506"
+      },
+      {
+        "symbol": "BTCUSD",
+        "last_candle": "2026-10-16T23:59:00+00:00",
+        "expected_day": "2026-11-09",
+        "lag_days": 24,
+        "first_missing_day": "2026-10-17",
+        "market_closed": false,
+        "status": "CATCHING_UP",
+        "reason_nl": "Achterstand wordt ingehaald (een dag per stap)",
+        "last_check": "2026-11-10T10:42:23.496732+00:00",
+        "last_success": "2026-11-10T10:42:23.496732+00:00",
+        "next_attempt": "2026-11-10T13:58:07+00:00",
+        "backoff_until": null,
+        "backoff": null,
+        "quality": {
+          "bid_ask": true,
+          "duplicates": 0,
+          "negative_spread": 0,
+          "scale_ok": true,
+          "incomplete_days": 0,
+          "gaps": 24,
+          "revisions": 0,
+          "utc": true
+        },
+        "snapshot_sha": "20563207bff7de4e7815e70886cbe48b9104b7e323b34dfa6d891ceb9a129037"
+      }
+    ],
+    "events": [],
+    "job": {
+      "id": "job-1794318724",
+      "state": "DONE",
+      "started_at": "2026-11-10T13:52:04+00:00",
+      "finished_at": "2026-11-10T13:52:04+00:00",
+      "result": {
+        "status": "RETRY",
+        "days": 7,
+        "imported": 0,
+        "held_by_backoff": 7,
+        "failed": [
+          {
+            "symbol": "GBPUSD",
+            "day": "2026-10-29",
+            "observed_at": "2026-11-10T13:52:04.559283+00:00",
+            "status": "DELAYED",
+            "detail": "Backoff until 2026-11-10T13:55:10+00:00 (HTTP 503 from Dukascopy (na 3 pogingen)); no request sent"
+          },
+          {
+            "symbol": "USDJPY",
+            "day": "2026-10-20",
+            "observed_at": "2026-11-10T13:52:04.567282+00:00",
+            "status": "DELAYED",
+            "detail": "Backoff until 2026-11-10T13:55:10+00:00 (HTTP 503 from Dukascopy (na 3 pogingen)); no request sent"
+          },
+          {
+            "symbol": "USA30IDXUSD",
+            "day": "2026-10-15",
+            "observed_at": "2026-11-10T13:52:04.573281+00:00",
+            "status": "DELAYED",
+            "detail": "Backoff until 2026-11-10T13:55:10+00:00 (HTTP 503 from Dukascopy (na 3 pogingen)); no request sent"
+          },
+          {
+            "symbol": "USA500IDXUSD",
+            "day": "2026-10-12",
+            "observed_at": "2026-11-10T13:52:04.578283+00:00",
+            "status": "DELAYED",
+            "detail": "Backoff until 2026-11-10T13:55:10+00:00 (HTTP 503 from Dukascopy (na 3 pogingen)); no request sent"
+          },
+          {
+            "symbol": "USATECHIDXUSD",
+            "day": "2026-10-14",
+            "observed_at": "2026-11-10T13:52:04.584283+00:00",
+            "status": "DELAYED",
+            "detail": "Backoff until 2026-11-10T13:55:10+00:00 (HTTP 503 from Dukascopy (na 3 pogingen)); no request sent"
+          }
+        ]
+      }
+    }
+  },
+  "original_csv_count": 24,
+  "original_csvs_unchanged_size_mtime": true,
+  "note": "49 GB of originals: size+mtime compared (DataManager manifests hold their sha256); supervisor only reads file tails."
+}

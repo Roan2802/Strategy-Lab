@@ -1,0 +1,4 @@
+time="2026-11-05T14:45:42+01:00" level=warning msg="C:\\AI\\Jesse\\Jesse-Audit\\runtime\\docker\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+NAME       IMAGE                               COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+jesse      salehmir/jesse:latest               "bash -c 'jesse inst…"   jesse      23 minutes ago   Up 22 minutes             0.0.0.0:8888->8888/tcp, [::]:8888->8888/tcp, 0.0.0.0:9000-9001->9000-9001/tcp, [::]:9000-9001->9000-9001/tcp
+postgres   timescale/timescaledb:2.19.3-pg17   "docker-entrypoint.s…"   postgres   23 minutes ago   Up 23 minutes (healthy)   5432/tcp

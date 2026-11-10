@@ -1,0 +1,1472 @@
+{
+ "run_id": "fr_20261110_094132_eafc58",
+ "request": {
+  "advanced": {
+   "max_candidates": 240,
+   "max_minutes": 80,
+   "max_trials_per_candidate": 32,
+   "max_workers": 4
+  },
+  "families": "all",
+  "markets": [
+   "XAUUSD",
+   "US30",
+   "DE40"
+  ],
+  "max_dd_pct": null,
+  "min_trades_per_week": null,
+  "profile": "uitgebreid",
+  "quality": "regelmatig",
+  "risk_pct": null,
+  "timeframes": [
+   "M15",
+   "H1"
+  ]
+ },
+ "generator": "generator.py",
+ "status": "done",
+ "started_at": "2026-11-10T09:41:33.216014+00:00",
+ "finished_at": "2026-11-10T09:50:55.965045+00:00",
+ "runtime_seconds": 562.749031,
+ "counts": {
+  "generated": 240,
+  "technically_valid": 231,
+  "rejected": 240,
+  "quick_passed": 52,
+  "dev_validated": 24,
+  "wf_passed": 0,
+  "frozen": 0,
+  "final_tested": 0,
+  "oos_approved": 0,
+  "forward_ready": 0,
+  "errors": 0,
+  "in_progress": 0
+ },
+ "stage_status_counts": {
+  "L2:REJECTED": 179,
+  "L3:REJECTED": 21,
+  "L1:REJECTED": 9,
+  "L5:REJECTED": 24,
+  "L4:REJECTED": 7
+ },
+ "stage_reached_by_market": {
+  "XAUUSD:M15": {
+   "L2": 24,
+   "L3": 9,
+   "L5": 4,
+   "L1": 3
+  },
+  "US30:M15": {
+   "L2": 31,
+   "L5": 2,
+   "L3": 4,
+   "L4": 2,
+   "L1": 1
+  },
+  "DE40:M15": {
+   "L2": 30,
+   "L1": 2,
+   "L3": 3,
+   "L5": 5
+  },
+  "XAUUSD:H1": {
+   "L3": 3,
+   "L2": 28,
+   "L5": 4,
+   "L1": 2,
+   "L4": 3
+  },
+  "US30:H1": {
+   "L2": 33,
+   "L5": 5,
+   "L4": 1,
+   "L1": 1
+  },
+  "DE40:H1": {
+   "L2": 33,
+   "L5": 4,
+   "L3": 2,
+   "L4": 1
+  }
+ },
+ "trials_recorded": 1644,
+ "multiple_testing": {
+  "alpha": 0.05,
+  "bh_rejections": 0,
+  "definition_nl": "p-waarde per eindtest uit een stationaire block-bootstrap van dagrendementen (nulhypothese gemiddelde 0, eenzijdig). Holm (familiegewijs) en Benjamini-Hochberg (FDR) over ALLE kandidaten die ooit op de verzegelde periode zijn getest. DSR met N = alle eindtests + alle zoek-trials uit het onderzoekslogboek.",
+  "dsr_n_trials": 1512,
+  "holm_rejections": 0,
+  "n_final_tested": 0,
+  "n_with_p_value": 0,
+  "per_candidate": {},
+  "search_trials": 1512,
+  "sr_variance": 0.005255103301872406
+ },
+ "ledger_n_trials_global_now": 1623,
+ "protocol": {
+  "dev_start": "2004-01-01",
+  "development_end": "2018-01-01",
+  "embargo_days": 2,
+  "rules_nl": [
+   "Ontwikkeling (generatie, snelle tests, optimalisatie): tot de ontwikkelgrens.",
+   "Validatie (walk-forward rolling en expanding, robuustheid, modelselectie): ontwikkelgrens tot de verzegelde start.",
+   "Verzegeld: alleen via final_test() met een onveranderlijk bevroren record; elke toegang wordt gelogd; een lijn die al getest is wordt REUSED_HOLDOUT.",
+   "Zoek- en optimalisatiecode krijgt fysiek geen bars vanaf de verzegelde start.",
+   "Trades die aan het einde van een periode nog open staan worden gemarkeerd en niet geteld."
+  ],
+  "sealed_start": "2024-01-01",
+  "version": "FACTORY_PROTOCOL_V1",
+  "markets": {
+   "DE40:H1": {
+    "symbol": "DE40",
+    "timeframe": "H1",
+    "ranges": {
+     "dev": {
+      "days": 3622,
+      "end": "2024-01-01",
+      "start": "2014-01-31"
+     },
+     "development": {
+      "days": 1431,
+      "end": "2018-01-01",
+      "start": "2014-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1017,
+      "end": "2026-10-14",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2014-07-31",
+      "regime_nl": "zijwaarts",
+      "start": "2014-01-31",
+      "trend": 0.3414261454123357,
+      "vol": 0.1453011353039108,
+      "year": 2014
+     },
+     {
+      "end": "2015-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2015-01-01",
+      "trend": 0.4631679099693285,
+      "vol": 0.20762698020275575,
+      "year": 2015
+     },
+     {
+      "end": "2016-07-01",
+      "regime_nl": "sterke trend",
+      "start": "2016-01-01",
+      "trend": 0.3582224310114329,
+      "vol": 0.19102231125695476,
+      "year": 2016
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 1.1888751144825724,
+      "vol": 0.09821098670847131,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "fe56f530dfed7b4a15a40ebb8b73dc5ed502d79306a7510d144b7c5ff6071922",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2014-01-01T01:00:00+00:00",
+     "first_reliable": "2014-01-01T00:00:00+00:00",
+     "last_candle": "2026-10-14T16:00:00+00:00",
+     "last_complete_day": "2026-10-13",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 2.0944999999992433,
+      "median_rel": 0.0001459099446193373,
+      "median_rel_by_year": {
+       "2014": 0.0001094487461834246,
+       "2015": 0.00011600759283367019,
+       "2016": 0.00011102034323523352,
+       "2017": 8.035796155768283e-05,
+       "2018": 0.00016992623520447865,
+       "2019": 0.0001848881892916061,
+       "2020": 0.00022465967055356487,
+       "2021": 0.00017248025734176175,
+       "2022": 0.00019269796608005748,
+       "2023": 0.00016888162784329296,
+       "2024": 0.00014430934251605338,
+       "2025": 0.0001135905188460318,
+       "2026": 0.00010060710347488844
+      },
+      "non_positive_fraction": 1.3228563113474615e-05,
+      "p95_rel": 0.0005917972804196465
+     },
+     "notes_nl": [
+      "Laatste dag 2026-10-14 is onvolledig (17 candles) en telt niet mee."
+     ],
+     "rows": 75594,
+     "gaps": {
+      "missing_weekdays": 11,
+      "weekdays": 3336,
+      "missing_weekday_fraction": 0.0033,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   },
+   "DE40:M15": {
+    "symbol": "DE40",
+    "timeframe": "M15",
+    "ranges": {
+     "dev": {
+      "days": 3622,
+      "end": "2024-01-01",
+      "start": "2014-01-31"
+     },
+     "development": {
+      "days": 1431,
+      "end": "2018-01-01",
+      "start": "2014-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1017,
+      "end": "2026-10-14",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2014-07-31",
+      "regime_nl": "zijwaarts",
+      "start": "2014-01-31",
+      "trend": 0.3414261454123357,
+      "vol": 0.1453011353039108,
+      "year": 2014
+     },
+     {
+      "end": "2015-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2015-01-01",
+      "trend": 0.4631679099693285,
+      "vol": 0.20762698020275575,
+      "year": 2015
+     },
+     {
+      "end": "2016-07-01",
+      "regime_nl": "sterke trend",
+      "start": "2016-01-01",
+      "trend": 0.3582224310114329,
+      "vol": 0.19102231125695476,
+      "year": 2016
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 1.1888751144825724,
+      "vol": 0.09821098670847131,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "1c3d748d86fc0d51d832924f5e1a8e354b8e57bd6a71ea0680f526635826552f",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2014-01-01T01:00:00+00:00",
+     "first_reliable": "2014-01-01T00:00:00+00:00",
+     "last_candle": "2026-10-14T16:00:00+00:00",
+     "last_complete_day": "2026-10-13",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 2.0419999999994616,
+      "median_rel": 0.00013951802588060483,
+      "median_rel_by_year": {
+       "2014": 0.00010853971253389006,
+       "2015": 0.00011506909408778333,
+       "2016": 0.00011102289088434261,
+       "2017": 7.99080128170229e-05,
+       "2018": 0.00016505706391299542,
+       "2019": 0.00018104943895438892,
+       "2020": 0.0002083771835662163,
+       "2021": 0.00017018831211377703,
+       "2022": 0.00018794503372473445,
+       "2023": 0.00016672063220092846,
+       "2024": 0.00014220201136796,
+       "2025": 0.00011134171947721571,
+       "2026": 9.91662595777678e-05
+      },
+      "non_positive_fraction": 3.39608160104871e-06,
+      "p95_rel": 0.0005787096548236331
+     },
+     "notes_nl": [
+      "Laatste dag 2026-10-14 is onvolledig (65 candles) en telt niet mee."
+     ],
+     "rows": 294457,
+     "gaps": {
+      "missing_weekdays": 11,
+      "weekdays": 3336,
+      "missing_weekday_fraction": 0.0033,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   },
+   "US30:H1": {
+    "symbol": "US30",
+    "timeframe": "H1",
+    "ranges": {
+     "dev": {
+      "days": 3622,
+      "end": "2024-01-01",
+      "start": "2014-01-31"
+     },
+     "development": {
+      "days": 1431,
+      "end": "2018-01-01",
+      "start": "2014-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1018,
+      "end": "2026-10-15",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2014-07-31",
+      "regime_nl": "sterke trend",
+      "start": "2014-01-31",
+      "trend": 1.4262248739729777,
+      "vol": 0.09387441792109576,
+      "year": 2014
+     },
+     {
+      "end": "2015-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2015-01-01",
+      "trend": 0.1609674719970541,
+      "vol": 0.13860314185561784,
+      "year": 2015
+     },
+     {
+      "end": "2016-07-01",
+      "regime_nl": "zijwaarts",
+      "start": "2016-01-01",
+      "trend": 1.0551090747598568,
+      "vol": 0.11314671224676395,
+      "year": 2016
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 3.863716368375183,
+      "vol": 0.05815983497192962,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "9ab8ac0272f6312b2800f9a527d72f468c418dca872f6ecfac578dfb395a9273",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2014-01-01T01:00:00+00:00",
+     "first_reliable": "2014-01-01T00:00:00+00:00",
+     "last_candle": "2026-10-14T23:00:00+00:00",
+     "last_complete_day": "2026-10-14",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 2.8215000000000146,
+      "median_rel": 0.00011298031450811354,
+      "median_rel_by_year": {
+       "2014": 0.0002509535951865664,
+       "2015": 0.00012828206832162043,
+       "2016": 0.000119330755048624,
+       "2017": 9.488544009602292e-05,
+       "2018": 0.00011086968568582786,
+       "2019": 0.00010990501571383522,
+       "2020": 0.00014857902216947714,
+       "2021": 0.00011669488857081108,
+       "2022": 0.00012113225945192622,
+       "2023": 0.00011808839135428458,
+       "2024": 0.0001010660409208364,
+       "2025": 6.0834862189613365e-05,
+       "2026": 4.06933555742601e-05
+      },
+      "non_positive_fraction": 0.0,
+      "p95_rel": 0.0002599563859802473
+     },
+     "notes_nl": [],
+     "rows": 76110,
+     "gaps": {
+      "missing_weekdays": 8,
+      "weekdays": 3336,
+      "missing_weekday_fraction": 0.0024,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   },
+   "US30:M15": {
+    "symbol": "US30",
+    "timeframe": "M15",
+    "ranges": {
+     "dev": {
+      "days": 3622,
+      "end": "2024-01-01",
+      "start": "2014-01-31"
+     },
+     "development": {
+      "days": 1431,
+      "end": "2018-01-01",
+      "start": "2014-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1018,
+      "end": "2026-10-15",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2014-07-31",
+      "regime_nl": "sterke trend",
+      "start": "2014-01-31",
+      "trend": 1.4262248739729777,
+      "vol": 0.09387441792109576,
+      "year": 2014
+     },
+     {
+      "end": "2015-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2015-01-01",
+      "trend": 0.1609674719970541,
+      "vol": 0.13860314185561784,
+      "year": 2015
+     },
+     {
+      "end": "2016-07-01",
+      "regime_nl": "zijwaarts",
+      "start": "2016-01-01",
+      "trend": 1.0551090747598568,
+      "vol": 0.11314671224676395,
+      "year": 2016
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 3.863716368375183,
+      "vol": 0.05815983497192962,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "f7cf704754a96e07b0c0c61a6f354f9c8944e210f725f0d3318958dd7139bbc3",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2014-01-01T01:00:00+00:00",
+     "first_reliable": "2014-01-01T00:00:00+00:00",
+     "last_candle": "2026-10-14T23:45:00+00:00",
+     "last_complete_day": "2026-10-14",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 2.861000000000786,
+      "median_rel": 0.00011438100378916636,
+      "median_rel_by_year": {
+       "2014": 0.00025184980546587944,
+       "2015": 0.00012799303833890501,
+       "2016": 0.00011903867383371735,
+       "2017": 9.513277735244184e-05,
+       "2018": 0.00011255057254700372,
+       "2019": 0.00011056567011666029,
+       "2020": 0.00015099745580667026,
+       "2021": 0.00011796156187818813,
+       "2022": 0.00012294138083078477,
+       "2023": 0.00011889103607142391,
+       "2024": 0.0001020369140993125,
+       "2025": 6.33986535502356e-05,
+       "2026": 4.0618945888701535e-05
+      },
+      "non_positive_fraction": 0.0,
+      "p95_rel": 0.0002605894415154892
+     },
+     "notes_nl": [],
+     "rows": 294622,
+     "gaps": {
+      "missing_weekdays": 8,
+      "weekdays": 3336,
+      "missing_weekday_fraction": 0.0024,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   },
+   "XAUUSD:H1": {
+    "symbol": "XAUUSD",
+    "timeframe": "H1",
+    "ranges": {
+     "dev": {
+      "days": 7275,
+      "end": "2024-01-01",
+      "start": "2004-01-31"
+     },
+     "development": {
+      "days": 5084,
+      "end": "2018-01-01",
+      "start": "2004-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2004-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2004-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1044,
+      "end": "2026-11-10",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2008-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2008-01-01",
+      "trend": 0.18927644479477151,
+      "vol": 0.2877574650553904,
+      "year": 2008
+     },
+     {
+      "end": "2010-07-01",
+      "regime_nl": "sterke trend",
+      "start": "2010-01-01",
+      "trend": 1.825256203618277,
+      "vol": 0.1414108437826275,
+      "year": 2010
+     },
+     {
+      "end": "2014-07-01",
+      "regime_nl": "zijwaarts",
+      "start": "2014-01-01",
+      "trend": 0.14181915463649925,
+      "vol": 0.13091396528875637,
+      "year": 2014
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 1.3419448045954157,
+      "vol": 0.09262925695747816,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "487caf92e9d032864be2e74a13e001e8fcd324a9ba43d04d1b11403befe2b037",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2004-01-01T01:00:00+00:00",
+     "first_reliable": "2004-01-01T00:00:00+00:00",
+     "last_candle": "2026-11-09T23:00:00+00:00",
+     "last_complete_day": "2026-11-09",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 0.38400000000001455,
+      "median_rel": 0.00024750448601878295,
+      "median_rel_by_year": {
+       "2004": 0.0010359027482192123,
+       "2005": 0.0009668120873298045,
+       "2006": 0.0007281759013429733,
+       "2007": 0.0006439443258489596,
+       "2008": 0.0005256934762350785,
+       "2009": 0.0004938778148944421,
+       "2010": 0.0004240939346195666,
+       "2011": 0.00027717884860751634,
+       "2012": 0.00021963413132105922,
+       "2013": 0.00024345859123767178,
+       "2014": 0.00023462953114320042,
+       "2015": 0.0002707486538716751,
+       "2016": 0.00025271915513081487,
+       "2017": 0.0001942110996342467,
+       "2018": 0.00018845139182487863,
+       "2019": 0.00021302629477094193,
+       "2020": 0.00022075468825570577,
+       "2021": 0.00019950043351931365,
+       "2022": 0.00020540941728404075,
+       "2023": 0.0001704176513803048,
+       "2024": 0.00015676713795688535,
+       "2025": 0.0001741642482446464,
+       "2026": 0.00015020699159422956
+      },
+      "non_positive_fraction": 7.255683013720496e-06,
+      "p95_rel": 0.0010232062136350743
+     },
+     "notes_nl": [],
+     "rows": 137823,
+     "gaps": {
+      "missing_weekdays": 21,
+      "weekdays": 5963,
+      "missing_weekday_fraction": 0.00352,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   },
+   "XAUUSD:M15": {
+    "symbol": "XAUUSD",
+    "timeframe": "M15",
+    "ranges": {
+     "dev": {
+      "days": 7275,
+      "end": "2024-01-01",
+      "start": "2004-01-31"
+     },
+     "development": {
+      "days": 5084,
+      "end": "2018-01-01",
+      "start": "2004-01-31"
+     },
+     "embargo_days": 2,
+     "notes_nl": [
+      "Ontwikkelperiode start op 2004-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2004-01-01 + 30 dagen warm-up."
+     ],
+     "protocol_version": "FACTORY_PROTOCOL_V1",
+     "sealed": {
+      "days": 1044,
+      "end": "2026-11-10",
+      "start": "2024-01-01"
+     },
+     "sealed_end_rule_nl": "t/m de laatste volledig complete dag (de lopende dag telt nooit mee)",
+     "sealed_status": "OK",
+     "status": "ADJUSTED",
+     "validation": {
+      "days": 2191,
+      "end": "2024-01-01",
+      "start": "2018-01-01"
+     },
+     "warmup_days_min": 30
+    },
+    "windows": [
+     {
+      "end": "2008-07-01",
+      "regime_nl": "hoge volatiliteit",
+      "start": "2008-01-01",
+      "trend": 0.18927644479477151,
+      "vol": 0.2877574650553904,
+      "year": 2008
+     },
+     {
+      "end": "2010-07-01",
+      "regime_nl": "sterke trend",
+      "start": "2010-01-01",
+      "trend": 1.825256203618277,
+      "vol": 0.1414108437826275,
+      "year": 2010
+     },
+     {
+      "end": "2014-07-01",
+      "regime_nl": "zijwaarts",
+      "start": "2014-01-01",
+      "trend": 0.14181915463649925,
+      "vol": 0.13091396528875637,
+      "year": 2014
+     },
+     {
+      "end": "2017-07-01",
+      "regime_nl": "lage volatiliteit",
+      "start": "2017-01-01",
+      "trend": 1.3419448045954157,
+      "vol": 0.09262925695747816,
+      "year": 2017
+     }
+    ],
+    "dataset_sha256": "4afa11023f89b9be2de4a1de9250c19c89eb29b7b73c85858c4ba3314a385aa8",
+    "cost_model": {
+     "capital": 10000.0,
+     "commission_per_lot": 0.0,
+     "contract": "aanname, niet door broker bevestigd (backtest.default_contract)",
+     "risk_pct": 0.5,
+     "slippage_points": 0.0,
+     "spread": "echte Dukascopy Bid/Ask per bar (long koopt Ask, verkoopt Bid)",
+     "stress": {
+      "commission": "x2",
+      "delay_bars": 1,
+      "slippage_points": 2,
+      "spread": [
+       1.25,
+       1.5
+      ]
+     }
+    },
+    "availability": {
+     "first_candle": "2004-01-01T01:00:00+00:00",
+     "first_reliable": "2004-01-01T00:00:00+00:00",
+     "last_candle": "2026-11-09T23:45:00+00:00",
+     "last_complete_day": "2026-11-09",
+     "missing_ask_fraction": 0.0,
+     "spread": {
+      "median_abs": 0.3789999999999054,
+      "median_rel": 0.0002414828605593622,
+      "median_rel_by_year": {
+       "2004": 0.0010410293612714203,
+       "2005": 0.0009769875893613764,
+       "2006": 0.0007398212127318565,
+       "2007": 0.0006453055618083968,
+       "2008": 0.0005440784509715246,
+       "2009": 0.0004840192113550123,
+       "2010": 0.00041966724949406113,
+       "2011": 0.0002765701642165812,
+       "2012": 0.00021958843896279789,
+       "2013": 0.00024091205032929545,
+       "2014": 0.00022621956972020824,
+       "2015": 0.0002688518333534525,
+       "2016": 0.0002477958177804291,
+       "2017": 0.00019309811084237282,
+       "2018": 0.00018760482978208263,
+       "2019": 0.00021233324375520386,
+       "2020": 0.0002174964502663622,
+       "2021": 0.00019869913807234998,
+       "2022": 0.00020430657023396068,
+       "2023": 0.00016910757182979686,
+       "2024": 0.0001580229668188295,
+       "2025": 0.00017279101888843798,
+       "2026": 0.0001488930015053206
+      },
+      "non_positive_fraction": 1.814141230894825e-06,
+      "p95_rel": 0.0010216287201864466
+     },
+     "notes_nl": [],
+     "rows": 551225,
+     "gaps": {
+      "missing_weekdays": 21,
+      "weekdays": 5963,
+      "missing_weekday_fraction": 0.00352,
+      "multi_day_gaps": []
+     }
+    },
+    "error": null
+   }
+  }
+ },
+ "plan": {
+  "backtests_estimate": 8868,
+  "backtests_max": 45846,
+  "candidates": 240,
+  "cpu_note_nl": "4 werkprocessen op 24 kernen, prioriteit 'lager dan normaal'; de app blijft bruikbaar. Maximaal 8000 MB RAM voor deze run.",
+  "est_minutes": 11.9,
+  "est_minutes_max": 53.4,
+  "per_candidate_backtests": {
+   "L2": 4,
+   "L3": 1,
+   "L4": 47,
+   "L5": 139,
+   "L7": 1
+  },
+  "ranges": {
+   "DE40": {
+    "dev": {
+     "days": 3622,
+     "end": "2024-01-01",
+     "start": "2014-01-31"
+    },
+    "development": {
+     "days": 1431,
+     "end": "2018-01-01",
+     "start": "2014-01-31"
+    },
+    "estimated": true,
+    "notes_nl": [
+     "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+    ],
+    "sealed": {
+     "days": 1018,
+     "end": "2026-10-15",
+     "start": "2024-01-01"
+    },
+    "status": "ADJUSTED",
+    "validation": {
+     "days": 2191,
+     "end": "2024-01-01",
+     "start": "2018-01-01"
+    }
+   },
+   "US30": {
+    "dev": {
+     "days": 3622,
+     "end": "2024-01-01",
+     "start": "2014-01-31"
+    },
+    "development": {
+     "days": 1431,
+     "end": "2018-01-01",
+     "start": "2014-01-31"
+    },
+    "estimated": true,
+    "notes_nl": [
+     "Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+    ],
+    "sealed": {
+     "days": 1018,
+     "end": "2026-10-15",
+     "start": "2024-01-01"
+    },
+    "status": "ADJUSTED",
+    "validation": {
+     "days": 2191,
+     "end": "2024-01-01",
+     "start": "2018-01-01"
+    }
+   },
+   "XAUUSD": {
+    "dev": {
+     "days": 7275,
+     "end": "2024-01-01",
+     "start": "2004-01-31"
+    },
+    "development": {
+     "days": 5084,
+     "end": "2018-01-01",
+     "start": "2004-01-31"
+    },
+    "estimated": true,
+    "notes_nl": [
+     "Ontwikkelperiode start op 2004-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2004-01-01 + 30 dagen warm-up."
+    ],
+    "sealed": {
+     "days": 1044,
+     "end": "2026-11-10",
+     "start": "2024-01-01"
+    },
+    "status": "ADJUSTED",
+    "validation": {
+     "days": 2191,
+     "end": "2024-01-01",
+     "start": "2018-01-01"
+    }
+   }
+  },
+  "survival_assumption": {
+   "L2": 1.0,
+   "L3": 0.35,
+   "L4": 0.25,
+   "L5": 0.15
+  },
+  "trials_estimate": 2820,
+  "warnings": [
+   "XAUUSD: Ontwikkelperiode start op 2004-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2004-01-01 + 30 dagen warm-up.",
+   "US30: Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up.",
+   "DE40: Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up."
+  ],
+  "workers": 4
+ },
+ "families": [
+  {
+   "family": "breakout_asian_range",
+   "group": "breakout",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "breakout_atr_expansion",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "breakout_consolidation",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "breakout_donchian",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "breakout_london",
+   "group": "breakout",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "breakout_nr",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "breakout_ny",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "breakout_orb",
+   "group": "breakout",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L3"
+  },
+  {
+   "family": "breakout_prev_day",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "breakout_retest",
+   "group": "breakout",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "hybrid_momentum_regime",
+   "group": "hybrid",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "hybrid_orb_adx_atr",
+   "group": "hybrid",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "hybrid_range_break_volc",
+   "group": "hybrid",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "hybrid_stat_mr_session",
+   "group": "hybrid",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "hybrid_sweep_mss",
+   "group": "hybrid",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "hybrid_vwap_pullback_trend",
+   "group": "hybrid",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "mr_atr_extreme",
+   "group": "mean_reversion",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L3"
+  },
+  {
+   "family": "mr_bollinger",
+   "group": "mean_reversion",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "mr_failed_breakout",
+   "group": "mean_reversion",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "mr_range_mid",
+   "group": "mean_reversion",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "mr_rsi_extremes",
+   "group": "mean_reversion",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "mr_vwap_deviation",
+   "group": "mean_reversion",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "mr_zscore",
+   "group": "mean_reversion",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "pa_crt",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "pa_engulfing",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "pa_fvg",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "pa_inside_bar",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "pa_liquidity_sweep",
+   "group": "price_action",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "pa_mss",
+   "group": "price_action",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "pa_pin_rejection",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "pa_range_hl",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "pa_reversal",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "pa_swing_breakout",
+   "group": "price_action",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "pa_three_touch",
+   "group": "price_action",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "stat_autocorr_regime",
+   "group": "statistical",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "stat_day_of_week",
+   "group": "statistical",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "stat_hour_of_day",
+   "group": "statistical",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "stat_hurst_regime",
+   "group": "statistical",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "stat_large_move_reversal",
+   "group": "statistical",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "stat_momentum_exhaustion",
+   "group": "statistical",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "stat_trend_range_switch",
+   "group": "statistical",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L3"
+  },
+  {
+   "family": "stat_vol_clustering",
+   "group": "statistical",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L2"
+  },
+  {
+   "family": "trend_adx_strength",
+   "group": "trend",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "trend_ma_cross",
+   "group": "trend",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "trend_ma_slope",
+   "group": "trend",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "trend_momentum_persistence",
+   "group": "trend",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "trend_mtf_filter",
+   "group": "trend",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "trend_pullback_mean",
+   "group": "trend",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "trend_swing_structure",
+   "group": "trend",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "volume_contraction",
+   "group": "vwap_volume",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "volume_effort_result",
+   "group": "vwap_volume",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "volume_expansion",
+   "group": "vwap_volume",
+   "tested": 4,
+   "survived": 0,
+   "best_stage": "L1"
+  },
+  {
+   "family": "vwap_breakout",
+   "group": "vwap_volume",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  },
+  {
+   "family": "vwap_deviation",
+   "group": "vwap_volume",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L3"
+  },
+  {
+   "family": "vwap_pullback",
+   "group": "vwap_volume",
+   "tested": 5,
+   "survived": 0,
+   "best_stage": "L4"
+  }
+ ],
+ "cpu_external_monitor": {
+  "samples": 49,
+  "interval_s": 10,
+  "max_tree_cpu_pct_of_machine": 16.500000000000004,
+  "max_ram_mb": 3027.2265625,
+  "priority_class": [
+   "16384",
+   "16384",
+   "16384",
+   "16384",
+   "16384",
+   "16384"
+  ],
+  "note": "sampled until the supervisor exited; supervisor-reported cpu_pct was 0 in this run (psutil sampling bug, fixed afterwards)"
+ },
+ "resources_reported_by_supervisor": {
+  "cpu_pct": 0.0,
+  "cpu_pct_of_one_core": 0.0,
+  "machine_cpu_pct": 5.8,
+  "pool_size": 4,
+  "priority": "psutil",
+  "ram_mb": 2787.5,
+  "ram_pauses": 0,
+  "supervisor_pid": 2916,
+  "worker_pids": [
+   9856,
+   13040,
+   25368,
+   19572
+  ],
+  "workers": 0
+ },
+ "log": [
+  {
+   "at": "2026-11-10T09:41:32.762716+00:00",
+   "level": "info",
+   "message": "Run aangemaakt (uitgebreid, regelmatig, 240 kandidaten max, 4 workers)"
+  },
+  {
+   "at": "2026-11-10T09:41:33.232013+00:00",
+   "level": "info",
+   "message": "Data voorbereiden XAUUSD:M15"
+  },
+  {
+   "at": "2026-11-10T09:41:36.249656+00:00",
+   "level": "info",
+   "message": "Data voorbereiden XAUUSD:H1"
+  },
+  {
+   "at": "2026-11-10T09:41:38.757931+00:00",
+   "level": "info",
+   "message": "Data voorbereiden US30:M15"
+  },
+  {
+   "at": "2026-11-10T09:41:40.619559+00:00",
+   "level": "info",
+   "message": "Data voorbereiden US30:H1"
+  },
+  {
+   "at": "2026-11-10T09:41:41.958422+00:00",
+   "level": "info",
+   "message": "Data voorbereiden DE40:M15"
+  },
+  {
+   "at": "2026-11-10T09:41:43.715929+00:00",
+   "level": "info",
+   "message": "Data voorbereiden DE40:H1"
+  },
+  {
+   "at": "2026-11-10T09:41:46.749795+00:00",
+   "level": "info",
+   "message": "240 kandidaten gegenereerd (generator.py); 0 duplicaten van eerder geteste hypotheses afgewezen"
+  },
+  {
+   "at": "2026-11-10T09:50:55.887329+00:00",
+   "level": "info",
+   "message": "L6: 0 kandidaten bevroren, 0 niet geselecteerd"
+  },
+  {
+   "at": "2026-11-10T09:50:55.972515+00:00",
+   "level": "info",
+   "message": "Klaar: {'generated': 240, 'technically_valid': 231, 'rejected': 240, 'quick_passed': 52, 'dev_validated': 24, 'wf_passed': 0, 'frozen': 0, 'final_tested': 0, 'oos_approved': 0, 'forward_ready': 0, 'errors': 0, 'in_progress': 0}. Meervoudig testen: 0 eindtests ooit, DSR-N 1512"
+  }
+ ]
+}

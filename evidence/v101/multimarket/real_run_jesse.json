@@ -1,0 +1,1152 @@
+{
+ "config": {
+  "run_id": "mm_20261110_160027_2ffa2c",
+  "strategy": {
+   "kind": "jesse",
+   "label": "LabBreakout",
+   "spec_sha256": "27ad38f8afbc5c552e88307e2f532d1537ba020a3830e61512cdd33ef00df74a",
+   "code_sha256": "b5d77bbbb026cb4ac2a27999a4cf532eddc8d5bce8cac8ceb649482b2a8ee472",
+   "origin_symbol": "XAUUSD"
+  },
+  "markets": [
+   "XAUUSD",
+   "EURUSD",
+   "DE40"
+  ],
+  "timeframes": [
+   "M15"
+  ],
+  "timeframes_requested": [
+   "M15"
+  ],
+  "start": "2023-06-01",
+  "end": "2023-09-01",
+  "sealed_start": "2024-01-01",
+  "params_frozen": {},
+  "reoptimise": false,
+  "risk_model": "native",
+  "risk_normalisation": "NOT_APPLICABLE: de strategie bepaalt zelf haar positiegrootte; vergelijk R/% en kosten, geen lots",
+  "risk_percent": null,
+  "capital": 10000.0,
+  "account_currency": "USD",
+  "family": "multimarket:jesse:27ad38f8afbc",
+  "new_hypothesis": false,
+  "instrument_binding": {
+   "kind": "jesse",
+   "source": "no instrument-bound construct found",
+   "restricted_to": null,
+   "findings": [],
+   "n_findings": 0,
+   "price_param_warnings": [
+    {
+     "name": "max_bar_range",
+     "value": 25.0
+    },
+    {
+     "name": "stop_distance",
+     "value": 1.0
+    },
+    {
+     "name": "target_distance",
+     "value": 1.0
+    },
+    {
+     "name": "stop_offset",
+     "value": 0.1
+    }
+   ]
+  }
+ },
+ "results": [
+  {
+   "symbol": "XAUUSD",
+   "timeframe": "M15",
+   "key": "XAUUSD|M15",
+   "kind": "jesse",
+   "flags": [
+    "SHORT_PERIOD",
+    "PROVISIONAL_CONTRACT",
+    "FAILS_COST_STRESS",
+    "ORIGIN_MARKET_IN_SAMPLE",
+    "PRICE_SCALE_PARAMS"
+   ],
+   "provisional": true,
+   "start": "2023-06-01",
+   "end": "2023-09-01",
+   "period_days": 92,
+   "params": {
+    "order_mode": 0,
+    "entry_interval": 60,
+    "position_size": 1.0,
+    "ema_period": 20,
+    "max_bar_range": 25.0,
+    "stop_distance": 1.0,
+    "target_distance": 1.0,
+    "stop_offset": 0.1,
+    "pending_expiry_bars": 5
+   },
+   "engine": {
+    "engine_nl": "Echte Jesse-backtest via de Docker-runner op Dukascopy Bid-candles (route M15, opgebouwd uit M1), fee 0.0006 per fill.",
+    "code_sha256": "b5d77bbbb026cb4ac2a27999a4cf532eddc8d5bce8cac8ceb649482b2a8ee472",
+    "dataset_sha256": "76ec867b474f24a9769307b357457db4f4f2637e4c7a8c142692bbc2f4030fb5",
+    "account_type": "spot",
+    "account_type_note": null,
+    "jesse_backtests": 1,
+    "cache_hits": 0,
+    "jesse_seconds": 7.3
+   },
+   "currency_conversion": "ACCOUNT_CURRENCY_QUOTE",
+   "metrics": {
+    "trades": 53,
+    "trades_per_week": 4.193913043478261,
+    "net_profit": -122.77058622204001,
+    "net_return_pct": -1.2277058622204,
+    "profit_factor": 0.0,
+    "recovery_factor": -1.0,
+    "max_drawdown_pct": 1.2277058622203911,
+    "sharpe_daily": -17.42206333686339,
+    "sortino_daily": -11.775178761471947,
+    "win_rate": 0.0,
+    "avg_r": null,
+    "costs_total": 123.31925682204,
+    "gross_profit_before_costs": 0.5486705999999941,
+    "costs_pct_of_gross": 22476.00961707103
+   },
+   "risk_normalisation": "NOT_APPLICABLE_OWN_SIZING",
+   "cost_model": {
+    "source": "strategy engine",
+    "costs_total": 123.31925682204,
+    "costs_pct_of_gross": 22476.00961707103,
+    "spread": "bid/ask only if the engine models it (plugin); Jesse: none",
+    "swap": "not modelled",
+    "slippage": "not modelled"
+   },
+   "cost_stress": {
+    "scenario": "fee_x1.5 (post-hoc, linear in notional)",
+    "net_profit": -184.43021463306002,
+    "survives": false
+   },
+   "edge_positive": false,
+   "validation_status": "FAIL",
+   "validation_note": "lichte controle (kostenstress); geen walk-forward/DSR/parameterstabiliteit per markt",
+   "currency_status": "ACCOUNT_CURRENCY_QUOTE",
+   "status": "OK",
+   "runtime_s": 8.4,
+   "price_scale": {
+    "params": [
+     {
+      "name": "max_bar_range",
+      "value": 25.0,
+      "pct_of_median_price": 1.9163373121606166
+     },
+     {
+      "name": "stop_distance",
+      "value": 1.0,
+      "pct_of_median_price": 0.07665349248642467
+     },
+     {
+      "name": "target_distance",
+      "value": 1.0,
+      "pct_of_median_price": 0.07665349248642467
+     },
+     {
+      "name": "stop_offset",
+      "value": 0.1,
+      "pct_of_median_price": 0.007665349248642468
+     }
+    ],
+    "median_price": 1304.572,
+    "note_nl": "vaste prijsafstanden in de bevroren config zijn niet schaal-vrij: dezelfde waarde is op een andere markt een heel andere afstand (geen automatische vertaling)"
+   },
+   "ledger_id": "29e06967c59f4a5dab91de7c42046a67"
+  },
+  {
+   "symbol": "EURUSD",
+   "timeframe": "M15",
+   "key": "EURUSD|M15",
+   "kind": "jesse",
+   "flags": [
+    "SHORT_PERIOD",
+    "PROVISIONAL_CONTRACT",
+    "FEW_TRADES",
+    "PRICE_SCALE_PARAMS",
+    "PRICE_SCALE_EXTREME"
+   ],
+   "provisional": true,
+   "start": "2023-06-01",
+   "end": "2023-09-01",
+   "period_days": 92,
+   "params": {
+    "order_mode": 0,
+    "entry_interval": 60,
+    "position_size": 1.0,
+    "ema_period": 20,
+    "max_bar_range": 25.0,
+    "stop_distance": 1.0,
+    "target_distance": 1.0,
+    "stop_offset": 0.1,
+    "pending_expiry_bars": 5
+   },
+   "engine": {
+    "engine_nl": "Echte Jesse-backtest via de Docker-runner op Dukascopy Bid-candles (route M15, opgebouwd uit M1), fee 0.0006 per fill.",
+    "code_sha256": "b5d77bbbb026cb4ac2a27999a4cf532eddc8d5bce8cac8ceb649482b2a8ee472",
+    "dataset_sha256": "71728d87cc45c1f5662cccb0c3ab495187b679dfa36e81edc62301c4d3cb6427",
+    "account_type": "spot",
+    "account_type_note": null,
+    "jesse_backtests": 1,
+    "cache_hits": 0,
+    "jesse_seconds": 6.7
+   },
+   "currency_conversion": "ACCOUNT_CURRENCY_QUOTE",
+   "metrics": {
+    "trades": 1,
+    "trades_per_week": 0.0791304347826087,
+    "net_profit": 0.009099302326400186,
+    "net_return_pct": 9.099302326400186e-05,
+    "profit_factor": 999.0,
+    "recovery_factor": 999.0,
+    "max_drawdown_pct": 0.0,
+    "sharpe_daily": 0.0,
+    "sortino_daily": 0.0,
+    "win_rate": 1.0,
+    "avg_r": null,
+    "costs_total": 0.0012944576735999997,
+    "gross_profit_before_costs": 0.010393760000000186,
+    "costs_pct_of_gross": 12.4541809085449
+   },
+   "risk_normalisation": "NOT_APPLICABLE_OWN_SIZING",
+   "cost_model": {
+    "source": "strategy engine",
+    "costs_total": 0.0012944576735999997,
+    "costs_pct_of_gross": 12.4541809085449,
+    "spread": "bid/ask only if the engine models it (plugin); Jesse: none",
+    "swap": "not modelled",
+    "slippage": "not modelled"
+   },
+   "cost_stress": {
+    "scenario": "fee_x1.5 (post-hoc, linear in notional)",
+    "net_profit": 0.008452073489600186,
+    "survives": true
+   },
+   "edge_positive": false,
+   "validation_status": "INSUFFICIENT_TRADES",
+   "validation_note": "lichte controle (kostenstress); geen walk-forward/DSR/parameterstabiliteit per markt",
+   "currency_status": "ACCOUNT_CURRENCY_QUOTE",
+   "status": "OK",
+   "runtime_s": 7.9,
+   "price_scale": {
+    "params": [
+     {
+      "name": "max_bar_range",
+      "value": 25.0,
+      "pct_of_median_price": 2087.822150957893
+     },
+     {
+      "name": "stop_distance",
+      "value": 1.0,
+      "pct_of_median_price": 83.51288603831571
+     },
+     {
+      "name": "target_distance",
+      "value": 1.0,
+      "pct_of_median_price": 83.51288603831571
+     },
+     {
+      "name": "stop_offset",
+      "value": 0.1,
+      "pct_of_median_price": 8.351288603831572
+     }
+    ],
+    "median_price": 1.19742,
+    "note_nl": "vaste prijsafstanden in de bevroren config zijn niet schaal-vrij: dezelfde waarde is op een andere markt een heel andere afstand (geen automatische vertaling)"
+   },
+   "ledger_id": "5a36c2f771254001abd0e35ad1cd774d"
+  },
+  {
+   "symbol": "DE40",
+   "timeframe": "M15",
+   "key": "DE40|M15",
+   "kind": "jesse",
+   "flags": [
+    "SHORT_PERIOD",
+    "ERROR"
+   ],
+   "provisional": true,
+   "start": "2023-06-01",
+   "end": "2023-09-01",
+   "period_days": 92,
+   "params": {
+    "order_mode": 0,
+    "entry_interval": 60,
+    "position_size": 1.0,
+    "ema_period": 20,
+    "max_bar_range": 25.0,
+    "stop_distance": 1.0,
+    "target_distance": 1.0,
+    "stop_offset": 0.1,
+    "pending_expiry_bars": 5
+   },
+   "engine": {
+    "engine_nl": "Echte Jesse-backtest via de Docker-runner op Dukascopy Bid-candles (route M15, opgebouwd uit M1), fee 0.0006 per fill.",
+    "code_sha256": "b5d77bbbb026cb4ac2a27999a4cf532eddc8d5bce8cac8ceb649482b2a8ee472",
+    "dataset_sha256": "23bce63c0172e7fd67ee4c89d39d9b5a50909ab7cd2bf71d7180bf637af32c93"
+   },
+   "status": "ERROR",
+   "validation_status": "INSUFFICIENT_DATA",
+   "edge_positive": false,
+   "error": "RuntimeError: Jesse-backtest mislukt (2023-06-01\u20132023-08-31): Jesse research run failed: {\"error\": \"Not enough balance. Available balance at Custom Data for EUR is 10000.0 but you're trying to spend 15842.749\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/home/strategy_lab/jesse_runner.py\\\", line 419, in main\\n    result = run(request)\\n             ^^^^^^^^^^^^\\n  File \\\"/home/strategy_lab/jesse_runner.py\\\", line 382, in run\\n    result = backtest(base_config, route, data_routes, bundle(exchange, symbol, trading),\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/research/backtest.py\\\", line 104, in backtest\\n    return _isolated_backtest(\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/research/backtest.py\\\", line 162, in _isolated_backtest\\n    return _execute_isolated_backtest(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/research/backtest.py\\\", line 251, in _execute_isolated_backtest\\n    backtest_result = simulator(\\n                      ^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/modes/backtest_mode.py\\\", line 557, in simulator\\n    return _timestamp_simulator(*args, fast_mode=False, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/modes/backtest_mode.py\\\", line 1020, in _timestamp_simulator\\n    route.strategy._execute()\\n  File \\\"/jesse-docker/jesse/strategies/Strategy.py\\\", line 1371, in _execute\\n    self._check()\\n  File \\\"/jesse-docker/jesse/strategies/Strategy.py\\\", line 1178, in _check\\n    self._execute_long()\\n  File \\\"/jesse-docker/jesse/strategies/Strategy.py\\\", line 673, in _execute_long\\n    self._submit_buy_orders()\\n  File \\\"/jesse-docker/jesse/strategies/Strategy.py\\\", line 687, in _submit_buy_orders\\n    self.broker.buy_at_market(o[0])\\n  File \\\"/jesse-docker/jesse/services/broker.py\\\", line 58, in buy_at_market\\n    return self.api.market_order(\\n           ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/services/api.py\\\", line 57, in market_order\\n    return self.drivers[exchange].market_order(symbol, qty, current_price, side, reduce_only)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/exchanges/sandbox/Sandbox.py\\\", line 16, in market_order\\n    return order_service.create_order({\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/jesse-docker/jesse/services/order_service.py\\\", line 44, in create_order\\n    e.on_order_submission(order)\\n  File \\\"/jesse-docker/jesse/models/SpotExchange.py\\\", line 56, in on_order_submission\\n    raise InsufficientBalance(\\njesse.exceptions.InsufficientBalance: Not enough balance. Available balance at Custom Data for EUR is 10000.0 but you're trying to spend 15842.749\\n\"}\n\ntime=\"2026-11-10T17:00:45+01:00\" level=warning msg=\"C:\\\\AI\\\\Jesse\\\\Jesse-Audit\\\\runtime\\\\docker\\\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion\"\n",
+   "ledger_id": "3a524700f0cb4eca81d7a1d76095e661"
+  }
+ ],
+ "combined": {
+  "equity": [
+   {
+    "time": "2023-06-01T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-02T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-03T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-04T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-05T00:00:00+00:00",
+    "equity": 9995.27491795
+   },
+   {
+    "time": "2023-06-06T00:00:00+00:00",
+    "equity": 9995.27491795
+   },
+   {
+    "time": "2023-06-07T00:00:00+00:00",
+    "equity": 9993.948315143001
+   },
+   {
+    "time": "2023-06-08T00:00:00+00:00",
+    "equity": 9989.255695351401
+   },
+   {
+    "time": "2023-06-09T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-10T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-11T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-12T00:00:00+00:00",
+    "equity": 9982.551464244241
+   },
+   {
+    "time": "2023-06-13T00:00:00+00:00",
+    "equity": 9979.19527771232
+   },
+   {
+    "time": "2023-06-14T00:00:00+00:00",
+    "equity": 9977.858229037322
+   },
+   {
+    "time": "2023-06-15T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-16T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-17T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-18T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-19T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-20T00:00:00+00:00",
+    "equity": 9969.873667034723
+   },
+   {
+    "time": "2023-06-21T00:00:00+00:00",
+    "equity": 9969.873667034723
+   },
+   {
+    "time": "2023-06-22T00:00:00+00:00",
+    "equity": 9968.553366533763
+   },
+   {
+    "time": "2023-06-23T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-24T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-25T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-26T00:00:00+00:00",
+    "equity": 9961.945381344161
+   },
+   {
+    "time": "2023-06-27T00:00:00+00:00",
+    "equity": 9961.945381344161
+   },
+   {
+    "time": "2023-06-28T00:00:00+00:00",
+    "equity": 9957.354684166601
+   },
+   {
+    "time": "2023-06-29T00:00:00+00:00",
+    "equity": 9954.0698198316
+   },
+   {
+    "time": "2023-06-30T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-01T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-02T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-03T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-04T00:00:00+00:00",
+    "equity": 9948.1682369278
+   },
+   {
+    "time": "2023-07-05T00:00:00+00:00",
+    "equity": 9946.85557813364
+   },
+   {
+    "time": "2023-07-06T00:00:00+00:00",
+    "equity": 9946.85557813364
+   },
+   {
+    "time": "2023-07-07T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-08T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-09T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-10T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-11T00:00:00+00:00",
+    "equity": 9942.23805580604
+   },
+   {
+    "time": "2023-07-12T00:00:00+00:00",
+    "equity": 9939.57573532192
+   },
+   {
+    "time": "2023-07-13T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-14T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-15T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-16T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-17T00:00:00+00:00",
+    "equity": 9934.39847822184
+   },
+   {
+    "time": "2023-07-18T00:00:00+00:00",
+    "equity": 9934.39847822184
+   },
+   {
+    "time": "2023-07-19T00:00:00+00:00",
+    "equity": 9929.65483774104
+   },
+   {
+    "time": "2023-07-20T00:00:00+00:00",
+    "equity": 9926.27852484884
+   },
+   {
+    "time": "2023-07-21T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-22T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-23T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-24T00:00:00+00:00",
+    "equity": 9918.2024231164
+   },
+   {
+    "time": "2023-07-25T00:00:00+00:00",
+    "equity": 9913.4950117636
+   },
+   {
+    "time": "2023-07-26T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-27T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-28T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-29T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-30T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-31T00:00:00+00:00",
+    "equity": 9908.771081367999
+   },
+   {
+    "time": "2023-08-01T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-02T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-03T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-04T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-05T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-06T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-07T00:00:00+00:00",
+    "equity": 9904.77947387968
+   },
+   {
+    "time": "2023-08-08T00:00:00+00:00",
+    "equity": 9904.77947387968
+   },
+   {
+    "time": "2023-08-09T00:00:00+00:00",
+    "equity": 9903.46297503788
+   },
+   {
+    "time": "2023-08-10T00:00:00+00:00",
+    "equity": 9900.15844860328
+   },
+   {
+    "time": "2023-08-11T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-12T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-13T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-14T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-15T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-16T00:00:00+00:00",
+    "equity": 9897.57434824608
+   },
+   {
+    "time": "2023-08-17T00:00:00+00:00",
+    "equity": 9897.57434824608
+   },
+   {
+    "time": "2023-08-18T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-19T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-20T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-21T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-22T00:00:00+00:00",
+    "equity": 9891.02720879728
+   },
+   {
+    "time": "2023-08-23T00:00:00+00:00",
+    "equity": 9888.457995972482
+   },
+   {
+    "time": "2023-08-24T00:00:00+00:00",
+    "equity": 9887.152041966281
+   },
+   {
+    "time": "2023-08-25T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-26T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-27T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-28T00:00:00+00:00",
+    "equity": 9880.55148254828
+   },
+   {
+    "time": "2023-08-29T00:00:00+00:00",
+    "equity": 9880.55148254828
+   },
+   {
+    "time": "2023-08-30T00:00:00+00:00",
+    "equity": 9877.22941377796
+   }
+  ],
+  "by_timeframe": {
+   "M15": {
+    "n_cells": 1,
+    "net_return_pct": -1.2277058622203962,
+    "max_drawdown_pct": 1.1943829760876057,
+    "sharpe_daily": -12.52715950559673
+   }
+  },
+  "net_return_pct": -1.2277058622203962,
+  "max_drawdown_pct": 1.1943829760876057,
+  "sharpe_daily": -12.52715950559673,
+  "method": "gelijk gewogen: kapitaal gelijk verdeeld over alle cellen; cellen zonder data tellen als cash"
+ },
+ "equities": {
+  "XAUUSD|M15": [
+   {
+    "time": "2023-06-01T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-02T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-03T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-04T00:00:00+00:00",
+    "equity": 9996.6274299846
+   },
+   {
+    "time": "2023-06-05T00:00:00+00:00",
+    "equity": 9995.27491795
+   },
+   {
+    "time": "2023-06-06T00:00:00+00:00",
+    "equity": 9995.27491795
+   },
+   {
+    "time": "2023-06-07T00:00:00+00:00",
+    "equity": 9993.948315143001
+   },
+   {
+    "time": "2023-06-08T00:00:00+00:00",
+    "equity": 9989.255695351401
+   },
+   {
+    "time": "2023-06-09T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-10T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-11T00:00:00+00:00",
+    "equity": 9985.898589895241
+   },
+   {
+    "time": "2023-06-12T00:00:00+00:00",
+    "equity": 9982.551464244241
+   },
+   {
+    "time": "2023-06-13T00:00:00+00:00",
+    "equity": 9979.19527771232
+   },
+   {
+    "time": "2023-06-14T00:00:00+00:00",
+    "equity": 9977.858229037322
+   },
+   {
+    "time": "2023-06-15T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-16T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-17T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-18T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-19T00:00:00+00:00",
+    "equity": 9974.538275232322
+   },
+   {
+    "time": "2023-06-20T00:00:00+00:00",
+    "equity": 9969.873667034723
+   },
+   {
+    "time": "2023-06-21T00:00:00+00:00",
+    "equity": 9969.873667034723
+   },
+   {
+    "time": "2023-06-22T00:00:00+00:00",
+    "equity": 9968.553366533763
+   },
+   {
+    "time": "2023-06-23T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-24T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-25T00:00:00+00:00",
+    "equity": 9965.253914576362
+   },
+   {
+    "time": "2023-06-26T00:00:00+00:00",
+    "equity": 9961.945381344161
+   },
+   {
+    "time": "2023-06-27T00:00:00+00:00",
+    "equity": 9961.945381344161
+   },
+   {
+    "time": "2023-06-28T00:00:00+00:00",
+    "equity": 9957.354684166601
+   },
+   {
+    "time": "2023-06-29T00:00:00+00:00",
+    "equity": 9954.0698198316
+   },
+   {
+    "time": "2023-06-30T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-01T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-02T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-03T00:00:00+00:00",
+    "equity": 9949.482420464401
+   },
+   {
+    "time": "2023-07-04T00:00:00+00:00",
+    "equity": 9948.1682369278
+   },
+   {
+    "time": "2023-07-05T00:00:00+00:00",
+    "equity": 9946.85557813364
+   },
+   {
+    "time": "2023-07-06T00:00:00+00:00",
+    "equity": 9946.85557813364
+   },
+   {
+    "time": "2023-07-07T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-08T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-09T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-10T00:00:00+00:00",
+    "equity": 9943.56030092344
+   },
+   {
+    "time": "2023-07-11T00:00:00+00:00",
+    "equity": 9942.23805580604
+   },
+   {
+    "time": "2023-07-12T00:00:00+00:00",
+    "equity": 9939.57573532192
+   },
+   {
+    "time": "2023-07-13T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-14T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-15T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-16T00:00:00+00:00",
+    "equity": 9938.2230397424
+   },
+   {
+    "time": "2023-07-17T00:00:00+00:00",
+    "equity": 9934.39847822184
+   },
+   {
+    "time": "2023-07-18T00:00:00+00:00",
+    "equity": 9934.39847822184
+   },
+   {
+    "time": "2023-07-19T00:00:00+00:00",
+    "equity": 9929.65483774104
+   },
+   {
+    "time": "2023-07-20T00:00:00+00:00",
+    "equity": 9926.27852484884
+   },
+   {
+    "time": "2023-07-21T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-22T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-23T00:00:00+00:00",
+    "equity": 9919.56043310112
+   },
+   {
+    "time": "2023-07-24T00:00:00+00:00",
+    "equity": 9918.2024231164
+   },
+   {
+    "time": "2023-07-25T00:00:00+00:00",
+    "equity": 9913.4950117636
+   },
+   {
+    "time": "2023-07-26T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-27T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-28T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-29T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-30T00:00:00+00:00",
+    "equity": 9910.1305753074
+   },
+   {
+    "time": "2023-07-31T00:00:00+00:00",
+    "equity": 9908.771081367999
+   },
+   {
+    "time": "2023-08-01T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-02T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-03T00:00:00+00:00",
+    "equity": 9907.431345499399
+   },
+   {
+    "time": "2023-08-04T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-05T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-06T00:00:00+00:00",
+    "equity": 9906.1032941244
+   },
+   {
+    "time": "2023-08-07T00:00:00+00:00",
+    "equity": 9904.77947387968
+   },
+   {
+    "time": "2023-08-08T00:00:00+00:00",
+    "equity": 9904.77947387968
+   },
+   {
+    "time": "2023-08-09T00:00:00+00:00",
+    "equity": 9903.46297503788
+   },
+   {
+    "time": "2023-08-10T00:00:00+00:00",
+    "equity": 9900.15844860328
+   },
+   {
+    "time": "2023-08-11T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-12T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-13T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-14T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-15T00:00:00+00:00",
+    "equity": 9898.86072412748
+   },
+   {
+    "time": "2023-08-16T00:00:00+00:00",
+    "equity": 9897.57434824608
+   },
+   {
+    "time": "2023-08-17T00:00:00+00:00",
+    "equity": 9897.57434824608
+   },
+   {
+    "time": "2023-08-18T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-19T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-20T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-21T00:00:00+00:00",
+    "equity": 9894.30374763068
+   },
+   {
+    "time": "2023-08-22T00:00:00+00:00",
+    "equity": 9891.02720879728
+   },
+   {
+    "time": "2023-08-23T00:00:00+00:00",
+    "equity": 9888.457995972482
+   },
+   {
+    "time": "2023-08-24T00:00:00+00:00",
+    "equity": 9887.152041966281
+   },
+   {
+    "time": "2023-08-25T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-26T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-27T00:00:00+00:00",
+    "equity": 9883.853609702881
+   },
+   {
+    "time": "2023-08-28T00:00:00+00:00",
+    "equity": 9880.55148254828
+   },
+   {
+    "time": "2023-08-29T00:00:00+00:00",
+    "equity": 9880.55148254828
+   },
+   {
+    "time": "2023-08-30T00:00:00+00:00",
+    "equity": 9877.22941377796
+   }
+  ],
+  "EURUSD|M15": [
+   {
+    "time": "2023-09-01T00:00:00+00:00",
+    "equity": 10000.009099302326
+   }
+  ]
+ },
+ "generalisation": {
+  "class": "NO_EDGE",
+  "explanation_nl": "Geen markt toont een robuuste positieve edge (0/2 markten positief na kostenstress en minimaal 30 trades).",
+  "n_markets_tested": 2,
+  "n_markets_positive": 0,
+  "markets_positive": [],
+  "origin_market": "XAUUSD",
+  "n_markets_positive_excl_origin": 0,
+  "n_cells_positive": 0,
+  "n_cells_tested": 2,
+  "instrument_bound_markets": [],
+  "n_markets_instrument_bound": 0,
+  "effective_markets": 1.0,
+  "effective_positive_markets": 0.0,
+  "correlation_matrix": {
+   "markets": [],
+   "matrix": []
+  },
+  "regime_dependence": {
+   "vol_regime_avg_r": {},
+   "positive_in_all_regimes": false,
+   "note": "gemiddelde R per volatiliteitsregime (causaal, LOW/MID/HIGH) over alle cellen"
+  },
+  "selection": {
+   "n_cells_tested": 2,
+   "evidence_class": "EXPLORATORY_SELECTION",
+   "note_nl": "Elke markt x timeframe is een ledger-trial. Het beste resultaat kiezen verbetert het bewijs niet; de klasse geldt over alle geteste cellen.",
+   "best_cell": "EURUSD|M15",
+   "best_sharpe": 0.0,
+   "expected_max_sharpe_by_chance": 6.40300076922952,
+   "best_beats_chance": false,
+   "ledger_trials_family": 3
+  }
+ },
+ "ledger_ids": [
+  "29e06967c59f4a5dab91de7c42046a67",
+  "5a36c2f771254001abd0e35ad1cd774d",
+  "3a524700f0cb4eca81d7a1d76095e661"
+ ],
+ "provisional_note_nl": "Contractspecificaties zijn aannames (niet broker-bevestigd): geldbedragen zijn onderzoeksschattingen; R-multiples en % zijn robuuster.",
+ "money_approval": {
+  "money_approval_allowed": false,
+  "status": "PROVISIONAL",
+  "blocking": {
+   "EURUSD": [
+    "contract_size",
+    "lot_step",
+    "min_lot",
+    "commission_per_lot_side",
+    "margin",
+    "swap",
+    "slippage"
+   ],
+   "XAUUSD": [
+    "contract_size",
+    "lot_step",
+    "min_lot",
+    "commission_per_lot_side",
+    "margin",
+    "swap",
+    "slippage"
+   ]
+  },
+  "per_market": {
+   "EURUSD": {
+    "money_approval_allowed": false,
+    "blocking_fields": [
+     "contract_size",
+     "lot_step",
+     "min_lot",
+     "commission_per_lot_side",
+     "margin",
+     "swap",
+     "slippage"
+    ],
+    "status": "PROVISIONAL",
+    "rule": "geldbedragen/winst in valuta zijn voorlopig tot elk blokkerend veld verifieerbaar is"
+   },
+   "XAUUSD": {
+    "money_approval_allowed": false,
+    "blocking_fields": [
+     "contract_size",
+     "lot_step",
+     "min_lot",
+     "commission_per_lot_side",
+     "margin",
+     "swap",
+     "slippage"
+    ],
+    "status": "PROVISIONAL",
+    "rule": "geldbedragen/winst in valuta zijn voorlopig tot elk blokkerend veld verifieerbaar is"
+   }
+  },
+  "note_nl": "Financiele conclusies (bedragen, rendement in geld, positiegrootte in lots, margin) zijn PROVISIONAL en blokkeren geldgebaseerde goedkeuring tot de blokkerende velden BROKER_VERIFIED zijn (zie BROKER_ASSUMPTIONS_REGISTER.md). R-multiples en % blijven bruikbaar."
+ },
+ "engine_note_nl": "Jesse: echte Jesse-backtest op Bid-candles met fee-fractie, vaste positiegrootte, zonder spread/slippage/swap; kostenstress alleen fee x1,5 (achteraf, lineair). Plugin: eigen engine; spreadstress alleen als de plugin die verwerkt. Bedragen zijn onderzoeksschattingen (zie money_approval).",
+ "runtime_s": 21.6
+}

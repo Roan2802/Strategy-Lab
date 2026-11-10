@@ -1,0 +1,122 @@
+{
+  "scenarios": {
+    "rich_m1_stop": {
+      "reference": {
+        "events": 1301,
+        "trades": 326,
+        "final_balance": 5693.327253188233
+      },
+      "restart_before_every_day": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 1301,
+        "trades": 326
+      },
+      "same_day_twice": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 1301,
+        "trades": 326,
+        "second_call_committed_days": [],
+        "state_unchanged_after_repeat": true
+      },
+      "single_batch_call": {
+        "committed_days": 5,
+        "events_identical": true,
+        "members_identical": true,
+        "balance_identical": true
+      },
+      "crash_mid_commit_then_resume": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 1301,
+        "trades": 326,
+        "crash_raised": true,
+        "state_unchanged_by_crash": true
+      },
+      "concurrent_advance_3_threads": {
+        "days_committed_total": 5,
+        "days_committed_unique": 5,
+        "worker_errors": [],
+        "events_identical_to_continuous": true,
+        "members_identical": true,
+        "duplicate_trades": 0
+      },
+      "late_revision_ignored": {
+        "revision_detected": true,
+        "events_identical_to_continuous": true,
+        "members_identical": true
+      },
+      "setup": {
+        "case": "rich_m1_stop",
+        "days": "2026-09-21..2026-09-25",
+        "ingest": {
+          "published": 12,
+          "closed": 1,
+          "rejected": [],
+          "dropped_incomplete_quote_minutes": 0,
+          "ingest_start": "2026-09-13"
+        }
+      }
+    },
+    "ema_rsi_m15": {
+      "reference": {
+        "events": 33,
+        "trades": 11,
+        "final_balance": 9782.054858934065
+      },
+      "restart_before_every_day": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 33,
+        "trades": 11
+      },
+      "same_day_twice": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 33,
+        "trades": 11,
+        "second_call_committed_days": [],
+        "state_unchanged_after_repeat": true
+      },
+      "single_batch_call": {
+        "committed_days": 10,
+        "events_identical": true,
+        "members_identical": true,
+        "balance_identical": true
+      },
+      "crash_mid_commit_then_resume": {
+        "identical_to_continuous": true,
+        "duplicate_trades": 0,
+        "events": 33,
+        "trades": 11,
+        "crash_raised": true,
+        "state_unchanged_by_crash": true
+      },
+      "concurrent_advance_3_threads": {
+        "days_committed_total": 10,
+        "days_committed_unique": 10,
+        "worker_errors": [],
+        "events_identical_to_continuous": true,
+        "members_identical": true,
+        "duplicate_trades": 0
+      },
+      "late_revision_ignored": {
+        "revision_detected": true,
+        "events_identical_to_continuous": true,
+        "members_identical": true
+      },
+      "setup": {
+        "case": "ema_rsi_m15",
+        "days": "2026-09-14..2026-09-23",
+        "ingest": {
+          "published": 19,
+          "closed": 3,
+          "rejected": [],
+          "dropped_incomplete_quote_minutes": 0,
+          "ingest_start": "2026-09-02"
+        }
+      }
+    }
+  }
+}

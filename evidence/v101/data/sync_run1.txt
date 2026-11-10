@@ -1,0 +1,10 @@
+PARTIAL - 2 van 9 instrumenten actueel, 7 lopen achter.
+XAUUSD         UP_TO_DATE    lag=0   last=2026-11-09T23:59:00+00:00 next=2026-11-11T06:30:00+00:00 Actueel tot de verwachte dag
+EURUSD         UP_TO_DATE    lag=0   last=2026-11-09T23:59:00+00:00 next=2026-11-11T06:30:00+00:00 Actueel tot de verwachte dag
+GBPUSD         DELAYED       lag=1   last=2026-11-08T23:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd
+USDJPY         DELAYED       lag=14  last=2026-10-23T20:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd
+USA30IDXUSD    DELAYED       lag=18  last=2026-10-19T23:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd
+US500          DELAYED       lag=23  last=2026-10-13T23:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd
+USATECHIDXUSD  DELAYED       lag=23  last=2026-10-13T23:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd
+DE40           ERROR         lag=23  last=2026-10-14T16:05:00+00:00 next=2026-11-10T15:59:22+00:00 Sessiekalender klopt niet met de aanbieder; controle nodig
+BTCUSD         DELAYED       lag=24  last=2026-10-16T23:59:00+00:00 next=2026-11-10T15:59:22+00:00 Dukascopy niet bereikbaar (netwerk of server); automatisch opnieuw na wachttijd

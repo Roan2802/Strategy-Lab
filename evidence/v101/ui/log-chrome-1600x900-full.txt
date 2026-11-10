@@ -1,0 +1,74 @@
+PASS home loads with KPI tiles
+PASS home shows compact market-data line with Details - Marktdata: gedeeltelijk achter 6 van 9 instrumenten lopen achter · laatste controle 2026-11-10 19:39 UTC Details
+PASS home has no permanent 7-step stepper
+PASS home data line never green while instruments lag - lagging=True
+PASS home shows running research, forward strategies and critical errors only
+PASS strategieen subtabs are ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek'] - ['Mijn strategieën', 'Zelf bouwen', 'Automatisch ontdekken', 'Bibliotheek']
+PASS onderzoeken subtabs are ['Testen', 'Analyse'] - ['Testen', 'Analyse']
+PASS all sections/subtabs open without JS errors
+PASS no drag handles, resize grips, layout editor or data-panel widgets in the page
+PASS Weergave menu has no widget/layout items
+PASS old hashes redirect to the new routes
+PASS data page lists markets with status - 9
+PASS data page has one sync button
+PASS library lists strategies - 469
+PASS library columns - ['Naam', 'Type / familie', 'Markt / TF', 'Versie', 'Onderzoeksstatus', '']
+PASS library search filters - 1
+PASS library type filter - 2/469
+PASS library sortable
+PASS Onderzoeken opens Testen with strategy preselected - LabBreakout
+PASS multi-market drawer opens with markets and timeframes - 11 markets
+PASS discovery default view: start button, depth, markets, timeframes
+PASS discovery: quality, risk and drawdown live under Geavanceerd
+PASS candidate report opens with Samenvatting (test, periode, trials, kosten, trades, zekerheid) - SAMENVATTING
+Afgewezen
+Statistische reden
+Wat is getest?
+Gen trend_ma_slope DE40
+PASS candidate summary has a status chip
+PASS tester blocks do not overlap (fixed layout) - {'bad': [], 'hscroll': False, 'blocks': ['toolbar', 'center', 'panel', 'panel']}
+PASS no horizontal page scroll
+PASS tester has exactly one primary action - 1
+PASS main chart is big - 576
+PASS settings open in a side drawer
+PASS backtest on existing Dukascopy data produces trades (M15) - 9 trades in 8s; Backtest afgerond · 9 trades · 945 events.
+PASS interpretation layer rendered - Historisch verliesgevend (-46,34) op 9 trades; bewijs is zwak en 3 controle(s) gefaald.✕ResultaatNetto resultaat -46,34 
+PASS selected trade shows entry/exit/SL/TP + reason - TRADE
+#1 Long
+ENTRY
+4.326,595
+2026-09-02 07:15
+EXIT
+4.325,595
+2026-09-02 07:16 · stop loss geraakt
+STOP LOSS
+4.325,595
+TAKE PROFIT
+geen
+RESULTAAT
+-6,19
+na koste
+PASS selected trade drawn on chart (entry/SL/TP shapes) - 3 shapes
+PASS decision log opens in a drawer with recorded checks
+PASS Optimaliseren opens the optimizer drawer
+PASS optimisation completes with valid trials - Optimalisatie afgerond · 4/4 trials · 4 geldige resultaten · 0 fouten.
+PASS optimisation results visible in the drawer
+PASS Analyse shows exactly 4 KPIs - ['Netto rendement', 'Max drawdown', 'Profit Factor', 'Recovery Factor']
+PASS Analyse KPIs carry values for the selected run - ['-0,5%', '-0,5%', '0,00', '—']
+PASS Analyse shows equity curve and distribution - 8
+PASS run comparison renders a table
+PASS equity curves are overlaid
+PASS legacy validatie route opens the Analyse validation section
+PASS validation explains Python-strategy limitation - Overgenomen uit de tester: LabBreakout. Dit is een strategie zonder regelspecificatie: walk-forward en stabiliteit draai
+PASS statistical validation returns a verdict - Afwijzen
+REJECT · 2383 hypotheses meegeteld · 1dd99a5d5f7447f3a49647f77fd1c0ef
+i
+PASS multi-market run returns a results table - 1 rows
+PASS multi-market verdict and overlaid equity shown
+PASS provisional money note shown when flagged
+PASS Onderzoeksroute toggle shows the 7 steps - 7
+PASS forward step state matches validation verdict - 1StrategieKlaar2DataKlaar3BacktestKlaar4TradesVolgende5OptimaliserenKlaar6ValiderenKlaar7ForwardGeblokkeerd
+PASS restart restores route - #onderzoeken/testen
+PASS restart restores strategy/market/timeframe/period - {'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '561fe497-3f97-4725-991c-2e450167e2fd'} -> {'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '561fe497-3f97-4725-991c-2e450167e2fd', 'route': '#onderzoeken/testen'}
+PASS restart restores last run - 561fe497-3f97-4725-991c-2e450167e2fd
+{"tag": "chrome-1600x900-dark", "passed": 53, "failed": 0} JS errors: 0

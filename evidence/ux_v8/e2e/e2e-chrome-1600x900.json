@@ -1,0 +1,103 @@
+{
+  "tag": "chrome-1600x900",
+  "passed": 19,
+  "failed": 0,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows real last-candle dates",
+      "ok": true,
+      "detail": "XAUUSD\nlaatste candle 2026-10-30 20:59 · 8 dag(en) achter\nACHTER\nEURUSD\nlaatste candle 2026-10-15 23:59 · 24 dag(en) ach"
+    },
+    {
+      "step": "all sections/subtabs open without JS errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "tester panels do not overlap",
+      "ok": true,
+      "detail": "{'bad': [], 'hscroll': False, 'panels': ['market-controls', 'settings', 'chart', 'results', 'dock']}"
+    },
+    {
+      "step": "no horizontal page scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "backtest on existing Dukascopy data produces trades (M15)",
+      "ok": true,
+      "detail": "9 trades in 8s; Backtest afgerond · 9 trades · 945 events."
+    },
+    {
+      "step": "interpretation layer rendered",
+      "ok": true,
+      "detail": "Historisch verliesgevend (-46,34) op 9 trades; bewijs is zwak en 3 controle(s) gefaald.\n\n✕\nResultaat\n\nNetto resultaat -4"
+    },
+    {
+      "step": "selected trade shows entry/exit/SL/TP + reason",
+      "ok": true,
+      "detail": "TRADE\n#1 Long\nENTRY\n4.326,595\n2026-09-02 07:15\nEXIT\n4.325,595\n2026-09-02 07:16 · stop loss geraakt\nSTOP LOSS\n4.325,595\nTAKE PROFIT\ngeen\nRESULTAAT\n-6,19\nna koste"
+    },
+    {
+      "step": "selected trade drawn on chart (entry/SL/TP shapes)",
+      "ok": true,
+      "detail": "3 shapes"
+    },
+    {
+      "step": "decision log shows recorded checks",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "optimisation completes with valid trials",
+      "ok": true,
+      "detail": "Optimalisatie afgerond · 4/4 trials · 4 geldige resultaten · 0 fouten."
+    },
+    {
+      "step": "optimisation results visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "run comparison renders a table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "validation explains Python-strategy limitation",
+      "ok": true,
+      "detail": "De strategie in de tester (LabBreakout) is een Python-strategie zonder regelspecificatie. Walk-forward, holdout en Monte"
+    },
+    {
+      "step": "statistical validation returns a verdict",
+      "ok": true,
+      "detail": "Afwijzen\nREJECT · 48 hypotheses meegeteld · 2fb256de5b62416a86aa464eb104eacd\ni"
+    },
+    {
+      "step": "forward step state matches validation verdict",
+      "ok": true,
+      "detail": "1 Strategie KLAAR 2 Data KLAAR 3 Backtest KLAAR 4 Trades VOLGENDE 5 Optimaliseren KLAAR 6 Valideren KLAAR 7 Forward GEBLOKKEERD"
+    },
+    {
+      "step": "restart restores route",
+      "ok": true,
+      "detail": "#onderzoeken/trades"
+    },
+    {
+      "step": "restart restores strategy/market/timeframe/period",
+      "ok": true,
+      "detail": "{'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '0bcc995d-92f9-4589-bba9-97582ebe2b4a'} -> {'s': 'EmaRsiPullback', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': '0bcc995d-92f9-4589-bba9-97582ebe2b4a', 'route': '#onderzoeken/trades'}"
+    },
+    {
+      "step": "restart restores last run",
+      "ok": true,
+      "detail": "0bcc995d-92f9-4589-bba9-97582ebe2b4a"
+    }
+  ],
+  "js_errors": []
+}

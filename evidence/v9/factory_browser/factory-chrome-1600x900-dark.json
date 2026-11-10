@@ -1,0 +1,13 @@
+{
+  "tag": "chrome-1600x900-dark",
+  "profile": "snel",
+  "markets_available": 10,
+  "tfs_available": 4,
+  "plan": "± 24 strategieën\n± 455 backtests\n± 54 optimalisatiepogingen\n± 3 min\n4 workers\nXAUUSD: Ontwikkelperiode start op 2004-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2004-01-01 + 30 dagen warm-up.\nUS30: Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up.\nDE40: Ontwikkelperiode start op 2014-01-31 i.p.v. 2004-01-01: eerste betrouwbare candle 2014-01-01 + 30 dagen warm-up.\nProfiel 'snel' doet GEEN verzegelde eindtest: kandidaten blijven onderzoekskandidaat.\n4 werkprocessen op 24 kernen, prioriteit 'lager dan normaal'; de app blijft b",
+  "horizontal_overflow": false,
+  "running_text": "In wachtrij In de wachtrij\nPauzeren\nStoppen\n0\nONDERZOCHT\n0\nAFGEWEZEN\n0\nKANDIDATEN\n0%\nCPU —\nRAM —\n0 workers\nToon log",
+  "seconds": 57,
+  "candidate_rows": 33,
+  "detail_text": "Gen trend_ma_cross XAUUSD H1 b2fdbb\nXAUUSD H1 · trend_ma_cross\nAfgewezen\nSluiten\nContractspecificaties zijn aannames (niet door broker bevestigd); OHLC zonder tick-volgorde: SL en TP in dezelfde bar = SL eerst.\n\nSnelle EMA/SMA kruist trage EMA/SMA. Getest op XAUUSD H1 met exitprofiel 'atr_r_be'.\n\nNetto\n-0,5%\nDrawdown\n1,0%\nProfit factor\n0,72\nTrades\n11\nRecovery factor\n-0,56\nEQUITYCURVE\ni\nOntwikkelperiode (in-sample)\n\nAfgewezen in de snelle test; er is daarom geen volledige ontwikkelbacktest. Resultaat per representatief venster:\n\nVenster\tRegime\tTrades\tNetto\tPF\n2008-01-01 – 2008-04-01\thoge volatiliteit\t5\t-31\t0.69\n2010-01-01 – 2010-04-01\tsterke trend\t3\t-49\t0.00\n2017-01-01 – 2017-04-01\tlage volatiliteit\t3\t26\t1.55\nTRADES OP PRIJS\nGeen voorbeeldtrades beschikbaar.\nREGELS\n\nSTRATEGIE: Gen trend_ma_cross XAUUSD H1 b2fdbb - XAUUSD H1 - richting: long en short MA-kruising: Snelle EMA/SMA kruist trage EMA/SMA. WANNEER: alleen handelen tussen 09:30 en 15:30 (America/New_York, zomertijd-correct; candle-openingstijd telt); na een trade 8 candle(s) wachten (cooldown); een positie tegelijk; signalen worden beoordeeld op de slotkoers van elke candle ENTRY LONG: sma(25) kruist omhoog door sma(200) ENTRY SHORT: sma(25) kruist omlaag door sma(200) ORDER: marktorder op de open van de volgende candle (long koopt op Ask, short verkoopt op Bid) STOP LOSS: 2.25 x ATR(14) vanaf de instap TAKE PROFIT: 1.5 x R (afstand tot de stop) RISK: 0.5% van de rekening per trade (positiegrootte uit stopafstand) EXIT",
+  "js_errors": []
+}

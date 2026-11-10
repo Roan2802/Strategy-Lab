@@ -1,0 +1,110 @@
+  <main>
+    <section class="toolbar panel">
+      <label><span>Strategie <button class="info" type="button" aria-label="Uitleg" data-tip="De handelsregels die je wilt testen. Nieuwe strategieën maak je in Strategieën → Bouwen.">i</button></span><select id="strategy"></select></label>
+      <label><span>Markt <button class="info" type="button" aria-label="Uitleg" data-tip="Het instrument uit je lokale Dukascopy-data. Er wordt gerekend met Bid- én Ask-prijzen.">i</button></span><select id="symbol"></select></label>
+      <label><span>Tijdframe <button class="info" type="button" aria-label="Uitleg" data-tip="Lengte van één candle. M1 = 1 minuut, H1 = 1 uur, D1 = 1 dag. De strategie beslist één keer per candle.">i</button></span><select id="timeframe"></select></label>
+      <label>Van<input id="start" type="date" value="2026-09-14"></label>
+      <label>Tot en met<input id="end" type="date" value="2026-09-14"></label>
+      <span id="data-range" class="data-range muted" aria-live="polite"></span>
+      <div class="toolbar-go">
+        <button id="top-run" type="button" data-tip="Voert de strategie uit over de gekozen periode met de instellingen links. Het resultaat verschijnt rechts en onder Trades.">Backtest uitvoeren</button>
+        <button id="top-optimize" class="secondary" type="button" data-tip="Zoekt betere parameterwaarden. Instellingen staan bij Onderzoeken → Optimalisatie.">Optimaliseren</button>
+      </div>
+      <button id="load-chart" class="secondary" type="button" hidden>Grafiek laden</button>
+      <button id="chart-focus" class="secondary" type="button" hidden>Chartfocus</button>
+    </section>
+    <section id="layout-editor" class="panel hidden" aria-label="Layout editor"><label>Naam<input id="layout-name" value="Mijn layout" maxlength="48"></label><button id="save-layout">Layout opslaan</button><button id="restore-layout" class="secondary">Standaard herstellen</button><button id="cancel-layout" class="secondary">Annuleren</button><button class="info" type="button" aria-label="Uitleg" data-tip="Sleep de greep linksboven om een paneel te verplaatsen en de greep rechtsonder voor het formaat. Elke weergave (Backtest, Grafiek, Optimalisatie) onthoudt zijn eigen indeling.">i</button></section>
+    <section class="workspace">
+      <aside class="panel controls" data-panel="settings" draggable="false">
+        <div class="section-head"><h2>Instellingen</h2><div class="mode-switch" role="group" aria-label="Instellingenniveau"><button id="settings-mode" type="button" class="secondary" data-tip="Eenvoudig toont alleen de belangrijkste instellingen. Geavanceerd toont alles, inclusief kosten, engine en technische namen.">Geavanceerd</button></div></div>
+        <section class="setting-page" data-setting-page="presets"><div class="preset-row"><select id="presets" aria-label="Preset laden"><option value="">Preset laden…</option></select><details class="fold" id="presets-group"><summary data-tip="Bewaar de huidige strategie, markt, tijdframe en alle instellingen onder een naam.">Opslaan</summary><div class="inline"><input id="preset-name" placeholder="Naam van de preset"><button id="save-preset" class="secondary">Opslaan</button></div></details></div></section>
+        <section class="setting-page" data-setting-page="strategy"><h3 class="widget-subheading">Strategie</h3>
+        <div id="parameters"><div id="parameters-primary" class="parameters"></div><details id="additional-parameters" class="parameter-overflow-group" data-setting-group><summary id="additional-parameters-summary">Overige strategieparameters</summary><div id="parameters-additional" class="parameters"></div></details></div>
+        <button id="reset-params" class="secondary link-btn" type="button" data-tip="Zet alle strategieparameters terug op de standaardwaarden van de strategie.">Standaardwaarden herstellen</button>
+        </section>
+        <section class="setting-page" data-setting-page="market"><h3 class="widget-subheading">Account</h3>
+        <div class="grid2"><label>Startsaldo<input id="balance" type="number" value="10000" min="1" step="100"></label></div>
+        <details id="advanced-execution" class="advanced-setting advanced-group" data-setting-group><summary>Kosten en rekenmodel</summary><div class="grid2">
+          <label>Transactiekosten<input id="fee" type="number" value="0.0006" min="0" step="0.0001"></label>
+          <label>Rekenmodel<select id="account-type"><option value="spot">Spot</option><option value="futures">Futures</option></select></label>
+          <label>Hefboom<input id="leverage" type="number" value="1" min="1" step="1"></label>
+          <label>Opwarmcandles<input id="warmup" type="number" value="210" min="0" step="1"></label>
+        </div></details>
+        <details id="optimization-controls" class="advanced-setting advanced-group" data-setting-group><summary>Optimalisatie-instellingen</summary><div class="grid2">
+          <label>Aantal pogingen<input id="trials" type="number" value="5" min="1" max="100"></label>
+          <label>Trainingsdeel (%)<input id="train-percent" type="number" value="80" min="50" max="90" step="1"></label>
+          <label>Doel<select id="objective"><option>sharpe</option><option>calmar</option><option>sortino</option><option>omega</option><option>recovery_factor</option></select></label>
+          <label>Zoekmethode<select id="optimizer-method"><option value="random">Random</option><option value="grid">Grid</option><option value="tpe">TPE</option></select></label>
+          <label>Startgetal toeval<input id="optimizer-seed" type="number" value="42" step="1"></label>
+          <label>Hervatten vanaf<select id="resume-run"><option value="">Nieuwe optimalisatie</option></select></label>
+        </div><div id="optimizer-space-controls" class="optimizer-space-controls" aria-label="Parameterzoekruimte"></div><div id="optimizer-plan" class="optimizer-plan" aria-live="polite"></div></details>
+        <details id="strategy-source-group" class="advanced-setting advanced-group" data-setting-group><summary>Strategiecode beheren</summary>
+          <div class="inline"><input id="new-strategy-name" placeholder="Nieuwe Python-strategie"><button id="load-source" class="secondary">Bron laden</button></div>
+          <textarea id="strategy-source" spellcheck="false" placeholder="Laad een bestaande strategie of maak een nieuwe Python-strategie."></textarea>
+          <button id="save-strategy" class="secondary">Opslaan als nieuwe / Lab-strategie</button>
+        </details>
+        <div id="run-status" class="status" role="status">Klaar.</div>
+        </section>
+      </aside>
+      <section class="center" data-panel="chart" draggable="false">
+        <section class="panel chart-panel">
+          <div class="section-head"><h2>Grafiek <button class="info" type="button" aria-label="Uitleg" data-tip="Dukascopy Bid-candles met de trades van de geselecteerde run. ▲ = long entry, ▼ = short entry, ■ = take profit geraakt, ✕ = stop loss geraakt. Klik op een candle voor het beslislogboek; klik een trade in de lijst om entry, exit, SL en TP te zien. Scrollen = zoomen, slepen = verschuiven.">i</button></h2><div class="inline"><label class="chart-limit-control">Candles<select id="chart-limit"><option value="0">Alle</option><option value="100">100</option><option value="500">500</option><option value="1000">1.000</option><option value="2000">2.000</option></select></label><button id="chart-expand" class="secondary" aria-label="Grafiek vergroten" data-tip="Grafiek schermvullend (Esc sluit)">⛶</button></div></div>
+          <div id="chart"></div>
+          <div id="equity-chart"></div>
+          <div class="replay-panel">
+            <div class="replay-head"><span class="replay-title">Candle replay <button class="info" type="button" aria-label="Uitleg" data-tip="Speelt de candles stap voor stap af. De grafiek toont dan alleen wat op dat moment bekend was, zonder vooruitkijken.">i</button></span><div class="inline replay-actions"><div class="replay-speed-control"><label for="replay-speed">Tempo <output id="replay-speed-value" for="replay-speed">x1</output></label><input id="replay-speed" type="range" min="0" max="5" step="1" value="0" aria-label="Replaytempo" aria-valuetext="x1"><div class="replay-speed-labels" aria-hidden="true"><span>x1</span><span>x3</span><span>x5</span><span>x25</span><span>x50</span><span>x100</span></div></div><button id="replay-toggle" class="secondary">Replay starten</button><button id="replay-back" class="secondary" aria-label="Een candle terug">◀</button><button id="replay-next" class="secondary" aria-label="Een candle vooruit">▶</button></div></div>
+            <input id="replay-slider" type="range" min="0" max="0" value="0" disabled aria-label="Replaypositie">
+            <div id="replay-time" class="muted">Replay staat uit.</div>
+          </div>
+        </section>
+      </section>
+      <aside class="panel results-side" data-panel="results" draggable="false">
+        <div class="section-head"><h2>Resultaten</h2><div class="inline"><select id="run-select" aria-label="Opgeslagen run kiezen" data-tip="Kies een eerder opgeslagen run om resultaten, trades en grafiek terug te zien."><option value="">Geen run</option></select><button id="refresh-runs" class="secondary icon-btn" type="button" aria-label="Runs verversen" data-tip="Lijst met runs verversen">↻</button></div></div>
+        <div id="evidence-banner" class="evidence-banner" hidden></div>
+        <div id="interpretation" class="interpretation"><p class="muted">Voer een backtest uit of kies een opgeslagen run. Hier lees je dan in gewone taal wat de strategie deed, hoe groot het risico was en wat er nog ontbreekt.</p></div>
+        <div class="result-panel" data-result-panel="summary"><h3 class="widget-subheading">Statistieken</h3><details class="metric-picker"><summary>Statistieken kiezen</summary><div id="metric-options" class="metric-options"></div></details><div id="metrics" class="metrics"></div></div>
+        <details class="fold advanced-setting" id="ledger-group"><summary>Bid/Ask-herwaardering <span id="ledger-help"></span></summary>
+        <div class="grid2">
+          <label>Contractgrootte<input id="contract-size" type="number" min="0.000001" step="any" placeholder="vereist"></label>
+          <label>Accountvaluta<input id="account-currency" type="text" placeholder="bv. USD"></label>
+          <label>Tickgrootte<input id="tick-size" type="number" min="0.000001" step="any" placeholder="vereist"></label>
+          <label>Koers quote → account<input id="conversion" type="number" min="0.000001" step="any" placeholder="vereist"></label>
+          <label>Lotstap<input id="volume-step" type="number" min="0.000001" step="any" placeholder="vereist"></label>
+          <label>Commissie per lot per zijde<input id="commission" type="number" min="0" step="any" value="0"></label>
+          <label>Slippage (punten)<input id="slippage" type="number" min="0" step="any" value="0"></label>
+        </div>
+        <button id="run-ledger" class="secondary">Herwaarderen op Bid/Ask</button><div id="ledger-result"></div></details>
+      </aside>
+      <section class="panel dock" data-panel="dock" draggable="false">
+        <div class="dock-tabs" role="tablist" aria-label="Details">
+          <button type="button" role="tab" data-dock-tab="trades" aria-selected="true">Trades</button>
+          <button type="button" role="tab" data-dock-tab="inspector" aria-selected="false">Beslislogboek</button>
+          <button type="button" role="tab" data-dock-tab="optimization" aria-selected="false">Optimalisatie</button>
+          <button type="button" role="tab" data-dock-tab="analytics" aria-selected="false">Analyse</button>
+          <button type="button" role="tab" data-dock-tab="comparison" aria-selected="false">Vergelijken</button>
+          <button type="button" role="tab" data-dock-tab="logs" aria-selected="false">Journaal</button>
+        </div>
+        <div class="dock-page" data-dock-page="trades">
+          <div id="trade-detail" class="trade-detail" hidden></div>
+          <div class="table-wrap"><table><thead><tr><th>#</th><th>Richting</th><th>Entry (UTC)</th><th>Entry</th><th>Exit</th><th>Winst/verlies</th><th>MFE <span id="mfe-help"></span></th><th>MAE <span id="mae-help"></span></th><th></th></tr></thead><tbody id="trades"></tbody></table></div>
+        </div>
+        <div class="dock-page inspector" data-dock-page="inspector" hidden>
+          <div class="inspector-head"><h3 class="section-title-help">Beslislogboek <span id="inspector-help"></span></h3>
+          <div id="decision-filters" class="filters" role="group" aria-label="Filter op uitkomst">
+            <label data-tip="Voorwaarde was voldaan"><input type="checkbox" value="PASS" checked> Geslaagd</label>
+            <label data-tip="Voorwaarde was niet voldaan"><input type="checkbox" value="FAIL" checked> Niet voldaan</label>
+            <label data-tip="Overgeslagen, bijvoorbeeld buiten het instapinterval"><input type="checkbox" value="SKIP" checked> Overgeslagen</label>
+          </div></div>
+          <div id="selected-candle" class="muted">Klik op een candle in de grafiek of op een trade.</div>
+          <button id="causal-replay-run" class="secondary" type="button" disabled data-tip="Voert de strategie opnieuw uit op alleen de candles tot dit moment en vergelijkt de beslissing met de opgeslagen run.">Beslissing opnieuw berekenen</button>
+          <div id="causal-replay-result" class="muted" aria-live="polite"></div>
+          <div id="candle-events"></div>
+        </div>
+        <div class="dock-page" data-dock-page="optimization" hidden><div class="result-panel" data-result-panel="optimization"><div id="optimization-results" class="metrics"><p class="muted">Nog geen optimalisatie. Start er een met de knop Optimaliseren; de instellingen staan links onder Optimalisatie-instellingen (Geavanceerd) of op het tabblad Onderzoeken → Optimalisatie.</p></div></div></div>
+        <div class="dock-page" data-dock-page="analytics" hidden><div class="result-panel" data-result-panel="analytics"><details class="metric-picker"><summary>Grafieken kiezen</summary><div id="analytics-options" class="metric-options"><label><input type="checkbox" value="monthly" checked> Per maand</label><label><input type="checkbox" value="yearly" checked> Per jaar</label><label><input type="checkbox" value="weekday" checked> Per instapweekdag</label><label><input type="checkbox" value="session" checked> Per UTC-instapsessie</label><label><input type="checkbox" value="side" checked> Long versus short</label><label><input type="checkbox" value="overlap" checked> Trade overlap</label><label><input type="checkbox" value="equity" checked> Equity curve</label><label><input type="checkbox" value="drawdown" checked> Underwater / drawdown</label></div></details><div id="performance-analytics" class="analytics-grid"><p class="muted">Selecteer een backtestrun.</p></div></div></div>
+        <div class="dock-page" data-dock-page="comparison" hidden><div class="inline compare-row"><select id="compare-a" aria-label="Run A"><option value="">Run A</option></select><select id="compare-b" aria-label="Run B"><option value="">Run B</option></select><button id="compare" class="secondary">Vergelijk</button></div><div class="result-panel" data-result-panel="comparison"><div id="comparison" class="muted">Kies twee runs om hun statistieken naast elkaar te zien.</div></div></div>
+        <div class="dock-page" data-dock-page="logs" hidden><div class="result-panel" data-result-panel="logs"><h3 class="widget-subheading">Run- en foutmeldingen</h3><pre id="result-logs" class="muted log-pre">Geen logs beschikbaar.</pre><p class="muted">Alle geteste varianten (ook verliezers) staan in het researchlogboek: <a href="#onderzoeken/automatisch">Onderzoeken → Automatisch onderzoek → Researchlogboek</a>.</p></div></div>
+      </section>
+      <div class="result-panel" data-result-panel="portfolio" id="backtest-portfolio"><h3>Backtests combineren <button class="info" type="button" aria-label="Uitleg" data-tip="Combineer 2–12 opgeslagen Dukascopy Bid/Ask-backtests tot één historische portefeuille. Dit is een historische simulatie, geen forwardresultaat; contracten zijn niet door een broker bevestigd.">i</button></h3><div id="portfolio-runs" class="portfolio-runs"><p class="muted">Runs laden…</p></div><button id="portfolio-analyze" class="secondary" type="button">Portfolio analyseren</button><div id="portfolio-result" class="portfolio-result" aria-live="polite"></div></div>
+    </section>
+  </main>

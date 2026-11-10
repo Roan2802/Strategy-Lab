@@ -1,0 +1,27 @@
+Category,Feature,Status,Verified,Free Version,Evidence,Limitation,Workaround,Effort,Priority,Recommendation
+Data,XAUUSD Duka M1 import,Native,Passed,Yes,evidence/market_data/xau_import_result.json,Source volume field is tickvolume 1.0 in this range,retain source manifest and hashes,Low,Critical,Keep
+Data,US30 Duka M1 import,Native,Passed,Yes,evidence/market_data/us30_import_result.json,Source volume field is tickvolume 1.0 in this range,retain source manifest and hashes,Low,Critical,Keep
+Data,UTC timezone conversion,Extension,Passed,Yes,evidence/market_data/p0_dukascopy_manifest.json,EET/EEST is DST-sensitive,ZoneInfo conversion explicitly tested,Low,Critical,Keep
+Data,gap and duplicate validation,Native,Passed,Yes,evidence/market_data/p0_dukascopy_manifest.json,market closed hours cause expected gaps,retain gap manifest,Low,High,Keep
+Data,OHLC and decimals validation,Native,Passed,Yes,evidence/market_data/*import_result.json,XAU/US30 use 3 decimal conversion,contract tick size still separate,Low,Critical,Keep
+Data,M5 M15 H1 aggregation,Extension,Passed,Yes,evidence/results/dukascopy_aggregation_validation.json,Aggregated bars inherit gaps,aggregate on UTC boundaries,Low,High,Configure
+Execution,market entry,Native,Passed,Yes,evidence/results/P0_Duka_order_mode_0.json,fees affect net result,compare lifecycle separately,Low,Critical,Keep
+Execution,buy stop,Native,Passed,Yes,evidence/results/P0_Duka_order_mode_1.json,only probe configuration tested,repeat with deterministic fixture,Low,Critical,Keep
+Execution,sell stop,Native,Passed,Yes,evidence/results/P0_Duka_order_mode_2.json,uses futures model while long tests use spot,model CFD account separately,Medium,Critical,Configure
+Execution,stop loss,Native,Passed,Yes,evidence/results/P0_XAUUSD_trades.csv,M1 intrabar path not known,conservative fill policy or tick data,Low,Critical,Keep
+Execution,take profit,Native,Passed,Yes,evidence/code/P0AuditProbe.py,co-hit ordering not resolved,conservative fill policy or tick data,Low,Critical,Keep
+Execution,order size,Configurable,Passed,Yes,evidence/code/P0AuditProbe.py,qty 1 Jesse unit is not broker lot equivalence,map lots and contract,Medium,Critical,Configure
+Accounting,fees,Configurable,Partial,Yes,evidence/results/P0_XAUUSD_run_summary.json,spot fee is not broker commission schedule,adapter with explicit cost config,Medium,Critical,Extend
+Accounting,variable spread,Configurable,Not tested,Yes,evidence/market_data/Duka_XAUUSD_M1_20260401_20260928_bid_ask.csv,smoke test uses Jesse price side and fee,apply Bid/Ask or spread model,Medium,Critical,Extend
+Accounting,contract size tick value margin leverage,Unknown,Not tested,Yes,evidence/results/P0DukaCustomSymbolImporter_compile.log,custom symbol importer only compiled,execute importer then read symbol specs and native tester,High,Critical,Extend
+Parity,signal timestamp comparison,Unknown,Not tested,Yes,evidence/code/P0DukaCustomSymbolImporter.mq5,no MT5 EA run,run same Duka-derived rates in tester,High,Critical,Extend
+Parity,order placement comparison,Unknown,Not tested,Yes,evidence/code/P0DukaCustomSymbolImporter.mq5,MT5 importer not executed,run test-only EA guarded to tester,High,Critical,Extend
+Parity,fill and entry exit price comparison,Unknown,Not tested,Yes,evidence/code/P0DukaCustomSymbolImporter.mq5,no MT5 tester report,custom symbol + test-only EA,High,Critical,Extend
+Parity,spread commission PnL comparison,Unknown,Not tested,Yes,evidence/market_data/p0_dukascopy_manifest.json,per-bar Duka spread exported but not loaded in MT5,import and validate cost settings,High,Critical,Extend
+Debug,per-candle PASS FAIL SKIP events,Extension,Passed,Yes,evidence/results/P0_XAUUSD_inspector_events.jsonl,post-run logs require parser,local Python event viewer,Medium,Critical,Extend
+Debug,order/trade event joins,Extension,Partial,Yes,evidence/results/P0_XAUUSD_inspector_events.jsonl,position ID differs from closed trade ID,join via order ids plus trade id,Medium,Critical,Extend
+Chart,candles OHLC and EMA overlay,Native,Passed,Yes,CHART_CAPABILITIES.md,complex drawing uses external primitives,existing update_chart API,Low,High,Keep
+Chart,trade markers and jump to trade,Native,Passed,Yes,CHART_CAPABILITIES.md,screenshots not persisted,save screenshot in follow-up,Low,High,Keep
+Chart,zones and ranges,Missing,Not tested,Yes,CHART_CAPABILITIES.md,no verified native rectangle/zone primitive,external chart layer,Medium,Medium,Extend
+Replay,hide future candles candle-step replay,Unknown,Not tested,Unknown,CHART_CAPABILITIES.md,retrospective chart is not replay proof,separate replay component,High,High,Extend
+

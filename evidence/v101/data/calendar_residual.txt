@@ -1,0 +1,9 @@
+XAUUSD mismatch_min 11332 days 28 match% 98.447
+EURUSD mismatch_min 4562 days 6 match% 99.401
+GBPUSD mismatch_min 4562 days 6 match% 99.401
+USDJPY mismatch_min 4562 days 6 match% 99.401
+USA30IDXUSD mismatch_min 11888 days 29 match% 98.316
+US500 mismatch_min 11888 days 29 match% 98.316
+USATECHIDXUSD mismatch_min 11888 days 29 match% 98.316
+DE40 mismatch_min 8458 days 19 match% 98.799
+BTCUSD mismatch_min 2762 days 4 match% 99.74

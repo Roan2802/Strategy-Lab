@@ -1,0 +1,31 @@
+# secrets / local config
+.env
+**/.env
+*credentials*.local.json
+runtime/.env
+
+# generated data, caches, run artefacts (large; regenerated locally)
+strategy_lab/data_cache/
+strategy_lab/runs/
+strategy_lab/layouts/
+strategy_lab/presets/
+runtime/storage/
+runtime/docker/postgres-data/
+runtime/strategy_lab/results/
+runtime/strategy_lab/requests/
+evidence/test_outputs/
+evidence/market_data/
+evidence/backups/
+*.sqlite3
+*.sqlite3-*
+*.parquet
+*.log
+
+# upstream Jesse checkout (own git repo)
+jesse/
+
+# python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/settings.local.json

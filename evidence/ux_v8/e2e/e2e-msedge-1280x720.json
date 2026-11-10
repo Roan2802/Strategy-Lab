@@ -1,0 +1,43 @@
+{
+  "tag": "msedge-1280x720",
+  "passed": 7,
+  "failed": 0,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows real last-candle dates",
+      "ok": true,
+      "detail": "XAUUSD\nlaatste candle 2026-10-30 20:59 · 8 dag(en) achter\nACHTER\nEURUSD\nlaatste candle 2026-10-15 23:59 · 24 dag(en) ach"
+    },
+    {
+      "step": "all sections/subtabs open without JS errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "step": "tester panels do not overlap",
+      "ok": true,
+      "detail": "{'bad': [], 'hscroll': False, 'panels': ['market-controls', 'settings', 'chart', 'results', 'dock']}"
+    },
+    {
+      "step": "no horizontal page scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "restart restores route",
+      "ok": true,
+      "detail": "#onderzoeken/trades"
+    },
+    {
+      "step": "restart restores strategy/market/timeframe/period",
+      "ok": true,
+      "detail": "{'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None} -> {'s': 'LabBreakout', 'sym': 'XAUUSD', 'tf': 'M15', 'start': '2026-09-01', 'run': None, 'route': '#onderzoeken/trades'}"
+    }
+  ],
+  "js_errors": []
+}

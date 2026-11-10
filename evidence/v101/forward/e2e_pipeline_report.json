@@ -1,0 +1,109 @@
+{
+ "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+ "note": "Synthetic fixture; proves mechanics, not edge.",
+ "stages": [
+  {
+   "stage": "develop",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "spec": "SawBreakoutFixture",
+   "rows_m15": 14496,
+   "first_sealed_bar_visible": false
+  },
+  {
+   "stage": "backtest",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "trades": 69,
+   "net_profit": 11538.0,
+   "sharpe": 12.68648262014863
+  },
+  {
+   "stage": "optimise",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "n_trials": 7,
+   "chosen_level": 100.8,
+   "scores": {
+    "100.2": 12.68648262014863,
+    "100.3": 12.68648262014863,
+    "100.4": 12.68648262014863,
+    "100.5": 12.68648262014863,
+    "100.6": 14.177361339940447,
+    "100.7": 20.170833753397694,
+    "100.8": 25.386493439038567
+   }
+  },
+  {
+   "stage": "walk_forward",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "windows": 5,
+   "windows_ok": 5,
+   "oos_trades": 57,
+   "oos_net_profit": 11377.43866685808
+  },
+  {
+   "stage": "robustness",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "bootstrap": [
+    "daily_mean",
+    "daily_sharpe",
+    "trade_mean"
+   ],
+   "neighbourhood_status": "INSUFFICIENT_EVIDENCE",
+   "neighbourhood_class": "INSUFFICIENT_EVIDENCE",
+   "n_neighbours": 0
+  },
+  {
+   "stage": "statistical_validation",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "psr": 1.0,
+   "dsr": 0.999999999990854,
+   "n_trials": 7,
+   "n_days": 105
+  },
+  {
+   "stage": "freeze",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "frozen_id": "frz_71d3d43edbbb40abc06e4078",
+   "record_sha256": "71d3d43edbbb40abc06e407888b1ea16f801aed6e9341a686487474f77392c17",
+   "params": {
+    "level": 100.8
+   }
+  },
+  {
+   "stage": "sealed_final_test",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "evidence_class": "HISTORICAL_OOS",
+   "trades": 20,
+   "net_profit": 4407.0,
+   "p_value": null,
+   "period": [
+    "2026-05-01",
+    "2026-06-01"
+   ],
+   "after_freeze": true
+  },
+  {
+   "stage": "reproducible_rerun",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "same_frozen_id": true,
+   "same_trades": true,
+   "same_metrics": true
+  },
+  {
+   "stage": "forward_registration",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "registration_id": "57ae3ee9-ca15-42bf-b894-30803b852417",
+   "snapshot_sha256": "f4dcad6594ff0a8f73444747002aa13e8835a4c1863704d42c97e673515970e5",
+   "frozen_at": "2026-06-02T06:00:00.000000+00:00"
+  },
+  {
+   "stage": "forward_day_by_day",
+   "label": "TECHNICAL_PROOF_ONLY_SYNTHETIC_DATA",
+   "days": 5,
+   "events": 110,
+   "trades": 3,
+   "net_profit": 549.774,
+   "evidence_class": "DAILY_DELAYED_FORWARD",
+   "ledger": "OK"
+  }
+ ]
+}

@@ -1,0 +1,4486 @@
+{
+ "name": "plugin_gold_reaper",
+ "request": {
+  "strategy": {
+   "kind": "plugin",
+   "name": "gold_reaper"
+  },
+  "symbol": "XAUUSD",
+  "start": "2025-07-01",
+  "end": "2026-10-01",
+  "capital": 10000,
+  "holdout_percent": 20,
+  "walk_forward": {
+   "enabled": true,
+   "mode": "rolling",
+   "train_days": 90,
+   "test_days": 30,
+   "step_days": 30,
+   "max_combos": 4,
+   "min_trades": 10
+  },
+  "stability": {
+   "enabled": true
+  },
+  "pbo": {
+   "enabled": true,
+   "max_combos": 4
+  },
+  "monte_carlo": {
+   "n": 1000,
+   "method": "block_bootstrap"
+  }
+ },
+ "started_at": "2026-11-09T20:10:36.138528+00:00",
+ "finished_at": "2026-11-09T20:24:39.453518+00:00",
+ "wall_seconds": 843.3,
+ "progress_log": [
+  {
+   "t": 0.0,
+   "p": 0.01,
+   "m": "Strategie en Dukascopy-data laden"
+  },
+  {
+   "t": 1.2,
+   "p": 0.02,
+   "m": "Basisbacktest op de ontwikkelperiode"
+  },
+  {
+   "t": 28.6,
+   "p": 0.08,
+   "m": "Kostenstress: scenario baseline (1/4)"
+  },
+  {
+   "t": 56.5,
+   "p": 0.1,
+   "m": "Kostenstress: scenario spread_+25% (2/4)"
+  },
+  {
+   "t": 83.2,
+   "p": 0.12,
+   "m": "Kostenstress: scenario spread_+50% (3/4)"
+  },
+  {
+   "t": 109.9,
+   "p": 0.14,
+   "m": "Kostenstress: scenario commission_x2 (4/4)"
+  },
+  {
+   "t": 135.7,
+   "p": 0.16,
+   "m": "Walk-forward venster 1/9, combinatie 1/4"
+  },
+  {
+   "t": 142.0,
+   "p": 0.169,
+   "m": "Walk-forward venster 1/9, combinatie 2/4"
+  },
+  {
+   "t": 148.1,
+   "p": 0.177,
+   "m": "Walk-forward venster 1/9, combinatie 3/4"
+  },
+  {
+   "t": 152.0,
+   "p": 0.186,
+   "m": "Walk-forward venster 1/9, combinatie 4/4"
+  },
+  {
+   "t": 158.3,
+   "p": 0.195,
+   "m": "Walk-forward venster 1/9, test op ongeziene data"
+  },
+  {
+   "t": 160.6,
+   "p": 0.203,
+   "m": "Walk-forward venster 2/9, combinatie 1/4"
+  },
+  {
+   "t": 166.5,
+   "p": 0.212,
+   "m": "Walk-forward venster 2/9, combinatie 2/4"
+  },
+  {
+   "t": 173.2,
+   "p": 0.221,
+   "m": "Walk-forward venster 2/9, combinatie 3/4"
+  },
+  {
+   "t": 177.2,
+   "p": 0.229,
+   "m": "Walk-forward venster 2/9, combinatie 4/4"
+  },
+  {
+   "t": 183.9,
+   "p": 0.238,
+   "m": "Walk-forward venster 2/9, test op ongeziene data"
+  },
+  {
+   "t": 185.5,
+   "p": 0.247,
+   "m": "Walk-forward venster 3/9, combinatie 1/4"
+  },
+  {
+   "t": 192.2,
+   "p": 0.255,
+   "m": "Walk-forward venster 3/9, combinatie 2/4"
+  },
+  {
+   "t": 198.9,
+   "p": 0.264,
+   "m": "Walk-forward venster 3/9, combinatie 3/4"
+  },
+  {
+   "t": 202.8,
+   "p": 0.273,
+   "m": "Walk-forward venster 3/9, combinatie 4/4"
+  },
+  {
+   "t": 209.8,
+   "p": 0.281,
+   "m": "Walk-forward venster 3/9, test op ongeziene data"
+  },
+  {
+   "t": 212.0,
+   "p": 0.29,
+   "m": "Walk-forward venster 4/9, combinatie 1/4"
+  },
+  {
+   "t": 218.8,
+   "p": 0.299,
+   "m": "Walk-forward venster 4/9, combinatie 2/4"
+  },
+  {
+   "t": 225.8,
+   "p": 0.307,
+   "m": "Walk-forward venster 4/9, combinatie 3/4"
+  },
+  {
+   "t": 230.1,
+   "p": 0.316,
+   "m": "Walk-forward venster 4/9, combinatie 4/4"
+  },
+  {
+   "t": 237.0,
+   "p": 0.325,
+   "m": "Walk-forward venster 4/9, test op ongeziene data"
+  },
+  {
+   "t": 239.0,
+   "p": 0.333,
+   "m": "Walk-forward venster 5/9, combinatie 1/4"
+  },
+  {
+   "t": 245.5,
+   "p": 0.342,
+   "m": "Walk-forward venster 5/9, combinatie 2/4"
+  },
+  {
+   "t": 251.9,
+   "p": 0.351,
+   "m": "Walk-forward venster 5/9, combinatie 3/4"
+  },
+  {
+   "t": 256.0,
+   "p": 0.359,
+   "m": "Walk-forward venster 5/9, combinatie 4/4"
+  },
+  {
+   "t": 262.4,
+   "p": 0.368,
+   "m": "Walk-forward venster 5/9, test op ongeziene data"
+  },
+  {
+   "t": 264.6,
+   "p": 0.377,
+   "m": "Walk-forward venster 6/9, combinatie 1/4"
+  },
+  {
+   "t": 271.0,
+   "p": 0.385,
+   "m": "Walk-forward venster 6/9, combinatie 2/4"
+  },
+  {
+   "t": 277.1,
+   "p": 0.394,
+   "m": "Walk-forward venster 6/9, combinatie 3/4"
+  },
+  {
+   "t": 280.9,
+   "p": 0.403,
+   "m": "Walk-forward venster 6/9, combinatie 4/4"
+  },
+  {
+   "t": 287.2,
+   "p": 0.411,
+   "m": "Walk-forward venster 6/9, test op ongeziene data"
+  },
+  {
+   "t": 289.5,
+   "p": 0.42,
+   "m": "Walk-forward venster 7/9, combinatie 1/4"
+  },
+  {
+   "t": 296.0,
+   "p": 0.429,
+   "m": "Walk-forward venster 7/9, combinatie 2/4"
+  },
+  {
+   "t": 302.5,
+   "p": 0.437,
+   "m": "Walk-forward venster 7/9, combinatie 3/4"
+  },
+  {
+   "t": 306.6,
+   "p": 0.446,
+   "m": "Walk-forward venster 7/9, combinatie 4/4"
+  },
+  {
+   "t": 313.5,
+   "p": 0.455,
+   "m": "Walk-forward venster 7/9, test op ongeziene data"
+  },
+  {
+   "t": 315.5,
+   "p": 0.463,
+   "m": "Walk-forward venster 8/9, combinatie 1/4"
+  },
+  {
+   "t": 322.2,
+   "p": 0.472,
+   "m": "Walk-forward venster 8/9, combinatie 2/4"
+  },
+  {
+   "t": 328.9,
+   "p": 0.481,
+   "m": "Walk-forward venster 8/9, combinatie 3/4"
+  },
+  {
+   "t": 332.9,
+   "p": 0.489,
+   "m": "Walk-forward venster 8/9, combinatie 4/4"
+  },
+  {
+   "t": 339.7,
+   "p": 0.498,
+   "m": "Walk-forward venster 8/9, test op ongeziene data"
+  },
+  {
+   "t": 342.1,
+   "p": 0.507,
+   "m": "Walk-forward venster 9/9, combinatie 1/4"
+  },
+  {
+   "t": 348.9,
+   "p": 0.515,
+   "m": "Walk-forward venster 9/9, combinatie 2/4"
+  },
+  {
+   "t": 355.6,
+   "p": 0.524,
+   "m": "Walk-forward venster 9/9, combinatie 3/4"
+  },
+  {
+   "t": 359.8,
+   "p": 0.533,
+   "m": "Walk-forward venster 9/9, combinatie 4/4"
+  },
+  {
+   "t": 366.5,
+   "p": 0.541,
+   "m": "Walk-forward venster 9/9, test op ongeziene data"
+  },
+  {
+   "t": 368.9,
+   "p": 0.55,
+   "m": "Parameterstabiliteit 1/13: basis"
+  },
+  {
+   "t": 396.3,
+   "p": 0.56,
+   "m": "Parameterstabiliteit 2/13: {'max_dd': 9.0}"
+  },
+  {
+   "t": 424.5,
+   "p": 0.57,
+   "m": "Parameterstabiliteit 3/13: {'max_dd': 11.0}"
+  },
+  {
+   "t": 452.3,
+   "p": 0.58,
+   "m": "Parameterstabiliteit 4/13: {'entry_offset_factor': 0.63}"
+  },
+  {
+   "t": 480.5,
+   "p": 0.59,
+   "m": "Parameterstabiliteit 5/13: {'entry_offset_factor': 0.7699999999999999}"
+  },
+  {
+   "t": 509.0,
+   "p": 0.6,
+   "m": "Parameterstabiliteit 6/13: {'stop_loss_factor': 0.675}"
+  },
+  {
+   "t": 536.5,
+   "p": 0.61,
+   "m": "Parameterstabiliteit 7/13: {'stop_loss_factor': 0.825}"
+  },
+  {
+   "t": 564.7,
+   "p": 0.62,
+   "m": "Parameterstabiliteit 8/13: {'take_profit_factor': 1.35}"
+  },
+  {
+   "t": 592.7,
+   "p": 0.63,
+   "m": "Parameterstabiliteit 9/13: {'take_profit_factor': 1.65}"
+  },
+  {
+   "t": 621.1,
+   "p": 0.64,
+   "m": "Parameterstabiliteit 10/13: {'trail_distance_factor': 1.35}"
+  },
+  {
+   "t": 648.7,
+   "p": 0.65,
+   "m": "Parameterstabiliteit 11/13: {'trail_distance_factor': 1.65}"
+  },
+  {
+   "t": 676.9,
+   "p": 0.66,
+   "m": "Parameterstabiliteit 12/13: {'be_trigger_factor': 0.675}"
+  },
+  {
+   "t": 705.0,
+   "p": 0.67,
+   "m": "Parameterstabiliteit 13/13: {'be_trigger_factor': 0.825}"
+  },
+  {
+   "t": 732.6,
+   "p": 0.68,
+   "m": "PBO/CSCV combinatie 1/4"
+  },
+  {
+   "t": 760.7,
+   "p": 0.71,
+   "m": "PBO/CSCV combinatie 2/4"
+  },
+  {
+   "t": 789.2,
+   "p": 0.74,
+   "m": "PBO/CSCV combinatie 3/4"
+  },
+  {
+   "t": 807.8,
+   "p": 0.77,
+   "m": "PBO/CSCV combinatie 4/4"
+  },
+  {
+   "t": 835.9,
+   "p": 0.81,
+   "m": "Monte Carlo, drop-best en jaaroverzicht op de echte trades"
+  },
+  {
+   "t": 836.0,
+   "p": 0.85,
+   "m": "Geprobeerde configuraties tellen en Sharpe-correcties (PSR/DSR/MinTRL)"
+  },
+  {
+   "t": 836.0,
+   "p": 0.88,
+   "m": "Onaangeroerde holdout (eenmalig)"
+  },
+  {
+   "t": 843.3,
+   "p": 0.95,
+   "m": "Scorecard en rapport"
+  },
+  {
+   "t": 843.3,
+   "p": 1.0,
+   "m": "Klaar"
+  }
+ ],
+ "scorecard": {
+  "verdict": "FORWARD_ELIGIBLE",
+  "checks": [
+   {
+    "name": "sample_size",
+    "status": "PASS",
+    "value": 590,
+    "threshold": 100,
+    "explanation_nl": "590 trades; minimaal 100 nodig voor betekenisvolle statistiek."
+   },
+   {
+    "name": "net_after_costs",
+    "status": "PASS",
+    "value": 3925.5570000000002,
+    "threshold": 0.0,
+    "explanation_nl": "Netto resultaat na kosten is positief."
+   },
+   {
+    "name": "profit_factor",
+    "status": "PASS",
+    "value": 3.5749918169516026,
+    "threshold": 1.2,
+    "explanation_nl": "Profit factor 3.57 (drempel 1.2)."
+   },
+   {
+    "name": "max_drawdown",
+    "status": "PASS",
+    "value": 1.8453806558197856,
+    "threshold": 30.0,
+    "explanation_nl": "Maximale drawdown 1.8% (limiet 30.0%)."
+   },
+   {
+    "name": "psr",
+    "status": "PASS",
+    "value": 0.9999999999930191,
+    "threshold": 0.95,
+    "explanation_nl": "PSR = 1.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "dsr",
+    "status": "PASS",
+    "value": 0.9999986615344552,
+    "threshold": 0.95,
+    "explanation_nl": "DSR = 1.000 bij 26 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst."
+   },
+   {
+    "name": "pbo",
+    "status": "PASS",
+    "value": 0.0,
+    "threshold": 0.5,
+    "explanation_nl": "Kans op backtest-overfitting 0.00 (max 0.5)."
+   },
+   {
+    "name": "walk_forward_efficiency",
+    "status": "PASS",
+    "value": 0.8750595679917101,
+    "threshold": 0.5,
+    "explanation_nl": "WFE 0.88: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5)."
+   },
+   {
+    "name": "oos_profitability",
+    "status": "PASS",
+    "value": 3017.938,
+    "threshold": 0.0,
+    "explanation_nl": "Out-of-sample netto resultaat positief en consistent over vensters."
+   },
+   {
+    "name": "cost_stress",
+    "status": "PASS",
+    "value": 3461.8775,
+    "threshold": 0.0,
+    "explanation_nl": "Resultaat blijft positief bij +50% spread."
+   },
+   {
+    "name": "parameter_stability",
+    "status": "PASS",
+    "value": 1.0,
+    "threshold": 0.7,
+    "explanation_nl": "100% van de naburige parameterwaarden is winstgevend."
+   },
+   {
+    "name": "drop_best_trades",
+    "status": "PASS",
+    "value": 3232.0269999999996,
+    "threshold": 0.0,
+    "explanation_nl": "Zonder de beste 3 trades is het resultaat nog positief."
+   },
+   {
+    "name": "yearly_consistency",
+    "status": "PASS",
+    "value": 1.0,
+    "threshold": 0.6,
+    "explanation_nl": "100% van de jaren winstgevend (min 60%)."
+   }
+  ],
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "notes_nl": [],
+  "counts": {
+   "PASS": 13,
+   "FAIL": 0,
+   "INSUFFICIENT_EVIDENCE": 0,
+   "NOT_TESTED": 0
+  },
+  "disclaimer_nl": "Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs."
+ },
+ "evidence": {
+  "n_trades": 590,
+  "net_profit": 3925.5570000000002,
+  "profit_factor": 3.5749918169516026,
+  "max_drawdown_pct": 1.8453806558197856,
+  "cost_stress": {
+   "scenarios": {
+    "baseline": {
+     "n_trades": 590,
+     "net_profit": 3925.5570000000002,
+     "profit_factor": 3.5749918169516026,
+     "win_rate": 0.6203389830508474,
+     "max_drawdown": 239.89000000000033,
+     "max_drawdown_pct": 1.8453806558197856,
+     "recovery_factor": 16.363987661011276,
+     "sharpe": 4.431602907869726,
+     "sortino": 15.025943112143734,
+     "trades": 590,
+     "sharpe_daily": 4.431602907869726,
+     "engine_metrics": {
+      "balance_initial": 10000.0,
+      "balance_final": 13925.56,
+      "equity_final": 13925.56,
+      "net_profit": 3925.56,
+      "trades_closed": 590,
+      "pending_open": 18,
+      "positions_open": 0,
+      "total_pending_placed": 2977,
+      "total_pending_filled": 590,
+      "total_pending_canceled": 2369,
+      "max_equity_drawdown_pct": 2.8511,
+      "assumed_m1_spread_points": 2.0,
+      "peak_closed_balance": 13939.15,
+      "current_balance_dd_pct": 0.097
+     },
+     "degradation": {
+      "net_profit_delta": 0.0,
+      "net_profit_rel": 0.0,
+      "profit_factor_delta": 0.0,
+      "n_trades_delta": 0
+     }
+    },
+    "spread_+25%": {
+     "n_trades": 583,
+     "net_profit": 3916.1622999999995,
+     "profit_factor": 3.3708629747031043,
+     "win_rate": 0.6106346483704974,
+     "max_drawdown": 258.1350000000002,
+     "max_drawdown_pct": 1.9716990249693027,
+     "recovery_factor": 15.170985337129782,
+     "sharpe": 4.272918385347134,
+     "sortino": 14.564798544459652,
+     "trades": 583,
+     "sharpe_daily": 4.272918385347134,
+     "engine_metrics": {
+      "balance_initial": 10000.0,
+      "balance_final": 13916.16,
+      "equity_final": 13916.16,
+      "net_profit": 3916.16,
+      "trades_closed": 583,
+      "pending_open": 18,
+      "positions_open": 0,
+      "total_pending_placed": 2922,
+      "total_pending_filled": 583,
+      "total_pending_canceled": 2321,
+      "max_equity_drawdown_pct": 2.9667,
+      "assumed_m1_spread_points": 2.0,
+      "peak_closed_balance": 13931.35,
+      "current_balance_dd_pct": 0.109
+     },
+     "degradation": {
+      "net_profit_delta": -9.39470000000074,
+      "net_profit_rel": -0.0023932145170738163,
+      "profit_factor_delta": -0.20412884224849837,
+      "n_trades_delta": -7
+     }
+    },
+    "spread_+50%": {
+     "n_trades": 580,
+     "net_profit": 3461.8775,
+     "profit_factor": 2.969255601299801,
+     "win_rate": 0.5982758620689655,
+     "max_drawdown": 289.23,
+     "max_drawdown_pct": 2.277464967233533,
+     "recovery_factor": 11.969289147045604,
+     "sharpe": 3.8860849175581453,
+     "sortino": 12.959592030894486,
+     "trades": 580,
+     "sharpe_daily": 3.8860849175581453,
+     "engine_metrics": {
+      "balance_initial": 10000.0,
+      "balance_final": 13461.88,
+      "equity_final": 13461.88,
+      "net_profit": 3461.88,
+      "trades_closed": 580,
+      "pending_open": 18,
+      "positions_open": 0,
+      "total_pending_placed": 2950,
+      "total_pending_filled": 580,
+      "total_pending_canceled": 2352,
+      "max_equity_drawdown_pct": 3.0446,
+      "assumed_m1_spread_points": 2.0,
+      "peak_closed_balance": 13478.64,
+      "current_balance_dd_pct": 0.124
+     },
+     "degradation": {
+      "net_profit_delta": -463.6795000000002,
+      "net_profit_rel": -0.11811814221523217,
+      "profit_factor_delta": -0.6057362156518016,
+      "n_trades_delta": -10
+     }
+    },
+    "commission_x2": {
+     "n_trades": 578,
+     "net_profit": 3657.537,
+     "profit_factor": 3.311659049698113,
+     "win_rate": 0.6124567474048442,
+     "max_drawdown": 242.1199999999999,
+     "max_drawdown_pct": 1.8754924600741396,
+     "recovery_factor": 15.106298529654723,
+     "sharpe": 4.254959099430918,
+     "sortino": 13.992561933979834,
+     "trades": 578,
+     "sharpe_daily": 4.254959099430918,
+     "engine_metrics": {
+      "balance_initial": 10000.0,
+      "balance_final": 13657.54,
+      "equity_final": 13657.54,
+      "net_profit": 3657.54,
+      "trades_closed": 578,
+      "pending_open": 18,
+      "positions_open": 0,
+      "total_pending_placed": 2961,
+      "total_pending_filled": 578,
+      "total_pending_canceled": 2365,
+      "max_equity_drawdown_pct": 2.8896,
+      "assumed_m1_spread_points": 2.0,
+      "peak_closed_balance": 13673.65,
+      "current_balance_dd_pct": 0.118
+     },
+     "degradation": {
+      "net_profit_delta": -268.02000000000044,
+      "net_profit_rel": -0.06827566126284765,
+      "profit_factor_delta": -0.26333276725348975,
+      "n_trades_delta": -12
+     }
+    }
+   },
+   "baseline_net_profit": 3925.5570000000002,
+   "survives_spread_50": true,
+   "all_positive": true,
+   "n_scenarios_positive": 4,
+   "status": "OK",
+   "unsupported": [
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    }
+   ]
+  },
+  "walk_forward": {
+   "n_windows": 9,
+   "n_windows_ok": 8,
+   "n_candidates": 4,
+   "wfe": 0.8750595679917101,
+   "oos_net_profit": 3017.938,
+   "oos_n_trades": 379,
+   "oos_metrics": {
+    "n_trades": 379,
+    "net_profit": 3017.938,
+    "profit_factor": 2.106812944036217,
+    "win_rate": 0.6174142480211082,
+    "max_drawdown": 649.7520000000006,
+    "max_drawdown_pct": 5.35986125926432,
+    "recovery_factor": 4.644753690638885,
+    "sharpe": 2.5456726122492666,
+    "sortino": 7.029918038427601
+   },
+   "oos_profitable_windows_frac": 0.75,
+   "windows": [
+    {
+     "train": [
+      "2025-07-01",
+      "2025-09-29"
+     ],
+     "test": [
+      "2025-09-29",
+      "2025-10-29"
+     ],
+     "params": {
+      "max_dd": 18.0,
+      "entry_offset_factor": 0.9,
+      "stop_loss_factor": 1.5,
+      "take_profit_factor": 2.266667,
+      "trail_distance_factor": 2.266667,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 125,
+      "net_profit": 688.0010000000001,
+      "profit_factor": 2.5991135159760037,
+      "win_rate": 0.568,
+      "max_drawdown": 160.03199999999998,
+      "max_drawdown_pct": 1.5931022907614865,
+      "recovery_factor": 4.299146420715858,
+      "sharpe": 3.2132904270468448,
+      "sortino": 6.357373820615726,
+      "trades": 125,
+      "sharpe_daily": 3.2132904270468448,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10688.0,
+       "equity_final": 10688.0,
+       "net_profit": 688.0,
+       "trades_closed": 125,
+       "pending_open": 18,
+       "positions_open": 0,
+       "total_pending_placed": 627,
+       "total_pending_filled": 125,
+       "total_pending_canceled": 484,
+       "max_equity_drawdown_pct": 5.1845,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10688.0,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 30,
+      "net_profit": -286.98,
+      "profit_factor": 0.541960609059278,
+      "win_rate": 0.5666666666666667,
+      "max_drawdown": 413.15999999999997,
+      "max_drawdown_pct": 4.092098968655566,
+      "recovery_factor": -0.6945977345338369,
+      "sharpe": -3.5852630251633992,
+      "sortino": -4.345831260935402,
+      "trades": 30,
+      "sharpe_daily": -3.5852630251633992,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 9713.02,
+       "equity_final": 9713.02,
+       "net_profit": -286.98,
+       "trades_closed": 30,
+       "pending_open": 10,
+       "positions_open": 0,
+       "total_pending_placed": 134,
+       "total_pending_filled": 30,
+       "total_pending_canceled": 94,
+       "max_equity_drawdown_pct": 4.546,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10096.53,
+       "current_balance_dd_pct": 3.798
+      }
+     },
+     "wfe": -1.2513644602260752,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-07-31",
+      "2025-10-29"
+     ],
+     "test": [
+      "2025-10-29",
+      "2025-11-28"
+     ],
+     "params": {
+      "max_dd": 2.0,
+      "entry_offset_factor": 0.3,
+      "stop_loss_factor": 0.4,
+      "take_profit_factor": 3.0,
+      "trail_distance_factor": 2.266667,
+      "be_trigger_factor": 1.5,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 11,
+      "net_profit": 199.76,
+      "profit_factor": 18.17626827171109,
+      "win_rate": 0.7272727272727273,
+      "max_drawdown": 9.655000000000001,
+      "max_drawdown_pct": 0.0948883624411189,
+      "recovery_factor": 20.689798032107714,
+      "sharpe": 5.4698671855138,
+      "sortino": 91.15058061001604,
+      "trades": 11,
+      "sharpe_daily": 5.4698671855138,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10199.76,
+       "equity_final": 10199.76,
+       "net_profit": 199.76,
+       "trades_closed": 11,
+       "pending_open": 3,
+       "positions_open": 0,
+       "total_pending_placed": 20,
+       "total_pending_filled": 11,
+       "total_pending_canceled": 6,
+       "max_equity_drawdown_pct": 0.6941,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10199.76,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 0,
+      "net_profit": 0.0,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "max_drawdown": 0.0,
+      "max_drawdown_pct": 0.0,
+      "recovery_factor": 0.0,
+      "sharpe": 0.0,
+      "sortino": 0.0,
+      "trades": 0,
+      "sharpe_daily": 0.0,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10000.0,
+       "equity_final": 10000.0,
+       "net_profit": 0.0,
+       "trades_closed": 0,
+       "pending_open": 2,
+       "positions_open": 0,
+       "total_pending_placed": 5,
+       "total_pending_filled": 0,
+       "total_pending_canceled": 3,
+       "max_equity_drawdown_pct": 0.0,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10000.0,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 0.0,
+     "status": "INSUFFICIENT",
+     "reason": "test-window heeft < 10 trades"
+    },
+    {
+     "train": [
+      "2025-08-30",
+      "2025-11-28"
+     ],
+     "test": [
+      "2025-11-28",
+      "2025-12-28"
+     ],
+     "params": {
+      "max_dd": 50.0,
+      "entry_offset_factor": 0.9,
+      "stop_loss_factor": 0.766667,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.3,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 109,
+      "net_profit": 1768.4320000000002,
+      "profit_factor": 2.3927095917554095,
+      "win_rate": 0.6422018348623854,
+      "max_drawdown": 768.8349999999998,
+      "max_drawdown_pct": 6.894603899811466,
+      "recovery_factor": 2.3001450246151656,
+      "sharpe": 3.427355639777368,
+      "sortino": 8.056691233062715,
+      "trades": 109,
+      "sharpe_daily": 3.427355639777368,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 11768.43,
+       "equity_final": 11768.43,
+       "net_profit": 1768.43,
+       "trades_closed": 109,
+       "pending_open": 17,
+       "positions_open": 0,
+       "total_pending_placed": 679,
+       "total_pending_filled": 109,
+       "total_pending_canceled": 553,
+       "max_equity_drawdown_pct": 8.4886,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 11768.43,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 44,
+      "net_profit": 882.4179999999999,
+      "profit_factor": 4.295777278125956,
+      "win_rate": 0.5681818181818182,
+      "max_drawdown": 157.65,
+      "max_drawdown_pct": 1.5764999999999962,
+      "recovery_factor": 5.59732318426895,
+      "sharpe": 5.809515000385566,
+      "sortino": 39.08406960317375,
+      "trades": 44,
+      "sharpe_daily": 5.809515000385566,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10882.42,
+       "equity_final": 10882.42,
+       "net_profit": 882.42,
+       "trades_closed": 44,
+       "pending_open": 5,
+       "positions_open": 0,
+       "total_pending_placed": 244,
+       "total_pending_filled": 44,
+       "total_pending_canceled": 195,
+       "max_equity_drawdown_pct": 8.7625,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10882.42,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 1.496949840310512,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-09-29",
+      "2025-12-28"
+     ],
+     "test": [
+      "2025-12-28",
+      "2026-01-27"
+     ],
+     "params": {
+      "max_dd": 10.0,
+      "entry_offset_factor": 0.7,
+      "stop_loss_factor": 0.75,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 119,
+      "net_profit": 682.6759999999999,
+      "profit_factor": 2.8353281500360246,
+      "win_rate": 0.6134453781512605,
+      "max_drawdown": 175.03500000000003,
+      "max_drawdown_pct": 1.7330858651542644,
+      "recovery_factor": 3.900225669151883,
+      "sharpe": 4.227533170539914,
+      "sortino": 11.69151518472193,
+      "trades": 119,
+      "sharpe_daily": 4.227533170539914,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10682.68,
+       "equity_final": 10682.68,
+       "net_profit": 682.68,
+       "trades_closed": 119,
+       "pending_open": 6,
+       "positions_open": 0,
+       "total_pending_placed": 599,
+       "total_pending_filled": 119,
+       "total_pending_canceled": 474,
+       "max_equity_drawdown_pct": 2.2197,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10701.42,
+       "current_balance_dd_pct": 0.175
+      }
+     },
+     "test_metrics": {
+      "n_trades": 39,
+      "net_profit": 559.2309999999999,
+      "profit_factor": 13.144259375882212,
+      "win_rate": 0.6153846153846154,
+      "max_drawdown": 35.23899999999999,
+      "max_drawdown_pct": 0.34866451960798445,
+      "recovery_factor": 15.869661454638328,
+      "sharpe": 9.176201755882838,
+      "sortino": 148.51946026959024,
+      "trades": 39,
+      "sharpe_daily": 9.176201755882838,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10559.23,
+       "equity_final": 10559.23,
+       "net_profit": 559.23,
+       "trades_closed": 39,
+       "pending_open": 6,
+       "positions_open": 0,
+       "total_pending_placed": 169,
+       "total_pending_filled": 39,
+       "total_pending_canceled": 124,
+       "max_equity_drawdown_pct": 0.9414,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10559.23,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 2.4575245065008873,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-10-29",
+      "2026-01-27"
+     ],
+     "test": [
+      "2026-01-27",
+      "2026-02-26"
+     ],
+     "params": {
+      "max_dd": 10.0,
+      "entry_offset_factor": 0.7,
+      "stop_loss_factor": 0.75,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 138,
+      "net_profit": 1196.6019999999999,
+      "profit_factor": 5.825825341388459,
+      "win_rate": 0.6231884057971014,
+      "max_drawdown": 102.32800000000009,
+      "max_drawdown_pct": 0.9611797164102907,
+      "recovery_factor": 11.69378860136032,
+      "sharpe": 6.789159665379882,
+      "sortino": 27.042434143102344,
+      "trades": 138,
+      "sharpe_daily": 6.789159665379882,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 11196.6,
+       "equity_final": 11196.6,
+       "net_profit": 1196.6,
+       "trades_closed": 138,
+       "pending_open": 6,
+       "positions_open": 0,
+       "total_pending_placed": 626,
+       "total_pending_filled": 138,
+       "total_pending_canceled": 482,
+       "max_equity_drawdown_pct": 2.5758,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 11196.6,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 28,
+      "net_profit": 256.765,
+      "profit_factor": 5.242997603899859,
+      "win_rate": 0.7142857142857143,
+      "max_drawdown": 58.7,
+      "max_drawdown_pct": 0.579457205555294,
+      "recovery_factor": 4.374190800681431,
+      "sharpe": 6.315420619623099,
+      "sortino": 0.0,
+      "trades": 28,
+      "sharpe_daily": 6.315420619623099,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10256.76,
+       "equity_final": 10256.76,
+       "net_profit": 256.76,
+       "trades_closed": 28,
+       "pending_open": 14,
+       "positions_open": 0,
+       "total_pending_placed": 202,
+       "total_pending_filled": 28,
+       "total_pending_canceled": 160,
+       "max_equity_drawdown_pct": 1.6222,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10256.76,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 0.6437353439155208,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-11-28",
+      "2026-02-26"
+     ],
+     "test": [
+      "2026-02-26",
+      "2026-03-28"
+     ],
+     "params": {
+      "max_dd": 10.0,
+      "entry_offset_factor": 0.7,
+      "stop_loss_factor": 0.75,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 118,
+      "net_profit": 1229.0819999999997,
+      "profit_factor": 5.79626782383379,
+      "win_rate": 0.5932203389830508,
+      "max_drawdown": 102.328,
+      "max_drawdown_pct": 0.9975716799921048,
+      "recovery_factor": 12.01119928074427,
+      "sharpe": 6.369491628776567,
+      "sortino": 27.829635639857973,
+      "trades": 118,
+      "sharpe_daily": 6.369491628776567,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 11229.08,
+       "equity_final": 11229.08,
+       "net_profit": 1229.08,
+       "trades_closed": 118,
+       "pending_open": 17,
+       "positions_open": 0,
+       "total_pending_placed": 624,
+       "total_pending_filled": 118,
+       "total_pending_canceled": 489,
+       "max_equity_drawdown_pct": 2.4561,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 11229.08,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 42,
+      "net_profit": 476.75800000000004,
+      "profit_factor": 7.228711034464737,
+      "win_rate": 0.6666666666666666,
+      "max_drawdown": 52.732,
+      "max_drawdown_pct": 0.5195168568107029,
+      "recovery_factor": 9.041151482970493,
+      "sharpe": 7.257726479632047,
+      "sortino": 0.0,
+      "trades": 42,
+      "sharpe_daily": 7.257726479632047,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10476.76,
+       "equity_final": 10476.76,
+       "net_profit": 476.76,
+       "trades_closed": 42,
+       "pending_open": 18,
+       "positions_open": 0,
+       "total_pending_placed": 201,
+       "total_pending_filled": 42,
+       "total_pending_canceled": 141,
+       "max_equity_drawdown_pct": 1.2703,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10476.76,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 1.1636929025077256,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2025-12-28",
+      "2026-03-28"
+     ],
+     "test": [
+      "2026-03-28",
+      "2026-04-27"
+     ],
+     "params": {
+      "max_dd": 10.0,
+      "entry_offset_factor": 0.7,
+      "stop_loss_factor": 0.75,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 121,
+      "net_profit": 1672.744,
+      "profit_factor": 9.88641917592809,
+      "win_rate": 0.6528925619834711,
+      "max_drawdown": 52.732000000000085,
+      "max_drawdown_pct": 0.4783990994498934,
+      "recovery_factor": 31.721611165895418,
+      "sharpe": 7.456977866944337,
+      "sortino": 140.08726597449066,
+      "trades": 121,
+      "sharpe_daily": 7.456977866944337,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 11672.74,
+       "equity_final": 11672.74,
+       "net_profit": 1672.74,
+       "trades_closed": 121,
+       "pending_open": 20,
+       "positions_open": 0,
+       "total_pending_placed": 633,
+       "total_pending_filled": 121,
+       "total_pending_canceled": 492,
+       "max_equity_drawdown_pct": 1.2108,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 11672.74,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "test_metrics": {
+      "n_trades": 45,
+      "net_profit": -20.722,
+      "profit_factor": 0.902503975684806,
+      "win_rate": 0.5777777777777777,
+      "max_drawdown": 183.87,
+      "max_drawdown_pct": 1.8091835325038954,
+      "recovery_factor": -0.11269918964485778,
+      "sharpe": -0.43454444755250965,
+      "sortino": -0.5470702165862296,
+      "trades": 45,
+      "sharpe_daily": -0.43454444755250965,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 9979.28,
+       "equity_final": 9979.28,
+       "net_profit": -20.72,
+       "trades_closed": 45,
+       "pending_open": 13,
+       "positions_open": 0,
+       "total_pending_placed": 184,
+       "total_pending_filled": 45,
+       "total_pending_canceled": 126,
+       "max_equity_drawdown_pct": 2.7178,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10163.15,
+       "current_balance_dd_pct": 1.809
+      }
+     },
+     "wfe": -0.037164084880890326,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2026-01-27",
+      "2026-04-27"
+     ],
+     "test": [
+      "2026-04-27",
+      "2026-05-27"
+     ],
+     "params": {
+      "max_dd": 50.0,
+      "entry_offset_factor": 0.9,
+      "stop_loss_factor": 0.766667,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.3,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 143,
+      "net_profit": 2027.6369999999997,
+      "profit_factor": 3.3220682933979844,
+      "win_rate": 0.6713286713286714,
+      "max_drawdown": 305.211,
+      "max_drawdown_pct": 2.830644611558568,
+      "recovery_factor": 6.643394242016178,
+      "sharpe": 4.933247008570099,
+      "sortino": 18.198394438274203,
+      "trades": 143,
+      "sharpe_daily": 4.933247008570099,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 12027.64,
+       "equity_final": 12027.64,
+       "net_profit": 2027.64,
+       "trades_closed": 143,
+       "pending_open": 16,
+       "positions_open": 0,
+       "total_pending_placed": 723,
+       "total_pending_filled": 143,
+       "total_pending_canceled": 564,
+       "max_equity_drawdown_pct": 5.851,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 12076.43,
+       "current_balance_dd_pct": 0.404
+      }
+     },
+     "test_metrics": {
+      "n_trades": 107,
+      "net_profit": 857.2429999999999,
+      "profit_factor": 1.6469089611111907,
+      "win_rate": 0.5887850467289719,
+      "max_drawdown": 649.752,
+      "max_drawdown_pct": 6.324691480601098,
+      "recovery_factor": 1.3193387630973048,
+      "sharpe": 2.711218691157961,
+      "sortino": 7.433442147995055,
+      "trades": 107,
+      "sharpe_daily": 2.711218691157961,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10857.24,
+       "equity_final": 10857.24,
+       "net_profit": 857.24,
+       "trades_closed": 107,
+       "pending_open": 20,
+       "positions_open": 0,
+       "total_pending_placed": 298,
+       "total_pending_filled": 107,
+       "total_pending_canceled": 171,
+       "max_equity_drawdown_pct": 12.1657,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10984.92,
+       "current_balance_dd_pct": 1.162
+      }
+     },
+     "wfe": 1.268337971737545,
+     "status": "OK"
+    },
+    {
+     "train": [
+      "2026-02-26",
+      "2026-05-27"
+     ],
+     "test": [
+      "2026-05-27",
+      "2026-06-26"
+     ],
+     "params": {
+      "max_dd": 10.0,
+      "entry_offset_factor": 0.7,
+      "stop_loss_factor": 0.75,
+      "take_profit_factor": 1.5,
+      "trail_distance_factor": 1.5,
+      "be_trigger_factor": 0.75,
+      "commission_per_lot_side": 0.0
+     },
+     "train_metrics": {
+      "n_trades": 172,
+      "net_profit": 698.84,
+      "profit_factor": 2.114452931889582,
+      "win_rate": 0.5872093023255814,
+      "max_drawdown": 294.0199999999999,
+      "max_drawdown_pct": 2.7613718989977523,
+      "recovery_factor": 2.376845112577376,
+      "sharpe": 3.5842590043626865,
+      "sortino": 7.944343966681278,
+      "trades": 172,
+      "sharpe_daily": 3.5842590043626865,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10698.84,
+       "equity_final": 10698.84,
+       "net_profit": 698.84,
+       "trades_closed": 172,
+       "pending_open": 21,
+       "positions_open": 0,
+       "total_pending_placed": 711,
+       "total_pending_filled": 172,
+       "total_pending_canceled": 518,
+       "max_equity_drawdown_pct": 3.9819,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10731.18,
+       "current_balance_dd_pct": 0.301
+      }
+     },
+     "test_metrics": {
+      "n_trades": 44,
+      "net_profit": 293.22499999999997,
+      "profit_factor": 3.626875699888017,
+      "win_rate": 0.7045454545454546,
+      "max_drawdown": 66.28999999999999,
+      "max_drawdown_pct": 0.6581256276343355,
+      "recovery_factor": 4.423367023683814,
+      "sharpe": 3.8159121025426974,
+      "sortino": 23.884531196107773,
+      "trades": 44,
+      "sharpe_daily": 3.8159121025426974,
+      "engine_metrics": {
+       "balance_initial": 10000.0,
+       "balance_final": 10293.23,
+       "equity_final": 10293.23,
+       "net_profit": 293.23,
+       "trades_closed": 44,
+       "pending_open": 11,
+       "positions_open": 0,
+       "total_pending_placed": 228,
+       "total_pending_filled": 44,
+       "total_pending_canceled": 173,
+       "max_equity_drawdown_pct": 2.4363,
+       "assumed_m1_spread_points": 2.0,
+       "peak_closed_balance": 10293.23,
+       "current_balance_dd_pct": 0
+      }
+     },
+     "wfe": 1.2587645240684562,
+     "status": "OK"
+    }
+   ],
+   "mode": "rolling",
+   "objective": "sharpe",
+   "wfe_definition": "mean over OK windows with IS>0 of (OOS net/test_days)/(IS net/train_days)",
+   "status": "OK"
+  },
+  "parameter_stability": {
+   "base_net_profit": 3925.5570000000002,
+   "base_objective": 3925.5570000000002,
+   "objective": "net_profit",
+   "neighbours": [
+    {
+     "param": "max_dd",
+     "value": 9.0,
+     "net_profit": 3564.6059999999998,
+     "objective": 3564.6059999999998,
+     "n_trades": 563,
+     "rel_change": -0.09194898965930197
+    },
+    {
+     "param": "max_dd",
+     "value": 11.0,
+     "net_profit": 4239.982,
+     "objective": 4239.982,
+     "n_trades": 582,
+     "rel_change": 0.0800969136354407
+    },
+    {
+     "param": "entry_offset_factor",
+     "value": 0.63,
+     "net_profit": 4188.743,
+     "objective": 4188.743,
+     "n_trades": 578,
+     "rel_change": 0.06704424365765167
+    },
+    {
+     "param": "entry_offset_factor",
+     "value": 0.7699999999999999,
+     "net_profit": 4101.611999999999,
+     "objective": 4101.611999999999,
+     "n_trades": 595,
+     "rel_change": 0.04484841259469648
+    },
+    {
+     "param": "stop_loss_factor",
+     "value": 0.675,
+     "net_profit": 3914.452,
+     "objective": 3914.452,
+     "n_trades": 612,
+     "rel_change": -0.0028288979118122645
+    },
+    {
+     "param": "stop_loss_factor",
+     "value": 0.825,
+     "net_profit": 3710.853,
+     "objective": 3710.853,
+     "n_trades": 557,
+     "rel_change": -0.05469389439511391
+    },
+    {
+     "param": "take_profit_factor",
+     "value": 1.35,
+     "net_profit": 3883.075,
+     "objective": 3883.075,
+     "n_trades": 589,
+     "rel_change": -0.010821903745124685
+    },
+    {
+     "param": "take_profit_factor",
+     "value": 1.65,
+     "net_profit": 3764.787,
+     "objective": 3764.787,
+     "n_trades": 585,
+     "rel_change": -0.04095469763908674
+    },
+    {
+     "param": "trail_distance_factor",
+     "value": 1.35,
+     "net_profit": 3857.29,
+     "objective": 3857.29,
+     "n_trades": 585,
+     "rel_change": -0.017390398356207863
+    },
+    {
+     "param": "trail_distance_factor",
+     "value": 1.65,
+     "net_profit": 3731.0,
+     "objective": 3731.0,
+     "n_trades": 582,
+     "rel_change": -0.049561629088559975
+    },
+    {
+     "param": "be_trigger_factor",
+     "value": 0.675,
+     "net_profit": 3710.9909999999995,
+     "objective": 3710.9909999999995,
+     "n_trades": 588,
+     "rel_change": -0.05465874014821354
+    },
+    {
+     "param": "be_trigger_factor",
+     "value": 0.825,
+     "net_profit": 4062.402,
+     "objective": 4062.402,
+     "n_trades": 587,
+     "rel_change": 0.034860021138401455
+    }
+   ],
+   "n_neighbours": 12,
+   "rel_step": 0.1,
+   "frac_positive": 1.0,
+   "mean_rel_change": -0.008000796659769218,
+   "worst_rel_change": -0.09194898965930197,
+   "status": "OK"
+  },
+  "pbo_result": {
+   "pbo": 0.0,
+   "n_splits": 8,
+   "logits": [
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908,
+    1.3862943611198908
+   ],
+   "status": "OK",
+   "n_combinations": 70,
+   "logit_mean": 1.386294361119891,
+   "logit_median": 1.3862943611198908,
+   "prob_oos_loss": 0.0,
+   "is_oos_slope": -0.9999999999999998,
+   "n_trials": 4,
+   "n_periods": 8,
+   "metric": "mean",
+   "n_candidates": 4
+  },
+  "pbo": 0.0,
+  "monte_carlo": {
+   "method": "block_bootstrap",
+   "n_sims": 1000,
+   "n_trades": 590,
+   "capital": 10000.0,
+   "seed": 0,
+   "cost_shock_per_trade": 0.0,
+   "ruin_drawdown_pct": 50,
+   "notes_nl": [],
+   "block": 8,
+   "status": "OK",
+   "final_equity": {
+    "mean": 13940.797135000003,
+    "std": 807.313845502303,
+    "min": 11332.401999999998,
+    "max": 17228.67200000001,
+    "p5": 12698.67225,
+    "p25": 13369.54625,
+    "p50": 13891.763,
+    "p75": 14497.290249999998,
+    "p95": 15322.132249999997
+   },
+   "max_drawdown_pct": {
+    "mean": 1.7919710717192079,
+    "std": 0.6697243692127655,
+    "min": 0.5963448060855815,
+    "max": 5.714245743061333,
+    "p5": 0.9232340040376378,
+    "p25": 1.3061500491751936,
+    "p50": 1.7039414011721936,
+    "p75": 2.153840030951165,
+    "p95": 3.0099686340128304
+   },
+   "max_drawdown_abs": {
+    "mean": 211.04472300000003,
+    "std": 75.41652637325778,
+    "min": 71.36799999999857,
+    "max": 624.9349999999995,
+    "p5": 108.5403500000004,
+    "p25": 158.20849999999928,
+    "p50": 201.5749999999989,
+    "p75": 246.84825000000046,
+    "p95": 350.6827500000003
+   },
+   "prob_loss": 0.0,
+   "risk_of_ruin": 0.0,
+   "equity_bands": {
+    "trade_index": [
+     0,
+     12,
+     24,
+     36,
+     48,
+     60,
+     72,
+     84,
+     96,
+     108,
+     120,
+     132,
+     144,
+     156,
+     168,
+     180,
+     192,
+     204,
+     216,
+     228,
+     240,
+     252,
+     264,
+     276,
+     288,
+     301,
+     313,
+     325,
+     337,
+     349,
+     361,
+     373,
+     385,
+     397,
+     409,
+     421,
+     433,
+     445,
+     457,
+     469,
+     481,
+     493,
+     505,
+     517,
+     529,
+     541,
+     553,
+     565,
+     577,
+     590
+    ],
+    "p5": [
+     10000.0,
+     9932.3937,
+     9950.079749999999,
+     9959.62535,
+     9983.013050000001,
+     10018.508300000001,
+     10052.487500000001,
+     10097.1542,
+     10166.600950000002,
+     10217.644600000001,
+     10265.77405,
+     10305.899599999999,
+     10342.4851,
+     10402.2572,
+     10438.841849999999,
+     10484.428750000001,
+     10560.9234,
+     10617.6915,
+     10670.91135,
+     10704.08,
+     10790.52655,
+     10843.667399999998,
+     10884.6945,
+     10966.554399999999,
+     11036.9877,
+     11100.94855,
+     11179.4864,
+     11219.1407,
+     11296.7087,
+     11388.7761,
+     11460.554499999998,
+     11515.4736,
+     11568.408349999998,
+     11608.6532,
+     11678.074799999999,
+     11716.521399999998,
+     11778.0603,
+     11869.713,
+     11917.94135,
+     11975.933599999998,
+     12064.885699999999,
+     12160.942699999998,
+     12240.183249999998,
+     12280.6523,
+     12368.182799999999,
+     12410.380350000001,
+     12450.828349999996,
+     12551.233500000002,
+     12648.929649999998,
+     12698.67225
+    ],
+    "p25": [
+     10000.0,
+     10003.1075,
+     10050.62875,
+     10105.254500000001,
+     10167.19425,
+     10218.3975,
+     10296.040500000001,
+     10355.101,
+     10414.554750000001,
+     10484.412250000001,
+     10557.47425,
+     10614.228,
+     10669.7855,
+     10747.06575,
+     10802.0455,
+     10877.28825,
+     10950.860999999999,
+     11010.776999999998,
+     11090.793,
+     11168.675,
+     11246.75675,
+     11309.844499999997,
+     11374.96925,
+     11438.106249999999,
+     11522.343249999998,
+     11606.075499999999,
+     11660.19925,
+     11743.495499999999,
+     11803.019999999999,
+     11866.68875,
+     11946.97625,
+     12036.145499999999,
+     12093.292249999999,
+     12184.257249999999,
+     12260.677500000002,
+     12343.452999999998,
+     12426.396250000002,
+     12484.749,
+     12548.861499999999,
+     12622.92325,
+     12697.9635,
+     12762.02675,
+     12817.48375,
+     12907.86225,
+     12963.732999999998,
+     13038.71825,
+     13130.23625,
+     13223.686499999996,
+     13299.39325,
+     13369.54625
+    ],
+    "p50": [
+     10000.0,
+     10056.5965,
+     10140.6125,
+     10223.968499999999,
+     10306.931499999999,
+     10394.510999999999,
+     10470.3945,
+     10545.200499999999,
+     10625.065999999999,
+     10699.4905,
+     10784.617,
+     10861.66,
+     10938.145,
+     11032.429,
+     11105.114,
+     11165.0855,
+     11253.508,
+     11345.1595,
+     11416.2905,
+     11489.893,
+     11568.964,
+     11638.3835,
+     11720.779499999999,
+     11792.378499999999,
+     11889.488999999998,
+     11990.7985,
+     12067.7655,
+     12150.606499999998,
+     12229.2645,
+     12317.441499999997,
+     12404.482999999998,
+     12468.3195,
+     12553.890500000001,
+     12634.791999999998,
+     12700.663999999999,
+     12764.380000000001,
+     12860.352,
+     12952.058999999997,
+     13003.139500000001,
+     13082.5455,
+     13187.182999999997,
+     13263.6815,
+     13332.5945,
+     13419.4795,
+     13499.527499999997,
+     13574.738000000001,
+     13648.338500000002,
+     13745.302999999996,
+     13813.468499999999,
+     13891.763
+    ],
+    "p75": [
+     10000.0,
+     10126.783500000001,
+     10248.265,
+     10372.03375,
+     10478.781,
+     10577.7745,
+     10657.250250000001,
+     10761.52,
+     10844.75925,
+     10952.142,
+     11032.92,
+     11159.250750000001,
+     11237.24725,
+     11336.3475,
+     11412.577749999999,
+     11515.60225,
+     11595.8865,
+     11669.99725,
+     11772.02125,
+     11867.5865,
+     11948.7155,
+     12044.481,
+     12123.2915,
+     12210.457499999999,
+     12300.767749999999,
+     12401.441250000002,
+     12468.40525,
+     12575.024249999999,
+     12673.236749999996,
+     12781.7725,
+     12861.53675,
+     12935.020250000003,
+     13024.50725,
+     13108.6825,
+     13194.686499999998,
+     13255.3855,
+     13324.033749999999,
+     13438.165499999997,
+     13541.007999999998,
+     13610.74,
+     13699.723,
+     13774.757500000003,
+     13845.04375,
+     13930.380499999997,
+     14020.0895,
+     14102.957,
+     14215.15975,
+     14309.912499999999,
+     14417.41675,
+     14497.290249999998
+    ],
+    "p95": [
+     10000.0,
+     10341.921499999999,
+     10450.928,
+     10613.467149999999,
+     10749.43525,
+     10850.88525,
+     10963.15815,
+     11071.424649999999,
+     11207.471599999999,
+     11361.27845,
+     11441.12515,
+     11592.405899999998,
+     11717.706549999999,
+     11826.60915,
+     11936.092349999999,
+     12022.0045,
+     12119.83205,
+     12206.3746,
+     12313.99795,
+     12453.6523,
+     12530.876849999997,
+     12666.718850000001,
+     12747.897699999998,
+     12844.16995,
+     12913.64445,
+     13006.495849999998,
+     13081.144900000001,
+     13196.892649999998,
+     13295.015199999998,
+     13372.574100000002,
+     13516.8111,
+     13588.505250000002,
+     13685.364699999998,
+     13777.253350000003,
+     13847.04555,
+     13939.456450000001,
+     14055.268300000002,
+     14175.577849999998,
+     14256.62755,
+     14350.046250000005,
+     14454.651599999996,
+     14521.418650000001,
+     14658.51225,
+     14723.572750000003,
+     14793.785550000002,
+     14920.758500000004,
+     15024.485500000004,
+     15109.690800000011,
+     15165.809050000002,
+     15322.132249999997
+    ]
+   }
+  },
+  "drop_best": {
+   "n_trades": 590,
+   "baseline_net": 3925.5570000000002,
+   "by_trades": {
+    "1": {
+     "removed_pnl": 240.1,
+     "net_after": 3685.4569999999994,
+     "profit_factor_after": 3.4174968333734554,
+     "still_positive": true
+    },
+    "3": {
+     "removed_pnl": 693.53,
+     "net_after": 3232.0269999999996,
+     "profit_factor_after": 3.120066802536974,
+     "still_positive": true
+    },
+    "5": {
+     "removed_pnl": 1058.33,
+     "net_after": 2867.227,
+     "profit_factor_after": 2.8807741327772565,
+     "still_positive": true
+    }
+   },
+   "by_days": {
+    "1": {
+     "removed_pnl": 392.61,
+     "net_after": 3532.947,
+     "profit_factor_after": 4.497808020624804,
+     "still_positive": true
+    },
+    "3": {
+     "removed_pnl": 870.93,
+     "net_after": 3054.627,
+     "profit_factor_after": 4.02424543040614,
+     "still_positive": true
+    },
+    "5": {
+     "removed_pnl": 1324.36,
+     "net_after": 2601.1969999999997,
+     "profit_factor_after": 3.575325282214869,
+     "still_positive": true
+    }
+   },
+   "status": "OK"
+  },
+  "yearly": {
+   "years": {
+    "2025": {
+     "n_trades": 259,
+     "net_profit": 993.5640000000001,
+     "profit_factor": 2.439768376695078,
+     "win_rate": 0.6254826254826255,
+     "avg_r": 1.7622586179543027
+    },
+    "2026": {
+     "n_trades": 331,
+     "net_profit": 2931.993,
+     "profit_factor": 4.513864337187966,
+     "win_rate": 0.6163141993957704,
+     "avg_r": 1.5482610225701212
+    }
+   },
+   "n_years": 2,
+   "frac_positive": 1.0,
+   "status": "OK"
+  },
+  "n_trials": 26,
+  "psr": {
+   "value": 0.9999999999930191,
+   "sr": 0.28308559804949457,
+   "n": 274,
+   "skew": 2.816650118562756,
+   "kurtosis": 14.793267517889001,
+   "sr_benchmark": 0.0,
+   "status": "OK"
+  },
+  "dsr": {
+   "value": 0.9999986615344552,
+   "sr": 0.28308559804949457,
+   "sr0": 0.08646052669018602,
+   "n": 274,
+   "n_trials": 26,
+   "sr_variance_across_trials": 0.0018434448033046765,
+   "status": "OK"
+  },
+  "min_trl": {
+   "value": 17.17119139096414,
+   "n": 274,
+   "sr": 0.28308559804949457,
+   "confidence": 0.95,
+   "sufficient": true,
+   "status": "OK"
+  },
+  "haircut_sharpe": {
+   "sr": 0.28308559804949457,
+   "n_trials": 26,
+   "n_obs": 274,
+   "p_raw": 1.3936587426232269e-06,
+   "p_adjusted": 3.62351273082039e-05,
+   "sr_adjusted": 0.23971725198923152,
+   "haircut": 0.15319870159088966,
+   "status": "OK"
+  },
+  "holdout": {
+   "start": "2026-07-02",
+   "end": "2026-10-01",
+   "metrics": {
+    "n_trades": 136,
+    "net_profit": 660.8900000000001,
+    "profit_factor": 2.213065105266056,
+    "win_rate": 0.5073529411764706,
+    "max_drawdown": 205.85499999999996,
+    "max_drawdown_pct": 2.0560046662232114,
+    "recovery_factor": 3.210463675888369,
+    "sharpe": 1.952935332512066,
+    "sortino": 6.2223047987351086,
+    "trades": 136,
+    "sharpe_daily": 1.952935332512066,
+    "engine_metrics": {
+     "balance_initial": 10000.0,
+     "balance_final": 10660.89,
+     "equity_final": 10660.89,
+     "net_profit": 660.89,
+     "trades_closed": 136,
+     "pending_open": 12,
+     "positions_open": 0,
+     "total_pending_placed": 725,
+     "total_pending_filled": 136,
+     "total_pending_canceled": 577,
+     "max_equity_drawdown_pct": 3.0686,
+     "assumed_m1_spread_points": 2.0,
+     "peak_closed_balance": 10660.89,
+     "current_balance_dd_pct": 0
+    }
+   },
+   "trades": 136,
+   "previous_exposures": 77,
+   "untouched": false
+  }
+ },
+ "report_md": "# Validatierapport\n\n**Verdict: FORWARD_ELIGIBLE** - Geschikt voor forward-test: alle kernchecks zijn geslaagd.\n\n_Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs._\n\n## Wat is aangetoond?\n- 590 trades; minimaal 100 nodig voor betekenisvolle statistiek.\n- Netto resultaat na kosten is positief.\n- Profit factor 3.57 (drempel 1.2).\n- Maximale drawdown 1.8% (limiet 30.0%).\n- PSR = 1.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- DSR = 1.000 bij 26 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- Kans op backtest-overfitting 0.00 (max 0.5).\n- WFE 0.88: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).\n- Out-of-sample netto resultaat positief en consistent over vensters.\n- Resultaat blijft positief bij +50% spread.\n- 100% van de naburige parameterwaarden is winstgevend.\n- Zonder de beste 3 trades is het resultaat nog positief.\n- 100% van de jaren winstgevend (min 60%).\n\n## Wat is onzeker?\n- Geen open punten in de checks.\n\n## Waar verdient de strategie geld?\n- Geen regime-uitsplitsing aangeleverd (niet getest).\n- Jaar 2025: netto 993.56.\n- Jaar 2026: netto 2,931.99.\n\n## Wanneer verliest zij?\n- Geen verliesgevende regimes/jaren gevonden in het aangeleverde bewijs (of niet getest).\n- Monte Carlo (block_bootstrap): 95e percentiel max drawdown 3.01%, kans op ruin-drempel 0.0% (eigenschap van de herbemonsterde historie, geen voorspelling).\n\n## Kostengevoeligheid?\n- [PASS] Resultaat blijft positief bij +50% spread.\n  - baseline: netto 3,925.56, PF 3.57\n  - spread_+25%: netto 3,916.16, PF 3.37\n  - spread_+50%: netto 3,461.88, PF 2.97\n  - commission_x2: netto 3,657.54, PF 3.31\n\n## Hoeveel hypotheses geprobeerd?\n- 26 geprobeerde configuraties; de DSR corrigeert hiervoor.\n\n## Genoeg OOS-data?\n- [PASS] Out-of-sample netto resultaat positief en consistent over vensters.\n- [PASS] WFE 0.88: out-of-sample winstsnelheid t.o.v. in-sample (min 0.5).\n\n## Parameters stabiel?\n- [PASS] 100% van de naburige parameterwaarden is winstgevend.\n\n## Statistisch overtuigend?\n- [PASS] PSR = 1.000 (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [PASS] DSR = 1.000 bij 26 geprobeerde hypotheses (drempel 0.95). Dit is de kans dat de echte Sharpe boven de benchmark ligt, geen kans op toekomstige winst.\n- [PASS] Kans op backtest-overfitting 0.00 (max 0.5).\n- [PASS] Zonder de beste 3 trades is het resultaat nog positief.\n- [PASS] 100% van de jaren winstgevend (min 60%).\n\n## Open risico's\n- Trades zijn niet iid; p-waarden en CI's zijn op dagrendementen met blokbootstrap berekend.\n- Historische resultaten zeggen niets zeker over de toekomst (regimewissel, kosten, liquiditeit).\n- Backtest-aannames (fills, spread, slippage) kunnen afwijken van de werkelijkheid.\n\n## Checks\n\n| Check | Status | Waarde | Drempel |\n|---|---|---|---|\n| sample_size | PASS | 590 | 100 |\n| net_after_costs | PASS | 3925.557 | 0.0 |\n| profit_factor | PASS | 3.575 | 1.2 |\n| max_drawdown | PASS | 1.845 | 30.0 |\n| psr | PASS | 1.000 | 0.95 |\n| dsr | PASS | 1.000 | 0.95 |\n| pbo | PASS | 0.000 | 0.5 |\n| walk_forward_efficiency | PASS | 0.875 | 0.5 |\n| oos_profitability | PASS | 3017.938 | 0.0 |\n| cost_stress | PASS | 3461.878 | 0.0 |\n| parameter_stability | PASS | 1.000 | 0.7 |\n| drop_best_trades | PASS | 3232.027 | 0.0 |\n| yearly_consistency | PASS | 1.000 | 0.6 |\n\n## Engine en beperkingen\n- Python-plugin GoldReaper v2 (Pass3436 Robuust) met eigen engine op Dukascopy Bid/Ask M1.\n- Forward test voor plugins is nog niet beschikbaar: de forward-engine kent alleen Builder-regels en de geauditeerde LabBreakout-snapshot.\n- Geen optimizer of Inspector voor plugins; walk-forward kiest uit een kleine seeded parametergrid.\n\n## Niet uitgevoerde stappen\n- Alle stappen zijn uitgevoerd.\n- Kostenscenario slippage_+1pt: NIET ONDERSTEUND - De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py).\n- Kostenscenario entry_delay_1bar: NIET ONDERSTEUND - De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py).\n- Kostenscenario exit_delay_1bar: NIET ONDERSTEUND - De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py).\n\n## Getelde configuraties (trial accounting)\n- Logboek (deze markt+timeframe): 10; zelfde familie elders: 0; optimizer-trials niet in logboek: 0 (van 0); nieuwe configuraties in deze validatie: 16 (van 16).\n- Totaal N = 26; gebruikt voor DSR en de Sharpe-haircut.\n- N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).\n\n## Holdout\n- Periode 2026-07-02 – 2026-10-01: netto 660.8900000000001, 136 trades.\n- Let op: deze periode is al 77 keer eerder gebruikt in het researchlogboek en telt daardoor niet meer als volledig onaangeroerd.\n\n## Nog nodig vóór een prospectieve forward test\n- De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.\n- Geen bevroren forward-registratie mogelijk voor dit type: Forward test voor plugins is nog niet beschikbaar: de forward-engine kent alleen Builder-regels en de geauditeerde LabBreakout-snapshot.\n- Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data.\n",
+ "ledger_id": "ca031eadf2d44515b447ff233ab8f149",
+ "n_trials": 26,
+ "trial_accounting": {
+  "ledger_prior": 10,
+  "family_prior": 7,
+  "family_prior_other_markets": 0,
+  "optimizer_trials": 0,
+  "optimizer_trials_not_in_ledger": 0,
+  "in_run_configs": 16,
+  "in_run_configs_new": 16,
+  "total": 26,
+  "definition_nl": "N = onderscheiden hypotheses in het logboek voor deze markt+timeframe (incl. eerder geëvalueerde validatieconfiguraties) + dezelfde familie op andere markten + optimizer-trials uit opgeslagen runs die nog niet in het logboek staan + nieuwe configuraties uit deze validatie. Herhaalde validaties tellen opnieuw mee (conservatief).",
+  "stages": {
+   "base": 1,
+   "cost_stress": 1,
+   "walk_forward": 4,
+   "parameter_stability": 13,
+   "pbo": 4
+  }
+ },
+ "config": {
+  "strategy": {
+   "kind": "plugin",
+   "name": "gold_reaper",
+   "family": "plugin:gold_reaper"
+  },
+  "symbol": "XAUUSD",
+  "timeframe": "M1",
+  "capital": 10000.0,
+  "data_ranges": {
+   "full": [
+    "2025-07-01",
+    "2026-10-01"
+   ],
+   "development": [
+    "2025-07-01",
+    "2026-07-02"
+   ],
+   "holdout": [
+    "2026-07-02",
+    "2026-10-01"
+   ],
+   "holdout_percent": 20.0,
+   "convention": "halfopen [start, end) kalenderdagen UTC"
+  },
+  "dataset_sha256": "292f8d1f1d3c76844d776bb9d608b490c406eeb95203f17653f0e5c4bd442575",
+  "code_sha256": "d6f05d13f4d256e208552c2943e6a04489685454bb0b4b0471c0870af0282e98",
+  "spec_sha256": null,
+  "engine_nl": "Python-plugin GoldReaper v2 (Pass3436 Robuust) met eigen engine op Dukascopy Bid/Ask M1.",
+  "params": {
+   "max_dd": 10.0,
+   "entry_offset_factor": 0.7,
+   "stop_loss_factor": 0.75,
+   "take_profit_factor": 1.5,
+   "trail_distance_factor": 1.5,
+   "be_trigger_factor": 0.75,
+   "commission_per_lot_side": 0.0
+  },
+  "defaults": {
+   "max_dd": 10.0,
+   "entry_offset_factor": 0.7,
+   "stop_loss_factor": 0.75,
+   "take_profit_factor": 1.5,
+   "trail_distance_factor": 1.5,
+   "be_trigger_factor": 0.75,
+   "commission_per_lot_side": 0.0
+  },
+  "param_specs": {
+   "max_dd": {
+    "type": "float",
+    "min": 2,
+    "max": 50,
+    "default": 10.0
+   },
+   "entry_offset_factor": {
+    "type": "float",
+    "min": 0.3,
+    "max": 1.2,
+    "default": 0.7
+   },
+   "stop_loss_factor": {
+    "type": "float",
+    "min": 0.4,
+    "max": 1.5,
+    "default": 0.75
+   },
+   "take_profit_factor": {
+    "type": "float",
+    "min": 0.8,
+    "max": 3.0,
+    "default": 1.5
+   },
+   "trail_distance_factor": {
+    "type": "float",
+    "min": 0.8,
+    "max": 3.0,
+    "default": 1.5
+   },
+   "be_trigger_factor": {
+    "type": "float",
+    "min": 0.3,
+    "max": 1.5,
+    "default": 0.75
+   },
+   "commission_per_lot_side": {
+    "type": "float",
+    "min": 0,
+    "max": 10,
+    "default": 0.0
+   }
+  },
+  "fixed_params": [
+   "commission_per_lot_side"
+  ],
+  "grid": {
+   "max_dd": [
+    2.0,
+    10.0,
+    18.0,
+    34.0,
+    50.0
+   ],
+   "entry_offset_factor": [
+    0.3,
+    0.6,
+    0.7,
+    0.9,
+    1.2
+   ],
+   "stop_loss_factor": [
+    0.4,
+    0.75,
+    0.766667,
+    1.133333,
+    1.5
+   ],
+   "take_profit_factor": [
+    0.8,
+    1.5,
+    1.533333,
+    2.266667,
+    3.0
+   ],
+   "trail_distance_factor": [
+    0.8,
+    1.5,
+    1.533333,
+    2.266667,
+    3.0
+   ],
+   "be_trigger_factor": [
+    0.3,
+    0.7,
+    0.75,
+    1.1,
+    1.5
+   ]
+  },
+  "walk_forward": {
+   "enabled": true,
+   "mode": "rolling",
+   "train_days": 90,
+   "test_days": 30,
+   "step_days": 30,
+   "objective": "sharpe",
+   "min_trades": 10,
+   "seed": 0,
+   "max_combos": 4,
+   "candidates": [
+    {
+     "max_dd": 10.0,
+     "entry_offset_factor": 0.7,
+     "stop_loss_factor": 0.75,
+     "take_profit_factor": 1.5,
+     "trail_distance_factor": 1.5,
+     "be_trigger_factor": 0.75,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 50.0,
+     "entry_offset_factor": 0.9,
+     "stop_loss_factor": 0.766667,
+     "take_profit_factor": 1.5,
+     "trail_distance_factor": 1.5,
+     "be_trigger_factor": 0.3,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 2.0,
+     "entry_offset_factor": 0.3,
+     "stop_loss_factor": 0.4,
+     "take_profit_factor": 3.0,
+     "trail_distance_factor": 2.266667,
+     "be_trigger_factor": 1.5,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 18.0,
+     "entry_offset_factor": 0.9,
+     "stop_loss_factor": 1.5,
+     "take_profit_factor": 2.266667,
+     "trail_distance_factor": 2.266667,
+     "be_trigger_factor": 0.75,
+     "commission_per_lot_side": 0.0
+    }
+   ],
+   "windows": [
+    [
+     "2025-07-01",
+     "2025-09-29",
+     "2025-10-29"
+    ],
+    [
+     "2025-07-31",
+     "2025-10-29",
+     "2025-11-28"
+    ],
+    [
+     "2025-08-30",
+     "2025-11-28",
+     "2025-12-28"
+    ],
+    [
+     "2025-09-29",
+     "2025-12-28",
+     "2026-01-27"
+    ],
+    [
+     "2025-10-29",
+     "2026-01-27",
+     "2026-02-26"
+    ],
+    [
+     "2025-11-28",
+     "2026-02-26",
+     "2026-03-28"
+    ],
+    [
+     "2025-12-28",
+     "2026-03-28",
+     "2026-04-27"
+    ],
+    [
+     "2026-01-27",
+     "2026-04-27",
+     "2026-05-27"
+    ],
+    [
+     "2026-02-26",
+     "2026-05-27",
+     "2026-06-26"
+    ]
+   ]
+  },
+  "stability": {
+   "enabled": true,
+   "rel_step": 0.1,
+   "params": [
+    "be_trigger_factor",
+    "entry_offset_factor",
+    "max_dd",
+    "stop_loss_factor",
+    "take_profit_factor",
+    "trail_distance_factor"
+   ]
+  },
+  "pbo": {
+   "enabled": true,
+   "n_splits": 8,
+   "seed": 0,
+   "max_combos": 4,
+   "candidates": [
+    {
+     "max_dd": 10.0,
+     "entry_offset_factor": 0.7,
+     "stop_loss_factor": 0.75,
+     "take_profit_factor": 1.5,
+     "trail_distance_factor": 1.5,
+     "be_trigger_factor": 0.75,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 50.0,
+     "entry_offset_factor": 0.9,
+     "stop_loss_factor": 0.766667,
+     "take_profit_factor": 1.5,
+     "trail_distance_factor": 1.5,
+     "be_trigger_factor": 0.3,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 2.0,
+     "entry_offset_factor": 0.3,
+     "stop_loss_factor": 0.4,
+     "take_profit_factor": 3.0,
+     "trail_distance_factor": 2.266667,
+     "be_trigger_factor": 1.5,
+     "commission_per_lot_side": 0.0
+    },
+    {
+     "max_dd": 18.0,
+     "entry_offset_factor": 0.9,
+     "stop_loss_factor": 1.5,
+     "take_profit_factor": 2.266667,
+     "trail_distance_factor": 2.266667,
+     "be_trigger_factor": 0.75,
+     "commission_per_lot_side": 0.0
+    }
+   ]
+  },
+  "monte_carlo": {
+   "enabled": true,
+   "n": 1000,
+   "method": "block_bootstrap",
+   "seed": 0
+  },
+  "cost_stress": {
+   "enabled": true,
+   "scenarios": {
+    "baseline": {},
+    "spread_+25%": {
+     "spread_multiplier": 1.25
+    },
+    "spread_+50%": {
+     "spread_multiplier": 1.5
+    },
+    "commission_x2": {
+     "commission_per_lot": 7.0
+    }
+   },
+   "unsupported": [
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    }
+   ]
+  },
+  "seeds": {
+   "walk_forward": 0,
+   "pbo": 0,
+   "monte_carlo": 0
+  },
+  "thresholds": {
+   "min_trades": 100,
+   "min_net_profit": 0.0,
+   "min_profit_factor": 1.2,
+   "max_drawdown_pct": 30.0,
+   "min_psr": 0.95,
+   "min_dsr": 0.95,
+   "max_pbo": 0.5,
+   "min_wfe": 0.5,
+   "min_oos_net_profit": 0.0,
+   "min_oos_trades": 30,
+   "min_oos_profitable_windows": 0.5,
+   "min_cost_stress_net": 0.0,
+   "min_param_stability": 0.7,
+   "min_drop_best_net": 0.0,
+   "drop_best_k": 3,
+   "min_yearly_positive": 0.6,
+   "min_years": 2
+  },
+  "sr_variance": {
+   "value": 0.0018434448033046765,
+   "source": "pbo_candidates_per_observation"
+  }
+ },
+ "capabilities": {
+  "backtest": true,
+  "optimize": false,
+  "inspect": false,
+  "validate": true,
+  "walk_forward": true,
+  "stability": true,
+  "cost_stress_spread": true,
+  "forward": false
+ },
+ "limitations_nl": [
+  "Forward test voor plugins is nog niet beschikbaar: de forward-engine kent alleen Builder-regels en de geauditeerde LabBreakout-snapshot.",
+  "Geen optimizer of Inspector voor plugins; walk-forward kiest uit een kleine seeded parametergrid."
+ ],
+ "forward_gaps_nl": [
+  "De holdoutperiode was al eerder ingezien; een nieuwe, ongeziene periode (of de forward test zelf) is nodig als onafhankelijke toets.",
+  "Geen bevroren forward-registratie mogelijk voor dit type: Forward test voor plugins is nog niet beschikbaar: de forward-engine kent alleen Builder-regels en de geauditeerde LabBreakout-snapshot.",
+  "Een prospectieve forward test is nog niet gestart: bevries parameters, code-sha en datawatermerk en volg de strategie op nieuwe, na de bevriezing binnengekomen data."
+ ],
+ "oos_equity": [
+  {
+   "time": "2025-10-02T13:45:00+00:00",
+   "equity": 9975.83,
+   "pnl": -24.17
+  },
+  {
+   "time": "2025-10-02T14:37:40+00:00",
+   "equity": 9936.49,
+   "pnl": -39.34
+  },
+  {
+   "time": "2025-10-06T00:07:20+00:00",
+   "equity": 9951.27,
+   "pnl": 14.78
+  },
+  {
+   "time": "2025-10-06T00:07:20+00:00",
+   "equity": 9962.43,
+   "pnl": 11.16
+  },
+  {
+   "time": "2025-10-06T02:01:40+00:00",
+   "equity": 9991.77,
+   "pnl": 29.34
+  },
+  {
+   "time": "2025-10-06T03:11:40+00:00",
+   "equity": 10021.11,
+   "pnl": 29.34
+  },
+  {
+   "time": "2025-10-06T03:49:00+00:00",
+   "equity": 10058.82,
+   "pnl": 37.71
+  },
+  {
+   "time": "2025-10-06T04:06:40+00:00",
+   "equity": 10096.529999999999,
+   "pnl": 37.71
+  },
+  {
+   "time": "2025-10-12T23:55:40+00:00",
+   "equity": 10012.05,
+   "pnl": -84.48
+  },
+  {
+   "time": "2025-10-13T00:07:40+00:00",
+   "equity": 9922.259999999998,
+   "pnl": -89.79
+  },
+  {
+   "time": "2025-10-13T00:46:00+00:00",
+   "equity": 9912.909999999998,
+   "pnl": -9.35
+  },
+  {
+   "time": "2025-10-13T01:00:40+00:00",
+   "equity": 9828.149999999998,
+   "pnl": -84.76
+  },
+  {
+   "time": "2025-10-13T03:46:00+00:00",
+   "equity": 9819.249999999998,
+   "pnl": -8.9
+  },
+  {
+   "time": "2025-10-13T05:11:40+00:00",
+   "equity": 9820.209999999997,
+   "pnl": 0.96
+  },
+  {
+   "time": "2025-10-13T05:11:40+00:00",
+   "equity": 9821.169999999996,
+   "pnl": 0.96
+  },
+  {
+   "time": "2025-10-13T13:14:40+00:00",
+   "equity": 9851.539999999997,
+   "pnl": 30.37
+  },
+  {
+   "time": "2025-10-13T14:00:40+00:00",
+   "equity": 9890.569999999998,
+   "pnl": 39.03
+  },
+  {
+   "time": "2025-10-13T14:24:20+00:00",
+   "equity": 9929.839999999998,
+   "pnl": 39.27
+  },
+  {
+   "time": "2025-10-13T14:24:20+00:00",
+   "equity": 9969.119999999999,
+   "pnl": 39.28
+  },
+  {
+   "time": "2025-10-20T20:19:20+00:00",
+   "equity": 9873.3,
+   "pnl": -95.82
+  },
+  {
+   "time": "2025-10-21T01:38:40+00:00",
+   "equity": 9829.949999999999,
+   "pnl": -43.35
+  },
+  {
+   "time": "2025-10-21T01:40:40+00:00",
+   "equity": 9793.929999999998,
+   "pnl": -36.02
+  },
+  {
+   "time": "2025-10-21T05:34:40+00:00",
+   "equity": 9683.369999999999,
+   "pnl": -110.56
+  },
+  {
+   "time": "2025-10-21T14:06:40+00:00",
+   "equity": 9690.929999999998,
+   "pnl": 7.56
+  },
+  {
+   "time": "2025-10-21T14:06:40+00:00",
+   "equity": 9692.329999999998,
+   "pnl": 1.4
+  },
+  {
+   "time": "2025-10-21T14:06:40+00:00",
+   "equity": 9692.329999999998,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-10-27T14:09:40+00:00",
+   "equity": 9692.329999999998,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-10-27T14:28:40+00:00",
+   "equity": 9697.319999999998,
+   "pnl": 4.99
+  },
+  {
+   "time": "2025-10-27T14:29:20+00:00",
+   "equity": 9698.259999999998,
+   "pnl": 0.94
+  },
+  {
+   "time": "2025-10-28T14:00:40+00:00",
+   "equity": 9713.019999999999,
+   "pnl": 14.76
+  },
+  {
+   "time": "2025-12-05T14:13:00+00:00",
+   "equity": 9701.839999999998,
+   "pnl": -11.18
+  },
+  {
+   "time": "2025-12-05T14:13:00+00:00",
+   "equity": 9691.259999999998,
+   "pnl": -10.58
+  },
+  {
+   "time": "2025-12-05T14:51:40+00:00",
+   "equity": 9694.259999999998,
+   "pnl": 3.0
+  },
+  {
+   "time": "2025-12-08T15:10:00+00:00",
+   "equity": 9673.229999999998,
+   "pnl": -21.03
+  },
+  {
+   "time": "2025-12-08T15:10:00+00:00",
+   "equity": 9663.254999999997,
+   "pnl": -9.975
+  },
+  {
+   "time": "2025-12-08T15:10:00+00:00",
+   "equity": 9649.994999999997,
+   "pnl": -13.26
+  },
+  {
+   "time": "2025-12-08T15:16:00+00:00",
+   "equity": 9639.614999999998,
+   "pnl": -10.38
+  },
+  {
+   "time": "2025-12-09T06:13:40+00:00",
+   "equity": 9644.774999999998,
+   "pnl": 5.16
+  },
+  {
+   "time": "2025-12-09T06:14:20+00:00",
+   "equity": 9648.974999999999,
+   "pnl": 4.2
+  },
+  {
+   "time": "2025-12-09T06:15:40+00:00",
+   "equity": 9648.974999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-12-09T07:26:00+00:00",
+   "equity": 9636.274999999998,
+   "pnl": -12.7
+  },
+  {
+   "time": "2025-12-10T19:12:00+00:00",
+   "equity": 9606.534999999998,
+   "pnl": -29.74
+  },
+  {
+   "time": "2025-12-10T19:12:00+00:00",
+   "equity": 9584.469999999998,
+   "pnl": -22.065
+  },
+  {
+   "time": "2025-12-10T19:12:00+00:00",
+   "equity": 9555.369999999997,
+   "pnl": -29.1
+  },
+  {
+   "time": "2025-12-10T20:06:40+00:00",
+   "equity": 9558.369999999997,
+   "pnl": 3.0
+  },
+  {
+   "time": "2025-12-10T20:06:40+00:00",
+   "equity": 9562.629999999997,
+   "pnl": 4.26
+  },
+  {
+   "time": "2025-12-10T20:06:40+00:00",
+   "equity": 9567.869999999997,
+   "pnl": 5.24
+  },
+  {
+   "time": "2025-12-11T01:03:40+00:00",
+   "equity": 9676.029999999997,
+   "pnl": 108.16
+  },
+  {
+   "time": "2025-12-11T15:52:40+00:00",
+   "equity": 9680.319999999998,
+   "pnl": 4.29
+  },
+  {
+   "time": "2025-12-11T15:52:40+00:00",
+   "equity": 9685.599999999999,
+   "pnl": 5.28
+  },
+  {
+   "time": "2025-12-11T15:54:40+00:00",
+   "equity": 9685.599999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-12-11T16:23:40+00:00",
+   "equity": 9688.599999999999,
+   "pnl": 3.0
+  },
+  {
+   "time": "2025-12-11T18:58:40+00:00",
+   "equity": 9768.239999999998,
+   "pnl": 79.64
+  },
+  {
+   "time": "2025-12-11T18:58:40+00:00",
+   "equity": 9811.119999999997,
+   "pnl": 42.88
+  },
+  {
+   "time": "2025-12-11T19:01:40+00:00",
+   "equity": 9853.999999999996,
+   "pnl": 42.88
+  },
+  {
+   "time": "2025-12-11T19:01:40+00:00",
+   "equity": 9853.999999999996,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-12-18T16:17:40+00:00",
+   "equity": 9943.799999999996,
+   "pnl": 89.8
+  },
+  {
+   "time": "2025-12-18T16:20:40+00:00",
+   "equity": 10008.659999999996,
+   "pnl": 64.86
+  },
+  {
+   "time": "2025-12-18T16:20:40+00:00",
+   "equity": 10098.819999999996,
+   "pnl": 90.16
+  },
+  {
+   "time": "2025-12-18T16:52:40+00:00",
+   "equity": 10170.669999999996,
+   "pnl": 71.85
+  },
+  {
+   "time": "2025-12-18T16:52:40+00:00",
+   "equity": 10219.269999999997,
+   "pnl": 48.6
+  },
+  {
+   "time": "2025-12-18T16:55:40+00:00",
+   "equity": 10298.689999999997,
+   "pnl": 79.42
+  },
+  {
+   "time": "2025-12-18T17:06:40+00:00",
+   "equity": 10338.109999999997,
+   "pnl": 39.42
+  },
+  {
+   "time": "2025-12-18T17:06:40+00:00",
+   "equity": 10338.109999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-12-18T17:06:40+00:00",
+   "equity": 10338.109999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2025-12-22T01:15:00+00:00",
+   "equity": 10305.501999999997,
+   "pnl": -32.608
+  },
+  {
+   "time": "2025-12-22T01:15:00+00:00",
+   "equity": 10281.285999999996,
+   "pnl": -24.216
+  },
+  {
+   "time": "2025-12-22T01:15:00+00:00",
+   "equity": 10249.317999999996,
+   "pnl": -31.968
+  },
+  {
+   "time": "2025-12-22T04:05:20+00:00",
+   "equity": 10339.917999999996,
+   "pnl": 90.6
+  },
+  {
+   "time": "2025-12-22T04:51:20+00:00",
+   "equity": 10451.997999999996,
+   "pnl": 112.08
+  },
+  {
+   "time": "2025-12-22T05:42:40+00:00",
+   "equity": 10593.177999999996,
+   "pnl": 141.18
+  },
+  {
+   "time": "2025-12-26T01:03:00+00:00",
+   "equity": 10584.237999999996,
+   "pnl": -8.94
+  },
+  {
+   "time": "2025-12-26T13:41:40+00:00",
+   "equity": 10589.837999999996,
+   "pnl": 5.6
+  },
+  {
+   "time": "2025-12-26T13:41:40+00:00",
+   "equity": 10595.437999999996,
+   "pnl": 5.6
+  },
+  {
+   "time": "2025-12-31T05:55:40+00:00",
+   "equity": 10617.307999999997,
+   "pnl": 21.87
+  },
+  {
+   "time": "2025-12-31T05:55:40+00:00",
+   "equity": 10639.877999999997,
+   "pnl": 22.57
+  },
+  {
+   "time": "2025-12-31T06:05:40+00:00",
+   "equity": 10652.037999999997,
+   "pnl": 12.16
+  },
+  {
+   "time": "2025-12-31T06:11:40+00:00",
+   "equity": 10657.397999999997,
+   "pnl": 5.36
+  },
+  {
+   "time": "2025-12-31T06:18:40+00:00",
+   "equity": 10657.397999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-01-09T15:05:00+00:00",
+   "equity": 10651.932999999997,
+   "pnl": -5.465
+  },
+  {
+   "time": "2026-01-09T15:05:00+00:00",
+   "equity": 10646.587999999998,
+   "pnl": -5.345
+  },
+  {
+   "time": "2026-01-09T16:11:40+00:00",
+   "equity": 10647.117999999999,
+   "pnl": 0.53
+  },
+  {
+   "time": "2026-01-12T00:32:40+00:00",
+   "equity": 10676.107999999998,
+   "pnl": 28.99
+  },
+  {
+   "time": "2026-01-13T06:41:40+00:00",
+   "equity": 10700.847999999998,
+   "pnl": 24.74
+  },
+  {
+   "time": "2026-01-13T14:52:40+00:00",
+   "equity": 10702.287999999999,
+   "pnl": 1.44
+  },
+  {
+   "time": "2026-01-13T14:52:40+00:00",
+   "equity": 10702.287999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-01-14T03:56:00+00:00",
+   "equity": 10699.482999999998,
+   "pnl": -2.805
+  },
+  {
+   "time": "2026-01-14T03:56:00+00:00",
+   "equity": 10696.807999999999,
+   "pnl": -2.675
+  },
+  {
+   "time": "2026-01-14T06:07:00+00:00",
+   "equity": 10694.666,
+   "pnl": -2.142
+  },
+  {
+   "time": "2026-01-14T06:07:00+00:00",
+   "equity": 10692.653999999999,
+   "pnl": -2.012
+  },
+  {
+   "time": "2026-01-16T13:21:00+00:00",
+   "equity": 10686.979,
+   "pnl": -5.675
+  },
+  {
+   "time": "2026-01-16T13:21:00+00:00",
+   "equity": 10681.733999999999,
+   "pnl": -5.245
+  },
+  {
+   "time": "2026-01-16T13:21:00+00:00",
+   "equity": 10676.639,
+   "pnl": -5.095
+  },
+  {
+   "time": "2026-01-16T13:21:00+00:00",
+   "equity": 10671.554,
+   "pnl": -5.085
+  },
+  {
+   "time": "2026-01-16T13:30:00+00:00",
+   "equity": 10667.049,
+   "pnl": -4.505
+  },
+  {
+   "time": "2026-01-16T15:30:20+00:00",
+   "equity": 10668.469000000001,
+   "pnl": 1.42
+  },
+  {
+   "time": "2026-01-16T15:30:20+00:00",
+   "equity": 10669.999000000002,
+   "pnl": 1.53
+  },
+  {
+   "time": "2026-01-16T15:30:20+00:00",
+   "equity": 10670.539000000002,
+   "pnl": 0.54
+  },
+  {
+   "time": "2026-01-16T15:31:40+00:00",
+   "equity": 10694.349000000002,
+   "pnl": 23.81
+  },
+  {
+   "time": "2026-01-16T15:32:40+00:00",
+   "equity": 10723.799000000003,
+   "pnl": 29.45
+  },
+  {
+   "time": "2026-01-16T15:34:20+00:00",
+   "equity": 10753.419000000004,
+   "pnl": 29.62
+  },
+  {
+   "time": "2026-01-18T23:16:40+00:00",
+   "equity": 10776.439000000004,
+   "pnl": 23.02
+  },
+  {
+   "time": "2026-01-18T23:16:40+00:00",
+   "equity": 10800.389000000005,
+   "pnl": 23.95
+  },
+  {
+   "time": "2026-01-18T23:22:40+00:00",
+   "equity": 10829.959000000004,
+   "pnl": 29.57
+  },
+  {
+   "time": "2026-01-20T04:43:40+00:00",
+   "equity": 10831.409000000005,
+   "pnl": 1.45
+  },
+  {
+   "time": "2026-01-20T04:44:40+00:00",
+   "equity": 10831.409000000005,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-01-20T05:55:40+00:00",
+   "equity": 10854.729000000005,
+   "pnl": 23.32
+  },
+  {
+   "time": "2026-01-20T08:55:20+00:00",
+   "equity": 10893.819000000005,
+   "pnl": 39.09
+  },
+  {
+   "time": "2026-01-21T04:23:40+00:00",
+   "equity": 11105.699000000004,
+   "pnl": 211.88
+  },
+  {
+   "time": "2026-01-22T17:23:40+00:00",
+   "equity": 11107.219000000005,
+   "pnl": 1.52
+  },
+  {
+   "time": "2026-01-22T17:25:40+00:00",
+   "equity": 11107.219000000005,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-01-22T18:03:40+00:00",
+   "equity": 11131.369000000004,
+   "pnl": 24.15
+  },
+  {
+   "time": "2026-01-22T19:27:40+00:00",
+   "equity": 11154.669000000004,
+   "pnl": 23.3
+  },
+  {
+   "time": "2026-01-27T20:10:40+00:00",
+   "equity": 11179.909000000003,
+   "pnl": 25.24
+  },
+  {
+   "time": "2026-01-27T20:10:40+00:00",
+   "equity": 11206.239000000003,
+   "pnl": 26.33
+  },
+  {
+   "time": "2026-01-27T20:14:40+00:00",
+   "equity": 11238.829000000003,
+   "pnl": 32.59
+  },
+  {
+   "time": "2026-01-27T20:24:40+00:00",
+   "equity": 11263.879000000003,
+   "pnl": 25.05
+  },
+  {
+   "time": "2026-02-11T10:46:20+00:00",
+   "equity": 11264.479000000003,
+   "pnl": 0.6
+  },
+  {
+   "time": "2026-02-11T10:46:20+00:00",
+   "equity": 11270.849000000004,
+   "pnl": 6.37
+  },
+  {
+   "time": "2026-02-11T10:46:20+00:00",
+   "equity": 11272.559000000003,
+   "pnl": 1.71
+  },
+  {
+   "time": "2026-02-11T11:03:40+00:00",
+   "equity": 11272.559000000003,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-02-11T11:03:40+00:00",
+   "equity": 11273.159000000003,
+   "pnl": 0.6
+  },
+  {
+   "time": "2026-02-11T11:03:40+00:00",
+   "equity": 11274.739000000003,
+   "pnl": 1.58
+  },
+  {
+   "time": "2026-02-11T11:03:40+00:00",
+   "equity": 11274.739000000003,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-02-11T12:17:40+00:00",
+   "equity": 11281.129000000003,
+   "pnl": 6.39
+  },
+  {
+   "time": "2026-02-17T05:33:40+00:00",
+   "equity": 11282.639000000003,
+   "pnl": 1.51
+  },
+  {
+   "time": "2026-02-17T05:33:40+00:00",
+   "equity": 11284.269000000002,
+   "pnl": 1.63
+  },
+  {
+   "time": "2026-02-17T05:33:40+00:00",
+   "equity": 11284.839000000002,
+   "pnl": 0.57
+  },
+  {
+   "time": "2026-02-17T05:33:40+00:00",
+   "equity": 11284.839000000002,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-02-17T05:53:40+00:00",
+   "equity": 11265.979000000001,
+   "pnl": -18.86
+  },
+  {
+   "time": "2026-02-17T08:08:40+00:00",
+   "equity": 11226.139000000001,
+   "pnl": -39.84
+  },
+  {
+   "time": "2026-02-17T14:01:40+00:00",
+   "equity": 11251.619,
+   "pnl": 25.48
+  },
+  {
+   "time": "2026-02-17T14:01:40+00:00",
+   "equity": 11283.189,
+   "pnl": 31.57
+  },
+  {
+   "time": "2026-02-20T06:32:40+00:00",
+   "equity": 11284.749,
+   "pnl": 1.56
+  },
+  {
+   "time": "2026-02-20T06:59:40+00:00",
+   "equity": 11284.749,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-02-20T08:29:00+00:00",
+   "equity": 11282.934,
+   "pnl": -1.815
+  },
+  {
+   "time": "2026-02-20T08:43:00+00:00",
+   "equity": 11284.493999999999,
+   "pnl": 1.56
+  },
+  {
+   "time": "2026-02-20T14:56:40+00:00",
+   "equity": 11285.083999999999,
+   "pnl": 0.59
+  },
+  {
+   "time": "2026-02-20T14:56:40+00:00",
+   "equity": 11285.083999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-02-23T00:00:40+00:00",
+   "equity": 11318.124,
+   "pnl": 33.04
+  },
+  {
+   "time": "2026-02-24T01:13:40+00:00",
+   "equity": 11411.434,
+   "pnl": 93.31
+  },
+  {
+   "time": "2026-02-27T13:30:40+00:00",
+   "equity": 11418.944,
+   "pnl": 7.51
+  },
+  {
+   "time": "2026-02-27T13:30:40+00:00",
+   "equity": 11426.534,
+   "pnl": 7.59
+  },
+  {
+   "time": "2026-02-27T13:35:40+00:00",
+   "equity": 11428.284,
+   "pnl": 1.75
+  },
+  {
+   "time": "2026-02-27T13:37:20+00:00",
+   "equity": 11428.284,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-03T11:31:40+00:00",
+   "equity": 11454.884,
+   "pnl": 26.6
+  },
+  {
+   "time": "2026-03-03T11:31:40+00:00",
+   "equity": 11482.554,
+   "pnl": 27.67
+  },
+  {
+   "time": "2026-03-03T11:31:40+00:00",
+   "equity": 11516.714,
+   "pnl": 34.16
+  },
+  {
+   "time": "2026-03-03T11:31:40+00:00",
+   "equity": 11561.634,
+   "pnl": 44.92
+  },
+  {
+   "time": "2026-03-03T13:59:40+00:00",
+   "equity": 11535.304,
+   "pnl": -26.33
+  },
+  {
+   "time": "2026-03-03T14:00:00+00:00",
+   "equity": 11508.902,
+   "pnl": -26.402
+  },
+  {
+   "time": "2026-03-03T14:25:40+00:00",
+   "equity": 11510.492,
+   "pnl": 1.59
+  },
+  {
+   "time": "2026-03-03T14:25:40+00:00",
+   "equity": 11510.492,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-03T14:36:40+00:00",
+   "equity": 11537.202,
+   "pnl": 26.71
+  },
+  {
+   "time": "2026-03-03T14:39:20+00:00",
+   "equity": 11537.202,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-08T23:43:40+00:00",
+   "equity": 11538.761999999999,
+   "pnl": 1.56
+  },
+  {
+   "time": "2026-03-08T23:43:40+00:00",
+   "equity": 11539.351999999999,
+   "pnl": 0.59
+  },
+  {
+   "time": "2026-03-08T23:43:40+00:00",
+   "equity": 11539.351999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-09T00:15:20+00:00",
+   "equity": 11549.521999999999,
+   "pnl": 10.17
+  },
+  {
+   "time": "2026-03-09T00:16:40+00:00",
+   "equity": 11557.831999999999,
+   "pnl": 8.31
+  },
+  {
+   "time": "2026-03-09T00:22:40+00:00",
+   "equity": 11557.831999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-10T09:00:00+00:00",
+   "equity": 11545.846999999998,
+   "pnl": -11.985
+  },
+  {
+   "time": "2026-03-10T09:00:00+00:00",
+   "equity": 11534.021999999997,
+   "pnl": -11.825
+  },
+  {
+   "time": "2026-03-10T13:24:40+00:00",
+   "equity": 11560.921999999997,
+   "pnl": 26.9
+  },
+  {
+   "time": "2026-03-10T13:27:40+00:00",
+   "equity": 11594.201999999997,
+   "pnl": 33.28
+  },
+  {
+   "time": "2026-03-10T13:30:40+00:00",
+   "equity": 11612.101999999997,
+   "pnl": 17.9
+  },
+  {
+   "time": "2026-03-13T19:53:40+00:00",
+   "equity": 11613.651999999996,
+   "pnl": 1.55
+  },
+  {
+   "time": "2026-03-13T19:53:40+00:00",
+   "equity": 11615.331999999997,
+   "pnl": 1.68
+  },
+  {
+   "time": "2026-03-13T19:53:40+00:00",
+   "equity": 11615.921999999997,
+   "pnl": 0.59
+  },
+  {
+   "time": "2026-03-13T19:53:40+00:00",
+   "equity": 11615.921999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-15T23:57:40+00:00",
+   "equity": 11615.921999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-16T00:01:40+00:00",
+   "equity": 11622.171999999997,
+   "pnl": 6.25
+  },
+  {
+   "time": "2026-03-16T07:45:40+00:00",
+   "equity": 11622.171999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-18T10:58:40+00:00",
+   "equity": 11623.711999999998,
+   "pnl": 1.54
+  },
+  {
+   "time": "2026-03-18T10:58:40+00:00",
+   "equity": 11625.251999999999,
+   "pnl": 1.54
+  },
+  {
+   "time": "2026-03-18T10:58:40+00:00",
+   "equity": 11626.911999999998,
+   "pnl": 1.66
+  },
+  {
+   "time": "2026-03-18T10:59:40+00:00",
+   "equity": 11627.491999999998,
+   "pnl": 0.58
+  },
+  {
+   "time": "2026-03-18T10:59:40+00:00",
+   "equity": 11628.071999999998,
+   "pnl": 0.58
+  },
+  {
+   "time": "2026-03-18T10:59:40+00:00",
+   "equity": 11628.071999999998,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-03-19T07:44:40+00:00",
+   "equity": 11858.942,
+   "pnl": 230.87
+  },
+  {
+   "time": "2026-03-20T18:57:20+00:00",
+   "equity": 11881.741999999998,
+   "pnl": 22.8
+  },
+  {
+   "time": "2026-03-20T18:59:40+00:00",
+   "equity": 11888.192,
+   "pnl": 6.45
+  },
+  {
+   "time": "2026-03-20T19:00:40+00:00",
+   "equity": 11888.192,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-07T19:49:40+00:00",
+   "equity": 11888.741999999998,
+   "pnl": 0.55
+  },
+  {
+   "time": "2026-04-07T19:49:40+00:00",
+   "equity": 11890.321999999998,
+   "pnl": 1.58
+  },
+  {
+   "time": "2026-04-07T19:49:40+00:00",
+   "equity": 11891.781999999997,
+   "pnl": 1.46
+  },
+  {
+   "time": "2026-04-07T19:49:40+00:00",
+   "equity": 11891.781999999997,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-07T23:00:40+00:00",
+   "equity": 11897.121999999998,
+   "pnl": 5.34
+  },
+  {
+   "time": "2026-04-07T23:00:40+00:00",
+   "equity": 11903.141999999998,
+   "pnl": 6.02
+  },
+  {
+   "time": "2026-04-07T23:00:40+00:00",
+   "equity": 11908.521999999997,
+   "pnl": 5.38
+  },
+  {
+   "time": "2026-04-07T23:03:40+00:00",
+   "equity": 11931.721999999998,
+   "pnl": 23.2
+  },
+  {
+   "time": "2026-04-07T23:25:40+00:00",
+   "equity": 11951.181999999997,
+   "pnl": 19.46
+  },
+  {
+   "time": "2026-04-07T23:58:40+00:00",
+   "equity": 11981.081999999997,
+   "pnl": 29.9
+  },
+  {
+   "time": "2026-04-12T22:02:40+00:00",
+   "equity": 11999.651999999996,
+   "pnl": 18.57
+  },
+  {
+   "time": "2026-04-14T14:03:40+00:00",
+   "equity": 11999.651999999996,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-14T14:03:40+00:00",
+   "equity": 11999.651999999996,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-14T14:40:40+00:00",
+   "equity": 12000.221999999996,
+   "pnl": 0.57
+  },
+  {
+   "time": "2026-04-14T14:40:40+00:00",
+   "equity": 12000.791999999996,
+   "pnl": 0.57
+  },
+  {
+   "time": "2026-04-14T14:45:40+00:00",
+   "equity": 12000.791999999996,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-15T01:20:40+00:00",
+   "equity": 12001.361999999996,
+   "pnl": 0.57
+  },
+  {
+   "time": "2026-04-15T01:20:40+00:00",
+   "equity": 12002.991999999995,
+   "pnl": 1.63
+  },
+  {
+   "time": "2026-04-15T01:20:40+00:00",
+   "equity": 12002.991999999995,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-15T01:20:40+00:00",
+   "equity": 12002.991999999995,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-15T02:21:40+00:00",
+   "equity": 11985.271999999995,
+   "pnl": -17.72
+  },
+  {
+   "time": "2026-04-17T12:49:00+00:00",
+   "equity": 11977.879999999996,
+   "pnl": -7.392
+  },
+  {
+   "time": "2026-04-17T13:13:40+00:00",
+   "equity": 12008.629999999996,
+   "pnl": 30.75
+  },
+  {
+   "time": "2026-04-17T13:16:00+00:00",
+   "equity": 12014.729999999996,
+   "pnl": 6.1
+  },
+  {
+   "time": "2026-04-17T13:16:40+00:00",
+   "equity": 12015.299999999996,
+   "pnl": 0.57
+  },
+  {
+   "time": "2026-04-17T13:16:40+00:00",
+   "equity": 12016.809999999996,
+   "pnl": 1.51
+  },
+  {
+   "time": "2026-04-17T13:16:40+00:00",
+   "equity": 12016.809999999996,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-17T13:20:40+00:00",
+   "equity": 12022.909999999996,
+   "pnl": 6.1
+  },
+  {
+   "time": "2026-04-19T23:43:40+00:00",
+   "equity": 12047.719999999996,
+   "pnl": 24.81
+  },
+  {
+   "time": "2026-04-21T14:53:40+00:00",
+   "equity": 12049.189999999995,
+   "pnl": 1.47
+  },
+  {
+   "time": "2026-04-21T14:53:40+00:00",
+   "equity": 12050.779999999995,
+   "pnl": 1.59
+  },
+  {
+   "time": "2026-04-21T14:53:40+00:00",
+   "equity": 12051.339999999995,
+   "pnl": 0.56
+  },
+  {
+   "time": "2026-04-21T14:54:40+00:00",
+   "equity": 12051.339999999995,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-21T15:19:40+00:00",
+   "equity": 12033.389999999994,
+   "pnl": -17.95
+  },
+  {
+   "time": "2026-04-23T17:50:00+00:00",
+   "equity": 12020.234999999993,
+   "pnl": -13.155
+  },
+  {
+   "time": "2026-04-23T17:53:40+00:00",
+   "equity": 11996.184999999994,
+   "pnl": -24.05
+  },
+  {
+   "time": "2026-04-23T17:53:40+00:00",
+   "equity": 11965.394999999993,
+   "pnl": -30.79
+  },
+  {
+   "time": "2026-04-23T18:00:00+00:00",
+   "equity": 11925.239999999993,
+   "pnl": -40.155
+  },
+  {
+   "time": "2026-04-23T18:00:00+00:00",
+   "equity": 11885.674999999992,
+   "pnl": -39.565
+  },
+  {
+   "time": "2026-04-24T04:44:40+00:00",
+   "equity": 11887.124999999993,
+   "pnl": 1.45
+  },
+  {
+   "time": "2026-04-24T04:44:40+00:00",
+   "equity": 11888.684999999992,
+   "pnl": 1.56
+  },
+  {
+   "time": "2026-04-24T04:45:40+00:00",
+   "equity": 11889.234999999991,
+   "pnl": 0.55
+  },
+  {
+   "time": "2026-04-24T04:46:40+00:00",
+   "equity": 11889.234999999991,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-04-24T06:00:20+00:00",
+   "equity": 11871.574999999992,
+   "pnl": -17.66
+  },
+  {
+   "time": "2026-04-24T06:43:00+00:00",
+   "equity": 11867.469999999992,
+   "pnl": -4.105
+  },
+  {
+   "time": "2026-04-28T05:18:40+00:00",
+   "equity": 11908.209999999992,
+   "pnl": 40.74
+  },
+  {
+   "time": "2026-04-28T05:20:40+00:00",
+   "equity": 11913.969999999992,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-04-28T05:20:40+00:00",
+   "equity": 11917.089999999993,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-04-28T05:21:40+00:00",
+   "equity": 11919.839999999993,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-04-28T05:40:40+00:00",
+   "equity": 12010.409999999993,
+   "pnl": 90.57
+  },
+  {
+   "time": "2026-04-29T09:52:40+00:00",
+   "equity": 12016.049999999992,
+   "pnl": 5.64
+  },
+  {
+   "time": "2026-04-29T12:34:40+00:00",
+   "equity": 12021.689999999991,
+   "pnl": 5.64
+  },
+  {
+   "time": "2026-05-01T14:25:40+00:00",
+   "equity": 12024.439999999991,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-01T14:25:40+00:00",
+   "equity": 12027.559999999992,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-05-01T14:25:40+00:00",
+   "equity": 12033.319999999992,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-01T14:26:40+00:00",
+   "equity": 12033.319999999992,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-01T16:19:20+00:00",
+   "equity": 12039.079999999993,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-04T10:26:40+00:00",
+   "equity": 12140.729999999992,
+   "pnl": 101.65
+  },
+  {
+   "time": "2026-05-04T15:52:40+00:00",
+   "equity": 12016.529999999992,
+   "pnl": -124.2
+  },
+  {
+   "time": "2026-05-04T15:53:40+00:00",
+   "equity": 11893.32999999999,
+   "pnl": -123.2
+  },
+  {
+   "time": "2026-05-04T16:08:40+00:00",
+   "equity": 11893.32999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-04T16:08:40+00:00",
+   "equity": 11893.32999999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-04T16:11:40+00:00",
+   "equity": 11898.929999999991,
+   "pnl": 5.6
+  },
+  {
+   "time": "2026-05-04T16:11:40+00:00",
+   "equity": 11901.949999999992,
+   "pnl": 3.02
+  },
+  {
+   "time": "2026-05-04T16:11:40+00:00",
+   "equity": 11904.969999999992,
+   "pnl": 3.02
+  },
+  {
+   "time": "2026-05-04T16:11:40+00:00",
+   "equity": 11907.619999999992,
+   "pnl": 2.65
+  },
+  {
+   "time": "2026-05-04T16:11:40+00:00",
+   "equity": 11910.269999999991,
+   "pnl": 2.65
+  },
+  {
+   "time": "2026-05-04T19:15:00+00:00",
+   "equity": 11879.369999999992,
+   "pnl": -30.9
+  },
+  {
+   "time": "2026-05-05T01:08:40+00:00",
+   "equity": 11785.369999999992,
+   "pnl": -94.0
+  },
+  {
+   "time": "2026-05-06T03:16:40+00:00",
+   "equity": 11788.119999999992,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-06T03:16:40+00:00",
+   "equity": 11791.239999999993,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-05-06T03:16:40+00:00",
+   "equity": 11796.999999999993,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-06T03:23:40+00:00",
+   "equity": 11796.999999999993,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-06T06:03:40+00:00",
+   "equity": 11799.749999999993,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-06T06:04:40+00:00",
+   "equity": 11802.869999999994,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-05-06T06:04:40+00:00",
+   "equity": 11808.669999999993,
+   "pnl": 5.8
+  },
+  {
+   "time": "2026-05-06T06:05:40+00:00",
+   "equity": 11808.669999999993,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-06T06:34:40+00:00",
+   "equity": 11849.479999999992,
+   "pnl": 40.81
+  },
+  {
+   "time": "2026-05-10T22:15:00+00:00",
+   "equity": 11820.874999999993,
+   "pnl": -28.605
+  },
+  {
+   "time": "2026-05-11T00:30:00+00:00",
+   "equity": 11795.522999999992,
+   "pnl": -25.352
+  },
+  {
+   "time": "2026-05-11T00:30:00+00:00",
+   "equity": 11766.582999999991,
+   "pnl": -28.94
+  },
+  {
+   "time": "2026-05-11T00:30:00+00:00",
+   "equity": 11755.406999999992,
+   "pnl": -11.176
+  },
+  {
+   "time": "2026-05-11T00:30:00+00:00",
+   "equity": 11738.672999999992,
+   "pnl": -16.734
+  },
+  {
+   "time": "2026-05-11T00:57:40+00:00",
+   "equity": 11738.672999999992,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-11T01:15:00+00:00",
+   "equity": 11677.492999999991,
+   "pnl": -61.18
+  },
+  {
+   "time": "2026-05-11T01:15:00+00:00",
+   "equity": 11603.817999999992,
+   "pnl": -73.675
+  },
+  {
+   "time": "2026-05-11T01:15:00+00:00",
+   "equity": 11560.242999999991,
+   "pnl": -43.575
+  },
+  {
+   "time": "2026-05-11T03:15:00+00:00",
+   "equity": 11519.342999999992,
+   "pnl": -40.9
+  },
+  {
+   "time": "2026-05-11T03:15:00+00:00",
+   "equity": 11490.977999999992,
+   "pnl": -28.365
+  },
+  {
+   "time": "2026-05-11T04:04:40+00:00",
+   "equity": 11490.977999999992,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-11T04:04:40+00:00",
+   "equity": 11490.977999999992,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-11T04:27:40+00:00",
+   "equity": 11496.777999999991,
+   "pnl": 5.8
+  },
+  {
+   "time": "2026-05-11T04:27:40+00:00",
+   "equity": 11502.57799999999,
+   "pnl": 5.8
+  },
+  {
+   "time": "2026-05-11T04:27:40+00:00",
+   "equity": 11508.37799999999,
+   "pnl": 5.8
+  },
+  {
+   "time": "2026-05-11T05:33:40+00:00",
+   "equity": 11511.12799999999,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-11T05:33:40+00:00",
+   "equity": 11513.87799999999,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-12T00:00:40+00:00",
+   "equity": 11516.677999999989,
+   "pnl": 2.8
+  },
+  {
+   "time": "2026-05-12T00:00:40+00:00",
+   "equity": 11519.87799999999,
+   "pnl": 3.2
+  },
+  {
+   "time": "2026-05-12T00:00:40+00:00",
+   "equity": 11525.79799999999,
+   "pnl": 5.92
+  },
+  {
+   "time": "2026-05-12T00:00:40+00:00",
+   "equity": 11525.79799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-12T00:00:40+00:00",
+   "equity": 11525.79799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-12T00:21:40+00:00",
+   "equity": 11567.51799999999,
+   "pnl": 41.72
+  },
+  {
+   "time": "2026-05-12T15:25:40+00:00",
+   "equity": 11573.27799999999,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-12T15:25:40+00:00",
+   "equity": 11576.39799999999,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-05-12T15:25:40+00:00",
+   "equity": 11579.14799999999,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-12T15:25:40+00:00",
+   "equity": 11579.14799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-14T20:06:00+00:00",
+   "equity": 11571.56799999999,
+   "pnl": -7.58
+  },
+  {
+   "time": "2026-05-14T20:29:20+00:00",
+   "equity": 11574.687999999991,
+   "pnl": 3.12
+  },
+  {
+   "time": "2026-05-14T20:41:40+00:00",
+   "equity": 11577.437999999991,
+   "pnl": 2.75
+  },
+  {
+   "time": "2026-05-14T20:41:40+00:00",
+   "equity": 11577.437999999991,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-15T00:02:40+00:00",
+   "equity": 11583.197999999991,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-15T00:02:40+00:00",
+   "equity": 11588.957999999991,
+   "pnl": 5.76
+  },
+  {
+   "time": "2026-05-15T00:03:40+00:00",
+   "equity": 11588.957999999991,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-15T00:03:40+00:00",
+   "equity": 11588.957999999991,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-15T00:40:40+00:00",
+   "equity": 11635.957999999991,
+   "pnl": 47.0
+  },
+  {
+   "time": "2026-05-15T00:41:40+00:00",
+   "equity": 11732.957999999991,
+   "pnl": 97.0
+  },
+  {
+   "time": "2026-05-15T00:47:40+00:00",
+   "equity": 11797.75799999999,
+   "pnl": 64.8
+  },
+  {
+   "time": "2026-05-15T01:09:40+00:00",
+   "equity": 11887.96799999999,
+   "pnl": 90.21
+  },
+  {
+   "time": "2026-05-15T13:48:40+00:00",
+   "equity": 11762.06799999999,
+   "pnl": -125.9
+  },
+  {
+   "time": "2026-05-15T13:50:00+00:00",
+   "equity": 11644.08299999999,
+   "pnl": -117.985
+  },
+  {
+   "time": "2026-05-18T00:35:40+00:00",
+   "equity": 11683.42299999999,
+   "pnl": 39.34
+  },
+  {
+   "time": "2026-05-18T00:36:40+00:00",
+   "equity": 11683.42299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-18T00:36:40+00:00",
+   "equity": 11683.42299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-18T00:56:40+00:00",
+   "equity": 11837.09299999999,
+   "pnl": 153.67
+  },
+  {
+   "time": "2026-05-18T01:02:20+00:00",
+   "equity": 11837.09299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-18T01:51:40+00:00",
+   "equity": 12576.36299999999,
+   "pnl": 739.27
+  },
+  {
+   "time": "2026-05-19T13:32:40+00:00",
+   "equity": 12581.92299999999,
+   "pnl": 5.56
+  },
+  {
+   "time": "2026-05-19T13:32:40+00:00",
+   "equity": 12586.42299999999,
+   "pnl": 4.5
+  },
+  {
+   "time": "2026-05-19T13:32:40+00:00",
+   "equity": 12589.60299999999,
+   "pnl": 3.18
+  },
+  {
+   "time": "2026-05-19T13:32:40+00:00",
+   "equity": 12589.60299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-19T13:50:40+00:00",
+   "equity": 12761.53299999999,
+   "pnl": 171.93
+  },
+  {
+   "time": "2026-05-19T13:54:40+00:00",
+   "equity": 12800.87299999999,
+   "pnl": 39.34
+  },
+  {
+   "time": "2026-05-19T13:54:40+00:00",
+   "equity": 12679.00299999999,
+   "pnl": -121.87
+  },
+  {
+   "time": "2026-05-19T13:55:40+00:00",
+   "equity": 12718.41299999999,
+   "pnl": 39.41
+  },
+  {
+   "time": "2026-05-19T22:17:40+00:00",
+   "equity": 12723.972999999989,
+   "pnl": 5.56
+  },
+  {
+   "time": "2026-05-19T22:34:40+00:00",
+   "equity": 12723.972999999989,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-20T00:21:00+00:00",
+   "equity": 12710.472999999989,
+   "pnl": -13.5
+  },
+  {
+   "time": "2026-05-20T00:30:00+00:00",
+   "equity": 12630.65299999999,
+   "pnl": -79.82
+  },
+  {
+   "time": "2026-05-20T01:36:40+00:00",
+   "equity": 12723.77299999999,
+   "pnl": 93.12
+  },
+  {
+   "time": "2026-05-20T01:36:40+00:00",
+   "equity": 12817.25299999999,
+   "pnl": 93.48
+  },
+  {
+   "time": "2026-05-20T01:50:40+00:00",
+   "equity": 12817.25299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-24T23:57:40+00:00",
+   "equity": 12820.49299999999,
+   "pnl": 3.24
+  },
+  {
+   "time": "2026-05-24T23:57:40+00:00",
+   "equity": 12825.08299999999,
+   "pnl": 4.59
+  },
+  {
+   "time": "2026-05-24T23:57:40+00:00",
+   "equity": 12830.76299999999,
+   "pnl": 5.68
+  },
+  {
+   "time": "2026-05-24T23:58:40+00:00",
+   "equity": 12830.76299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-25T10:14:20+00:00",
+   "equity": 12835.35299999999,
+   "pnl": 4.59
+  },
+  {
+   "time": "2026-05-25T10:14:20+00:00",
+   "equity": 12841.03299999999,
+   "pnl": 5.68
+  },
+  {
+   "time": "2026-05-25T10:14:20+00:00",
+   "equity": 12846.71299999999,
+   "pnl": 5.68
+  },
+  {
+   "time": "2026-05-25T10:42:40+00:00",
+   "equity": 12846.71299999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-25T15:11:20+00:00",
+   "equity": 12852.392999999991,
+   "pnl": 5.68
+  },
+  {
+   "time": "2026-05-25T15:16:40+00:00",
+   "equity": 12852.392999999991,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-05-26T00:19:40+00:00",
+   "equity": 12724.71299999999,
+   "pnl": -127.68
+  },
+  {
+   "time": "2026-05-29T15:06:00+00:00",
+   "equity": 12719.34799999999,
+   "pnl": -5.365
+  },
+  {
+   "time": "2026-05-29T15:27:40+00:00",
+   "equity": 12720.887999999992,
+   "pnl": 1.54
+  },
+  {
+   "time": "2026-05-29T15:42:40+00:00",
+   "equity": 12704.017999999991,
+   "pnl": -16.87
+  },
+  {
+   "time": "2026-06-03T08:52:40+00:00",
+   "equity": 12705.39799999999,
+   "pnl": 1.38
+  },
+  {
+   "time": "2026-06-03T08:52:40+00:00",
+   "equity": 12706.88799999999,
+   "pnl": 1.49
+  },
+  {
+   "time": "2026-06-03T08:54:20+00:00",
+   "equity": 12707.40799999999,
+   "pnl": 0.52
+  },
+  {
+   "time": "2026-06-03T09:03:40+00:00",
+   "equity": 12707.40799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-05T14:02:40+00:00",
+   "equity": 12684.30799999999,
+   "pnl": -23.1
+  },
+  {
+   "time": "2026-06-05T14:51:40+00:00",
+   "equity": 12689.75799999999,
+   "pnl": 5.45
+  },
+  {
+   "time": "2026-06-05T14:56:40+00:00",
+   "equity": 12689.75799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-09T15:32:20+00:00",
+   "equity": 12691.07799999999,
+   "pnl": 1.32
+  },
+  {
+   "time": "2026-06-09T15:32:20+00:00",
+   "equity": 12692.50799999999,
+   "pnl": 1.43
+  },
+  {
+   "time": "2026-06-09T15:32:20+00:00",
+   "equity": 12693.00799999999,
+   "pnl": 0.5
+  },
+  {
+   "time": "2026-06-09T15:32:20+00:00",
+   "equity": 12693.00799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-09T15:39:40+00:00",
+   "equity": 12694.437999999991,
+   "pnl": 1.43
+  },
+  {
+   "time": "2026-06-09T16:36:40+00:00",
+   "equity": 12696.57799999999,
+   "pnl": 2.14
+  },
+  {
+   "time": "2026-06-09T16:39:40+00:00",
+   "equity": 12724.05799999999,
+   "pnl": 27.48
+  },
+  {
+   "time": "2026-06-09T16:43:40+00:00",
+   "equity": 12745.46799999999,
+   "pnl": 21.41
+  },
+  {
+   "time": "2026-06-14T22:02:20+00:00",
+   "equity": 12767.37799999999,
+   "pnl": 21.91
+  },
+  {
+   "time": "2026-06-14T22:02:40+00:00",
+   "equity": 12794.44799999999,
+   "pnl": 27.07
+  },
+  {
+   "time": "2026-06-15T13:43:40+00:00",
+   "equity": 12795.79799999999,
+   "pnl": 1.35
+  },
+  {
+   "time": "2026-06-15T13:43:40+00:00",
+   "equity": 12795.79799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-15T14:11:40+00:00",
+   "equity": 12797.257999999989,
+   "pnl": 1.46
+  },
+  {
+   "time": "2026-06-15T15:00:00+00:00",
+   "equity": 12791.952999999989,
+   "pnl": -5.305
+  },
+  {
+   "time": "2026-06-15T16:52:40+00:00",
+   "equity": 12764.222999999989,
+   "pnl": -27.73
+  },
+  {
+   "time": "2026-06-17T14:45:00+00:00",
+   "equity": 12752.94799999999,
+   "pnl": -11.275
+  },
+  {
+   "time": "2026-06-17T14:47:40+00:00",
+   "equity": 12730.96799999999,
+   "pnl": -21.98
+  },
+  {
+   "time": "2026-06-17T17:36:40+00:00",
+   "equity": 12738.25799999999,
+   "pnl": 7.29
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12743.73799999999,
+   "pnl": 5.48
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12744.24799999999,
+   "pnl": 0.51
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12745.71799999999,
+   "pnl": 1.47
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12747.07799999999,
+   "pnl": 1.36
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12747.07799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-17T18:00:40+00:00",
+   "equity": 12748.54799999999,
+   "pnl": 1.47
+  },
+  {
+   "time": "2026-06-18T16:54:40+00:00",
+   "equity": 12749.85799999999,
+   "pnl": 1.31
+  },
+  {
+   "time": "2026-06-23T05:01:40+00:00",
+   "equity": 12751.13799999999,
+   "pnl": 1.28
+  },
+  {
+   "time": "2026-06-23T05:01:40+00:00",
+   "equity": 12752.51799999999,
+   "pnl": 1.38
+  },
+  {
+   "time": "2026-06-23T05:01:40+00:00",
+   "equity": 12752.51799999999,
+   "pnl": 0.0
+  },
+  {
+   "time": "2026-06-23T06:00:40+00:00",
+   "equity": 12752.997999999989,
+   "pnl": 0.48
+  },
+  {
+   "time": "2026-06-23T09:35:20+00:00",
+   "equity": 12758.137999999988,
+   "pnl": 5.14
+  },
+  {
+   "time": "2026-06-24T12:56:40+00:00",
+   "equity": 12784.257999999989,
+   "pnl": 26.12
+  },
+  {
+   "time": "2026-06-24T13:03:40+00:00",
+   "equity": 12937.097999999989,
+   "pnl": 152.84
+  },
+  {
+   "time": "2026-06-24T13:03:40+00:00",
+   "equity": 13012.03799999999,
+   "pnl": 74.94
+  },
+  {
+   "time": "2026-06-24T13:45:20+00:00",
+   "equity": 13017.93799999999,
+   "pnl": 5.9
+  }
+ ],
+ "steps": {
+  "base": {
+   "status": "DONE",
+   "seconds": 27.33,
+   "backtests": 1
+  },
+  "cost_stress": {
+   "status": "DONE",
+   "seconds": 107.08,
+   "backtests": 4,
+   "unsupported": [
+    {
+     "name": "slippage_+1pt",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "entry_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    },
+    {
+     "name": "exit_delay_1bar",
+     "reason_nl": "De plugin-engine verwerkt deze stress niet (niet gevonden in plugin.py)."
+    }
+   ]
+  },
+  "walk_forward": {
+   "status": "DONE",
+   "seconds": 233.2,
+   "backtests": 45
+  },
+  "parameter_stability": {
+   "status": "DONE",
+   "seconds": 363.78,
+   "backtests": 13
+  },
+  "pbo": {
+   "status": "DONE",
+   "seconds": 103.28,
+   "backtests": 4
+  },
+  "monte_carlo": {
+   "status": "DONE",
+   "seconds": 0.05,
+   "backtests": 0
+  },
+  "statistics": {
+   "status": "DONE",
+   "seconds": 0.0,
+   "backtests": 0
+  },
+  "holdout": {
+   "status": "DONE",
+   "seconds": 7.28,
+   "backtests": 1
+  }
+ },
+ "timing": {
+  "total_seconds": 842.1,
+  "backtests": 68,
+  "distinct_configs": 16
+ },
+ "strategy": {
+  "kind": "plugin",
+  "name": "gold_reaper"
+ }
+}

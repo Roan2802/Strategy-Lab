@@ -1,0 +1,16 @@
+{
+ "audit": [],
+ "sealed_results": [],
+ "multiple_testing": {
+  "n_final_tested": 0,
+  "n_with_p_value": 0,
+  "search_trials": 1623,
+  "dsr_n_trials": 1623,
+  "sr_variance": null,
+  "alpha": 0.05,
+  "holm_rejections": 0,
+  "bh_rejections": 0,
+  "per_candidate": {},
+  "definition_nl": "p-waarde per eindtest uit een stationaire block-bootstrap van dagrendementen (nulhypothese gemiddelde 0, eenzijdig). Holm (familiegewijs) en Benjamini-Hochberg (FDR) over ALLE kandidaten die ooit op de verzegelde periode zijn getest. DSR met N = alle eindtests + alle zoek-trials uit het onderzoekslogboek."
+ }
+}

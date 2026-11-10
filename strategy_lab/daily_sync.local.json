@@ -1,0 +1,792 @@
+{
+  "_notes": [
+    "Productie-config. providers = geordende terugvalketen per symbool-dag: 'datafeed' (publieke Dukascopy-candlebestanden, 1 dag per symbool, Bid+Ask = 2 bestanden), 'datafeed_ticks' (alleen als het candlebestand ontbreekt: M1 uit uurlijkse tickbestanden van de sessie-uren), 'jforex' (jforex_command, alleen als strategy_lab/jforex_credentials.local.json bestaat), 'inbox' (handmatige CSV-export in inbox_directory). Max. 1 verzoek per seconde, eerlijke User-Agent, HTTP 429 -> DELAYED met backoff, HTTP 202/403 of WAF-header -> BLOCKED (run stopt, 6 uur afkoeling). Zie DAILY_DUKASCOPY_PIPELINE.md.",
+    "Tijdelijke storingen (429, time-out, 5xx, ontbrekend bestand) laten de dag openstaan; de volgende geplande run probeert pas weer na 30 min, daarna 1 u, 2 u, 4 u en maximaal 6 u (backoff in dezelfde SQLite).",
+    "update_at staat in de tijdzone van de marktkalender van het symbool. Doel: ~07:30 Europe/Amsterdam = 01:30 New York (FX/goud/indices), 07:30 Berlijn (DE40), 06:30 UTC (BTCUSD; 07:30 Amsterdam in de winter).",
+    "first_day = UTC-dag van de laatste rij in het originele CSV-bestand in C:/AI/Dukascopy_data (bij XAUUSD, DE40 en BTCUSD een deels gevulde dag; DataManager gebruikt van die dag alleen de minuten na de CSV).",
+    "max_days_per_symbol 31: de achterstand sinds de originele CSV's wordt in een of twee runs ingehaald.",
+    "DE40-kalender 2026-11-10 afgeleid uit echte Dukascopy-data sep-okt 2026: ma-do 00:00-22:15, vr 00:00-22:00 Europe/Berlin (was 01:00-22:00, gaf 'bars outside configured session').",
+    "calendar_source per symbool: VERIFIED_PROVIDER (bevestigd door documentatie/sessietabel van Dukascopy), DERIVED_FROM_DATA (afgeleid uit en getoetst aan echte M1-data okt 2024-okt 2026, beide DST-periodes, 0 minuten buiten de kalender) of ASSUMED. Geen enkel symbool is VERIFIED_PROVIDER: er is geen Dukascopy-sessietabel geraadpleegd.",
+    "2026-11-10 (v10.1): US30/US500/USTEC eindigen 16:15 New York (was 17:00): de originele data heeft 16:15-17:00 nooit; de provider levert daar vlakke nulvolume-placeholders. Feestdag-overrides (24/25/31 dec, 1 jan, Goede Vrijdag 2027-03-26) afgeleid uit identieke patronen in 2024 en 2025/2026."
+  ],
+  "providers": [
+    "datafeed",
+    "datafeed_ticks",
+    "jforex",
+    "inbox"
+  ],
+  "source_directory": "C:/AI/Dukascopy_data",
+  "export_directory": "data_cache/jforex_staging",
+  "inbox_directory": "data_cache/dukascopy_inbox",
+  "jforex_command": [
+    "cmd",
+    "/c",
+    "C:\\AI\\Jesse\\Jesse-Audit\\tools\\jforex_adapter\\run.cmd"
+  ],
+  "max_days_per_symbol": 31,
+  "symbols": {
+    "XAUUSD": {
+      "first_day": "2026-10-15",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "17:00"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2026-12-24": [
+          [
+            "00:00",
+            "13:44"
+          ]
+        ],
+        "2026-12-25": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-12-31": [
+          [
+            "00:00",
+            "16:59"
+          ]
+        ],
+        "2027-01-01": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-03-26": [],
+        "2026-11-26": [
+          [
+            "00:00",
+            "14:29"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-01-18": [
+          [
+            "00:00",
+            "14:29"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-02-15": [
+          [
+            "00:00",
+            "14:29"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-11-27": [
+          [
+            "00:00",
+            "14:44"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "EURUSD": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2027-01-01": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "GBPUSD": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2027-01-01": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "USDJPY": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "17:00"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2027-01-01": [
+          [
+            "17:00",
+            "24:00"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "US30": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "16:15"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2026-12-24": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ],
+        "2026-12-25": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-12-31": [
+          [
+            "00:00",
+            "16:14"
+          ]
+        ],
+        "2027-01-01": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-03-26": [],
+        "2026-11-26": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-01-18": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-02-15": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-11-27": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "US500": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "16:15"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2026-12-24": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ],
+        "2026-12-25": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-12-31": [
+          [
+            "00:00",
+            "16:14"
+          ]
+        ],
+        "2027-01-01": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-03-26": [],
+        "2026-11-26": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-01-18": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-02-15": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-11-27": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "USTEC": {
+      "first_day": "2026-10-12",
+      "update_at": "01:30",
+      "timezone": "America/New_York",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "16:15"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "16:15"
+          ]
+        ],
+        "5": [],
+        "6": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {
+        "2026-12-24": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ],
+        "2026-12-25": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-12-31": [
+          [
+            "00:00",
+            "16:14"
+          ]
+        ],
+        "2027-01-01": [
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-03-26": [],
+        "2026-11-26": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-01-18": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2027-02-15": [
+          [
+            "00:00",
+            "12:59"
+          ],
+          [
+            "18:00",
+            "24:00"
+          ]
+        ],
+        "2026-11-27": [
+          [
+            "00:00",
+            "13:14"
+          ]
+        ]
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "DE40": {
+      "first_day": "2026-10-14",
+      "update_at": "07:30",
+      "timezone": "Europe/Berlin",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "22:15"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "22:15"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "22:15"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "22:15"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "22:00"
+          ]
+        ],
+        "5": [],
+        "6": []
+      },
+      "overrides": {
+        "2026-12-24": [
+          [
+            "00:00",
+            "19:14"
+          ]
+        ],
+        "2026-12-25": [],
+        "2026-12-31": [
+          [
+            "00:00",
+            "21:59"
+          ]
+        ],
+        "2027-01-01": [],
+        "2027-03-26": []
+      },
+      "calendar_source": "DERIVED_FROM_DATA"
+    },
+    "BTCUSD": {
+      "first_day": "2026-10-14",
+      "update_at": "06:30",
+      "timezone": "UTC",
+      "weekly": {
+        "0": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "1": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "2": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "3": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "4": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "5": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ],
+        "6": [
+          [
+            "00:00",
+            "24:00"
+          ]
+        ]
+      },
+      "overrides": {},
+      "calendar_source": "DERIVED_FROM_DATA"
+    }
+  }
+}

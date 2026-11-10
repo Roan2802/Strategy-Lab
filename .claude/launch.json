@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "strategy-lab-dev",
+      "runtimeExecutable": "C:/Python311/python.exe",
+      "runtimeArgs": ["-m", "strategy_lab.server"],
+      "env": {"STRATEGY_LAB_PORT": "8768"},
+      "cwd": "C:/AI/Jesse/Jesse-Audit",
+      "port": 8768
+    }
+  ]
+}

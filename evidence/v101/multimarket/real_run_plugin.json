@@ -1,0 +1,703 @@
+{
+ "config": {
+  "run_id": "mm_20261110_160050_b3c571",
+  "strategy": {
+   "kind": "plugin",
+   "label": "gold_reaper",
+   "spec_sha256": "ba71bcf42eb60648506d3bf87de80d9313acc32a6ea1b619bcb2f2ed22f2ec30",
+   "code_sha256": "4094e9cd2c644510ea1a99bcd7ddadd325bd6d1d4475b5913348f24a241996ae",
+   "origin_symbol": null
+  },
+  "markets": [
+   "XAUUSD",
+   "EURUSD",
+   "DE40"
+  ],
+  "timeframes": [
+   "M1"
+  ],
+  "timeframes_requested": [
+   "M15"
+  ],
+  "start": "2023-06-01",
+  "end": "2023-08-01",
+  "sealed_start": "2024-01-01",
+  "params_frozen": {},
+  "reoptimise": false,
+  "risk_model": "native",
+  "risk_normalisation": "NOT_APPLICABLE: de strategie bepaalt zelf haar positiegrootte; vergelijk R/% en kosten, geen lots",
+  "risk_percent": null,
+  "capital": 10000.0,
+  "account_currency": "USD",
+  "family": "multimarket:plugin:ba71bcf42eb6",
+  "new_hypothesis": false,
+  "instrument_binding": {
+   "kind": "plugin",
+   "source": "PLUGIN['symbols']",
+   "restricted_to": [
+    "XAUUSD"
+   ],
+   "findings": [],
+   "n_findings": 0,
+   "price_param_warnings": []
+  }
+ },
+ "results": [
+  {
+   "symbol": "XAUUSD",
+   "timeframe": "M1",
+   "key": "XAUUSD|M1",
+   "kind": "plugin",
+   "flags": [
+    "SHORT_PERIOD",
+    "PROVISIONAL_CONTRACT",
+    "FAILS_COST_STRESS"
+   ],
+   "provisional": true,
+   "start": "2023-06-01",
+   "end": "2023-08-01",
+   "period_days": 61,
+   "params": {
+    "max_dd": 10.0,
+    "entry_offset_factor": 0.7,
+    "stop_loss_factor": 0.75,
+    "take_profit_factor": 1.5,
+    "trail_distance_factor": 1.5,
+    "be_trigger_factor": 0.75,
+    "commission_per_lot_side": 0.0
+   },
+   "engine": {
+    "engine_nl": "Python-plugin GoldReaper v2 (Pass3436 Robuust) met eigen engine op Dukascopy Bid/Ask M1.",
+    "code_sha256": "4094e9cd2c644510ea1a99bcd7ddadd325bd6d1d4475b5913348f24a241996ae",
+    "dataset_sha256": "2bb2b39f76552de9c57e3141f5295d712fa279b2c1ad6e28be4ce26a377b987e"
+   },
+   "currency_conversion": "ACCOUNT_CURRENCY_QUOTE",
+   "metrics": {
+    "trades": 100,
+    "trades_per_week": 11.9344262295082,
+    "net_profit": -328.84499999999997,
+    "net_return_pct": -3.2884499999999997,
+    "profit_factor": 0.29993506977338286,
+    "recovery_factor": -0.7949894475240967,
+    "max_drawdown_pct": 4.1178285899732,
+    "sharpe_daily": -3.963503047186823,
+    "sortino_daily": -4.037478835413705,
+    "win_rate": 0.4,
+    "avg_r": null,
+    "costs_total": 0.0,
+    "gross_profit_before_costs": -328.84499999999997,
+    "costs_pct_of_gross": 0.0
+   },
+   "risk_normalisation": "NOT_APPLICABLE_OWN_SIZING",
+   "cost_model": {
+    "source": "strategy engine",
+    "costs_total": 0.0,
+    "costs_pct_of_gross": 0.0,
+    "spread": "bid/ask only if the engine models it (plugin); Jesse: none",
+    "swap": "not modelled",
+    "slippage": "not modelled"
+   },
+   "cost_stress": {
+    "scenario": "spread_+50% (engine re-run)",
+    "net_profit": -364.6135000000003,
+    "survives": false
+   },
+   "edge_positive": false,
+   "validation_status": "FAIL",
+   "validation_note": "lichte controle (kostenstress); geen walk-forward/DSR/parameterstabiliteit per markt",
+   "currency_status": "ACCOUNT_CURRENCY_QUOTE",
+   "status": "OK",
+   "runtime_s": 13.1,
+   "ledger_id": "6ab2e6a0dbf64a0aa594f1dd3c654320"
+  },
+  {
+   "symbol": "EURUSD",
+   "timeframe": "M1",
+   "key": "EURUSD|M1",
+   "kind": "plugin",
+   "flags": [
+    "INSTRUMENT_BOUND"
+   ],
+   "provisional": true,
+   "status": "NOT_SUPPORTED",
+   "validation_status": "INSTRUMENT_BOUND",
+   "edge_positive": false,
+   "reason": "INSTRUMENT_BOUND: PLUGIN['symbols'] -> only valid for XAUUSD; EURUSD would need a new strategy version / hypothesis (no automatic translation)",
+   "binding": "PLUGIN['symbols']",
+   "ledger_id": "ef8fb389a5ad4bbeafe0ef7327338fb8"
+  },
+  {
+   "symbol": "DE40",
+   "timeframe": "M1",
+   "key": "DE40|M1",
+   "kind": "plugin",
+   "flags": [
+    "INSTRUMENT_BOUND"
+   ],
+   "provisional": true,
+   "status": "NOT_SUPPORTED",
+   "validation_status": "INSTRUMENT_BOUND",
+   "edge_positive": false,
+   "reason": "INSTRUMENT_BOUND: PLUGIN['symbols'] -> only valid for XAUUSD; DE40 would need a new strategy version / hypothesis (no automatic translation)",
+   "binding": "PLUGIN['symbols']",
+   "ledger_id": "65b518d9049d4e71949fefc17061f39e"
+  }
+ ],
+ "combined": {
+  "equity": [
+   {
+    "time": "2023-06-01T00:00:00+00:00",
+    "equity": 10001.22
+   },
+   {
+    "time": "2023-06-02T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-03T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-04T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-05T00:00:00+00:00",
+    "equity": 10045.269999999999
+   },
+   {
+    "time": "2023-06-06T00:00:00+00:00",
+    "equity": 10045.269999999999
+   },
+   {
+    "time": "2023-06-07T00:00:00+00:00",
+    "equity": 10045.269999999999
+   },
+   {
+    "time": "2023-06-08T00:00:00+00:00",
+    "equity": 10018.211
+   },
+   {
+    "time": "2023-06-09T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-10T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-11T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-12T00:00:00+00:00",
+    "equity": 9896.974999999999
+   },
+   {
+    "time": "2023-06-13T00:00:00+00:00",
+    "equity": 9728.747
+   },
+   {
+    "time": "2023-06-14T00:00:00+00:00",
+    "equity": 9637.941
+   },
+   {
+    "time": "2023-06-15T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-16T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-17T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-18T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-19T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-20T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-21T00:00:00+00:00",
+    "equity": 9659.652999999998
+   },
+   {
+    "time": "2023-06-22T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-23T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-24T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-25T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-26T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-27T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-28T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-06-29T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-06-30T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-01T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-02T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-03T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-04T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-05T00:00:00+00:00",
+    "equity": 9663.388999999997
+   },
+   {
+    "time": "2023-07-06T00:00:00+00:00",
+    "equity": 9663.388999999997
+   },
+   {
+    "time": "2023-07-07T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-08T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-09T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-10T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-11T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-12T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-13T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-14T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-15T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-16T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-17T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-18T00:00:00+00:00",
+    "equity": 9680.059999999996
+   },
+   {
+    "time": "2023-07-19T00:00:00+00:00",
+    "equity": 9680.059999999996
+   },
+   {
+    "time": "2023-07-20T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-21T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-22T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-23T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-24T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-25T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-26T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-27T00:00:00+00:00",
+    "equity": 9693.354999999998
+   },
+   {
+    "time": "2023-07-28T00:00:00+00:00",
+    "equity": 9671.154999999997
+   }
+  ],
+  "by_timeframe": {
+   "M1": {
+    "n_cells": 1,
+    "net_return_pct": -3.2884500000000316,
+    "max_drawdown_pct": 4.0549333168744885,
+    "sharpe_daily": -3.110466838440975
+   }
+  },
+  "net_return_pct": -3.2884500000000316,
+  "max_drawdown_pct": 4.0549333168744885,
+  "sharpe_daily": -3.110466838440975,
+  "method": "gelijk gewogen: kapitaal gelijk verdeeld over alle cellen; cellen zonder data tellen als cash"
+ },
+ "equities": {
+  "XAUUSD|M1": [
+   {
+    "time": "2023-06-01T00:00:00+00:00",
+    "equity": 10001.22
+   },
+   {
+    "time": "2023-06-02T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-03T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-04T00:00:00+00:00",
+    "equity": 10002.439999999999
+   },
+   {
+    "time": "2023-06-05T00:00:00+00:00",
+    "equity": 10045.27
+   },
+   {
+    "time": "2023-06-06T00:00:00+00:00",
+    "equity": 10045.27
+   },
+   {
+    "time": "2023-06-07T00:00:00+00:00",
+    "equity": 10045.27
+   },
+   {
+    "time": "2023-06-08T00:00:00+00:00",
+    "equity": 10018.211
+   },
+   {
+    "time": "2023-06-09T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-10T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-11T00:00:00+00:00",
+    "equity": 9923.574999999999
+   },
+   {
+    "time": "2023-06-12T00:00:00+00:00",
+    "equity": 9896.974999999999
+   },
+   {
+    "time": "2023-06-13T00:00:00+00:00",
+    "equity": 9728.747
+   },
+   {
+    "time": "2023-06-14T00:00:00+00:00",
+    "equity": 9637.941
+   },
+   {
+    "time": "2023-06-15T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-16T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-17T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-18T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-19T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-20T00:00:00+00:00",
+    "equity": 9644.752999999999
+   },
+   {
+    "time": "2023-06-21T00:00:00+00:00",
+    "equity": 9659.652999999998
+   },
+   {
+    "time": "2023-06-22T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-23T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-24T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-25T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-26T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-27T00:00:00+00:00",
+    "equity": 9657.026999999998
+   },
+   {
+    "time": "2023-06-28T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-06-29T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-06-30T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-01T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-02T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-03T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-04T00:00:00+00:00",
+    "equity": 9667.066999999997
+   },
+   {
+    "time": "2023-07-05T00:00:00+00:00",
+    "equity": 9663.388999999997
+   },
+   {
+    "time": "2023-07-06T00:00:00+00:00",
+    "equity": 9663.388999999997
+   },
+   {
+    "time": "2023-07-07T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-08T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-09T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-10T00:00:00+00:00",
+    "equity": 9656.069999999996
+   },
+   {
+    "time": "2023-07-11T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-12T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-13T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-14T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-15T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-16T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-17T00:00:00+00:00",
+    "equity": 9658.559999999996
+   },
+   {
+    "time": "2023-07-18T00:00:00+00:00",
+    "equity": 9680.059999999996
+   },
+   {
+    "time": "2023-07-19T00:00:00+00:00",
+    "equity": 9680.059999999996
+   },
+   {
+    "time": "2023-07-20T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-21T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-22T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-23T00:00:00+00:00",
+    "equity": 9680.859999999995
+   },
+   {
+    "time": "2023-07-24T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-25T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-26T00:00:00+00:00",
+    "equity": 9674.694999999996
+   },
+   {
+    "time": "2023-07-27T00:00:00+00:00",
+    "equity": 9693.354999999998
+   },
+   {
+    "time": "2023-07-28T00:00:00+00:00",
+    "equity": 9671.154999999997
+   }
+  ]
+ },
+ "generalisation": {
+  "class": "NO_EDGE",
+  "explanation_nl": "Geen markt toont een robuuste positieve edge (0/1 markten positief na kostenstress en minimaal 30 trades).",
+  "n_markets_tested": 1,
+  "n_markets_positive": 0,
+  "markets_positive": [],
+  "origin_market": null,
+  "n_markets_positive_excl_origin": 0,
+  "n_cells_positive": 0,
+  "n_cells_tested": 1,
+  "instrument_bound_markets": [
+   "DE40",
+   "EURUSD"
+  ],
+  "n_markets_instrument_bound": 2,
+  "effective_markets": 1.0,
+  "effective_positive_markets": 0.0,
+  "correlation_matrix": {
+   "markets": [],
+   "matrix": []
+  },
+  "regime_dependence": {
+   "vol_regime_avg_r": {},
+   "positive_in_all_regimes": false,
+   "note": "gemiddelde R per volatiliteitsregime (causaal, LOW/MID/HIGH) over alle cellen"
+  },
+  "selection": {
+   "n_cells_tested": 1,
+   "evidence_class": "EXPLORATORY_SELECTION",
+   "note_nl": "Elke markt x timeframe is een ledger-trial. Het beste resultaat kiezen verbetert het bewijs niet; de klasse geldt over alle geteste cellen.",
+   "ledger_trials_family": 3
+  }
+ },
+ "ledger_ids": [
+  "6ab2e6a0dbf64a0aa594f1dd3c654320",
+  "ef8fb389a5ad4bbeafe0ef7327338fb8",
+  "65b518d9049d4e71949fefc17061f39e"
+ ],
+ "provisional_note_nl": "Contractspecificaties zijn aannames (niet broker-bevestigd): geldbedragen zijn onderzoeksschattingen; R-multiples en % zijn robuuster.",
+ "money_approval": {
+  "money_approval_allowed": false,
+  "status": "PROVISIONAL",
+  "blocking": {
+   "XAUUSD": [
+    "contract_size",
+    "lot_step",
+    "min_lot",
+    "commission_per_lot_side",
+    "margin",
+    "swap",
+    "slippage"
+   ]
+  },
+  "per_market": {
+   "XAUUSD": {
+    "money_approval_allowed": false,
+    "blocking_fields": [
+     "contract_size",
+     "lot_step",
+     "min_lot",
+     "commission_per_lot_side",
+     "margin",
+     "swap",
+     "slippage"
+    ],
+    "status": "PROVISIONAL",
+    "rule": "geldbedragen/winst in valuta zijn voorlopig tot elk blokkerend veld verifieerbaar is"
+   }
+  },
+  "note_nl": "Financiele conclusies (bedragen, rendement in geld, positiegrootte in lots, margin) zijn PROVISIONAL en blokkeren geldgebaseerde goedkeuring tot de blokkerende velden BROKER_VERIFIED zijn (zie BROKER_ASSUMPTIONS_REGISTER.md). R-multiples en % blijven bruikbaar."
+ },
+ "engine_note_nl": "Plugin: eigen engine op de basis-timeframe van de plugin; spreadstress alleen als de plugin die verwerkt. Bedragen zijn onderzoeksschattingen (zie money_approval).",
+ "runtime_s": 13.2
+}
