@@ -1,0 +1,11 @@
+{
+  "order_mode":{"simple":true,"label":"Ordertype","description":"Kies de entrylogica. De selectie bewaart dezelfde numerieke waarde in Jesse.","option_labels":{"0":"Long marktorder","1":"Long stop boven candle-high","2":"Short stop onder candle-low"},"option_details":{"0":{"when":"Als de longvoorwaarden slagen en de entry-interval is bereikt.","behavior":"Stuurt direct een long marketorder in op de signaalcandle.","limitations":"Alleen long; geen pending order en dus geen vervaltijd."},"1":{"when":"Als de longvoorwaarden slagen en de entry-interval is bereikt.","behavior":"Plaatst een long stoporder op candle-high plus de stop-entry-offset.","limitations":"Alleen long; pending order wordt na 'Vervallen na' candles geannuleerd."},"2":{"when":"Als de shortvoorwaarden slagen en de entry-interval is bereikt.","behavior":"Plaatst een short stoporder op candle-low min de stop-entry-offset.","limitations":"Alleen short; Jesse Spot accepteert deze shortmodus niet, kies Futures."}},"account_options":{"spot":[0,1],"futures":[0,1,2]}},
+  "entry_interval":{"simple":true,"label":"Entry-interval","unit":"candles","description":"Controleer elke N candles op een entrykans; geen tijdseenheid in minuten."},
+  "position_size":{"simple":true,"label":"Ordergrootte","unit":"Jesse-quantity","description":"Hoeveelheid die direct naar Jesse gaat; dit is geen gegarandeerd broker-lot."},
+  "ema_period":{"simple":true,"label":"EMA-periode","unit":"candles","description":"Aantal candles voor de trendfilter."},
+  "max_bar_range":{"simple":false,"label":"Maximale candle-range","unit":"ruwe prijsafstand","description":"Maximaal high minus low in ruwe symbool-prijseenheden."},
+  "stop_distance":{"simple":false,"label":"Stop-lossafstand","unit":"ruwe prijsafstand","description":"Afstand vanaf entry voor de stop-loss."},
+  "target_distance":{"simple":false,"label":"Take-profitafstand","unit":"ruwe prijsafstand","description":"Afstand vanaf entry voor het koersdoel."},
+  "stop_offset":{"simple":false,"label":"Stop-entry-offset","unit":"ruwe prijsafstand","description":"Afstand boven high (long) of onder low (short) voor een stop-entry."},
+  "pending_expiry_bars":{"simple":false,"label":"Vervallen na","unit":"candles","description":"Annuleer een pending entry na dit aantal candles."}
+}

@@ -1,0 +1,149 @@
+{
+  "break_even": null,
+  "cooldown_bars": 0,
+  "description": "Trendvolgend: koop een RSI-pullback in een EMA-trend, verkoop het spiegelbeeld.",
+  "direction": "both",
+  "entry": {
+    "long": {
+      "all": [
+        {
+          "left": {
+            "indicator": "ema",
+            "period": {
+              "param": "ema_fast"
+            }
+          },
+          "op": ">",
+          "right": {
+            "indicator": "ema",
+            "period": {
+              "param": "ema_slow"
+            }
+          }
+        },
+        {
+          "left": {
+            "indicator": "rsi",
+            "period": {
+              "param": "rsi_period"
+            }
+          },
+          "op": "crosses_above",
+          "right": {
+            "value": {
+              "param": "rsi_low"
+            }
+          }
+        }
+      ]
+    },
+    "short": {
+      "all": [
+        {
+          "left": {
+            "indicator": "ema",
+            "period": {
+              "param": "ema_fast"
+            }
+          },
+          "op": "<",
+          "right": {
+            "indicator": "ema",
+            "period": {
+              "param": "ema_slow"
+            }
+          }
+        },
+        {
+          "left": {
+            "indicator": "rsi",
+            "period": {
+              "param": "rsi_period"
+            }
+          },
+          "op": "crosses_below",
+          "right": {
+            "value": {
+              "param": "rsi_high"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "max_trades_per_day": null,
+  "name": "EmaRsiPullback",
+  "order": {
+    "type": "market"
+  },
+  "params": [
+    {
+      "default": 20,
+      "max": 50,
+      "min": 5,
+      "name": "ema_fast",
+      "step": 1,
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "max": 200,
+      "min": 20,
+      "name": "ema_slow",
+      "step": 5,
+      "type": "int"
+    },
+    {
+      "default": 14,
+      "max": 30,
+      "min": 2,
+      "name": "rsi_period",
+      "step": 1,
+      "type": "int"
+    },
+    {
+      "default": 40,
+      "max": 50,
+      "min": 20,
+      "name": "rsi_low",
+      "step": 1,
+      "type": "int"
+    },
+    {
+      "default": 60,
+      "max": 80,
+      "min": 50,
+      "name": "rsi_high",
+      "step": 1,
+      "type": "int"
+    },
+    {
+      "default": 1.5,
+      "max": 4,
+      "min": 0.5,
+      "name": "stop_mult",
+      "step": 0.25,
+      "type": "float"
+    }
+  ],
+  "risk": {
+    "percent": 0.5
+  },
+  "schema": "strategy_lab.rules/1",
+  "session": null,
+  "stop": {
+    "mult": {
+      "param": "stop_mult"
+    },
+    "period": 14,
+    "type": "atr"
+  },
+  "symbol": "XAUUSD",
+  "target": {
+    "type": "r_multiple",
+    "value": 2
+  },
+  "time_exit_bars": null,
+  "timeframe": "M15",
+  "trailing": null
+}

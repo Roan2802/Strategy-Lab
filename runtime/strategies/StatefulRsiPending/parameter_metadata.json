@@ -1,0 +1,11 @@
+{
+  "rsi_period": {"simple": true, "label": "RSI-periode", "unit": "candles", "description": "Aantal candles voor de RSI-indicator."},
+  "rsi_entry_max": {"simple": true, "label": "Maximale RSI voor entry", "unit": "RSI-index", "description": "Nieuwe longsetup mag door wanneer RSI hierop of lager staat."},
+  "entry_interval": {"simple": true, "label": "Entry-interval", "unit": "candles", "description": "Alleen iedere N-de candle mag een nieuwe setup starten."},
+  "position_size": {"simple": true, "label": "Ordergrootte", "unit": "Jesse-quantity", "description": "Hoeveelheid die Jesse ontvangt; dit is geen gegarandeerd broker-lot."},
+  "stop_offset": {"simple": false, "label": "Stop-entry-offset", "unit": "ruwe prijsafstand", "description": "Afstand boven de signaalcandle-high voor de long stoporder."},
+  "stop_distance": {"simple": false, "label": "Stop-lossafstand", "unit": "ruwe prijsafstand", "description": "Afstand vanaf de fillprijs voor de long stop-loss."},
+  "target_distance": {"simple": false, "label": "Take-profitafstand", "unit": "ruwe prijsafstand", "description": "Afstand vanaf de fillprijs voor de long take-profit."},
+  "expiry_bars": {"simple": false, "label": "Pending order vervalt na", "unit": "candles", "description": "Annuleer de niet-gevulde stoporder na dit aantal candles."},
+  "cooldown_bars": {"simple": false, "label": "Cooldown na sluiting", "unit": "candles", "description": "Wacht dit aantal candles na een gesloten positie voordat een nieuwe setup mag starten."}
+}
