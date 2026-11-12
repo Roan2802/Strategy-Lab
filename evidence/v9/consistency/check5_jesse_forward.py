@@ -47,6 +47,8 @@ def run_forward(manifest, work: Path):
     store = DailyPartitionStore(work / "s.sqlite")
     stats = ingest_real_range(store, symbol, first - timedelta(days=1), last)
     frozen = datetime.combine(first, datetime.min.time(), tzinfo=timezone.utc)
+    from strategy_lab.research import instruments
+    assert not instruments.conversion_info(symbol, "USD")["needed"],         f"{symbol}: quote currency != USD, hardcoded quote_to_account=1 would be an FX fallback"
     spot_contract = {"account_currency": "USD", "contract_size": 100 if symbol == "XAUUSD" else 1, "tick_size": 0.01,
                      "quote_to_account": 1, "volume_step": 0.01, "commission_per_lot_side": 0.0, "slippage_points": 0}
     config = {"strategy": "LabBreakout", "symbol": symbol, "timeframe": "M1", "execution_model": MODEL,

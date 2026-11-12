@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from contextlib import closing
-from dataclasses import fields
+from dataclasses import fields, replace
 from datetime import date, datetime, timedelta, timezone
 import hashlib
 import json
@@ -18,7 +18,7 @@ from . import forward_rules
 from .daily_data import _utc
 from .data_manager import DataError
 from .forward_registry import ForwardRegistry, data_symbol
-from .portfolio import fx_check
+from .portfolio import FxRateUnavailable, fx_check, fx_quote_currency, load_fx, risk_group
 
 
 MODEL = "LAB_BREAKOUT_BIDASK_M1_V1"
@@ -39,7 +39,7 @@ EVIDENCE_CLASSES = {
                        "note": "NOT IMPLEMENTED: no live feed, no streaming ticks, no order routing of any kind."},
 }
 DEFAULT_LIMITS = {"max_daily_loss": None, "max_drawdown": None, "symbol_risk": None,
-                  "max_jump": 0.2, "gap_minutes": 180}
+                  "max_jump": 0.2, "gap_minutes": 180, "group_risk": None, "max_positions": None}
 _LIMIT_FIELDS = tuple(DEFAULT_LIMITS)
 
 SCHEMA = """
@@ -70,7 +70,8 @@ CREATE TABLE IF NOT EXISTS forward_events (
 CREATE INDEX IF NOT EXISTS forward_event_lookup ON forward_events(portfolio_id, day, id);
 CREATE TABLE IF NOT EXISTS forward_limits (
     portfolio_id TEXT PRIMARY KEY REFERENCES forward_portfolios(id),
-    max_daily_loss REAL, max_drawdown REAL, symbol_risk REAL, max_jump REAL, gap_minutes REAL
+    max_daily_loss REAL, max_drawdown REAL, symbol_risk REAL, max_jump REAL, gap_minutes REAL,
+    group_risk REAL, max_positions REAL
 );
 CREATE TABLE IF NOT EXISTS forward_marks (
     portfolio_id TEXT NOT NULL, symbol TEXT NOT NULL, candle_at TEXT NOT NULL, bid_close REAL NOT NULL,
@@ -149,6 +150,13 @@ def _ids(slot: int, symbol: str, detail: dict) -> dict:
     return ids
 
 
+FX_SIDE = "mid"
+
+
+class FxPause(Exception):
+    """A needed FX rate is missing: the day is not committed and nothing is filled."""
+
+
 def validate_registration(registration: dict) -> tuple[dict, execution.ContractSpec]:
     config = registration["configuration"]
     if config.get("execution_model") == forward_rules.MODEL:
@@ -192,10 +200,36 @@ def validate_registration(registration: dict) -> tuple[dict, execution.ContractS
 
 
 class ForwardEngine:
-    def __init__(self, registry: ForwardRegistry):
+    def __init__(self, registry: ForwardRegistry, fx=None):
         self.registry = registry
+        self._fx = fx
         with closing(self._connect()) as db, db:
             db.executescript(SCHEMA)
+            have = {row[1] for row in db.execute("PRAGMA table_info(forward_limits)")}
+            for column in _LIMIT_FIELDS:
+                if column not in have:
+                    db.execute(f"ALTER TABLE forward_limits ADD COLUMN {column} REAL")
+
+    def fx_service(self):
+        """Causal FX source (research/fx.py); None when it is not installed."""
+        if self._fx is None:
+            self._fx = load_fx()
+        return self._fx
+
+    def _fx_rate(self, member, timestamp) -> tuple[float, dict]:
+        service = self.fx_service()
+        quote, account = member["fx_quote"], member["base_contract"].account_currency.upper()
+        if service is None:
+            raise FxPause(f"no FX service for {quote}/{account}")
+        try:
+            conversion = service.rate(quote, account, timestamp, FX_SIDE)
+        except FxRateUnavailable as exc:
+            raise FxPause(f"{quote}/{account} at {_stamp(timestamp)}: {exc}") from exc
+        rate = float(getattr(conversion, "rate", conversion))
+        if not math.isfinite(rate) or rate <= 0:
+            raise FxPause(f"{quote}/{account} at {_stamp(timestamp)}: invalid rate {rate!r}")
+        return rate, {"fx_source": getattr(conversion, "source", None),
+                      "fx_data_version": getattr(conversion, "data_version", None)}
 
     def _connect(self):
         db = sqlite3.connect(self.registry.data.path, timeout=15)
@@ -224,7 +258,7 @@ class ForwardEngine:
     def enroll(self, portfolio_id: str, registration_id: str, *, joined_at: datetime | None = None) -> None:
         registration = self.registry.get(registration_id)
         config, contract = validate_registration(registration)
-        fx = fx_check(config["symbol"], contract)
+        fx = fx_check(config["symbol"], contract, fx_available=self.fx_service() is not None)
         if fx["status"] == "BLOCKED":
             raise DataError(f"Enrollment blocked: {fx['reason']}")
         joined = _stamp(joined_at or datetime.now(timezone.utc))
@@ -261,6 +295,8 @@ class ForwardEngine:
                 clean[key] = None
             elif key == "gap_minutes":
                 clean[key] = _number(value, key, minimum=1, maximum=10_000_000)
+            elif key == "max_positions":
+                clean[key] = _integer(value, key, 1, 10_000)
             else:
                 clean[key] = _number(value, key, minimum=1e-12, maximum=1)
         with closing(self._connect()) as db, db:
@@ -269,7 +305,8 @@ class ForwardEngine:
             if portfolio["last_day"]:
                 raise DataError("Portfolio limits cannot change after a day was committed")
             merged = {**self._limits(db, portfolio_id), **clean}
-            db.execute("INSERT OR REPLACE INTO forward_limits VALUES (?, ?, ?, ?, ?, ?)",
+            db.execute(f"INSERT OR REPLACE INTO forward_limits(portfolio_id, {', '.join(_LIMIT_FIELDS)}) "
+                       f"VALUES (?{', ?' * len(_LIMIT_FIELDS)})",
                        (portfolio_id, *(merged[key] for key in _LIMIT_FIELDS)))
         return merged
 
@@ -283,33 +320,48 @@ class ForwardEngine:
         _integer(max_days, "max_days", 1, 31)
         committed = []
         for _ in range(max_days):
-            with closing(self._connect()) as db, db:
-                db.execute("BEGIN IMMEDIATE")
-                portfolio = self._portfolio(db, portfolio_id)
-                if portfolio["model_sha256"] != MODEL_SHA256:
-                    raise DataError("The frozen forward engine version differs from the loaded version")
-                members = [dict(row) for row in db.execute(
-                    "SELECT * FROM forward_members WHERE portfolio_id=? ORDER BY joined_at, registration_id",
-                    (portfolio_id,),
-                )]
-                if not members:
-                    return {"committed_days": committed, "status": "NO_MEMBERS"}
-                day = (date.fromisoformat(portfolio["last_day"]) + timedelta(days=1)
-                       if portfolio["last_day"] else date.fromisoformat(members[0]["joined_at"][:10]))
-                if day >= cutoff.date():
-                    return {"committed_days": committed, "status": "UP TO DATE"}
-                active = [member for member in members if member["joined_at"][:10] <= day.isoformat()]
-                for member in active:
-                    snapshot = self.registry.get(member["registration_id"])
-                    member["config"], member["contract"] = validate_registration(snapshot)
-                    member["state"] = json.loads(member["state"])
-                publications, missing = self._load_day(active, day, cutoff)
-                if missing:
-                    return {"committed_days": committed, "status": "WAITING_FOR_DATA",
-                            "day": day.isoformat(), "missing_symbols": missing}
-                self._commit_day(db, portfolio, active, day, cutoff, publications)
-            committed.append(day.isoformat())
+            try:
+                outcome = self._advance_day(portfolio_id, cutoff, committed)
+            except FxPause as exc:
+                return {"committed_days": committed, "status": "PAUSED", "reason": "FX_RATE_UNAVAILABLE",
+                        "detail": str(exc)}
+            if outcome:
+                return outcome
         return {"committed_days": committed, "status": "BATCH_LIMIT"}
+
+    def _advance_day(self, portfolio_id, cutoff, committed):
+        """Commit one UTC day (one transaction). Returns a final status dict, or None after a committed day."""
+        with closing(self._connect()) as db, db:
+            db.execute("BEGIN IMMEDIATE")
+            portfolio = self._portfolio(db, portfolio_id)
+            if portfolio["model_sha256"] != MODEL_SHA256:
+                raise DataError("The frozen forward engine version differs from the loaded version")
+            members = [dict(row) for row in db.execute(
+                "SELECT * FROM forward_members WHERE portfolio_id=? ORDER BY joined_at, registration_id",
+                (portfolio_id,),
+            )]
+            if not members:
+                return {"committed_days": committed, "status": "NO_MEMBERS"}
+            day = (date.fromisoformat(portfolio["last_day"]) + timedelta(days=1)
+                   if portfolio["last_day"] else date.fromisoformat(members[0]["joined_at"][:10]))
+            if day >= cutoff.date():
+                return {"committed_days": committed, "status": "UP TO DATE"}
+            active = [member for member in members if member["joined_at"][:10] <= day.isoformat()]
+            for member in active:
+                snapshot = self.registry.get(member["registration_id"])
+                member["config"], member["contract"] = validate_registration(snapshot)
+                member["state"] = json.loads(member["state"])
+                member["base_contract"] = member["contract"]
+                member["fx_quote"] = fx_quote_currency(member["config"]["symbol"], member["contract"].account_currency)
+                if member["fx_quote"] and member["state"].get("fx_rate"):
+                    member["contract"] = replace(member["contract"], quote_to_account=member["state"]["fx_rate"])
+            publications, missing = self._load_day(active, day, cutoff)
+            if missing:
+                return {"committed_days": committed, "status": "WAITING_FOR_DATA",
+                        "day": day.isoformat(), "missing_symbols": missing}
+            self._commit_day(db, portfolio, active, day, cutoff, publications)
+        committed.append(day.isoformat())
+        return None
 
     def _load_day(self, members, day, cutoff):
         publications, missing = {}, []
@@ -362,6 +414,13 @@ class ForwardEngine:
                 symbol = member["config"]["symbol"]
                 slot = members.index(member)
                 block = halt or ("MAX_DRAWDOWN" if drawdown else None)
+                if (not block and limits["max_positions"]
+                        and sum(1 for m in members if m["state"]["position"]) >= limits["max_positions"]):
+                    block = "MAX_POSITIONS"
+                if member["fx_quote"]:
+                    rate, member["fx_meta"] = self._fx_rate(member, timestamp)
+                    member["contract"] = replace(member["base_contract"], quote_to_account=rate)
+                    member["state"]["fx_rate"] = rate
                 previous = marks.get(symbol)
                 if previous:
                     gap = (timestamp - datetime.fromisoformat(previous[0])).total_seconds() / 60
@@ -373,30 +432,44 @@ class ForwardEngine:
                              bid_open=candle["bid_open"])
                         block = block or "PRICE_JUMP"
                 marks[symbol] = (_stamp(timestamp), candle["bid_close"])
-                view, extra = dict(budget), 0.0
+                view, extra, cap = dict(budget), 0.0, None
                 if block:
                     view["equity"] = 0.0
-                elif limits["symbol_risk"]:
+                elif limits["symbol_risk"] or limits["group_risk"]:
                     total_room = min(portfolio["risk_limit"], member["config"]["portfolio_risk_limit"]) \
                         * budget["equity"] - budget["risk"]
-                    symbol_room = limits["symbol_risk"] * budget["equity"] - sum(
-                        m["state"]["position"]["risk"] for m in members
-                        if m["config"]["symbol"] == symbol and m["state"]["position"])
-                    extra = max(0.0, total_room - symbol_room)
+                    rooms = []
+                    if limits["symbol_risk"]:
+                        rooms.append((limits["symbol_risk"] * budget["equity"] - sum(
+                            m["state"]["position"]["risk"] for m in members
+                            if m["config"]["symbol"] == symbol and m["state"]["position"]), "SYMBOL_RISK_LIMIT"))
+                    if limits["group_risk"]:
+                        group = risk_group(symbol)
+                        rooms.append((limits["group_risk"] * budget["equity"] - sum(
+                            m["state"]["position"]["risk"] for m in members
+                            if risk_group(m["config"]["symbol"]) == group and m["state"]["position"]),
+                            "GROUP_RISK_LIMIT"))
+                    room, cap = min(rooms)
+                    extra = max(0.0, total_room - room)
                     view["risk"] += extra
                 before = dict(view)
 
                 def emit(kind, *, _member=member, _slot=slot, _pub=publication, _block=block, _extra=extra,
-                         _before=before, _at=timestamp, **detail):
+                         _cap=cap, _before=before, _at=timestamp, **detail):
                     if kind == "ORDER_REJECTED" and _block and detail.get("reason") == "SHARED_MARGIN":
                         detail = {**detail, "reason": "PORTFOLIO_HALT", "halt": _block}
                     elif (kind == "ORDER_REJECTED" and _extra and detail.get("reason") == "RISK_LIMIT"
                           and detail["risk"] + _before["risk"] - _extra
                           <= min(portfolio["risk_limit"], _member["config"]["portfolio_risk_limit"])
                           * _before["equity"]):
-                        detail = {**detail, "reason": "SYMBOL_RISK_LIMIT"}
-                    record = {"quote_observed_at": _pub["observed_at"], "partition_sha256": _pub["sha256"],
-                              **detail,
+                        detail = {**detail, "reason": _cap}
+                    if kind == "ORDER_REJECTED":
+                        detail = {**detail, "priority_rank": _slot + 1}
+                    if _member["fx_quote"]:
+                        detail = {**detail, "fx_quote": _member["fx_quote"], "fx_side": FX_SIDE,
+                                  "fx_rate": _member["contract"].quote_to_account, **_member["fx_meta"]}
+                    record = {"quote_observed_at": _pub["observed_at"], "received_at": _pub["observed_at"],
+                              "partition_sha256": _pub["sha256"], **detail,
                               **_ids(_slot, symbol, detail)}
                     db.execute("""INSERT INTO forward_events(portfolio_id, registration_id, day, candle_at, kind, detail)
                                   VALUES (?, ?, ?, ?, ?, ?)""",
@@ -507,7 +580,8 @@ class ForwardEngine:
             member["state"] = json.loads(member["state"])
             member["configuration"] = json.loads(member["configuration"])
             member["fx"] = fx_check(member["configuration"]["symbol"],
-                                    ContractSpec(**member["configuration"]["contract"]))
+                                    ContractSpec(**member["configuration"]["contract"]),
+                                    fx_available=self.fx_service() is not None)
         for event in events:
             event["detail"] = json.loads(event["detail"])
         return {"mode": "DAILY_DELAYED_FORWARD", "evidence_classes": EVIDENCE_CLASSES, "portfolio": portfolio,

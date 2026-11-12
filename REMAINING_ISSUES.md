@@ -256,3 +256,7 @@ Volledige, geconsolideerde lijst: `FINAL_REMAINING_ISSUES.md`. Bewijsniveau per 
 - Uitvoering: partial exits, margin/max lot/stop-out en overnight swap niet gemodelleerd.
 - Data: 6 van 9 markten lopen achter, provider-503's; kalenders DERIVED_FROM_DATA (niet provider-geverifieerd); originelen niet read-only beschermd; Task Scheduler-geschiedenislog uitgeschakeld; echte herstart/slaapstand niet uitgevoerd.
 - Vervangen punten uit V10 (bijv. "7/9 markten inhalen", "single-window geeft FAIL", "Jesse/plugins NOT_SUPPORTED", "DSR-keuze ter beoordeling"): zie sectie 6 van V10_1_FEATURE_AUDIT.md.
+
+## V10.2 — 2026-11-11
+
+See `V10_2_REMAINING_ISSUES.md` for full list. Key: Dukascopy provider returned HTTP 503 (0/9 markets current); no real broker export imported (all money PROVISIONAL); Shadow portfolio has 0 prospective days; PBO gate decision open; margin uses assumed leverage.

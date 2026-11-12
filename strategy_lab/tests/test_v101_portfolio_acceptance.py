@@ -230,31 +230,30 @@ def _fx_portfolio(tmp_path, symbol, contract_over, currency="USD"):
     return engine, portfolio, registration
 
 
-def test_missing_or_wrong_fx_conversion_blocks_enrollment_and_is_flagged_otherwise(tmp_path):
+def test_missing_or_wrong_fx_conversion_blocks_enrollment_and_is_flagged_otherwise(tmp_path, monkeypatch):
     engine, portfolio, registration = _fx_portfolio(tmp_path, "USDJPY", {"quote_to_account": 1})
-    engine.enroll(portfolio, registration["id"], joined_at=FROZEN)               # flagged, not silent
-    fx = engine.report(portfolio)["members"][0]["fx"]
-    assert fx["status"] == "PLACEHOLDER_RATE" and "misstated" in fx["reason"]
-    engine, portfolio, registration = _fx_portfolio(tmp_path / "..", "USDJPY", {"quote_to_account": 0.0067}) \
-        if False else (None, None, None)
-    sub = tmp_path / "ok"
-    sub.mkdir()
-    engine, portfolio, registration = _fx_portfolio(sub, "USDJPY", {"quote_to_account": 0.0067})
     engine.enroll(portfolio, registration["id"], joined_at=FROZEN)
     fx = engine.report(portfolio)["members"][0]["fx"]
-    assert fx["status"] == "WARNING" and fx["pair"] == "USDJPY"                     # static rate, never silent
+    assert fx["status"] == "DYNAMIC_FX" and fx["pair"] == "USDJPY"                   # the frozen 1.0 is never used
     eur = tmp_path / "eur"
     eur.mkdir()
     engine, portfolio, registration = _fx_portfolio(eur, "XAUUSD", {"account_currency": "EUR"}, currency="EUR")
     with pytest.raises(DataError, match="no causal conversion"):
+        engine.enroll(portfolio, registration["id"], joined_at=FROZEN)
+    none = tmp_path / "none"
+    none.mkdir()
+    monkeypatch.setattr("strategy_lab.forward_engine.load_fx", lambda: None)
+    engine, portfolio, registration = _fx_portfolio(none, "DE40", {})
+    with pytest.raises(DataError, match="FX service"):
         engine.enroll(portfolio, registration["id"], joined_at=FROZEN)
 
 
 def test_fx_check_covers_every_status():
     usd = ContractSpec(**CONTRACT)
     assert fx_check("XAUUSD", usd)["status"] == "OK"
-    assert fx_check("DE40", usd)["status"] == "PLACEHOLDER_RATE"                     # EUR index, rate left at 1.0
-    assert fx_check("DE40", ContractSpec(**{**CONTRACT, "quote_to_account": 1.08}))["status"] == "WARNING"
+    assert fx_check("DE40", usd, fx_available=True)["status"] == "DYNAMIC_FX"        # EUR index: converted per candle
+    blocked = fx_check("DE40", usd, fx_available=False)
+    assert blocked["status"] == "BLOCKED" and blocked["reason_code"] == "FX_RATE_UNAVAILABLE"
     assert fx_check("NOT_A_SYMBOL", usd)["status"] == "UNKNOWN_INSTRUMENT"
     assert fx_check("XAUUSD", ContractSpec(**{**CONTRACT, "account_currency": "GBP"}))["status"] == "BLOCKED"
 

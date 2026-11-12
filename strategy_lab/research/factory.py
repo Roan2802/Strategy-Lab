@@ -44,6 +44,7 @@ DEFAULT_DB = LAB / "data_cache" / "factory.sqlite3"
 DEFAULT_LEDGER = LAB / "data_cache" / "research_ledger.sqlite3"
 FRAMES_DIR = LAB / "data_cache" / "factory_frames"
 RESEARCH_VERSION = "FACTORY_V10"
+PBO_TRIAL_STAGE = "L5_PBO"
 STAGES = ("L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8")
 STAGE_NL = {"L1": "Technische controle", "L2": "Snelle test (representatieve vensters)",
             "L3": "Volledige ontwikkelbacktest", "L4": "Parameteroptimalisatie (alleen ontwikkelperiode)",
@@ -54,7 +55,8 @@ PHASE_NL = {"queued": "In de wachtrij", "preparing": "Data en tijdsprotocol voor
             "selecting": "Selectie en bevriezing (L6)", "final_test": "Verzegelde eindtest (L7)",
             "forward": "Forward-geschiktheid (L8)", "done": "Klaar", "stopped": "Gestopt", "error": "Fout",
             "paused": "Gepauzeerd"}
-TERMINAL_STATUSES = {"REJECTED", "ERROR", "REUSED_HOLDOUT", "INSUFFICIENT_EVIDENCE", "TECHNICAL_BLOCKED"}
+TERMINAL_STATUSES = {"REJECTED", "ERROR", "REUSED_HOLDOUT", "INSUFFICIENT_EVIDENCE", "TECHNICAL_BLOCKED",
+                     "REVIEW_REQUIRED"}     # REVIEW_REQUIRED: no automatic work; only a recorded review moves it on
 DATA_REQUIREMENTS = ["Dukascopy M1 Bid/Ask OHLC (geaggregeerd)"]
 # commission per lot per side assumed per asset class (spread comes from the real Bid/Ask)
 COMMISSION_PER_LOT_SIDE = {"fx": 3.5, "metal": 0.0, "index": 0.0, "crypto": 0.0}
@@ -423,6 +425,10 @@ CREATE TABLE IF NOT EXISTS tasks (
 CREATE TABLE IF NOT EXISTS log (
     id INTEGER PRIMARY KEY AUTOINCREMENT, run_id TEXT, at TEXT, level TEXT, message TEXT
 );
+CREATE TABLE IF NOT EXISTS pbo_reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, run_id TEXT, cand_id TEXT, at TEXT, decision TEXT, reviewer TEXT, note TEXT,
+    pbo REAL, max_pbo REAL, l5_sha256 TEXT
+);
 CREATE TABLE IF NOT EXISTS supervisor (
     id INTEGER PRIMARY KEY CHECK (id = 1), pid INTEGER, heartbeat_at REAL, started_at TEXT
 );
@@ -434,6 +440,10 @@ CREATE TRIGGER IF NOT EXISTS trials_no_update BEFORE UPDATE ON trials
 BEGIN SELECT RAISE(ABORT, 'trial records are append-only'); END;
 CREATE TRIGGER IF NOT EXISTS trials_no_delete BEFORE DELETE ON trials
 BEGIN SELECT RAISE(ABORT, 'trial records are append-only'); END;
+CREATE TRIGGER IF NOT EXISTS pbo_reviews_no_update BEFORE UPDATE ON pbo_reviews
+BEGIN SELECT RAISE(ABORT, 'PBO reviews are append-only'); END;
+CREATE TRIGGER IF NOT EXISTS pbo_reviews_no_delete BEFORE DELETE ON pbo_reviews
+BEGIN SELECT RAISE(ABORT, 'PBO reviews are append-only'); END;
 CREATE TRIGGER IF NOT EXISTS candidates_no_delete BEFORE DELETE ON candidates
 BEGIN SELECT RAISE(ABORT, 'candidate records are never deleted'); END;
 """
@@ -663,10 +673,33 @@ class FactoryStore:
         return out
 
     def count_trials(self, run_id=None) -> int:
+        """Search trials (N of the multiple-testing correction). L5_PBO records re-list L4 configurations for
+        auditability; they are the same trials and never count again."""
         with closing(self.db()) as db:
             if run_id:
-                return db.execute("SELECT COUNT(*) FROM trials WHERE run_id=?", (run_id,)).fetchone()[0]
-            return db.execute("SELECT COUNT(*) FROM trials").fetchone()[0]
+                return db.execute("SELECT COUNT(*) FROM trials WHERE run_id=? AND stage!=?",
+                                  (run_id, PBO_TRIAL_STAGE)).fetchone()[0]
+            return db.execute("SELECT COUNT(*) FROM trials WHERE stage!=?", (PBO_TRIAL_STAGE,)).fetchone()[0]
+
+    # ---- PBO reviews (append-only; the candidate status change happens in the same transaction)
+    def pbo_reviews(self, run_id, cand_id) -> list[dict]:
+        with closing(self.db()) as db:
+            rows = db.execute("SELECT * FROM pbo_reviews WHERE run_id=? AND cand_id=? ORDER BY id",
+                              (run_id, cand_id)).fetchall()
+        return [dict(r) for r in rows]
+
+    def add_pbo_review(self, run_id, cand_id, rec: dict, new_status: str, reasons: list) -> bool:
+        """Append the review and move the candidate out of REVIEW_REQUIRED atomically; False when the candidate is
+        no longer REVIEW_REQUIRED (a review is final)."""
+        with closing(self.db()) as db, db:
+            cur = db.execute("UPDATE candidates SET status=?, reasons_json=?, updated_at=? WHERE run_id=? AND cand_id=? "
+                             "AND status='REVIEW_REQUIRED'", (new_status, _dumps(_clean(reasons)), _now(), run_id, cand_id))
+            if cur.rowcount != 1:
+                return False
+            db.execute("INSERT INTO pbo_reviews (run_id, cand_id, at, decision, reviewer, note, pbo, max_pbo, l5_sha256) "
+                       "VALUES (?,?,?,?,?,?,?,?,?)", (run_id, cand_id, rec["at"], rec["decision"], rec["reviewer"],
+                                                      rec["note"], rec["pbo"], rec["max_pbo"], rec["l5_sha256"]))
+        return True
 
     # ---- tasks
     def add_task(self, run_id, cand_id, kind):
@@ -1021,6 +1054,8 @@ def _store_rows_for(store, run_id) -> list[dict]:
     """Multiple-testing rows from the factory store when no ledger is configured (same shape as ledger rows)."""
     out = []
     for t in store.trials(run_id):
+        if t.get("stage") == PBO_TRIAL_STAGE:        # same configurations as the L4 trials: not new trials
+            continue
         m = t.get("metrics") or {}
         sr = m.get("sharpe_daily")
         out.append({"hypothesis_id": t.get("key"), "family": None, "group": t.get("cand_id"), "kind": "DISCOVERY",
@@ -1452,17 +1487,15 @@ class CandidateRunner:
         regimes = robustness.regime_stability(oos_trades, labels)
         conc = robustness.concentration(oos_trades, capital, oos_start, oos_end)
         env.check()
-        # PBO over every configuration of the nested search, validation period, from the cached full-range runs
-        pbo = {"status": validation.INSUFFICIENT, "pbo": None}
-        if len(configs) >= 2:
-            cols = []
-            for c in configs:
-                tr = nested_fn(c, val["start"], val["end"])["trades"]
-                cols.append(validation.daily_returns_from_trades(tr, capital).rename(protocol.canon(c)))
-            mat = pd.concat(cols, axis=1).fillna(0.0)
-            if mat.shape[1] >= 2 and len(mat) >= 8:
-                pbo = validation.pbo_cscv(mat.to_numpy(), n_splits=8)
-                pbo.pop("logits", None)
+        cost_fp = hashlib.sha256(protocol.canon({"capital": cm["capital"], "commission_per_lot": cm["commission_per_lot"],
+                                                 "data": "same SearchData bid/ask"}).encode()).hexdigest()
+        pbo = pbo_over_l4(l4["payload"], lambda p: bt_spec(spec, p, val["start"], val["end"])["trades"], capital,
+                          val_range=(val["start"], val["end"]), cost_fp=cost_fp, chosen_cost_fp=cost_fp,
+                          max_pbo=q["max_pbo"])
+        n_pbo_reg = register_pbo_configs(env, self.rid, self.cid, pbo)
+        _decision(env, self.cand, "L5", f"PBO-set: {pbo['n_eligible']}/{pbo['n_configs']} L4-configuraties "
+                  f"(status {pbo['status']})", {"preconditions": pbo["preconditions"], "excluded": pbo["excluded"],
+                                               "registered_new": n_pbo_reg, "pbo": pbo.get("pbo")})
         daily = validation.daily_returns_from_trades(oos_trades, capital)
         cis = robustness.bootstrap_cis(daily.to_numpy(), [t["pnl"] for t in oos_trades], n=1000,
                                        seed=env.cfg["seed"])
@@ -1489,10 +1522,11 @@ class CandidateRunner:
                     "max_drawdown_pct": om["max_drawdown_pct"], "psr": psr, "dsr": dsr, "n_trials": n_trials,
                     "pbo_result": pbo, "walk_forward": roll, "cost_stress": cost,
                     "parameter_stability": stability, "drop_best": db, "yearly": yb}
-        th = {"min_trades": q["min_oos_trades"], "min_profit_factor": q["min_pf_oos"],
+        th = {"deferred_checks": ["dsr", "psr"],
+              "min_trades": q["min_oos_trades"], "min_profit_factor": q["min_pf_oos"],
               "max_drawdown_pct": q["max_dd_pct"], "max_pbo": q["max_pbo"], "min_wfe": q["min_wfe"],
               "min_dsr": q["min_dsr"], "min_psr": q["min_psr"], "min_param_stability": q["min_param_stability"],
-              "min_oos_trades": q["min_oos_trades"]}
+              "min_oos_trades": q["min_oos_trades"], "pbo_review": True}
         sc = validation.scorecard(evidence, th)
         checks = quality_checks(om, q, dist=dist, cost=cost, stability=stability, pbo=pbo, roll=roll, expd=em,
                                 boot=boot, oos_start=oos_start, oos_end=oos_end,
@@ -1513,8 +1547,8 @@ class CandidateRunner:
                                 baselines_beaten=baseline.get("beats_baseline"), cost_mc=cost_mc, execution=execution,
                                 neighbourhood=neigh, conc=conc, regimes=regimes, simpler_variants=simpler)
         mt_gate = effective_trials.gate(mt, q["min_dsr"])
-        wf_fail = [c["explanation_nl"] for c in checks if c["status"] == "FAIL"]
-        insufficient = [c["explanation_nl"] for c in checks if c["status"] == "INSUFFICIENT_EVIDENCE"]
+        decision = l5_decision(checks, sc, baseline.get("beats_baseline"), ev)
+        wf_fail, insufficient = decision["wf_fail"], decision["insufficient"]
         promotion = {"walk_forward_pass": not wf_fail and not insufficient,
                      "robustness_pass": ev["verdict"] == "SUPPORTED_UNDER_ASSUMPTIONS",
                      "multiple_testing_preliminary": mt_gate["status"]}
@@ -1535,25 +1569,21 @@ class CandidateRunner:
             "distribution": dist, "scorecard": sc, "quality_checks": checks, "baseline_comparison": baseline,
             "evidence_verdict": ev, "evidence_class_validation": reuse, "promotion": promotion,
             "dual_positive": dual, "performance_cis": perf_ci, "dev_metrics_chosen": _slim(dev_m),
+            "pbo_review": {"required": bool(decision["review_required"]), "pbo": pbo.get("pbo"),
+                           "max_pbo": q["max_pbo"], "state": "PENDING" if decision["review_required"] else None,
+                           "config_set": pbo["config_set"], "n_configs": pbo["n_configs"],
+                           "n_eligible": pbo["n_eligible"]},
             "trades_sample": _trade_sample(oos_trades), "params": fparams, "variant": chosen["variant"],
             "spec": fspec if chosen["variant"] != "basis" else None,
             "entry_days": sorted({str(t["entry_time"])[:10] for t in oos_trades}),
             "daily_returns": {k.strftime("%Y-%m-%d"): float(v) for k, v in daily.items()},
         }
         self._record_neighbour_trials(stability, val, fparams)
-        reasons = list(wf_fail)
-        if sc["verdict"] not in ("OOS_PASSED", "FORWARD_ELIGIBLE"):
-            reasons.append(f"scorecard {sc['verdict']}: " + "; ".join(sc.get("notes_nl") or []))
-        if baseline.get("beats_baseline") is False:
-            reasons.append("verslaat de naive baseline niet over dezelfde OOS-periode")
-        if not reasons and not insufficient and not promotion["robustness_pass"]:
-            if ev["verdict"] == validation.INSUFFICIENT:
-                insufficient.extend(ev["reasons"])
-            else:
-                reasons.append(f"robuustheid {ev['verdict']}: " + "; ".join(ev["reasons"]))
+        reasons, insufficient = decision["reasons"], decision["insufficient"]
         metrics = {**om, "wfe": roll.get("wfe"), "wfe_pooled": roll.get("wfe_pooled"),
                    "expanding_net": em["net_profit"], "dsr": dsr.get("value"), "dsr_family": mt["family"].get("value"),
-                   "psr": psr.get("value"), "pbo": pbo.get("pbo"), "verdict": sc["verdict"],
+                   "psr": psr.get("value"), "pbo": pbo.get("pbo"), "pbo_status": pbo.get("status"),
+                   "pbo_review_required": decision["review_required"], "verdict": sc["verdict"],
                    "evidence_verdict": ev["verdict"], "effective_n": dsr.get("effective_n"), "raw_n": dsr.get("raw_n"),
                    "walk_forward_pass": promotion["walk_forward_pass"], "dual_positive": dual["status"],
                    "dev_net_chosen": dev_m["net_profit"], "dev_pf_chosen": dev_m["profit_factor"],
@@ -1565,6 +1595,8 @@ class CandidateRunner:
             raise StageReject(reasons)
         if insufficient:
             raise StageReject(insufficient, "INSUFFICIENT_EVIDENCE")
+        if decision["review_required"]:
+            raise StageReject(decision["review"], "REVIEW_REQUIRED")
         return metrics, payload, []
 
     def _record_neighbour_trials(self, stability, val, base_params=None):
@@ -1700,6 +1732,38 @@ def dual_positive_gate(dev: dict | None, oos: dict | None) -> dict:
                        "moeten beide positief zijn"}
 
 
+def l5_decision(checks: list, sc: dict, beats_baseline, ev: dict) -> dict:
+    """L5 pass/fail logic, pure (shared with the V10.2 pipeline simulation). ``reasons`` = evidence of failure
+    (stage REJECTED), ``insufficient`` = missing evidence (INSUFFICIENT_EVIDENCE). PSR/DSR are deferred to the single
+    L6 multiplicity gate (``scorecard`` threshold ``deferred_checks``): a second, preliminary DSR gate would be the
+    same correction applied twice and would call a positive-Sharpe DSR shortfall a rejection. A scorecard that is only
+    NEEDS_MORE_DATA through INSUFFICIENT_EVIDENCE checks (no FAIL) is missing evidence, not a failure."""
+    wf_fail = [c["explanation_nl"] for c in checks if c["status"] == "FAIL"]
+    insufficient = [c["explanation_nl"] for c in checks if c["status"] == "INSUFFICIENT_EVIDENCE"]
+    review = [c["explanation_nl"] for c in checks if c["status"] == "REVIEW_REQUIRED"]
+    reasons = list(wf_fail)
+    if sc["verdict"] not in ("OOS_PASSED", "FORWARD_ELIGIBLE"):
+        text = f"scorecard {sc['verdict']}: " + "; ".join(sc.get("notes_nl") or [])
+        if sc["verdict"] == "NEEDS_MORE_DATA" and not sc["counts"]["FAIL"]:
+            insufficient.append(text)
+        else:
+            reasons.append(text)
+    if beats_baseline is False:
+        reasons.append("verslaat de naive baseline niet over dezelfde OOS-periode")
+    if not reasons and not insufficient and ev["verdict"] != "SUPPORTED_UNDER_ASSUMPTIONS":
+        if ev["verdict"] == validation.INSUFFICIENT:
+            insufficient.extend(ev["reasons"])
+        else:
+            reasons.append(f"robuustheid {ev['verdict']}: " + "; ".join(ev["reasons"]))
+    # PBO above the limit is the only reason to ask for a review: any other failure or missing evidence decides first
+    # (REJECTED / INSUFFICIENT_EVIDENCE), with the PBO warning kept among the reasons
+    review_required = bool(review) and not reasons and not insufficient
+    if review and not review_required:
+        (reasons if reasons else insufficient).extend(review)
+    return {"wf_fail": wf_fail, "reasons": reasons, "insufficient": insufficient, "review": review if review_required else [],
+            "review_required": review_required}
+
+
 def single_window_check(sw: dict) -> dict:
     """Single-window dependence is only decidable with enough windows; with fewer it is INSUFFICIENT_EVIDENCE."""
     if not sw.get("flag"):
@@ -1727,7 +1791,141 @@ def _threshold_status(value, threshold, ci, enough: bool, losing: bool, n: int) 
     return "FAIL" if enough else "INSUFFICIENT_EVIDENCE"
 
 
-def quality_checks(om, q, *, dist=None, cost=None, stability=None, pbo=None, roll=None, expd=None, boot=None,
+def config_hash(params: dict) -> str:
+    return hashlib.sha256(protocol.canon(params).encode()).hexdigest()
+
+
+def pbo_over_l4(l4_payload: dict, trades_fn, capital: float, *, val_range=None, cost_fp=None, chosen_cost_fp=None,
+                max_pbo: float | None = None) -> dict:
+    """PBO (CSCV) over every configuration of the L4 search (first rung = all sampled configurations), each
+    backtested on the validation period. Top-K alone ranks near-equivalent plateau configurations (PBO ~ 0.5 by
+    construction); the full trial set is what CSCV assumes (owner decision 2026-11-11, STATISTICAL_SELECTION_AUDIT 6.7).
+
+    CSCV preconditions (STATISTICAL_SELECTION_AUDIT 6b) are checked here; a FAIL gives ``status`` INSUFFICIENT_EVIDENCE
+    and ``pbo`` None, never a number. Configurations are excluded only for technical reasons (backtest error, no trade
+    on the validation period), never for their performance; every exclusion is returned with its reason.
+    ``val_range`` = (start, end) of the validation period; ``cost_fp`` / ``chosen_cost_fp`` = fingerprints of the cost
+    model / capital used for the PBO backtests and for the chosen configuration."""
+    rungs = (l4_payload or {}).get("rungs") or []
+    params = list({protocol.canon(t["params"]): t["params"] for t in (rungs[0]["trials"] if rungs else [])}.values())
+    pre: dict = {}
+    notes: dict = {}
+
+    def mark(name, status, text):
+        pre[name], notes[name] = status, text
+
+    out = {"status": validation.INSUFFICIENT, "pbo": None, "config_set": "L4_all", "n_configs": len(params),
+           "n_eligible": 0, "excluded": [], "configs": [], "preconditions": pre, "precondition_notes": notes,
+           "precondition_failed": False, "applicable": True, "max_pbo": max_pbo}
+    wanted = [(l4_payload or {}).get("best", {}).get("params")] + list((l4_payload or {}).get("top_k") or [])
+    in_set = {protocol.canon(p) for p in params}
+    missing = [w for w in wanted if w is not None and protocol.canon(w) not in in_set]
+    if missing:
+        mark("selection_set", "FAIL", f"{len(missing)} configuratie(s) die L4 koos (best/top-K) zitten niet in de PBO-set")
+    else:
+        mark("selection_set", "PASS", "de PBO-set is de volledige eerste L4-rung (alle gesamplede configuraties) en bevat "
+                                      "de gekozen best/top-K")
+    mark("metric", "NOTE", "CSCV selecteert op de Sharpe van dagrendementen (validatieperiode); L4 selecteert op "
+                           "Pareto-rangorde (ontwikkelperiode). PBO meet daarom de Sharpe-selectie, niet de Pareto-selectie")
+    if len(params) < 2:
+        out["applicable"] = False
+        mark("enough_configs", "NOTE", f"{len(params)} configuratie(s): PBO niet van toepassing")
+        return out
+    cols, out_of_range, no_cost_mix = [], 0, False
+    lo, hi = (protocol.utc(val_range[0]), protocol.utc(val_range[1])) if val_range else (None, None)
+    for p in params:
+        h = config_hash(p)
+        try:
+            trades = trades_fn(p)
+        except (JobCancelled, KeyboardInterrupt, protocol.SealedAccessError):
+            raise
+        except Exception as exc:                    # technical: this configuration cannot be backtested
+            out["excluded"].append({"hash": h, "params": p, "reason": f"TECHNICAL_ERROR: {type(exc).__name__}: {exc}"})
+            continue
+        if not trades:
+            out["excluded"].append({"hash": h, "params": p, "reason": "ZERO_TRADES_VALIDATION"})
+            continue
+        if lo is not None:
+            ts = pd.to_datetime([t["entry_time"] for t in trades], utc=True)
+            out_of_range += int(((ts < lo) | (ts >= hi + pd.Timedelta(days=1))).sum())     # end day inclusive
+        tm = validation.trade_metrics(trades, capital)
+        out["configs"].append({"hash": h, "params": p, "n_trades": tm["n_trades"], "net_profit": tm["net_profit"],
+                               "profit_factor": tm["profit_factor"], "sharpe_daily": tm["sharpe"]})
+        cols.append(validation.daily_returns_from_trades(trades, capital).rename(h))
+    out["n_eligible"] = len(cols)
+    if val_range is None:
+        mark("time_index", "NOTE", "validatieperiode niet opgegeven: gelijke tijdas niet controleerbaar")
+    elif out_of_range:
+        mark("time_index", "FAIL", f"{out_of_range} trade(s) buiten de validatieperiode {val_range[0]} .. {val_range[1]}")
+    else:
+        mark("time_index", "PASS", "alle trades vallen in de validatieperiode; series op de unie van handelsdagen, "
+                                   "dagen zonder trade = 0")
+    if cost_fp is not None and chosen_cost_fp is not None:
+        ok = cost_fp == chosen_cost_fp
+        mark("cost_model", "PASS" if ok else "FAIL", "zelfde kostenmodel, kapitaal en spreadbron als de gekozen configuratie"
+             if ok else "kostenmodel/kapitaal wijkt af van de gekozen configuratie")
+    else:
+        mark("cost_model", "NOTE", "kostenvingerafdruk niet opgegeven: gelijke kosten niet controleerbaar")
+    if out["excluded"] and len(cols) * 2 < len(params):
+        mark("exclusion_policy", "FAIL", f"{len(out['excluded'])} van {len(params)} configuraties technisch uitgesloten "
+                                         "(> 50%): de set vertegenwoordigt de zoektocht niet meer")
+    else:
+        mark("exclusion_policy", "PASS", f"{len(out['excluded'])} technisch uitgesloten (fout of geen trade), "
+                                         "geen op prestatie")
+    failed = [k for k, v in pre.items() if v == "FAIL"]
+    if failed:
+        out["precondition_failed"] = True
+        return out
+    if len(cols) < 2:
+        out["applicable"] = False
+        mark("enough_configs", "NOTE", f"{len(cols)} bruikbare configuratie(s): PBO niet van toepassing")
+        return out
+    mat = pd.concat(cols, axis=1).fillna(0.0)
+    if len(mat) < 8:
+        out["applicable"] = False
+        mark("enough_configs", "NOTE", f"{len(mat)} handelsdagen (< 8): PBO niet van toepassing")
+        return out
+    mark("enough_configs", "PASS", f"{len(cols)} configuraties x {len(mat)} dagen")
+    out.update(validation.pbo_cscv(mat.to_numpy(), n_splits=8))
+    out.pop("logits", None)
+    return out
+
+
+def register_pbo_configs(env, rid, cid, pbo: dict) -> int:
+    """Store every PBO configuration (params, canonical hash, validation metrics) as an auditable L5_PBO record that
+    references the configuration's existing L4 ledger row. These are the L4 configurations again: the stage is excluded
+    from every trial count and no ledger row is added (N of the DSR does not grow)."""
+    l4_ledger: dict = {}
+    for t in env.store.trials(rid, cid):             # creation order: the first L4 record of a configuration wins
+        if t["stage"] == "L4":
+            l4_ledger.setdefault(config_hash(t["params"]), t.get("ledger_id"))
+    n = 0
+    for c in pbo.get("configs") or []:
+        key = hashlib.sha256(protocol.canon([rid, cid, PBO_TRIAL_STAGE, c["hash"]]).encode()).hexdigest()
+        n += bool(env.store.put_trial(key, rid, cid, PBO_TRIAL_STAGE, "pbo_validation", c["params"],
+                                      {**{k: c[k] for k in ("n_trades", "net_profit", "profit_factor", "sharpe_daily")},
+                                       "config_hash": c["hash"]}, l4_ledger.get(c["hash"])))   # points at the L4 ledger row
+    return n
+
+
+def pbo_check(pbo: dict, max_pbo: float) -> dict:
+    """PBO is a review trigger, not a rejection: PBO > max_pbo is REVIEW_REQUIRED. A failed CSCV precondition is
+    INSUFFICIENT_EVIDENCE (no number); a search with too few configurations for CSCV is not applicable (PASS, note)."""
+    v = pbo.get("pbo")
+    if pbo.get("precondition_failed"):
+        bad = [f"{k}: {t}" for k, t in (pbo.get("precondition_notes") or {}).items()
+               if (pbo.get("preconditions") or {}).get(k) == "FAIL"]
+        return _chk("pbo", "INSUFFICIENT_EVIDENCE", None, max_pbo,
+                    "PBO niet te bepalen, CSCV-voorwaarde geschonden: " + "; ".join(bad) + ".")
+    if v is None:
+        return _chk("pbo", "PASS", None, max_pbo, "PBO niet van toepassing (te weinig configuraties of dagen voor CSCV).")
+    if v > max_pbo:
+        return _chk("pbo", "REVIEW_REQUIRED", v, max_pbo,
+                    f"PBO {v:.2f} > {max_pbo}: handmatige beoordeling nodig voordat de kandidaat verder mag.")
+    return _chk("pbo", "PASS", v, max_pbo, f"PBO {v:.2f} (maximaal {max_pbo}).")
+
+
+def quality_checks(om, q, *, dist=None, cost=None, stability=None, pbo=None,roll=None, expd=None, boot=None,
                    oos_start=None, oos_end=None, pf_ci=None, rf_ci=None) -> list[dict]:
     """Quality-profile checks on the walk-forward OOS evidence, with uncertainty: too few observations give
     INSUFFICIENT_EVIDENCE (never a FAIL), an edge whose bootstrap CI includes zero is not counted as a pass, and a
@@ -1793,8 +1991,8 @@ def quality_checks(om, q, *, dist=None, cost=None, stability=None, pbo=None, rol
             out.append(_chk("param_stability", "PASS" if fp >= q["min_param_stability"] else "FAIL", fp,
                             q["min_param_stability"], f"{fp:.0%} van de buurparameters winstgevend."))
     flags = []
-    if pbo is not None and pbo.get("pbo") is not None and pbo["pbo"] > q["max_pbo"]:
-        flags.append(f"PBO {pbo['pbo']:.2f} > {q['max_pbo']}")
+    if pbo is not None:
+        out.append(pbo_check(pbo, q["max_pbo"]))
     if roll is not None:
         if roll.get("wfe") is None:
             flags.append("WFE niet berekenbaar")
@@ -1803,7 +2001,7 @@ def quality_checks(om, q, *, dist=None, cost=None, stability=None, pbo=None, rol
     if expd is not None and expd.get("net_profit", 0) <= 0:
         flags.append("expanding walk-forward OOS niet winstgevend")
     out.append(_chk("overfit_flags", "FAIL" if flags else "PASS", len(flags), 0,
-                    "Overfit-signalen: " + "; ".join(flags) if flags else "Geen overfit-signalen (PBO, WFE, expanding)."))
+                    "Overfit-signalen: " + "; ".join(flags) if flags else "Geen overfit-signalen (WFE, expanding)."))
     return out
 
 
@@ -1823,6 +2021,76 @@ def dual_from_stages(l4: dict | None, l5: dict | None) -> dict:
     return dual_positive_gate(dev, m5)
 
 
+# ------------------------------------------------------------------------------------------------ PBO review
+PBO_REVIEW_DECISIONS = ("accept", "reject")
+
+
+class ReviewStateError(Exception):
+    """The candidate is not (or no longer) REVIEW_REQUIRED."""
+
+
+def pbo_review_record(status: str | None, decision: str, reviewer: str, note: str, *, pbo=None, max_pbo=None,
+                      l5_sha256=None, at: str | None = None) -> dict:
+    """Pure: validate a PBO review and derive the record, the new candidate status and its reasons. Accept moves the
+    candidate to WF_PASSED, i.e. back into the normal flow: L6 (selection with the mandatory DSR gate), the sealed test
+    and the forward gates all still apply. Reject is a final REJECTED."""
+    if status != "REVIEW_REQUIRED":
+        raise ReviewStateError(f"kandidaat is geen REVIEW_REQUIRED (status {status})")
+    decision = str(decision or "").strip().lower()
+    if decision not in PBO_REVIEW_DECISIONS:
+        raise ValueError(f"beslissing moet {' of '.join(PBO_REVIEW_DECISIONS)} zijn")
+    reviewer, note = str(reviewer or "").strip(), str(note or "").strip()
+    if not reviewer or not note:
+        raise ValueError("beoordelaar en toelichting zijn verplicht")
+    at = at or _now()
+    rec = {"at": at, "decision": decision, "reviewer": reviewer, "note": note, "pbo": pbo, "max_pbo": max_pbo,
+           "l5_sha256": l5_sha256}
+    if decision == "accept":
+        new_status = "WF_PASSED"
+        reasons = [f"PBO-waarschuwing ({pbo if pbo is None else round(pbo, 3)} > {max_pbo}) handmatig geaccepteerd door "
+                   f"{reviewer} op {at}: {note}. De overige poorten (L6 DSR e.d.) gelden onverkort."]
+    else:
+        new_status = "REJECTED"
+        reasons = [f"PBO-waarschuwing ({pbo if pbo is None else round(pbo, 3)} > {max_pbo}) handmatig afgewezen door "
+                   f"{reviewer} op {at}: {note}"]
+    return {"record": rec, "new_status": new_status, "reasons": reasons}
+
+
+def l5_cleared(store: FactoryStore, rid: str, cand_id: str, l5: dict | None = None) -> bool:
+    """L5 passed, or L5 required a PBO review and the latest recorded review accepted."""
+    l5 = l5 or store.stage_result(rid, cand_id, "L5")
+    if l5 is None:
+        return False
+    if l5["status"] == "PASS":
+        return True
+    if l5["status"] == "REVIEW_REQUIRED":
+        rv = store.pbo_reviews(rid, cand_id)
+        return bool(rv) and rv[-1]["decision"] == "accept"
+    return False
+
+
+def review_pbo(store: FactoryStore, cand_id: str, decision: str, reviewer: str, note: str, *, run_id: str | None = None,
+               ledger=None, at: str | None = None) -> dict:
+    """Record a human PBO review (append-only table + decision log) and move the candidate on. Raises LookupError
+    (unknown candidate), ReviewStateError (not REVIEW_REQUIRED, or reviewed concurrently) or ValueError (bad input)."""
+    c = store.candidate(run_id, cand_id) if run_id else store.find_candidate(cand_id)
+    if c is None:
+        raise LookupError(cand_id)
+    rid = c["run_id"]
+    l5 = store.stage_result(rid, cand_id, "L5") if c["status"] == "REVIEW_REQUIRED" else None
+    info = ((l5 or {}).get("payload") or {}).get("pbo_review") or {}
+    digest = hashlib.sha256(protocol.canon({"metrics": (l5 or {}).get("metrics"), "pbo_review": info}).encode()).hexdigest()
+    res = pbo_review_record(c["status"], decision, reviewer, note, pbo=info.get("pbo"), max_pbo=info.get("max_pbo"),
+                            l5_sha256=digest, at=at)
+    if not store.add_pbo_review(rid, cand_id, res["record"], res["new_status"], res["reasons"]):
+        raise ReviewStateError("kandidaat is intussen al beoordeeld")
+    if ledger is not None and hasattr(ledger, "record_decision"):
+        ledger.record_decision(run_id=rid, candidate_id=cand_id, stage="L5", decision=f"PBO-beoordeling: {res['record']['decision']}",
+                               detail=_clean(res["record"]))
+    store.log(rid, "info", f"{cand_id}: PBO-beoordeling {res['record']['decision']} door {res['record']['reviewer']}")
+    return {"cand_id": cand_id, "run_id": rid, "status": res["new_status"], "review": res["record"]}
+
+
 def select_and_freeze(store: FactoryStore, run: dict, vault: protocol.SealedVault, ledger=None) -> list[dict]:
     """L6: choose on dev information only (walk-forward OOS 2018-2023 is part of dev), with diversity across
     families and markets, a correlation limit and the baseline requirement; freeze the chosen ones."""
@@ -1835,7 +2103,7 @@ def select_and_freeze(store: FactoryStore, run: dict, vault: protocol.SealedVaul
     rows = []
     for c in passed:
         l5 = store.stage_result(rid, c["cand_id"], "L5")
-        if l5 is None or l5["status"] != "PASS":
+        if l5 is None or not l5_cleared(store, rid, c["cand_id"], l5):
             continue
         m = l5["metrics"]
         daily = pd.Series(l5["payload"].get("daily_returns") or {}, dtype=float)
@@ -2103,7 +2371,7 @@ def families_view(store: FactoryStore, rid: str) -> list[dict]:
         if c["status"] not in TERMINAL_STATUSES and c["status"] not in ("NOT_SELECTED", "FINAL_FAILED"):
             row["survived"] += 1
         reached = c["stage"]
-        if c["status"] in TERMINAL_STATUSES:
+        if c["status"] in TERMINAL_STATUSES and c["status"] != "REVIEW_REQUIRED":
             idx = _STAGE_ORDER.get(reached, 0) - 1
             reached = (None, "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8")[max(idx, 0)]
         if _STAGE_ORDER.get(reached, 0) > _STAGE_ORDER.get(row["best_stage"], 0):
@@ -2128,6 +2396,7 @@ _LEGACY_PROMOTION = {
     "PROSPECTIVE_FORWARD": ("PROSPECTIVE_FORWARD", "PROSPECTIVE_FORWARD"),
     "FINAL_FAILED": ("REJECTED", "FROZEN_CANDIDATE"), "REUSED_HOLDOUT": ("INSUFFICIENT_EVIDENCE", "FROZEN_CANDIDATE"),
     "INSUFFICIENT_EVIDENCE": ("INSUFFICIENT_EVIDENCE", None), "REJECTED": ("REJECTED", None),
+    "REVIEW_REQUIRED": ("DEVELOPMENT_PASS", "DEVELOPMENT_PASS"),
     "ERROR": ("TECHNICAL_BLOCKED", None), "TECHNICAL_BLOCKED": ("TECHNICAL_BLOCKED", None)}
 _STAGE_HIGHEST = {"L1": "EXPERIMENT", "L2": "EXPERIMENT", "L3": "EXPERIMENT", "L4": "EXPERIMENT",
                   "L5": "DEVELOPMENT_PASS", "L6": "ROBUSTNESS_PASS", "L7": "FROZEN_CANDIDATE",
@@ -2151,7 +2420,7 @@ def promotion_status(status: str | None, stage: str | None, l5: dict | None = No
 
 
 # ------------------------------------------------------------------------------------------------ outcomes (V10.1)
-OUTCOMES = ("PASSED", "REJECTED", "INSUFFICIENT_EVIDENCE", "TECHNICAL_BLOCKED", "IN_PROGRESS")
+OUTCOMES = ("PASSED", "REJECTED", "INSUFFICIENT_EVIDENCE", "TECHNICAL_BLOCKED", "REVIEW_REQUIRED", "IN_PROGRESS")
 REJECTION_KIND = {"REJECTED": "statistisch", "INSUFFICIENT_EVIDENCE": "onvoldoende bewijs",
                   "TECHNICAL_BLOCKED": "technisch"}
 _PASSED = {"WF_PASSED", "NOT_SELECTED", "FROZEN", "FINAL_TESTED", "OOS_APPROVED", "FORWARD_ELIGIBLE",
@@ -2186,6 +2455,8 @@ def classify_outcome(c: dict, stages: dict | None = None) -> dict:
         out = "PASSED"
         if status == "NOT_SELECTED" and _has(reasons, ("verzegelde periode te kort",)):
             out = "INSUFFICIENT_EVIDENCE"
+    elif status == "REVIEW_REQUIRED":
+        out = "REVIEW_REQUIRED"
     elif status in ("ERROR", "TECHNICAL_BLOCKED"):
         out = "TECHNICAL_BLOCKED"
     elif status in ("INSUFFICIENT_EVIDENCE", "REUSED_HOLDOUT"):
@@ -2240,6 +2511,10 @@ def _missing_and_next(out, status, stage, reasons, stages) -> tuple[list, list]:
         if not missing:
             missing.append("voldoende bewijs voor een oordeel (zie redenen)")
             nxt.append("meer data verzamelen (langere periode of forward-test) en opnieuw beoordelen")
+    elif out == "REVIEW_REQUIRED":
+        missing.append("een vastgelegde menselijke beoordeling van de PBO-waarschuwing")
+        nxt.append("beoordeling vastleggen (accepteren of afwijzen); bij accepteren volgen de overige poorten, "
+                   "waaronder de verplichte DSR-poort van L6")
     elif out == "REJECTED" and _has(reasons, ("duplicaat",)):
         nxt.append("geen: dezelfde signatuur is eerder getest; zie dat resultaat in het onderzoekslog")
     elif out == "REJECTED":
@@ -2345,4 +2620,5 @@ def candidate_detail(store: FactoryStore, cand_id: str, run_id: str | None = Non
             "warnings_nl": warnings, "reasons_nl": c["reasons"] or [],
             "baseline_comparison": p5.get("baseline_comparison"), "ledger_ids": ledger_ids,
             **_outcome_fields(c, st), "dual_positive": dual_from_stages(l4, l5) if l5 else None,
+            "pbo_reviews": store.pbo_reviews(rid, cand_id), "pbo_review": p5.get("pbo_review"),
             "trades_sample": p5.get("trades_sample") or ((l3 or {}).get("payload") or {}).get("trades_sample") or []}

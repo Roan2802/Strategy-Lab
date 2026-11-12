@@ -430,7 +430,7 @@
           ]
         ]
       },
-      "calendar_source": "DERIVED_FROM_DATA"
+      "calendar_source": "VERIFIED_PROVIDER"
     },
     "US500": {
       "first_day": "2026-10-12",
@@ -554,7 +554,7 @@
           ]
         ]
       },
-      "calendar_source": "DERIVED_FROM_DATA"
+      "calendar_source": "VERIFIED_PROVIDER"
     },
     "USTEC": {
       "first_day": "2026-10-12",
@@ -678,7 +678,7 @@
           ]
         ]
       },
-      "calendar_source": "DERIVED_FROM_DATA"
+      "calendar_source": "VERIFIED_PROVIDER"
     },
     "DE40": {
       "first_day": "2026-10-14",

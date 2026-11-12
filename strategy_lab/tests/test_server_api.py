@@ -443,6 +443,23 @@ def test_bidask_endpoint_reports_scope_without_claiming_execution_validation(tmp
     assert data["independent_model"]["strategy_signals_recomputed"] is False
 
 
+def test_bidask_ledger_rejects_same_currency_claim_for_eur_quote(tmp_path, monkeypatch):
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    (run_dir / "manifest.json").write_text(json.dumps({
+        "symbol": "DE40", "timeframe": "M1", "start_date": "2020-09-14",
+        "end_date": "2020-09-14", "parameters": {}, "starting_balance": 10_000,
+    }), encoding="utf-8")
+    monkeypatch.setattr(server, "_run_dir", lambda _run_id: run_dir)
+    monkeypatch.setattr(server, "_load_run", lambda _run_id: {"trades": [], "events": []})
+    response = TestClient(server.app).post("/api/runs/test/bidask-ledger", json={
+        "account_currency": "USD", "contract_size": 1, "tick_size": 0.01,
+        "quote_to_account": 1, "volume_step": 0.01,
+    })
+    assert response.status_code == 422
+    assert "quote_to_account" in response.json()["detail"] or "FX" in response.json()["detail"]
+
+
 def test_missing_dukascopy_root_reports_unhealthy_and_rejects_data(tmp_path, monkeypatch):
     source = tmp_path / "unavailable-dukascopy"
     manager = DataManager(source, tmp_path / "cache")

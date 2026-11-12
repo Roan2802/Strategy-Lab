@@ -216,8 +216,10 @@ class Supervisor:
             next_attempt = _iso(plan.next_update(now))
         else:
             detail = (hold or {}).get("reason") or attempt.get("detail")
-            failed = str(detail or "").startswith("ERROR") or (attempt.get("status") == "ERROR"
-                                                              and "no request sent" not in str(attempt.get("detail")))
+            superseded = bool(attempt.get("observed_at") and (summary["success"] or {}).get("observed_at")
+                              and attempt["observed_at"] < summary["success"]["observed_at"])
+            failed = not superseded and (str(detail or "").startswith("ERROR") or (
+                attempt.get("status") == "ERROR" and "no request sent" not in str(attempt.get("detail"))))
             if hold and hold["blocked"]:
                 status = "BLOCKED"
             elif failed:
@@ -229,7 +231,7 @@ class Supervisor:
             else:
                 status = "CATCHING_UP"
             reason = reason_nl("BLOCKED" if status == "BLOCKED" else attempt.get("status", ""), str(detail or ""))
-            if status == "CATCHING_UP" and not attempt:
+            if status == "CATCHING_UP" and (not attempt or superseded):
                 reason = "Achterstand wordt ingehaald (een dag per stap)"
             next_attempt = hold["next_attempt_at"] if hold else _iso(now if plan.due(now) else plan.next_update(now))
         if quality["problems"] and status not in FAILING:
@@ -440,7 +442,14 @@ class Supervisor:
         last_success = max((s["last_success"] for s in symbols if s["last_success"]), default=None)
         last_check = max([c for c in (self.get("last_check_at"), updater["last_run_finished_at"], worker.get("checked_at"),
                                       *(s["last_check"] for s in symbols)) if c], default=None)
+        counts = {"current": sum(s["status"] == "UP_TO_DATE" for s in symbols),
+                  "closed": sum(s["status"] == "MARKET_CLOSED" for s in symbols), "delayed": len(lagging),
+                  "total": len(symbols)}
+        sched_state = ("MISSING" if not scheduler["installed"] else "DISABLED" if not scheduler["enabled"]
+                       else "STALE" if scheduler["stale"] else "FAILED" if scheduler["last_result_class"] == "FAILED"
+                       else "ACTIVE")
         result = {"overall": overall, "overall_nl": text, "computed_at": _iso(now), "last_check": last_check,
+                  "counts": counts, "last_success_sync": last_success, "scheduler_status": sched_state,
                   "last_success": last_success, "scheduler": scheduler, "worker": worker, "updater": updater,
                   "issues": issues, "symbols": symbols, "events": self.events(5), "job": self.job_status()}
         self.put("last_status", {k: result[k] for k in ("overall", "overall_nl", "computed_at", "issues")})

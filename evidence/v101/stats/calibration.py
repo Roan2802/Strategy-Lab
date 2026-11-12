@@ -12,6 +12,9 @@ Settings
       best OOS series is tested. Compares search-level N (current gate) with OOS-level N.
 * S3  repeated rounds on the same validation period, later rounds generated from the best OOS result so far
       (validation-informed search). Compares last-round N, ledger (every validation evaluation) N, search N.
+* S4  (V10.2) markets x families x configurations through the ledger path ``search_effective_n``: does the code N
+      cover the multiplicity of the best trial (cross-market selection, correlated families)?
+* VREC (V10.2) paper V recovery by the method of moments.
 * REF reference computations: E[max SR] closed form vs Monte Carlo, PSR vs scipy, BLdP (2014) worked example.
 """
 from __future__ import annotations
@@ -33,6 +36,7 @@ from strategy_lab.research import effective_trials as et  # noqa: E402
 from strategy_lab.research import validation  # noqa: E402
 
 OUT = Path(__file__).resolve().parent
+OUT102 = ROOT / "evidence" / "v102" / "stats"          # V10.2 extension writes here
 ANN = math.sqrt(252)
 THRESH = 0.95
 NAMES = ("paper_dsr", "nc_dsr", "dep_dsr", "nc_dsr_raw_n")
@@ -319,19 +323,104 @@ def references(quick):
     return out
 
 
+
+# ------------------------------------------------------------------------------------------------ V10.2 extension
+def _hier(rng, n_markets, n_fam, C, T, a, b, c):
+    """(markets x families x C, T) unit-variance series: common factor a, market factor b, family factor c, rest idio."""
+    Z0 = rng.standard_normal(T)
+    Zm = rng.standard_normal((n_markets, T))
+    Zf = rng.standard_normal((n_markets, n_fam, T))
+    eps = rng.standard_normal((n_markets, n_fam, C, T))
+    idio = 1.0 - a - b - c
+    return (math.sqrt(a) * Z0 + math.sqrt(b) * Zm[:, None, None, :] + math.sqrt(c) * Zf[:, :, None, :]
+            + math.sqrt(idio) * eps)
+
+
+def s4_rep(args):
+    """One search over markets x families x configurations: the factory's ledger path (``search_effective_n``) vs the
+    multiplicity the best trial really faced (Monte Carlo E[max]). Returns SR of the best trial, effective N, ..."""
+    import pandas as pd
+    n_m, n_f, C, T, a, b, c, seed = args
+    rng = np.random.default_rng(seed)
+    x = _hier(rng, n_m, n_f, C, T, a, b, c)
+    flat = x.reshape(-1, T)
+    srs = sharpe_rows(flat)
+    i = int(np.argmax(srs))
+    rows = []
+    for m in range(n_m):
+        for f in range(n_f):
+            g = x[m, f]
+            neff_w = et.effective_n(pd.DataFrame(g.T), seed=0)["n_eff"]
+            rep = et.compact_weekly(pd.Series(g[0], index=pd.bdate_range("2012-01-02", periods=T)), 1.0)
+            for k in range(C):
+                rows.append({"hypothesis_id": f"{m}-{f}-{k}", "group": f"s{f}|M{m}|H1", "n_eff_within": neff_w,
+                             "rep_series": rep if k == 0 else None})
+    en = et.search_effective_n(rows, seed=0)
+    st, eo = et.sharpe_stats(flat[i]), et.effective_obs(flat[i])
+    Vn = 1.0 / max(eo["T_eff"], 1.0)
+    return {"best_sr": float(srs[i]), "n_raw": en["n_raw"], "n_eff": en["n_eff"],
+            "dsr_code": float(et.psr(st["sr"], eo["T_eff"], st["skew"], st["kurt"], et.expected_max_sr(en["n_eff"], Vn))),
+            "dsr_raw": float(et.psr(st["sr"], eo["T_eff"], st["skew"], st["kurt"], et.expected_max_sr(en["n_raw"], Vn))),
+            "sr0_code": et.expected_max_sr(en["n_eff"], Vn), "sr0_raw": et.expected_max_sr(en["n_raw"], Vn)}
+
+
+def run_s4(reps, quick):
+    """Dependence + families + cross-market selection counted through the code path, null and one skilled trial."""
+    from concurrent.futures import ProcessPoolExecutor
+    cells = {}
+    spec = {"markets5_fam6_C8_rho(0.1,0.2,0.3)": (5, 6, 8, 0.1, 0.2, 0.3), "markets3_fam4_C8_rho(0.3,0.2,0.2)": (3, 4, 8, 0.3, 0.2, 0.2),
+            "markets8_fam3_C6_rho(0.0,0.3,0.4)": (8, 3, 6, 0.0, 0.3, 0.4), "independent_markets5_fam6_C8": (5, 6, 8, 0.0, 0.0, 0.0)}
+    n = max(60, reps // 3)
+    with ProcessPoolExecutor(max_workers=6) as ex:
+        for name, (n_m, n_f, C, a, b, c) in spec.items():
+            T = 1250
+            res = list(ex.map(s4_rep, [(n_m, n_f, C, T, a, b, c, _seed((name, k))) for k in range(n)]))
+            Emax_mc = float(np.mean([r["best_sr"] for r in res]))
+            sr0c = float(np.mean([r["sr0_code"] for r in res]))
+            sr0r = float(np.mean([r["sr0_raw"] for r in res]))
+            cells[name] = {"reps": n, "T": T, "n_raw": res[0]["n_raw"], "median_n_eff": float(np.median([r["n_eff"] for r in res])),
+                           "mc_mean_best_sr_ann": Emax_mc * ANN, "sr0_code_ann": sr0c * ANN, "sr0_raw_N_ann": sr0r * ANN,
+                           "code_covers_mc": bool(sr0c >= Emax_mc * 0.97),
+                           "fpr_code": wilson(sum(r["dsr_code"] >= THRESH for r in res), n),
+                           "fpr_raw_N": wilson(sum(r["dsr_raw"] >= THRESH for r in res), n)}
+    return cells
+
+
+def run_vrecovery(reps, quick):
+    """Paper V (method of moments, rescaled to the tested horizon) must recover Var(true SR) + 1/T_test."""
+    rng = np.random.default_rng(11)
+    out = []
+    for s_mu_ann in (0.0, 0.5, 1.0):
+        s_mu = s_mu_ann / ANN
+        est, truth = [], []
+        for _ in range(max(100, reps)):
+            N, T_i, T_t = 100, 750, 1500
+            mu = rng.normal(0.0, s_mu, N)
+            r = rng.standard_normal((N, T_i)) + mu[:, None] / 1.0
+            srs = sharpe_rows(r)
+            est.append(et.trial_variance(srs, np.full(N, T_i), T_t)["V"])
+            truth.append(s_mu ** 2 + 1.0 / T_t)
+        out.append({"dispersion_ann": s_mu_ann, "V_est_mean": float(np.mean(est)), "V_true": float(np.mean(truth)),
+                    "rel_err": float(np.mean(est) / np.mean(truth) - 1.0)})
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--only", default="REF,S1,S2,S3")
     ap.add_argument("--reps", type=int, default=400)
+    ap.add_argument("--out", default=str(OUT102), help="output directory (V10.2 default evidence/v102/stats)")
     a = ap.parse_args()
     reps = 100 if a.quick else a.reps
-    path = OUT / ("calibration_results_quick.json" if a.quick else "calibration_results.json")
+    path = Path(a.out) / ("calibration_results_quick.json" if a.quick else "calibration_results.json")
+    path.parent.mkdir(parents=True, exist_ok=True)
     res = json.loads(path.read_text()) if path.exists() else {}
     for part in a.only.split(","):
         t0 = time.time()
         fn = {"REF": lambda: references(a.quick), "S1": lambda: run_s1(reps, a.quick),
-              "S2": lambda: run_s2(reps, a.quick), "S3": lambda: run_s3(reps, a.quick)}[part]
+              "S2": lambda: run_s2(reps, a.quick), "S3": lambda: run_s3(reps, a.quick),
+              "S4": lambda: run_s4(reps, a.quick), "VREC": lambda: run_vrecovery(reps, a.quick)}[part]
         res[part] = {"result": fn(), "seconds": round(time.time() - t0, 1), "reps_null": reps,
                      "threshold": THRESH, "seed_policy": "fixed per cell (hash of cell parameters)"}
         path.write_text(json.dumps(res, indent=1, default=float))

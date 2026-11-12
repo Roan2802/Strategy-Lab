@@ -1,0 +1,143 @@
+{
+  "tag": "chrome-1600x900-dark-shadow",
+  "passed": 27,
+  "failed": 0,
+  "results": [
+    {
+      "step": "home loads with KPI tiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home shows compact market-data line with Details",
+      "ok": true,
+      "detail": "Marktdata: gedeeltelijk achter 6 actueel · 3 vertraagd · 0 gesloten · laatste succesvolle sync 2026-11-12 17:03 UTC Deta"
+    },
+    {
+      "step": "home has no permanent 7-step stepper",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "home data line shows counts current / delayed / closed that add up",
+      "ok": true,
+      "detail": "6 actueel · 3 vertraagd · 0 gesloten of 9"
+    },
+    {
+      "step": "home data line shows last successful sync",
+      "ok": true,
+      "detail": "3 vertraagd · 0 gesloten · laatste succesvolle sync 2026-11-12 17:03 UTC Details"
+    },
+    {
+      "step": "home data line never green while instruments lag",
+      "ok": true,
+      "detail": "lagging=True"
+    },
+    {
+      "step": "home shows running research, forward strategies and critical errors only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "probe found an eligible and an ineligible factory candidate",
+      "ok": true,
+      "detail": "Gen vwap_pullback USDJPY M15 f26820 / Gen vwap_deviation USDJPY M15 f8d64e"
+    },
+    {
+      "step": "isolated instance starts with an empty shadow store",
+      "ok": true,
+      "detail": "{}"
+    },
+    {
+      "step": "empty shadow view offers a create button and the experimental label",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "UI created exactly one test shadow portfolio",
+      "ok": true,
+      "detail": "{'0c2c4947-fff6-45b3-9c7a-3601f41727f7': 0}"
+    },
+    {
+      "step": "eligible candidate drawer has the button Volg in Shadow Research",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "success toast confirms the candidate is followed",
+      "ok": true,
+      "detail": "Gen vwap_pullback USDJPY M15 f26820 wordt gevolgd in Shadow Research."
+    },
+    {
+      "step": "registration landed in the test portfolio only",
+      "ok": true,
+      "detail": "{'0c2c4947-fff6-45b3-9c7a-3601f41727f7': 1}"
+    },
+    {
+      "step": "second click is refused with a calm Dutch toast",
+      "ok": true,
+      "detail": "Niet toegevoegd: staat al in dit portfolio met dezelfde specificatie, parameters en risico"
+    },
+    {
+      "step": "ineligible candidate shows a readable refusal reason, no raw JSON",
+      "ok": true,
+      "detail": "Niet toegevoegd: defecte strategie (look-ahead, ongeldige specificatie of uitvoering); staat al in een onderzoek (duplicaat)"
+    },
+    {
+      "step": "strategy appears in the shadow list with experimental label",
+      "ok": true,
+      "detail": "Naam\tMarkt\tStart (UTC)\tTrades\tNetto\tMax DD %\tPF\tLaatste update\tBewijs\tWaarschuwingen Gen vwap_pullback USDJPY M15 f26820"
+    },
+    {
+      "step": "shadow view shows evidence class DAILY_DELAYED_FORWARD",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "detail shows frozen registration info (version, hash, registered at)",
+      "ok": true,
+      "detail": "Experimenteel — niet gevalideerd, geen echte orders DAILY_DELAYED_FORWARD REALTIME_PAPER_FORWARD niet beschikbaar Detail fc226265-b251-4e4d-88dc-bc801e77a1ec Registratie (bevroren) Versie 1 Geregistreerd 2026-11-12 17:10 Spec-hash 8b0ac2f1a"
+    },
+    {
+      "step": "detail shows experimental label and evidence class",
+      "ok": true,
+      "detail": "Experimenteel — niet gevalideerd, geen echte orders DAILY_DELAYED_FORWARD REALTIME_PAPER_FORWARD nie"
+    },
+    {
+      "step": "Mijn strategieën offers Volg in Shadow Research on eligible rows",
+      "ok": true,
+      "detail": "461"
+    },
+    {
+      "step": "library follow gives success or calm refusal toast (no raw JSON)",
+      "ok": true,
+      "detail": "EmaRsiPullback: EmaRsiPullback wordt gevolgd in Shadow Research."
+    },
+    {
+      "step": "promote attempt is refused with NEVER_LIVE_ELIGIBLE (UI exposes no promote control)",
+      "ok": true,
+      "detail": "409 {\"detail\": {\"code\": \"NEVER_LIVE_ELIGIBLE\", \"message\": \"Shadow portfolios can never become LIVE_ELIGI"
+    },
+    {
+      "step": "real shadow portfolio untouched (strategy counts unchanged)",
+      "ok": true,
+      "detail": "{'62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b': 3} -> {'62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b': 3}"
+    },
+    {
+      "step": "validated /api/forward/portfolios unaffected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "no horizontal overflow in the shadow route",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "step": "0 JS errors in the shadow route",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "js_errors": []
+}

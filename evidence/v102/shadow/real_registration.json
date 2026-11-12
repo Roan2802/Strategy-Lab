@@ -1,0 +1,105 @@
+{
+  "portfolio_id": "62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b",
+  "registered": [
+    {
+      "strategy_id": "65928fe5-d13b-454d-9688-d85101c033c7",
+      "portfolio_id": "62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b",
+      "version": 1,
+      "start_utc": "2026-11-11T15:53:07.150760+00:00",
+      "snapshot_sha256": "d832ce1443056598d362ea4da8fce868a64be8ff006827a3e56a5a5023115cf1",
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "kind": "SHADOW_RESEARCH",
+      "experimental": true,
+      "live_eligible": false,
+      "label_nl": "EXPERIMENTEEL schaduwportfolio: onderzoek zonder validatie. Nooit live-geschikt, geen bewijs dat een strategie werkt, geen orders naar een broker."
+    },
+    {
+      "strategy_id": "bae94a1a-b51f-4eb1-96a9-23b4285cecbb",
+      "portfolio_id": "62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b",
+      "version": 1,
+      "start_utc": "2026-11-11T15:53:08.827092+00:00",
+      "snapshot_sha256": "f17e089404d62c4f7d5f87c6ecabe7735dbe942f56838640af9080f9280511d1",
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "kind": "SHADOW_RESEARCH",
+      "experimental": true,
+      "live_eligible": false,
+      "label_nl": "EXPERIMENTEEL schaduwportfolio: onderzoek zonder validatie. Nooit live-geschikt, geen bewijs dat een strategie werkt, geen orders naar een broker."
+    },
+    {
+      "strategy_id": "14626119-dfd9-42d4-9af2-7cf9f618c45c",
+      "portfolio_id": "62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b",
+      "version": 1,
+      "start_utc": "2026-11-11T15:53:10.641288+00:00",
+      "snapshot_sha256": "6d39d611383fda45ab57aa8cffb281f55c26180b202075a5263d1e5fca038519",
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "kind": "SHADOW_RESEARCH",
+      "experimental": true,
+      "live_eligible": false,
+      "label_nl": "EXPERIMENTEEL schaduwportfolio: onderzoek zonder validatie. Nooit live-geschikt, geen bewijs dat een strategie werkt, geen orders naar een broker."
+    }
+  ],
+  "failed": [],
+  "eligible_pool": 343,
+  "advance": {
+    "committed_days": [],
+    "status": "UP TO DATE",
+    "evidence_class": "DAILY_DELAYED_FORWARD",
+    "kind": "SHADOW_RESEARCH",
+    "label_nl": "EXPERIMENTEEL schaduwportfolio: onderzoek zonder validatie. Nooit live-geschikt, geen bewijs dat een strategie werkt, geen orders naar een broker."
+  },
+  "prospective_days": 0,
+  "strategies": [
+    {
+      "id": "65928fe5-d13b-454d-9688-d85101c033c7",
+      "name": "Gen vwap_pullback EURUSD H1 48d05e",
+      "symbol": "EURUSD",
+      "timeframe": "H1",
+      "start_utc": "2026-11-11T15:53:07.150760+00:00",
+      "trades": 0,
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "source_evidence_status": "TECHNICALLY_VALID_UNTESTED",
+      "prospective_days": 0
+    },
+    {
+      "id": "bae94a1a-b51f-4eb1-96a9-23b4285cecbb",
+      "name": "Gen trend_adx_strength XAUUSD H4 c6440c",
+      "symbol": "XAUUSD",
+      "timeframe": "H4",
+      "start_utc": "2026-11-11T15:53:08.827092+00:00",
+      "trades": 0,
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "source_evidence_status": "TECHNICALLY_VALID_UNTESTED",
+      "prospective_days": 0
+    },
+    {
+      "id": "14626119-dfd9-42d4-9af2-7cf9f618c45c",
+      "name": "Gen mr_vwap_deviation US30 M15 01c639",
+      "symbol": "USA30IDXUSD",
+      "timeframe": "M15",
+      "start_utc": "2026-11-11T15:53:10.641288+00:00",
+      "trades": 0,
+      "evidence_status": "AWAITING_FIRST_FORWARD_DAY",
+      "source_evidence_status": "REJECTED",
+      "prospective_days": 0
+    }
+  ],
+  "ledger": {
+    "status": "OK",
+    "sealed_days": 0,
+    "unsealed_days": [],
+    "head_sha256": "GENESIS"
+  },
+  "limits": {
+    "max_daily_loss": 0.05,
+    "max_drawdown": 0.25,
+    "symbol_risk": 0.02,
+    "max_jump": 0.2,
+    "gap_minutes": 180.0,
+    "group_risk": 0.04,
+    "max_positions": 5.0
+  },
+  "warnings": [
+    "EXPERIMENTEEL schaduwportfolio: onderzoek zonder validatie. Nooit live-geschikt, geen bewijs dat een strategie werkt, geen orders naar een broker.",
+    "Nog geen prospectieve dag verwerkt: er is geen forward-resultaat, alleen een registratie."
+  ]
+}

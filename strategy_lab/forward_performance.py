@@ -1,5 +1,6 @@
 """Read-only performance summaries for the delayed forward ledger."""
 from collections import defaultdict
+from dataclasses import replace
 from datetime import date, datetime, timedelta
 from functools import lru_cache
 from math import fsum, sqrt
@@ -8,6 +9,7 @@ from statistics import mean, stdev
 from runtime.strategy_lab.execution import ContractSpec, position_pnl
 from .data_manager import DataError
 from .forward_registry import data_symbol
+from .portfolio import fx_quote_currency
 
 
 def _publication_matches(event, publication):
@@ -61,7 +63,14 @@ def _trade_excursion(fill, close, symbol, days, partition):
     else:
         favorable, adverse = price - low, high - price
     contract = close["contract"]
-    multiplier = close["quantity"] * contract["contract_size"] * contract["quote_to_account"]
+    rate = contract["quote_to_account"]
+    if fx_quote_currency(symbol, contract["account_currency"]) is not None:
+        # non-account quote: the rate is the one the engine took from FxService at the closing candle (event
+        # ``fx_rate``); a frozen registration-time value is never used
+        rate = close.get("fx_rate")
+        if not isinstance(rate, (int, float)) or not rate > 0 or rate != rate or rate == float("inf"):
+            return {"status": "FX_RATE_UNAVAILABLE"}
+    multiplier = close["quantity"] * contract["contract_size"] * rate
     return {"status": "AVAILABLE", "bars": count,
             "mae": max(0.0, adverse) * multiplier, "mfe": max(0.0, favorable) * multiplier}
 
@@ -159,6 +168,8 @@ def summarize_forward(report, *, model_current, data):
         allocation, since = member["allocation"], member["joined_at"][:10]
         position = state["position"]
         contract = ContractSpec(**member["configuration"]["contract"])
+        if state.get("fx_rate"):
+            contract = replace(contract, quote_to_account=state["fx_rate"])
         closed, daily_pnl = [], defaultdict(list)
         fills, member_excursions = {}, []
         last_signal = last_trade = None
@@ -178,7 +189,7 @@ def summarize_forward(report, *, model_current, data):
                 member_excursions.append(excursion)
             if kind in {"ORDER_FILLED", "POSITION_CLOSED"}:
                 last_trade = {"kind": kind, "at": event["candle_at"]}
-            if kind == "ORDER_REJECTED" and detail["reason"] in {"SHARED_MARGIN", "RISK_LIMIT", "SYMBOL_RISK_LIMIT", "PORTFOLIO_HALT"}:
+            if kind == "ORDER_REJECTED" and detail["reason"] in {"SHARED_MARGIN", "RISK_LIMIT", "SYMBOL_RISK_LIMIT", "GROUP_RISK_LIMIT", "PORTFOLIO_HALT"}:
                 rejected += 1
         balance, series = allocation, []
         for day in days:
@@ -188,7 +199,10 @@ def summarize_forward(report, *, model_current, data):
         metrics, _ = _performance(allocation, series, closed)
         mark = state["mark"]
         open_pnl = exposure = 0.0
-        if position and mark is not None:
+        if position and mark is not None and not state.get("fx_rate") and fx_quote_currency(
+                member["configuration"]["symbol"], contract.account_currency) is not None:
+            open_pnl = exposure = None   # FX_RATE_UNAVAILABLE: the frozen quote_to_account is not a rate
+        elif position and mark is not None:
             open_pnl = position_pnl(side=position["side"], quantity_lots=position["quantity"],
                                     entry=position["entry"], exit=mark, contract=contract)["net_pnl"]
             exposure = mark * position["quantity"] * contract.contract_size * contract.quote_to_account
@@ -209,7 +223,8 @@ def summarize_forward(report, *, model_current, data):
             "basis": "DAILY_MARK_TO_MARKET_EQUITY", "equity": equity, "curve": curve,
             "unallocated_capital": portfolio["starting_capital"] - fsum(m["allocation"] for m in report["members"]),
             "portfolio_stop_budget": max(0.0, min(portfolio["balance"], equity)) * portfolio["risk_limit"],
-            **{key: fsum(member[key] for member in members.values()) for key in (
+            **{key: (None if any(member[key] is None for member in members.values())
+                     else fsum(member[key] for member in members.values())) for key in (
                 "open_pnl", "gross_open_exposure", "open_margin", "open_stop_risk",
             )},
         },

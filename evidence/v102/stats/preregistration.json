@@ -1,0 +1,12 @@
+{
+ "written": "2026-11-10, BEFORE the full pipeline campaign (a 60-search pilot of cells edge|0.0, edge|2.0, null|regime_switching preceded it: it found a volatility-multiplier bug in the simulator, fixed before the campaign; the pilot results are not used)",
+ "campaign": "evidence/v102/stats/pipeline_sim.py grid(); null cells 300 searches, edge cells 150; seeds crc32((cell, k, 0))",
+ "decision_rules": {
+  "R1_technical_error": "A gate/classification whose output contradicts its own documented policy or definition, shown by a unit test, is fixed (smallest change). Fixed: L5 scorecard hard-FAIL on DSR/PSR (duplicate of the L6 gate, called a positive-Sharpe shortfall REJECTED instead of INSUFFICIENT_EVIDENCE); scorecard NEEDS_MORE_DATA without any FAIL treated as REJECTED.",
+  "R2_duplicate": "Same statistic and threshold evaluated at two places = one correction counted twice in the list of reasons, no effect on pass/fail: documented, not changed (classification only).",
+  "R3_uninformative_gate": "Gate G is uninformative if, at the same candidate population, its rejection rate for strong real edges (net Sharpe >= 2, 6y validation) is within 10 percentage points of its rejection rate for null candidates. Such a gate only adds coin-flip noise to the power. Reported; a change needs R4 as well.",
+  "R4_double_penalty": "Gate G double-penalises the risk that gate H already covers if ALL hold: (a) same risk category in the matrix, (b) P(G rejects | H rejects) >= 0.8 among null/weak candidates, (c) pipeline pass rate of null searches without G does not exceed the Wilson upper bound 2% (no marginal protection: removing G leaves the false-positive rate under 2%) AND the pipeline pass rate without G is not higher than with G by more than the Wilson half-width, (d) removing G raises the power at net Sharpe >= 1.0 by >= 5 pp. Only then G is demoted to 'reported, not deciding'. Otherwise unchanged.",
+  "R5_never": "No threshold is loosened, no gate is removed because strategies fail it, no strategy passes merely because a gate is absent: a change must keep the pipeline false-positive rate (search level, null cells) <= 2% upper Wilson bound."
+ },
+ "quality_profile": "regelmatig (laag_frequent for p_act 0.15), risk 0.5% per trade, cost 0.10 R per trade, top-K 4 configurations to L5/PBO (K 12 in the K12 cells), history factor H = 5 (N counted: lineages x ledger multiplicity), seeds fixed"
+}

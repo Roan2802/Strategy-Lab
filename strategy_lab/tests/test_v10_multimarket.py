@@ -78,7 +78,7 @@ def test_backtest_converts_pnl_with_rate_and_flags_unconverted(env, strategy):
     dm, _ = env
     spec = {**strategy["spec"], "symbol": "DE40", "timeframe": "H1"}
     bid, ask, _ = backtest.load_bid_ask(dm, "DE40", "H1", "2012-01-01", "2014-01-01")
-    contract = instruments.contract_for("DE40", dm)
+    contract = instruments.contract_for("DE40", dm, conversion_series=True)
     conv = pd.Series(1.25, index=bid.index)
     raw = backtest.run_rules_backtest(spec, bid, ask, None, contract=contract)
     cv = backtest.run_rules_backtest(spec, bid, ask, None, contract=contract, conversion=conv)

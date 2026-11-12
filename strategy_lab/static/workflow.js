@@ -796,7 +796,10 @@ async function dataStatus() {
     if (kind === 'good' && lagging.length) kind = 'warn';
     if (kind === 'idle' && lagging.length) kind = 'warn';
     const detail = lagging.length ? `${lagging.length} van ${syms.length} instrumenten lopen achter${d.overall_nl && !/lopen achter/.test(d.overall_nl) ? ` · ${d.overall_nl}` : ''}` : (d.overall_nl || '');
-    return {source: 'supervisor', raw: d, kind, text: kind === 'good' ? 'bijgewerkt' : STATUS_NL[kind], detail, checked: d.last_check};
+    const c = d.counts || {};
+    const closed = syms.filter(x => x.market_closed && !/ERR|FAIL/i.test(x.status || '') && !(Number(x.lag_days) > 0)).length;
+    const counts = {current: num(c.current) ? Number(c.current) : syms.length - lagging.length - closed, delayed: num(c.delayed) ? Number(c.delayed) : lagging.length, closed: num(c.closed) ? Number(c.closed) : closed, total: syms.length};
+    return {source: 'supervisor', raw: d, kind, text: kind === 'good' ? 'bijgewerkt' : STATUS_NL[kind], detail, checked: d.last_check, success: d.last_success, counts};
   } catch (err) {
     if (err.status && err.status !== 404) throw err;
   }
@@ -813,7 +816,8 @@ async function dataLine(el) {
   if (!el) return;
   try {
     const d = await dataStatus();
-    el.innerHTML = `<b>Marktdata:</b> ${chip(d.kind, d.text)}<span class="grow">${esc(d.detail || '')}${d.checked ? ` · laatste controle ${esc(shortDate(d.checked))} UTC` : ''}</span><button type="button" class="secondary" data-go="data">Details</button>`;
+    const k = d.counts, countLine = k ? `<span data-data-counts>${k.current} actueel · ${k.delayed} vertraagd · ${k.closed} gesloten</span>` : esc(d.detail || '');
+    el.innerHTML = `<b>Marktdata:</b> ${chip(d.kind, d.text)}<span class="grow">${countLine}${d.success ? ` · laatste succesvolle sync ${esc(shortDate(d.success))} UTC` : d.checked ? ` · laatste controle ${esc(shortDate(d.checked))} UTC` : ''}</span><button type="button" class="secondary" data-go="data">Details</button>`;
   } catch (err) {
     el.innerHTML = `<b>Marktdata:</b> ${chip('bad', 'fout')}<span class="grow">${esc(err.message)}</span><button type="button" class="secondary" data-go="data">Details</button>`;
   }
@@ -844,7 +848,7 @@ async function loadData() {
     root.dataset.v10 = '1';
     const hosted = q('[data-hosted="data-monitor-dialog"]', root);
     root.insertAdjacentHTML('afterbegin', `<div id="dsup" class="dsup">
-      <div class="data-head"><div class="grow"><span id="dsup-badge"></span> <span id="dsup-text" class="muted"></span></div><button type="button" id="dsup-run">Nu controleren en synchroniseren</button></div>
+      <div class="data-head"><div class="grow"><span id="dsup-badge"></span> <span id="dsup-text" class="muted"></span></div><button type="button" id="dsup-run">Nu synchroniseren</button></div>
       <div id="dsup-status" class="status" role="status" aria-live="polite"></div>
       <div class="data-meta" id="dsup-meta"></div>
       <div class="card"><div class="scroll"><table class="tbl data-tbl"><thead><tr><th>Symbool</th><th>Laatste candle (UTC)</th><th>Verwacht t/m</th><th>Achterstand</th><th>Status</th><th>Toelichting</th><th>Volgende poging</th><th>Kwaliteit</th><th>Snapshot</th></tr></thead><tbody id="dsup-rows"></tbody></table></div></div>
@@ -955,7 +959,7 @@ function renderLibraryRows() {
     <td ${r.market.includes(',') ? `title="${esc(r.market)}"` : ''}>${r.market || r.tf ? `${esc(r.market.split(', ').length > 2 ? `${r.market.split(', ').length} markten` : r.market)} ${esc(r.tf)}` : '—'}</td>
     <td class="sha" ${r.sha ? `title="${esc(r.sha)}"` : ''}>${esc(r.version || '—')}</td>
     <td>${chip(r.st.cls, r.st.text, r.st.tip)}</td>
-    <td class="act"><div class="act-main"><button type="button" class="secondary strong" data-lib-act="test">Onderzoeken</button><button type="button" class="secondary" data-lib-act="multi" ${multiOk(r) ? '' : 'disabled'} data-tip="${esc(multiOk(r) ? 'Dezelfde strategie op meerdere markten en timeframes testen.' : 'Dit type strategie kan niet op andere markten worden getest.')}">Test op andere markten</button></div>${r.kind === 'builder' || r.kind === 'jesse' ? `<div class="act-sub">${r.kind === 'builder' ? '<button type="button" class="link-btn" data-lib-act="edit">Bewerken</button>' : ''}<button type="button" class="link-btn" data-lib-act="history">Historie</button></div>` : ''}</td></tr>`).join('')
+    <td class="act"><div class="act-main"><button type="button" class="secondary strong" data-lib-act="test">Onderzoeken</button><button type="button" class="secondary" data-lib-act="multi" ${multiOk(r) ? '' : 'disabled'} data-tip="${esc(multiOk(r) ? 'Dezelfde strategie op meerdere markten en timeframes testen.' : 'Dit type strategie kan niet op andere markten worden getest.')}">Test op andere markten</button></div>${r.kind === 'builder' || r.kind === 'jesse' || (r.kind === 'candidate' && r.st.group !== 'rejected') ? `<div class="act-sub">${r.kind === 'builder' ? '<button type="button" class="link-btn" data-lib-act="edit">Bewerken</button>' : ''}${r.kind === 'builder' || r.kind === 'candidate' ? '<button type="button" class="link-btn" data-lib-act="shadow" data-tip="Experimenteel: volg deze strategie dagelijks vertraagd, zonder echte orders.">Volg in Shadow Research</button>' : ''}${r.kind !== 'candidate' ? '<button type="button" class="link-btn" data-lib-act="history">Historie</button>' : ''}</div>` : ''}</td></tr>`).join('')
     || `<tr><td colspan="6"><div class="empty">Geen strategieën gevonden voor deze selectie.</div></td></tr>`;
 }
 
@@ -987,6 +991,7 @@ async function libAction(act, r) {
   if (act === 'edit') { sessionStorage.setItem('labOpenSpec', r.name); S.go('strategieen/bouwen'); return; }
   if (act === 'history') { await S.openLifecycle(r.name, q('#lifecycle-history')); q('#lifecycle-history').scrollIntoView({behavior: 'smooth'}); return; }
   if (act === 'multi') { multimarket(strategyRef(r)); return; }
+  if (act === 'shadow') { window.labShadow?.follow(r.kind === 'candidate' ? {kind: 'factory', candidate_id: r.id} : {kind: 'builder', spec_name: r.name}, r.name); return; }
   if (r.kind === 'plugin') { S.openPlugin(r.id, 'backtest'); q('#plugin-panel')?.scrollIntoView({behavior: 'smooth'}); return; }
   if (r.kind === 'candidate') {
     S.go('strategieen/automatisch');
@@ -1013,7 +1018,7 @@ async function preselectTester(r) {
 
 /* =============================================================== multi-market drawer */
 const mv = {ref: null, markets: [], poll: null, runId: null};
-const FLAG_NL = {FEW_TRADES: 'Weinig trades', FAILS_SPREAD_50: 'Faalt bij spread +50%', UNSTABLE_PARAMS: 'Instabiele parameters', NO_DATA: 'Geen data', SHORT_HISTORY: 'Korte historie', PROVISIONAL_CURRENCY: 'Valuta voorlopig', PROVISIONAL_CONTRACT: 'Contract voorlopig', ERROR: 'Fout', NEW_HYPOTHESIS: 'Nieuwe hypothese'};
+const FLAG_NL = {FEW_TRADES: 'Weinig trades', FAILS_SPREAD_50: 'Faalt bij spread +50%', UNSTABLE_PARAMS: 'Instabiele parameters', NO_DATA: 'Geen data', SHORT_HISTORY: 'Korte historie', PROVISIONAL_CURRENCY: 'Valuta voorlopig', PROVISIONAL_CONTRACT: 'Contract voorlopig', ERROR: 'Fout', NEW_HYPOTHESIS: 'Nieuwe hypothese', FX_RATE_UNAVAILABLE: 'Wisselkoers ontbreekt'};
 const VAL_NL = {PASS: ['good', 'Voldoende'], WEAK: ['warn', 'Zwak'], FAIL: ['bad', 'Onvoldoende'], INSUFFICIENT_TRADES: ['idle', 'Te weinig trades'], INSUFFICIENT_DATA: ['idle', 'Te weinig data']};
 const GEN_NL = {NO_EDGE: ['bad', 'Geen edge'], MARKET_SPECIFIC: ['warn', 'Marktspecifiek'], PARTIAL_GENERALISATION: ['warn', 'Gedeeltelijk generaliserend'], BROAD_GENERALISATION: ['good', 'Breed generaliserend'], NOT_COMPARABLE: ['idle', 'Niet vergelijkbaar']};
 const TFS = ['M5', 'M15', 'M30', 'H1', 'H4'];
@@ -1121,12 +1126,12 @@ function renderMvResult(el, run) {
   const corr = gen?.correlation_matrix;
   const corrHtml = corr?.markets?.length > 1 ? `<div><div class="field-label">Correlatie tussen markten ${tip(corr.basis || 'Dagelijkse rendementen van de strategie per markt.')}</div><div class="mv-hmap" style="grid-template-columns:auto repeat(${corr.markets.length},1fr)"><span></span>${corr.markets.map(m => `<span><b>${esc(mlabel(m))}</b></span>`).join('')}${corr.matrix.map((row, i) => `<span><b>${esc(mlabel(corr.markets[i]))}</b></span>${row.map(v => `<span style="background:color-mix(in srgb,var(--accent) ${Math.round(Math.abs(v) * 70)}%,transparent)">${fmt(v, 2)}</span>`).join('')}`).join('')}</div></div>` : '';
   el.innerHTML = `${gen ? `<div class="mv-verdict ${gcls}"><b>${chip(gcls, glabel)}</b>${esc(gen.explanation_nl || '')}<div class="muted">${gen.n_markets_positive ?? '—'} van ${gen.n_markets_tested ?? '—'} markten positief${num(gen.effective_markets) ? ` · effectief ${fmt(gen.effective_markets, 1)} onafhankelijke markten` : ''}${gen.selection?.note_nl ? `<br>${esc(gen.selection.note_nl)}` : ''}</div></div>` : ''}
-    ${prov ? `<div class="mv-note"><b>Voorlopig.</b> ${esc(run.provisional_note_nl || 'Geldbedragen zijn indicatief: contractgegevens en valuta zijn niet door een broker bevestigd.')}</div>` : ''}
+    ${rows.some(r => (r.flags || []).includes('FX_RATE_UNAVAILABLE') || r.status === 'FX_RATE_UNAVAILABLE') ? `<div class="notice bad" role="alert"><b>Geldbedragen geblokkeerd.</b> Er is geen wisselkoers beschikbaar (FX_RATE_UNAVAILABLE); resultaten in geld voor de betrokken markten zijn niet getoond of niet betrouwbaar.</div>` : ''}${prov ? `<div class="mv-note">${chip('warn', 'onbevestigd')} <b>Voorlopig.</b> ${esc(run.provisional_note_nl || 'Geldbedragen zijn indicatief: contractgegevens en valuta zijn niet door een broker bevestigd.')}</div>` : ''}
     <div class="scroll"><table class="tbl mv-tbl"><thead><tr><th>Markt</th><th>TF</th><th class="num">Trades/week</th><th class="num">Netto %</th><th class="num">PF</th><th class="num">RF</th><th class="num">Max DD %</th><th class="num">Sharpe</th><th class="num">Sortino</th><th class="num">Trades</th><th class="num">Param.stabiliteit</th><th>Kostenstress</th><th>Oordeel</th></tr></thead><tbody>
     ${rows.map(c => { const unsup = mvUnsupported(c); const [vc, vl] = unsup ? ['idle', unsup.label] : VAL_NL[c.validation_status] || ['idle', c.validation_status || (c.status && c.status !== 'OK' ? c.status : '—')]; const net = cellVal(c, 'net_return_pct');
       const stab = c.param_stability ?? c.stability?.frac_positive;
       return `<tr><td><b>${esc(mlabel(c.symbol))}</b></td><td>${esc(c.timeframe)}</td><td class="num">${fmt(cellVal(c, 'trades_per_week'))}</td><td class="num ${net > 0 ? 'fx-pos' : net < 0 ? 'fx-neg' : ''}">${pc(net)}</td><td class="num">${fmt(cellVal(c, 'profit_factor'))}</td><td class="num">${fmt(cellVal(c, 'recovery_factor'))}</td><td class="num">${pc(cellVal(c, 'max_dd_pct', 'max_drawdown_pct'))}</td><td class="num">${fmt(cellVal(c, 'sharpe', 'sharpe_daily'))}</td><td class="num">${fmt(cellVal(c, 'sortino', 'sortino_daily'))}</td><td class="num">${num(cellVal(c, 'trades')) ? Math.round(cellVal(c, 'trades')) : '—'}</td><td class="num">${num(stab) ? pc(Number(stab) * (Number(stab) <= 1 ? 100 : 1), 0) : '—'}</td><td>${costCell(c)}</td>
-        <td>${chip(vc, vl)}${unsup?.reason ? `<div class="muted mv-reason">${esc(unsup.reason)}</div>` : ''}${c.provisional ? chip('warn', 'voorlopig') : ''}${(c.flags || []).filter(f => !/^PROVISIONAL/.test(f)).map(f => `<span class="flag">${chip('idle', FLAG_NL[f] || f)}</span>`).join('')}</td></tr>`; }).join('')}</tbody></table></div>
+        <td>${chip(vc, vl)}${unsup?.reason ? `<div class="muted mv-reason">${esc(unsup.reason)}</div>` : ''}${c.provisional ? chip('warn', 'aanname', 'Contractgegevens of valuta zijn niet door een broker bevestigd; geldbedragen zijn indicatief.') : ''}${(c.flags || []).filter(f => !/^PROVISIONAL/.test(f)).map(f => `<span class="flag">${chip('idle', FLAG_NL[f] || f)}</span>`).join('')}</td></tr>`; }).join('')}</tbody></table></div>
     <div><div class="field-label">Equity per markt en gecombineerd ${tip(run.combined?.method || 'Gelijk gewogen: kapitaal gelijk verdeeld over alle cellen.')}</div><div class="mv-eq" data-mv-eq></div></div>${corrHtml}`;
   const traces = [];
   const toXY = pts => ({x: pts.map(p => Array.isArray(p) ? p[0] : first(p, 'time', 't', 'x')), y: pts.map(p => Array.isArray(p) ? p[1] : first(p, 'equity', 'value', 'y'))});
@@ -1202,6 +1207,8 @@ function paintKpis(result, manifest) {
     + kpiTile('Profit Factor', num(pf) ? fmt(pf) : '—', num(pf) ? (pf >= 1 ? 'pos' : 'neg') : '', 'Brutowinst gedeeld door brutoverlies. 1,0 is break-even vóór niet-gemodelleerde kosten.')
     + kpiTile('Recovery Factor', num(m.recovery_factor) ? fmt(m.recovery_factor) : '—', '', 'Nettowinst gedeeld door maximale drawdown in geld.');
   if (note && manifest) note.textContent = `${manifest.strategy || ''} · ${mlabel(manifest.symbol || '')} ${manifest.timeframe || ''} · ${manifest.start_date || ''} t/m ${manifest.end_date || ''} · ${m.total ?? (result.trades || []).length} trades`;
+  const flags = [...(result.flags || []), ...(manifest?.flags || [])].map(String);
+  if (note && (result.provisional || manifest?.provisional || m.provisional || flags.some(f => /^PROVISIONAL/.test(f)))) note.insertAdjacentHTML('beforeend', ` ${chip('warn', 'aanname', 'Contractgegevens of valuta zijn niet door een broker bevestigd; geldbedragen zijn indicatief.')}`);
   drawWinLoss(result.trades || []);
 }
 function drawWinLoss(trades) {
@@ -1280,4 +1287,155 @@ S.LOADERS.analyse = loadAnalyse;
 S.LOADERS.data = loadData;
 window.labV10 = {dataLine, multimarket, loadLibrary, reloadLibrary: loadLibrary, dataStatus};
 document.addEventListener('DOMContentLoaded', () => { buildAnalyse(); wireTester(); });
+})();
+
+/* =============================================================== Shadow Research (Portfolio) */
+/* Shadow Research: experimenteel, dagelijks vertraagd volgen zonder echte orders. Add-on for the Portfolio view (window.labShadow).
+   Feature-detects the /api/shadow endpoints; every number comes from an API response. */
+(() => {
+'use strict';
+const S = window.labShell;
+if (!S || window.labShadow) return;
+const {api, esc, fmt, shortDate} = S;
+const q = (sel, root = document) => root.querySelector(sel);
+const num = v => v !== null && v !== undefined && v !== '' && Number.isFinite(Number(v));
+const chip = (cls, text, t) => `<span class="chip ${cls}" ${t ? `tabindex="0" data-tip="${esc(t)}"` : ''}>${esc(text)}</span>`;
+const LABEL = 'Experimenteel — niet gevalideerd, geen echte orders';
+const EVIDENCE = 'DAILY_DELAYED_FORWARD';
+const unavailable = '<div class="v10-notice">Shadow Research is nog niet beschikbaar op deze server. Probeer het later opnieuw of werk de server bij.</div>';
+const sh = {mode: localStorage.getItem('labPfMode') === 'shadow' ? 'shadow' : 'validated', pid: null, sid: null};
+const REASON_NL = {TECHNICAL_BLOCKED: 'ontbrekende of ongeldige data, of een fout in de pijplijn', TECHNICAL_CHECK_FAILED: 'een technische controle is mislukt', TECHNICAL_REJECTION: 'defecte strategie (look-ahead, ongeldige specificatie of uitvoering)', LOOKAHEAD_OR_INVALID_EXECUTION: 'look-ahead of ongeldige uitvoering', MISSING_SAFETY_CRITICAL_DATA: 'ontbrekende veiligheidskritische data', DUPLICATE: 'staat al in een onderzoek (duplicaat)', DUPLICATE_REGISTRATION: 'staat al in dit portfolio met dezelfde specificatie, parameters en risico', INSTRUMENT_DATA: 'ontbrekende instrumentdata', ALREADY_PASSED: 'is al gevalideerd: gebruik het gevalideerde forwardportfolio', NOT_FINISHED: 'onderzoek is nog niet afgerond', INVALID_SPEC: 'ongeldige specificatie'};
+const reasonOf = err => {
+  let d = err?.message || 'Onbekende fout';
+  try { const j = JSON.parse(d); if (j && typeof j === 'object') d = Array.isArray(j.reasons) && j.reasons.length ? j.reasons.map(r => { const c = String(r).split(':')[0]; return REASON_NL[c] || r; }).join('; ') : (j.message || d); } catch { /* plain text */ }
+  return d;
+};
+const evNl = {DAILY_DELAYED_FORWARD: 'dagelijks vertraagd', REALTIME_PAPER_FORWARD: 'realtime paper'};
+const warnText = w => typeof w === 'string' ? w : (w?.nl || w?.message_nl || w?.text || w?.code || JSON.stringify(w));
+const pts = a => (Array.isArray(a) ? a : a?.curve || a?.points || []).map(p => Array.isArray(p) ? {x: p[0], y: p[1]} : {x: p.day ?? p.date ?? p.t ?? p.time ?? p.x, y: p.equity ?? p.value ?? p.y});
+const sign = v => num(v) ? (Number(v) > 0 ? 'fx-pos' : Number(v) < 0 ? 'fx-neg' : '') : '';
+const label = () => `<div class="shadow-label" role="note"><b>${esc(LABEL)}</b>${chip('warn', EVIDENCE, 'Dagelijkse Dukascopy-update, één dag later. Geen bewijs van werkelijke orderuitvoering.')}${chip('idle', 'REALTIME_PAPER_FORWARD niet beschikbaar', 'Realtime paper trading is er nog niet; dit is alleen een vertraagde simulatie.')}</div>`;
+
+/* generic, honest renderer for blocks whose exact shape the server decides */
+function kv(o, depth = 0) {
+  if (o === null || o === undefined || o === '') return '<span class="muted">—</span>';
+  if (typeof o !== 'object') return typeof o === 'number' ? esc(fmt(o, Number.isInteger(o) ? 0 : 2)) : esc(o);
+  if (Array.isArray(o)) return o.every(v => typeof v !== 'object') ? esc(o.join(', ')) : o.slice(0, 20).map(v => kv(v, depth + 1)).join('<br>');
+  if (depth > 2) return esc(JSON.stringify(o));
+  return `<div class="fx-metrics">${Object.entries(o).filter(([k]) => !/^_/.test(k)).map(([k, v]) => `<div class="fx-metric"><span>${esc(k.replace(/_/g, ' '))}</span><b>${kv(v, depth + 1)}</b></div>`).join('')}</div>`;
+}
+
+function plotEquity(el, series, title) {
+  if (!el) return;
+  const traces = series.filter(s => s.p.length).map(s => ({type: 'scatter', mode: 'lines', name: s.name, x: s.p.map(p => p.x), y: s.p.map(p => p.y), line: {width: 2}}));
+  if (!window.Plotly || !traces.length) { el.innerHTML = '<p class="muted pf-note">Nog geen equity-verloop: dit verschijnt zodra de eerste dag is verwerkt.</p>'; return; }
+  const cs = getComputedStyle(document.body), ink = cs.getPropertyValue('--ink').trim() || cs.color, edge = cs.getPropertyValue('--edge').trim() || '#233140';
+  Plotly.newPlot(el, traces, {height: 300, margin: {l: 64, r: 16, t: 8, b: 36}, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: {color: ink}, showlegend: traces.length > 1, legend: {orientation: 'h'}, xaxis: {gridcolor: edge}, yaxis: {gridcolor: edge, title: {text: title || 'Equity', font: {size: 10}}}}, {displayModeBar: false, responsive: true});
+}
+
+function mount() {
+  const host = S.body('portfolio'); if (!host) return null;
+  let bar = q('#pf-mode', host);
+  if (!bar) {
+    bar = document.createElement('div'); bar.id = 'pf-mode'; bar.className = 'pf-mode';
+    bar.innerHTML = '<div class="chip-select" role="radiogroup" aria-label="Portfolio-soort"><label><input type="radio" name="pf-mode" value="validated"><span>Gevalideerd</span></label><label><input type="radio" name="pf-mode" value="shadow"><span>Shadow Research</span></label></div>';
+    host.prepend(bar);
+    bar.addEventListener('change', e => { if (e.target.name === 'pf-mode') { sh.mode = e.target.value; localStorage.setItem('labPfMode', sh.mode); apply(); } });
+    const live = document.createElement('div'); live.id = 'shadow-live'; live.hidden = true; bar.after(live);
+  }
+  return host;
+}
+function apply() {
+  const host = mount(); if (!host) return;
+  const shadow = sh.mode === 'shadow';
+  host.querySelectorAll('input[name="pf-mode"]').forEach(i => { i.checked = i.value === sh.mode; });
+  [q('#portfolio-live', host), document.getElementById('backtest-portfolio')].forEach(el => { if (el) el.hidden = shadow; });
+  const box = q('#shadow-live', host); box.hidden = !shadow;
+  if (shadow) load().catch(err => { box.innerHTML = label() + `<p class="status error">${esc(reasonOf(err))}</p>`; });
+}
+
+async function load() {
+  const box = q('#shadow-live'); if (!box) return;
+  let list;
+  try { list = await api('/api/shadow/portfolios'); }
+  catch (err) { box.innerHTML = label() + (err.status === 404 ? unavailable : `<p class="status error">${esc(reasonOf(err))}</p>`); return; }
+  const ports = list.portfolios || (Array.isArray(list) ? list : []);
+  if (!ports.length) {
+    box.innerHTML = `${label()}<div class="pf-empty"><span class="muted">Nog geen Shadow Research-portfolio. Maak er een om strategieën experimenteel te volgen.</span><button type="button" data-sh-create>Shadow-portfolio maken</button></div>`;
+    q('[data-sh-create]', box).onclick = async e => { e.target.disabled = true; try { await ensurePortfolio(); await load(); } catch (err) { S.toast(reasonOf(err), 4000); e.target.disabled = false; } };
+    return;
+  }
+  if (!ports.some(p => p.id === sh.pid)) sh.pid = ports[0].id;
+  const d = await api(`/api/shadow/portfolios/${encodeURIComponent(sh.pid)}`);
+  const rows = d.strategies || [];
+  const pf = ports.find(p => p.id === sh.pid) || {};
+  const eqPts = pts(d.equity), last = eqPts[eqPts.length - 1];
+  const warns = [...(d.warnings || []), ...(pf.warnings || [])];
+  const tile = (l, v, sub) => `<div class="card pf-tile"><div class="kpi-label">${esc(l)}</div><div class="kpi-value">${esc(v)}</div><div class="kpi-sub">${esc(sub || '')}</div></div>`;
+  box.innerHTML = `${label()}
+  <div class="pf-tiles">${tile('Shadow-strategieën', String(rows.length), pf.name || 'Shadow Research')}${tile('Equity (simulatie)', last && num(last.y) ? fmt(last.y) : '—', last ? `per ${shortDate(last.x)}` : 'nog geen verwerkte dag')}${tile('Bewijsklasse', 'Vertraagd', EVIDENCE)}${tile('Waarschuwingen', String(warns.length), warns.length ? 'zie onder' : 'geen')}</div>
+  ${warns.length ? `<ul class="fx-list">${warns.map(w => `<li>${esc(warnText(w))}</li>`).join('')}</ul>` : ''}
+  <div class="card pf-chart"><h3><span>Equity-verloop</span><small>experimenteel, dagelijks vertraagd</small></h3><div id="sh-equity"></div></div>
+  <div class="card"><h3><span>Strategieën</span><small>${ports.length > 1 ? `<select id="sh-pf" aria-label="Shadow-portfolio">${ports.map(p => `<option value="${esc(p.id)}" ${p.id === sh.pid ? 'selected' : ''}>${esc(p.name || p.id)}</option>`).join('')}</select> ` : ''}<button type="button" class="secondary" id="sh-advance" data-tip="Verwerk nieuwe, gepubliceerde dagen voor deze Shadow-strategieën.">Nu verwerken</button></small></h3>
+    <div class="scroll"><table class="tbl" id="sh-table"><thead><tr><th>Naam</th><th>Markt</th><th>Start (UTC)</th><th class="num">Trades</th><th class="num">Netto</th><th class="num">Max DD %</th><th class="num">PF</th><th>Laatste update</th><th>Bewijs</th><th>Waarschuwingen</th></tr></thead><tbody>${rows.map(r => `<tr data-sid="${esc(r.id)}" tabindex="0"><td><b>${esc(r.name || r.id)}</b></td><td>${esc(r.symbol || '—')} ${esc(r.timeframe || '')}</td><td>${r.start_utc ? esc(shortDate(r.start_utc)) : '—'}</td><td class="num">${num(r.trades) ? esc(r.trades) : '—'}</td><td class="num ${sign(r.net)}">${num(r.net) ? fmt(r.net) : '—'}</td><td class="num">${num(r.max_dd_pct) ? `${fmt(r.max_dd_pct)}%` : '—'}</td><td class="num">${num(r.pf) ? fmt(r.pf) : '—'}</td><td>${r.last_update ? esc(shortDate(r.last_update)) : '—'}</td><td>${chip('warn', evNl[r.evidence_status] || r.evidence_status || EVIDENCE, r.evidence_status || EVIDENCE)}</td><td>${(r.warnings || []).length ? chip('warn', `${r.warnings.length}`, r.warnings.map(warnText).join('\n')) : '<span class="muted">—</span>'}</td></tr>`).join('') || '<tr><td colspan="10" class="muted">Nog geen strategieën. Gebruik “Volg in Shadow Research” bij een kandidaat of eigen strategie.</td></tr>'}</tbody></table></div></div>
+  <div id="sh-detail"></div>`;
+  plotEquity(q('#sh-equity', box), [{name: pf.name || 'Shadow', p: eqPts}]);
+  const sel = q('#sh-pf', box); if (sel) sel.onchange = () => { sh.pid = sel.value; sh.sid = null; load(); };
+  q('#sh-advance', box).onclick = async e => {
+    e.target.disabled = true;
+    try { await api(`/api/shadow/portfolios/${encodeURIComponent(sh.pid)}/advance`, {method: 'POST'}); S.toast('Nieuwe dagen verwerkt.'); await load(); }
+    catch (err) { S.toast(err.status === 404 ? 'Verwerken is nog niet beschikbaar op deze server.' : reasonOf(err), 4000); e.target.disabled = false; }
+  };
+  const open = tr => { sh.sid = tr.dataset.sid; box.querySelectorAll('#sh-table tr').forEach(x => x.classList.toggle('sel', x === tr)); detail(sh.sid); };
+  box.querySelectorAll('#sh-table tr[data-sid]').forEach(tr => { tr.onclick = () => open(tr); tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(tr); } }; });
+  if (sh.sid && rows.some(r => String(r.id) === String(sh.sid))) detail(sh.sid);
+}
+
+async function detail(id) {
+  const el = q('#sh-detail'); if (!el) return;
+  el.innerHTML = '<p class="muted">Laden…</p>';
+  let d;
+  try { d = await api(`/api/shadow/strategies/${encodeURIComponent(id)}`); }
+  catch (err) { el.innerHTML = err.status === 404 ? unavailable : `<p class="status error">${esc(reasonOf(err))}</p>`; return; }
+  const trades = d.trades || [], daily = d.daily || [];
+  const table = rows => {
+    const c = rows.length ? Object.keys(rows[0]).filter(k => typeof rows[0][k] !== 'object') : [];
+    return c.length ? `<div class="scroll"><table class="tbl"><thead><tr>${c.map(k => `<th>${esc(k.replace(/_/g, ' '))}</th>`).join('')}</tr></thead><tbody>${rows.slice(-200).map(r => `<tr>${c.map(k => `<td>${esc(r[k] ?? '—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '<p class="muted">Nog geen gegevens.</p>';
+  };
+  const warns = d.warnings || [];
+  el.innerHTML = `<div class="card sh-detail">${label()}<h3><span>Detail</span><small>${esc(id)}</small></h3>
+    <details class="an-sec" open><summary>Registratie (bevroren)</summary><div class="an-body">${kv({Versie: d.strategy?.version, Geregistreerd: shortDate(d.strategy?.start_utc), 'Spec-hash': d.record?.spec_sha256, 'Code-hash': d.record?.code_sha256, 'Record-hash': d.record_sha256, Bron: d.record?.source?.kind, Bewijsklasse: d.evidence_class})}</div></details>
+    ${warns.length ? `<ul class="fx-list">${warns.map(w => `<li>${esc(warnText(w))}</li>`).join('')}</ul>` : ''}
+    <div id="sh-eq2"></div>
+    <details class="an-sec" open><summary>Dagresultaten</summary><div class="an-body">${table(daily)}</div></details>
+    <details class="an-sec"><summary>Trades (${trades.length})</summary><div class="an-body">${table(trades)}</div></details>
+    <details class="an-sec" open><summary>Backtest tegenover forward</summary><div class="an-body">${kv(d.backtest_vs_forward)}</div></details>
+    <details class="an-sec"><summary>Details</summary><div class="an-body"><h4>Win- en verliesreeksen</h4>${kv(d.clustering)}<h4>Drift</h4>${kv(d.drift)}</div></details></div>`;
+  plotEquity(q('#sh-eq2', el), [{name: id, p: pts(d.equity)}]);
+}
+
+async function ensurePortfolio() {
+  const list = await api('/api/shadow/portfolios');
+  const ports = list.portfolios || (Array.isArray(list) ? list : []);
+  if (ports.length) return ports[0].id;
+  const c = await api('/api/shadow/portfolios', {method: 'POST', body: {name: 'Shadow Research'}});
+  return c.id || c.portfolio?.id;
+}
+
+/* "Volg in Shadow Research": the server decides eligibility and returns the reason (409/422). */
+async function follow(source, name) {
+  try {
+    const pid = await ensurePortfolio();
+    await api(`/api/shadow/portfolios/${encodeURIComponent(pid)}/register`, {method: 'POST', body: {source, reason_nl: `Experimenteel gevolgd vanuit de Strategie-lab${name ? `: ${name}` : ''}`}});
+    sh.mode = 'shadow'; sh.pid = pid; localStorage.setItem('labPfMode', 'shadow');
+    S.toast(`${name || 'Strategie'} wordt gevolgd in Shadow Research.`, 3500);
+  } catch (err) {
+    if (err.status === 404) S.toast('Shadow Research is nog niet beschikbaar op deze server.', 4500);
+    else S.toast(err.status === 409 || err.status === 422 ? `Niet toegevoegd: ${reasonOf(err)}` : reasonOf(err), 6000);
+  }
+}
+
+const base = S.LOADERS.portfolio;
+S.LOADERS.portfolio = async (...a) => { const r = base ? await base(...a) : undefined; apply(); return r; };
+window.labShadow = {follow, apply, load, state: sh};
 })();

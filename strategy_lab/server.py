@@ -32,7 +32,8 @@ from .windows_power import recent_power_events
 from .replay import event_links, recorded_state_snapshot, replay_slice, reexecute_labbreakout
 from .trade_excursions import add_trade_excursions
 from .interpretation import interpret_run, research_status
-from .portfolio import analyze_portfolio, forward_correlations
+from .portfolio import analyze_portfolio, forward_correlations, portfolio_accounting, stress_test
+from . import shadow_forward
 from runtime.strategy_lab.optimizer_space import normalize_optimizer_space, training_split_index
 
 
@@ -67,6 +68,33 @@ ACTIVE_RUNS_LOCK = threading.Lock()
 RESEARCH_RUN_LOCK = threading.Lock()
 
 
+class PboReviewRequest(BaseModel):
+    decision: str
+    reviewer: str = Field(min_length=1, max_length=120)
+    note: str = Field(min_length=1, max_length=2000)
+    run_id: str | None = None
+
+
+@app.post("/api/factory/candidates/{cand_id}/pbo-review")
+def factory_pbo_review(cand_id: str, body: PboReviewRequest):
+    """Record the human review of a REVIEW_REQUIRED (PBO warning) candidate: accept = back into the normal gates
+    (L6 DSR etc. still apply), reject = REJECTED. Append-only; a review is final."""
+    from . import factory_api
+    from .research import factory, factory_worker
+    st = factory_api.store()
+    c = st.candidate(body.run_id, cand_id) if body.run_id else st.find_candidate(cand_id)
+    if c is None:
+        raise HTTPException(404, "Kandidaat niet gevonden")
+    run = st.run(c["run_id"]) or {"config": {}}
+    try:
+        return factory.review_pbo(st, cand_id, body.decision, body.reviewer, body.note, run_id=c["run_id"],
+                                  ledger=factory_worker._ledger(run))
+    except factory.ReviewStateError as exc:
+        raise HTTPException(409, str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+
+
 def _fingerprint(paths: list[Path], namespace: str) -> str:
     digest = hashlib.sha256(namespace.encode("utf-8"))
     for path in sorted(set(paths), key=lambda item: str(item).casefold()):
@@ -91,7 +119,7 @@ def _backend_files() -> list[Path]:
              RUNTIME / "strategy_lab" / "optimizer_space.py", Path(__file__).parent / "portfolio.py"]
     paths.extend(Path(__file__).parent / name for name in (
         "daily_data.py", "daily_sync.py", "forward_engine.py", "forward_registry.py",
-        "forward_performance.py", "forward_reference.py", "windows_power.py", "research_api.py", "library.py", "plugins/__init__.py", "trickle.py", "forward_rules.py", "dukascopy_datafeed.py", "data_supervisor.py",
+        "forward_performance.py", "forward_reference.py", "shadow_forward.py", "windows_power.py", "research_api.py", "library.py", "plugins/__init__.py", "trickle.py", "forward_rules.py", "dukascopy_datafeed.py", "data_supervisor.py",
     ))
     paths.extend(sorted((Path(__file__).parent / "research").glob("*.py")))
     paths.append(RUNTIME / "strategy_lab" / "rule_engine.py")
@@ -1497,6 +1525,8 @@ def bidask_ledger(run_id: str, request: LedgerRequest):
     try:
         spec.validate()
         manifest = json.loads((_run_dir(run_id) / "manifest.json").read_text(encoding="utf-8"))
+        from .research import instruments as _instruments
+        fx_check = _instruments.validate_ledger_contract(manifest["symbol"], spec)
         result = _load_run(run_id)
         start_ts = pd.to_datetime(manifest["start_date"], utc=True)
         end_ts = pd.to_datetime(_end_boundary(manifest["end_date"]), utc=True)
@@ -1557,6 +1587,7 @@ def bidask_ledger(run_id: str, request: LedgerRequest):
     except Exception as exc:
         raise HTTPException(422, str(exc)) from exc
     output = {"status": "DUKASCOPY_BIDASK_REPLAY", "contract_spec_status": "USER_SUPPLIED_NOT_BROKER_VERIFIED",
+              "fx_status": fx_check["status"],
               "strategy_signals_recomputed": independent["strategy_signals_recomputed"],
               "note": f"JESSE_RESEARCH_PROVISIONAL contains Jesse fills. Timestamp reprice uses those existing times. DUKASCOPY_BIDASK_REPLAY: {independent['scope']}", "contract": request.model_dump(),
               "timestamp_reprice": {"status": "JESSE_RESEARCH_PROVISIONAL", "trades": ledger,
@@ -1764,6 +1795,122 @@ def create_forward_reference(portfolio_id: uuid.UUID, registration_id: uuid.UUID
         raise HTTPException(422, str(exc)) from exc
     finally:
         RESEARCH_RUN_LOCK.release()
+
+
+@app.get("/api/forward/portfolios/{portfolio_id}/accounting")
+def forward_portfolio_accounting(portfolio_id: uuid.UUID):
+    try:
+        return portfolio_accounting(_forward_engine().report(str(portfolio_id)))
+    except DataError as exc:
+        raise HTTPException(404, str(exc)) from exc
+
+
+@app.get("/api/forward/portfolios/{portfolio_id}/stress")
+def forward_portfolio_stress(portfolio_id: uuid.UUID):
+    try:
+        return stress_test(_forward_engine().report(str(portfolio_id)))
+    except DataError as exc:
+        raise HTTPException(404, str(exc)) from exc
+
+
+# ---------------------------------------------------------------- shadow research portfolio (experimental, separate store)
+SHADOW_DB = shadow_forward.DEFAULT_SHADOW_DB
+
+
+class ShadowPortfolioRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    currency: str = Field(default="USD", min_length=3, max_length=3)
+    starting_capital: float = Field(default=10000, gt=0)
+    risk_limit: float = Field(default=0.05, gt=0, le=1)
+    limits: dict | None = None
+
+
+class ShadowSource(BaseModel):
+    kind: str
+    candidate_id: str | None = None
+    run_id: str | None = None
+    spec_name: str | None = None
+
+
+class ShadowRegisterRequest(BaseModel):
+    source: ShadowSource
+    reason_nl: str = Field(min_length=3, max_length=1000)
+    allocation: float | None = Field(default=None, gt=0)
+    trade_risk: float | None = Field(default=None, gt=0, le=1)
+
+
+def _shadow_engine() -> shadow_forward.ShadowEngine:
+    return shadow_forward.shadow_engine(SHADOW_DB, DEFAULT_DAILY_STORE)
+
+
+def _shadow_error(exc: DataError, missing=404) -> HTTPException:
+    if isinstance(exc, shadow_forward.ShadowNotSupported):
+        return HTTPException(422, {"code": exc.code, "message": str(exc)})
+    if isinstance(exc, shadow_forward.ShadowIneligible):
+        return HTTPException(422, {"code": exc.code, "message": str(exc), "reasons": exc.reasons})
+    return HTTPException(missing if str(exc).startswith("Unknown") else 422, str(exc))
+
+
+@app.get("/api/shadow/portfolios")
+def list_shadow_portfolios():
+    return {"portfolios": _shadow_engine().shadow_portfolios(), "kind": shadow_forward.KIND, "experimental": True,
+            "live_eligible": False, "label_nl": shadow_forward.LABEL_NL,
+            "evidence_classes": shadow_forward.EVIDENCE_CLASSES}
+
+
+@app.post("/api/shadow/portfolios", status_code=201)
+def create_shadow_portfolio(request: ShadowPortfolioRequest):
+    try:
+        engine = _shadow_engine()
+        identifier = engine.create_shadow(request.name, currency=request.currency,
+                                          starting_capital=request.starting_capital, risk_limit=request.risk_limit,
+                                          limits=request.limits)
+        return {"id": identifier, "kind": shadow_forward.KIND, "experimental": True, "live_eligible": False,
+                "label_nl": shadow_forward.LABEL_NL, "limits": engine.report(identifier)["limits"]}
+    except DataError as exc:
+        raise _shadow_error(exc) from exc
+
+
+@app.post("/api/shadow/portfolios/{portfolio_id}/register", status_code=201)
+def register_shadow_strategy(portfolio_id: uuid.UUID, request: ShadowRegisterRequest):
+    try:
+        return _shadow_engine().register_strategy(
+            str(portfolio_id), source=request.source.model_dump(exclude_none=True), reason_nl=request.reason_nl,
+            allocation=request.allocation, trade_risk=request.trade_risk)
+    except DataError as exc:
+        raise _shadow_error(exc) from exc
+
+
+@app.post("/api/shadow/portfolios/{portfolio_id}/advance")
+def advance_shadow_portfolio(portfolio_id: uuid.UUID, request: ForwardAdvanceRequest | None = None):
+    try:
+        return _shadow_engine().advance(str(portfolio_id), max_days=(request or ForwardAdvanceRequest()).max_days)
+    except DataError as exc:
+        raise _shadow_error(exc) from exc
+
+
+@app.post("/api/shadow/portfolios/{portfolio_id}/promote")
+def promote_shadow_portfolio(portfolio_id: uuid.UUID):
+    try:
+        _shadow_engine().promote(str(portfolio_id))
+    except DataError as exc:
+        raise HTTPException(409, {"code": "NEVER_LIVE_ELIGIBLE", "message": str(exc)}) from exc
+
+
+@app.get("/api/shadow/portfolios/{portfolio_id}")
+def get_shadow_portfolio(portfolio_id: uuid.UUID):
+    try:
+        return _shadow_engine().portfolio_view(str(portfolio_id))
+    except DataError as exc:
+        raise _shadow_error(exc) from exc
+
+
+@app.get("/api/shadow/strategies/{strategy_id}")
+def get_shadow_strategy(strategy_id: uuid.UUID):
+    try:
+        return _shadow_engine().strategy_view(str(strategy_id))
+    except DataError as exc:
+        raise _shadow_error(exc) from exc
 
 
 def _port_free(port: int) -> bool:

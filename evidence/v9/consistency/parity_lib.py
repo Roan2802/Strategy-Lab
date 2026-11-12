@@ -26,6 +26,8 @@ def warm_days(spec, params):
 def build_forward(path: Path, spec: dict, params: dict | None, first_day: date, last_day: date, *,
                   symbol="XAUUSD", capital=CAPITAL, contract=CONTRACT, buffer_cap=None):
     """Real-data store with every day published; returns (store, engine, portfolio_id, registration, stats)."""
+    from strategy_lab.research import instruments
+    assert not instruments.conversion_info(symbol, contract["account_currency"])["needed"],         f"{symbol}: quote currency != account currency, hardcoded quote_to_account=1 would be an FX fallback"
     store = DailyPartitionStore(path)
     start = first_day - timedelta(days=warm_days(spec, params))
     stats = ingest_real_range(store, symbol, start, last_day)

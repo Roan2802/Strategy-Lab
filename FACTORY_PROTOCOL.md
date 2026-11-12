@@ -192,6 +192,7 @@ Zie ook `DSR_METHODOLOGY_AUDIT.md` en `ANTI_OVERFITTING_VALIDATION.md`.
 | `REJECTED` | voldoende bewijs van falen: verlies na kosten, negatieve OOS-verwachting op >= 30 trades, overfit-signalen (PBO, WFE, expanding), drawdown, vooraf vastgelegd criterium gefaald met voldoende data, eindtest gefaald | `statistisch`; defecte strategie (look-ahead, ongeldige spec, codegen) `technisch` |
 | `INSUFFICIENT_EVIDENCE` | te weinig OOS-trades, < 4 walk-forward-vensters voor de enkel-venster-regel, PF/RF-tekort binnen het bootstrap-CI, verwachting niet van nul te onderscheiden, DSR < 0,95 bij positieve Sharpe, korte historie, holdout al gebruikt | `onvoldoende bewijs` |
 | `TECHNICAL_BLOCKED` | ontbrekende Ask/bars, ongeldige instrumentgegevens, pijplijnfout (ERROR) | `technisch` |
+| `REVIEW_REQUIRED` (V10.2) | PBO > `max_pbo` is de **enige** niet-PASS-reden van L5 (alle andere checks, dubbel-positief, baseline en robuustheid slagen). Geen automatische promotie: geen L6-selectie, bevriezing, eindtest, FORWARD_ELIGIBLE of forward-registratie tot een menselijke beoordeling is vastgelegd | - |
 
 Elke kandidaat in `/api/factory/runs/{id}/candidates` en `/api/factory/candidates/{id}` heeft (additief) `outcome`,
 `rejection_kind`, `reasons_nl`, `missing_nl` (welke informatie ontbreekt), `next_test_nl` (zinvolle vervolgtest),
@@ -215,3 +216,41 @@ Een positief en een negatief resultaat wordt nooit gepromoveerd.
 `reliability`. Poort ongewijzigd (NC-DSR, zoekniveau effectieve N, 0,95), nu onderbouwd met kalibratie:
 `DSR_FINAL_METHODOLOGY.md`, `STATISTICAL_CALIBRATION_REPORT.md`. L6: DSR < 0,95 met positieve Sharpe ->
 INSUFFICIENT_EVIDENCE, Sharpe <= 0 -> REJECTED.
+
+## 9. V10.2: poortenmatrix en dubbele correcties (2026-11-11)
+
+Onderbouwing, simulaties en beslisregels: `STATISTICAL_SELECTION_AUDIT.md`, bewijs `evidence/v102/stats/`.
+
+**Twee technische fouten hersteld (geen drempel gewijzigd, geen poort verwijderd):**
+
+1. **DSR/PSR stonden twee keer in de promotieladder.** De L5-scorecard gaf bij DSR < 0,95 (of PSR < 0,95) een harde FAIL
+   (`REJECT`) en liet de kandidaat in L5 sneuvelen als REJECTED, terwijl de enige multiplicity-poort L6 is (volledige
+   zoektocht, definitieve N) en daar een positieve Sharpe met DSR < 0,95 INSUFFICIENT_EVIDENCE hoort te zijn. Nu geeft L5 de
+   scorecard `deferred_checks = ["dsr", "psr"]`: de checks worden berekend en getoond (`deferred: true`) maar beslissen
+   niet; het besluit valt in L6 (`effective_trials.gate`). Een kandidaat kan dus nog steeds niet worden bevroren zonder
+   DSR >= 0,95; een uitgestelde tekortkoming blokkeert ook FORWARD_ELIGIBLE. PSR(0) is bovendien impliciet in de DSR
+   (SR0 >= 0, T_eff <= T).
+2. **Onvoldoende bewijs werd REJECTED.** Een scorecard met NEEDS_MORE_DATA zonder enige FAIL (te weinig trades,
+   onvoldoende jaren) werd in L5 als afwijzingsreden gelogd. Nu `factory.l5_decision` (pure functie, ook door de simulatie
+   gebruikt): alleen echte FAILs zijn redenen voor REJECTED; ontbrekend bewijs is INSUFFICIENT_EVIDENCE.
+
+**Poortenvolgorde ongewijzigd:** dual-positief, kwaliteitscontroles (PF/RF met bootstrap-CI, drawdown, expectancy-CI,
+concentratie, inactiviteit, kostenstress, parameterstabiliteit, overfit-vlaggen PBO/WFE/expanding, enkel-venster),
+scorecard (zonder DSR/PSR), robuustheidsoordeel, daarna L6 NC-DSR (zoekniveau effectieve N, 0,95). Dubbel geteld in de
+*redenenlijst* (zelfde statistiek, zelfde drempel op twee plaatsen: kostenstress +50%, parameterstabiliteit, WFE, PBO,
+drawdown, PF) maar niet in de *beslissing*: een OF over identieke gebeurtenissen verandert het resultaat niet.
+
+**PBO (besluit eigenaar 2026-11-11):** PBO wordt in L5 berekend over **alle L4-configuraties** (eerste rung, bv. 24 in
+profiel "uitgebreid"), elk gebacktest op de validatieperiode (`factory.pbo_over_l4`), niet meer over de top-K (4). Drempel
+ongewijzigd (PBO > 0,5 = vlag). Simulatie: nul-FPR blijft 0/300 in 6 nulscenario's; PBO vlagt ruis ~50% en sterke edges
+0-1%. Zie `STATISTICAL_SELECTION_AUDIT.md` sectie 6a.
+
+**PBO-beoordeling (besluit eigenaar 2026-11-12, `STATISTICAL_SELECTION_AUDIT.md` sectie 6b):** `pbo_over_l4` controleert de CSCV-voorwaarden (gelijke
+tijdas, gelijk kostenmodel, set = eerste L4-rung incl. best/top-K, uitsluiting alleen om technische reden); een geschonden voorwaarde geeft
+`INSUFFICIENT_EVIDENCE` zonder PBO-getal. Elke PBO-configuratie staat als `L5_PBO`-record in de store (parameters, hash, validatiemetrics) en telt
+**niet** mee in N van de DSR (dezelfde configuraties als de L4-trials). PBO > `max_pbo` als enige reden geeft kandidaat- en L5-status
+`REVIEW_REQUIRED` (niet REJECTED); faalt iets anders, dan blijft het REJECTED met de PBO-waarschuwing tussen de redenen. Beoordelen:
+`POST /api/factory/candidates/{id}/pbo-review` met `decision` (`accept` of `reject`), `reviewer`, `note`, optioneel `run_id`; 404 onbekende
+kandidaat, 409 geen REVIEW_REQUIRED of al beoordeeld, 422 ongeldige invoer. De beoordeling staat append-only in tabel `pbo_reviews` en in het
+beslissingslogboek van het ledger. `accept` zet de kandidaat op `WF_PASSED`: L6 met de verplichte globale DSR-poort, eindtest en forward-poorten gelden
+onverkort; `reject` is REJECTED. Een beoordeling is definitief.

@@ -1,0 +1,132 @@
+{
+ "S4": {
+  "result": {
+   "markets5_fam6_C8_rho(0.1,0.2,0.3)": {
+    "reps": 200,
+    "T": 1250,
+    "n_raw": 240,
+    "median_n_eff": 99.99999999999999,
+    "mc_mean_best_sr_ann": 1.1499028036900332,
+    "sr0_code_ann": 1.1498318620023469,
+    "sr0_raw_N_ann": 1.2856912320693568,
+    "code_covers_mc": true,
+    "fpr_code": {
+     "k": 1,
+     "n": 200,
+     "rate": 0.005,
+     "lo": 0.0008831459893662054,
+     "hi": 0.02777439986977148
+    },
+    "fpr_raw_N": {
+     "k": 0,
+     "n": 200,
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.018846005918320894
+    }
+   },
+   "markets3_fam4_C8_rho(0.3,0.2,0.2)": {
+    "reps": 200,
+    "T": 1250,
+    "n_raw": 96,
+    "median_n_eff": 35.249999999999986,
+    "mc_mean_best_sr_ann": 0.8454996014118528,
+    "sr0_code_ann": 0.968017314891509,
+    "sr0_raw_N_ann": 1.1475491665019677,
+    "code_covers_mc": true,
+    "fpr_code": {
+     "k": 0,
+     "n": 200,
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.018846005918320894
+    },
+    "fpr_raw_N": {
+     "k": 0,
+     "n": 200,
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.018846005918320894
+    }
+   },
+   "markets8_fam3_C6_rho(0.0,0.3,0.4)": {
+    "reps": 200,
+    "T": 1250,
+    "n_raw": 144,
+    "median_n_eff": 69.0,
+    "mc_mean_best_sr_ann": 1.0853339015126102,
+    "sr0_code_ann": 1.0893726080084278,
+    "sr0_raw_N_ann": 1.2080519969611532,
+    "code_covers_mc": true,
+    "fpr_code": {
+     "k": 1,
+     "n": 200,
+     "rate": 0.005,
+     "lo": 0.0008831459893662054,
+     "hi": 0.02777439986977148
+    },
+    "fpr_raw_N": {
+     "k": 0,
+     "n": 200,
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.018846005918320894
+    }
+   },
+   "independent_markets5_fam6_C8": {
+    "reps": 200,
+    "T": 1250,
+    "n_raw": 240,
+    "median_n_eff": 240.0,
+    "mc_mean_best_sr_ann": 1.2685401438726351,
+    "sr0_code_ann": 1.284381702606181,
+    "sr0_raw_N_ann": 1.284381702606181,
+    "code_covers_mc": true,
+    "fpr_code": {
+     "k": 2,
+     "n": 200,
+     "rate": 0.01,
+     "lo": 0.0027466006037749346,
+     "hi": 0.03572248519617954
+    },
+    "fpr_raw_N": {
+     "k": 2,
+     "n": 200,
+     "rate": 0.01,
+     "lo": 0.0027466006037749346,
+     "hi": 0.03572248519617954
+    }
+   }
+  },
+  "seconds": 102.7,
+  "reps_null": 600,
+  "threshold": 0.95,
+  "seed_policy": "fixed per cell (hash of cell parameters)"
+ },
+ "VREC": {
+  "result": [
+   {
+    "dispersion_ann": 0.0,
+    "V_est_mean": 0.0007371629166826455,
+    "V_true": 0.0006666666666666668,
+    "rel_err": 0.10574437502396794
+   },
+   {
+    "dispersion_ann": 0.5,
+    "V_est_mean": 0.0016358194995971067,
+    "V_true": 0.0016587301587301583,
+    "rel_err": -0.013812167707007217
+   },
+   {
+    "dispersion_ann": 1.0,
+    "V_est_mean": 0.004596573623590397,
+    "V_true": 0.004634920634920633,
+    "rel_err": -0.008273499019879726
+   }
+  ],
+  "seconds": 1.7,
+  "reps_null": 600,
+  "threshold": 0.95,
+  "seed_policy": "fixed per cell (hash of cell parameters)"
+ }
+}

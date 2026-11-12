@@ -3,7 +3,9 @@
 Every field is ``{"value": ..., "status": VERIFIED_FROM_DATA | ASSUMED | UNKNOWN, "note": ...}``. Only what the
 Dukascopy data itself shows (price decimals, spread, first/last bar, observed trading hours, conversion pair
 availability) is VERIFIED_FROM_DATA; contract size, lot step and commission are broker facts we do not have.
-Currency conversion to the USD account uses the real Dukascopy EURUSD/USDJPY/USDCAD series (causal, per bar open).
+Currency conversion to the account currency goes through ``fx.FxService`` (real Dukascopy series, causal, per bar
+open; never a 1.0 fallback). Broker facts come from named profiles (``broker_profiles``) with a source, a status and an
+effective-from history; every field also carries ``verification`` = VERIFIED / DERIVED / ASSUMED / UNAVAILABLE.
 """
 from __future__ import annotations
 
@@ -15,7 +17,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import backtest
+from . import backtest, broker_profiles, fx
 
 VERIFIED, ASSUMED, UNKNOWN, BROKER = "VERIFIED_FROM_DATA", "ASSUMED", "UNKNOWN", "BROKER_VERIFIED"
 ACCOUNT_CURRENCY = "USD"
@@ -54,8 +56,9 @@ def canonical(symbol: str) -> str:
 
 
 def _f(value, status, note="", source=None):
-    return {"value": value, "status": status, "note": note,
-            "source": source or {VERIFIED: "dukascopy_data", ASSUMED: "lab_default", UNKNOWN: "none"}.get(status, "")}
+    src = source or {VERIFIED: "dukascopy_data", ASSUMED: "lab_default", UNKNOWN: "none"}.get(status, "")
+    return {"value": value, "status": status, "note": note, "source": src,
+            "verification": "DERIVED" if src == "derived" else broker_profiles.verification_class(status)}
 
 
 def _overrides() -> dict:
@@ -125,76 +128,35 @@ def _stats(dm, symbol: str, refresh: bool = False) -> dict:
     return stats
 
 
-# USD per 1 unit of currency: (Dukascopy pair, True = pair mid, False = 1/mid); USD itself needs no pair.
-_USD_PER = {"EUR": ("EURUSD", True), "GBP": ("GBPUSD", True), "AUD": ("AUDUSD", True),
-            "JPY": ("USDJPY", False), "CAD": ("USDCAD", False)}
-
-
-def _legs(quote: str | None, account: str) -> list | None:
-    """Conversion legs (ccy, pair, mid?, inverse) from ``quote`` to ``account``, or None if a leg is unknown."""
-    if quote is None:
-        return None
-    legs = []
-    for ccy, inverse in ((quote, False), (account, True)):
-        if ccy == "USD":
-            continue
-        if ccy not in _USD_PER:
-            return None
-        legs.append((ccy, *_USD_PER[ccy], inverse))
-    return legs
-
-
 def conversion_info(symbol: str, account: str = ACCOUNT_CURRENCY) -> dict:
     """How the P&L of ``symbol`` reaches the account currency: none needed, or the Dukascopy pair(s) + operation."""
     symbol = canonical(symbol)
     quote = _STATIC[symbol][1] if symbol in _STATIC else None
     if quote == account:
         return {"needed": False, "quote": quote, "account": account}
-    legs = _legs(quote, account)
+    legs = fx.route(quote, account) if quote else None
     if not legs:
         return {"needed": True, "quote": quote, "account": account, "pair": None, "operation": None}
-    if len(legs) == 1 and account == ACCOUNT_CURRENCY:  # historical single-pair shape
-        return {"needed": True, "quote": quote, "account": account, "pair": legs[0][1],
-                "operation": "mid" if legs[0][2] else "1/mid"}
-    return {"needed": True, "quote": quote, "account": account, "pair": "+".join(l[1] for l in legs),
-            "legs": [{"pair": l[1], "operation": "mid" if l[2] else "1/mid", "divide": l[3]} for l in legs],
-            "operation": "cross"}
-
-
-def _leg_series(dm, pair: str, mid_op: bool, timeframe: str, start, end) -> pd.Series | None:
-    try:
-        frame, _ = dm.candles(pair, timeframe, start, end)
-    except Exception:
-        return None
-    if frame.empty:
-        return None
-    mid = (frame["bid_open"] + frame["ask_open"]) / 2.0
-    return mid if mid_op else 1.0 / mid
+    ops = [{"pair": pair, "operation": "1/mid" if inverse else "mid"} for pair, inverse in legs]
+    if len(legs) == 1:
+        return {"needed": True, "quote": quote, "account": account, "pair": ops[0]["pair"],
+                "operation": ops[0]["operation"]}
+    return {"needed": True, "quote": quote, "account": account, "pair": "+".join(o["pair"] for o in ops),
+            "legs": ops, "operation": "cross"}
 
 
 def conversion_series(dm, symbol: str, timeframe: str, start: str | None, end: str | None,
-                      account: str = ACCOUNT_CURRENCY) -> pd.Series | None:
-    """``account`` units per 1 quote-currency unit at each conversion-bar OPEN (causal), or None if unavailable.
-    Empty Series when no conversion is needed. Cross rates combine two USD legs on an as-of (ffill) time grid."""
+                      account: str = ACCOUNT_CURRENCY, side: str = "mid") -> pd.Series | None:
+    """``account`` units per 1 quote-currency unit at each conversion-bar OPEN (causal), or None if unavailable
+    (reported as FX_RATE_UNAVAILABLE by the callers, never replaced by 1.0). Empty Series when no conversion is
+    needed. Built by ``fx.FxService.series``; cross rates combine USD legs on an as-of time grid."""
     symbol = canonical(symbol)
     info = conversion_info(symbol, account)
     if not info["needed"]:
         return pd.Series(dtype=float)
-    legs = _legs(info["quote"], account)
-    if not legs:
+    if not info.get("pair"):
         return None
-    out = None
-    for ccy, pair, mid_op, inverse in legs:
-        ser = _leg_series(dm, pair, mid_op, timeframe, start, end)
-        if ser is None:
-            return None
-        if out is None:
-            out = (1.0 / ser) if inverse else ser
-        else:
-            grid = out.index.union(ser.index)
-            lhs, rhs = out.reindex(grid).ffill(), ser.reindex(grid).ffill()
-            out = (lhs / rhs if inverse else lhs * rhs).dropna()
-    return out
+    return fx.FxService(dm).series(info["quote"], account, timeframe, start, end, side)
 
 
 def rate_at(series: pd.Series, ts) -> float:
@@ -209,16 +171,12 @@ def rate_at(series: pd.Series, ts) -> float:
     return float(series.iloc[pos])
 
 
-def convert_trades(trades: list[dict], series: pd.Series | None, key: str = "exit_time") -> list[dict]:
+def convert_trades(trades: list[dict], series: pd.Series | None, key: str = "exit_time",
+                   max_staleness=None) -> list[dict]:
     """Copy of ``trades`` with pnl/costs converted to the account currency at the rate known at the trade's
-    ``key`` time (exit = when the P&L is realised). ``series`` None/empty = no conversion needed."""
-    if series is None or len(series) == 0:
-        return [dict(t) for t in trades]
-    out = []
-    for t in trades:
-        r = rate_at(series, t[key])
-        out.append({**t, "pnl": float(t["pnl"]) * r, "costs": float(t.get("costs") or 0.0) * r, "fx_rate": r})
-    return out
+    ``key`` time (exit = when the P&L is realised). ``series`` None/empty = no conversion needed. Raises
+    ``fx.FxRateUnavailable`` on a missing/invalid rate (and, when ``max_staleness`` is given, a stale one)."""
+    return fx.convert_trades(trades, series, key, max_staleness)
 
 
 def size_position(equity: float, risk_percent: float, stop_distance: float, contract_size: float, rate: float,
@@ -277,7 +235,69 @@ def money_approval(symbols, dm=None, account: str = ACCOUNT_CURRENCY) -> dict:
                         "BROKER_VERIFIED zijn (zie BROKER_ASSUMPTIONS_REGISTER.md). R-multiples en % blijven bruikbaar.")}
 
 
-def spec_for(symbol: str, dm=None, refresh: bool = False, account: str = ACCOUNT_CURRENCY) -> dict:
+def _entry_field(entry: dict, value=None, note: str = "") -> dict:
+    """Registry field from a broker-profile entry; verification follows the stored status."""
+    status = BROKER if entry["status"] == "BROKER_VERIFIED" else ASSUMED
+    out = _f(entry["value"] if value is None else value, status, note or entry.get("note") or "broker profile",
+             entry["source"])
+    out["verification"] = broker_profiles.verification_class(entry["status"])
+    if entry.get("effective_from"):
+        out["effective_from"] = entry["effective_from"]
+    return out
+
+
+def _combined(entries: list, value, note: str) -> dict:
+    """Field built from several profile entries: only as trustworthy as the weakest one."""
+    entries = [e for e in entries if e]
+    rank = ("ASSUMED", "DERIVED", "BROKER_VERIFIED")
+    weakest = min(entries, key=lambda e: rank.index(e["status"]))
+    return _entry_field({**weakest, "source": "; ".join(sorted({e["source"] for e in entries}))}, value, note)
+
+
+def _apply_profile(fields: dict, prof: dict, symbol: str, as_of) -> None:
+    at = lambda f: broker_profiles.value_at(prof, symbol, f, as_of)
+    for name in ("contract_size", "tick_size", "lot_step", "min_lot", "max_lot", "commission_per_lot_side"):
+        if (e := at(name)):
+            fields[name] = _entry_field(e)
+    if (e := at("slippage_points")):
+        fields["slippage"] = _entry_field(e, {"points": e["value"]})
+    if (e := at("quote_currency")):
+        fields["quote_currency"] = _entry_field(e)
+    if (e := at("swap_long")) and (e2 := at("swap_short")):
+        fields["swap"] = _combined(
+            [e, e2, at("swap_mode")], {"long": e["value"], "short": e2["value"],
+                                       "mode": (at("swap_mode") or {}).get("value"),
+                                       "triple_weekday": (at("swap_triple_day") or {}).get("value"),
+                                       "rollover_hour_utc": (at("swap_rollover_hour_utc") or {}).get("value")},
+            "swap uit brokerprofiel; eenheid volgt swap_mode (MT5)")
+    lev, rate = at("leverage"), at("margin_initial_rate")
+    if lev or rate:
+        fields["margin"] = _combined(
+            [lev, rate], {"leverage": (lev or {}).get("value"), "initial_rate": (rate or {}).get("value"),
+                          "maintenance_rate": (at("margin_maintenance_rate") or {}).get("value"),
+                          "margin_per_lot": (at("margin_per_lot") or {}).get("value"),
+                          "stop_out_level_pct": (at("stop_out_level_pct") or {}).get("value")},
+            "margin uit brokerprofiel")
+    if lev:
+        fields["leverage"] = _entry_field(lev)
+    for name in ("profit_currency", "margin_currency", "swap_triple_day"):
+        if (e := at(name)):
+            fields[name] = _entry_field(e)
+    if (e := at("sessions")):
+        fields["trading_hours"] = _entry_field(e, {"sessions_utc": e["value"],
+                                                   "observed": (fields["trading_hours"]["value"] or {})})
+    if (e := at("tick_value")):
+        fields["tick_value"] = _entry_field(e, {"account_ccy_per_tick_per_lot_broker": e["value"]},
+                                            "TickValue uit brokerprofiel (rekeningvaluta)")
+    history = {n: broker_profiles.history(prof, symbol, n)
+               for n in ("contract_size", "tick_size", "lot_step", "min_lot", "max_lot", "leverage", "swap_long",
+                         "swap_short", "margin_initial_rate")}
+    fields["contract_history"] = _f({n: h for n, h in history.items() if h}, ASSUMED,
+                                    "wijzigingen in de tijd (effective_from per waarde)", "broker_profile")
+
+
+def spec_for(symbol: str, dm=None, refresh: bool = False, account: str = ACCOUNT_CURRENCY, profile=None,
+             as_of=None) -> dict:
     symbol = canonical(symbol)
     if symbol not in _STATIC:
         return {"symbol": symbol, "status": "UNKNOWN_INSTRUMENT", "provisional": True}
@@ -323,6 +343,17 @@ def spec_for(symbol: str, dm=None, refresh: bool = False, account: str = ACCOUNT
                 and item.get("value") is not None):
             fields[name] = _f(item["value"], BROKER, item.get("note", "door gebruiker ingevoerd brokerfeit"),
                               str(item["source"]))
+    fields.update({
+        "profit_currency": _f(quote, ASSUMED, "aangenomen gelijk aan quote-valuta", "convention"),
+        "margin_currency": _f(None, UNKNOWN, "broker-specifiek"),
+        "leverage": _f(None, UNKNOWN, "broker/account-specifiek"),
+        "swap_triple_day": _f(None, UNKNOWN, "broker-specifiek (index: vaak vrijdag, FX: woensdag)"),
+        "contract_history": _f({}, UNKNOWN, "geen brokerprofiel: geen contractwijzigingen bekend"),
+    })
+    prof = None
+    if profile is not None:
+        prof = broker_profiles.load_profile(profile) if isinstance(profile, str) else profile
+        _apply_profile(fields, prof, symbol, as_of)
     pip = 0.01 if quote == "JPY" else 0.0001
     cs, tk = fields["contract_size"], fields["tick_size"]
     fields["tick_value"] = _f({"quote_ccy_per_tick_per_lot": tk["value"] * cs["value"]}, _derived_status(tk, cs),
@@ -337,7 +368,7 @@ def spec_for(symbol: str, dm=None, refresh: bool = False, account: str = ACCOUNT
                             fields["quote_currency"]["source"])
     gate = money_gate(fields)
     return {"symbol": symbol, "account_currency": account, "fields": fields,
-            "data_available": data_ok, "conversion_available": conv_ok,
+            "broker_profile": (prof or {}).get("name"), "data_available": data_ok, "conversion_available": conv_ok,
             "status": ("OK" if data_ok and conv_ok else "INCOMPLETE"),
             "money_status": gate["status"], "money_gate": gate,
             "money_status_note_nl": ("Contractspecificaties zijn aannames (niet broker-bevestigd): "
@@ -349,14 +380,53 @@ def registry(dm=None, refresh: bool = False, account: str = ACCOUNT_CURRENCY) ->
     return [spec_for(s, dm, refresh, account) for s in SYMBOLS]
 
 
-def contract_for(symbol: str, dm=None, account: str = ACCOUNT_CURRENCY):
-    """ContractSpec in the account currency with the registry's size/tick/step (quote_to_account placeholder 1.0;
-    the real rate comes from conversion_series)."""
+def contract_for(symbol: str, dm=None, account: str = ACCOUNT_CURRENCY, ts=None, fx_service=None, profile=None,
+                 as_of=None, *, conversion_series: bool = False):
+    """ContractSpec in the account currency with the registry's size/tick/step.
+
+    ``quote_to_account`` is the real FxService rate at ``ts`` when a conversion is needed (raises
+    ``fx.FxRateUnavailable`` instead of guessing). A conversion-needing symbol WITHOUT ``ts`` also raises
+    ``fx.FxRateUnavailable`` (money blocked), unless the caller declares ``conversion_series=True``: it will pass a
+    ``conversion=`` series to run_rules_backtest, which ignores the 1.0 placeholder (and flags the run
+    FX_RATE_UNAVAILABLE with blocked money metrics when the series is missing). Same-currency quotes are 1.0."""
     from runtime.strategy_lab.execution import ContractSpec
-    s = spec_for(symbol, dm, account=account)
+    s = spec_for(symbol, dm, account=account, profile=profile, as_of=as_of)
     f = s["fields"]
-    return ContractSpec(account, float(f["contract_size"]["value"]), float(f["tick_size"]["value"]), 1.0,
+    info = conversion_info(symbol, account)
+    rate = 1.0
+    if info["needed"]:
+        if ts is not None:
+            rate = (fx_service or fx.FxService(dm)).rate(info["quote"], account, ts).rate
+        elif not conversion_series:
+            raise fx.FxRateUnavailable(
+                f"FX_RATE_UNAVAILABLE: {canonical(symbol)} is quoted in {info['quote']}, account is {account}; "
+                "pass ts for a historical rate (or conversion_series=True with a conversion series)")
+    return ContractSpec(account, float(f["contract_size"]["value"]), float(f["tick_size"]["value"]), rate,
                         float(f["lot_step"]["value"]))
+
+
+def validate_ledger_contract(symbol: str, contract, account: str = ACCOUNT_CURRENCY) -> dict:
+    """Quote-currency check for a user-supplied ledger contract (server.py ``LedgerRequest``).
+
+    Raises ``ValueError`` when the symbol needs an FX conversion but ``quote_to_account`` is 1.0 (a silent
+    same-currency claim for a EUR/JPY/CAD quote) or the contract account currency differs from ``account``.
+    Returns ``{"status": OK | FIXED_USER_RATE | UNKNOWN_INSTRUMENT, ...}``; FIXED_USER_RATE means a constant rate
+    the user typed, not a historical one: callers must label money results accordingly."""
+    cur = str(getattr(contract, "account_currency", "")).upper()
+    if cur != account:
+        raise ValueError(f"FX_RATE_UNAVAILABLE: ledger account currency {cur or '?'} is not {account}")
+    name = canonical(symbol)
+    if name not in _STATIC:
+        return {"status": "UNKNOWN_INSTRUMENT", "symbol": name, "note": "quote currency unverified"}
+    info = conversion_info(name, account)
+    if not info["needed"]:
+        return {"status": "OK", "symbol": name, "quote": info["quote"]}
+    rate = float(contract.quote_to_account)
+    if rate == 1.0:
+        raise ValueError(f"FX_RATE_UNAVAILABLE: {name} is quoted in {info['quote']}; quote_to_account=1.0 would "
+                         f"label {info['quote']} amounts as {account}")
+    return {"status": "FIXED_USER_RATE", "symbol": name, "quote": info["quote"], "rate": rate,
+            "note": "constant user-supplied rate, not a historical FX rate"}
 
 
 # ------------------------------------------------------------------------------------------------ risk models

@@ -7,6 +7,7 @@ from contextlib import closing
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import copy
+from types import SimpleNamespace
 import random
 import shutil
 import sqlite3
@@ -334,6 +335,7 @@ def test_scale_in_specs_are_refused_by_the_forward_model(tmp_path):
 def test_every_display_symbol_survives_freeze_and_advance(tmp_path, symbol):
     """provider_symbol() rejects its own DE40/US500 output; the frozen config keeps the provider name."""
     store, engine, portfolio, ids = setup(tmp_path / "f.sqlite", [spec("M1", symbol=symbol)])
+    engine._fx = SimpleNamespace(rate=lambda *a, **k: SimpleNamespace(rate=1.1, source="TEST", data_version="t"))
     frozen = ForwardRegistry(store).get(ids[0])["configuration"]["symbol"]
     assert provider_symbol(data_symbol(frozen)) == frozen
     rows = ([(100, 100.1, 99.9, 100)] * 3 + [(100, 101.1, 99.9, 101), (101, 101.2, 100.9, 101.0),

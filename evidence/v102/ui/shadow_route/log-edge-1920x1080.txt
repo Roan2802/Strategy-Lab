@@ -1,0 +1,28 @@
+PASS home loads with KPI tiles
+PASS home shows compact market-data line with Details - Marktdata: gedeeltelijk achter 6 actueel · 3 vertraagd · 0 gesloten · laatste succesvolle sync 2026-11-12 17:03 UTC Deta
+PASS home has no permanent 7-step stepper
+PASS home data line shows counts current / delayed / closed that add up - 6 actueel · 3 vertraagd · 0 gesloten of 9
+PASS home data line shows last successful sync - 3 vertraagd · 0 gesloten · laatste succesvolle sync 2026-11-12 17:03 UTC Details
+PASS home data line never green while instruments lag - lagging=True
+PASS home shows running research, forward strategies and critical errors only
+PASS probe found an eligible and an ineligible factory candidate - Gen vwap_pullback USDJPY M15 f26820 / Gen vwap_deviation USDJPY M15 f8d64e
+PASS isolated instance starts with an empty shadow store
+PASS empty shadow view offers a create button and the experimental label
+PASS UI created exactly one test shadow portfolio - {'471b4678-78dc-4712-8c03-87659763ea29': 0}
+PASS eligible candidate drawer has the button Volg in Shadow Research
+PASS success toast confirms the candidate is followed - Gen vwap_pullback USDJPY M15 f26820 wordt gevolgd in Shadow Research.
+PASS registration landed in the test portfolio only - {'471b4678-78dc-4712-8c03-87659763ea29': 1}
+PASS second click is refused with a calm Dutch toast - Niet toegevoegd: staat al in dit portfolio met dezelfde specificatie, parameters en risico
+PASS ineligible candidate shows a readable refusal reason, no raw JSON - Niet toegevoegd: defecte strategie (look-ahead, ongeldige specificatie of uitvoering); staat al in een onderzoek (duplicaat)
+PASS strategy appears in the shadow list with experimental label - Naam	Markt	Start (UTC)	Trades	Netto	Max DD %	PF	Laatste update	Bewijs	Waarschuwingen Gen vwap_pullback USDJPY M15 f26820
+PASS shadow view shows evidence class DAILY_DELAYED_FORWARD
+PASS detail shows frozen registration info (version, hash, registered at) - Experimenteel — niet gevalideerd, geen echte orders DAILY_DELAYED_FORWARD REALTIME_PAPER_FORWARD niet beschikbaar Detail 405626c5-f58b-4ca1-9c99-94b752a52096 Registratie (bevroren) Versie 1 Geregistreerd 2026-11-12 17:11 Spec-hash 8b0ac2f1a
+PASS detail shows experimental label and evidence class - Experimenteel — niet gevalideerd, geen echte orders DAILY_DELAYED_FORWARD REALTIME_PAPER_FORWARD nie
+PASS Mijn strategieën offers Volg in Shadow Research on eligible rows - 461
+PASS library follow gives success or calm refusal toast (no raw JSON) - EmaRsiPullback: EmaRsiPullback wordt gevolgd in Shadow Research.
+PASS promote attempt is refused with NEVER_LIVE_ELIGIBLE (UI exposes no promote control) - 409 {"detail": {"code": "NEVER_LIVE_ELIGIBLE", "message": "Shadow portfolios can never become LIVE_ELIGI
+PASS real shadow portfolio untouched (strategy counts unchanged) - {'62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b': 3} -> {'62fd0826-e9b9-4f61-a8fa-f4db9e17cd7b': 3}
+PASS validated /api/forward/portfolios unaffected
+PASS no horizontal overflow in the shadow route
+PASS 0 JS errors in the shadow route
+{"tag": "msedge-1920x1080-dark-shadow", "passed": 27, "failed": 0} JS errors: 0

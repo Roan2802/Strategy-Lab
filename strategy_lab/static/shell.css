@@ -695,3 +695,10 @@ body.shell .lib-bar select{width:auto;flex:0 0 190px}
 .fx-head{margin-bottom:8px}
 .check-row{display:flex!important;flex-direction:row!important;align-items:center;gap:8px;margin-top:10px;font-size:13px}
 .check-row input[type=checkbox]{width:auto;margin:0}
+
+.pf-mode{margin:0 0 10px}
+.shadow-label{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px;padding:8px 12px;border:1px solid var(--warn,#e8b04a);border-radius:8px;background:color-mix(in srgb,var(--warn,#e8b04a) 10%,transparent);font-size:13px}
+.shadow-label b{font-weight:650;margin-right:4px}
+#sh-table tr[data-sid]{cursor:pointer}
+#sh-table tr.sel{background:color-mix(in srgb,var(--accent,#4a90d9) 12%,transparent)}
+.sh-detail h4{margin:12px 0 6px;font-size:13px}

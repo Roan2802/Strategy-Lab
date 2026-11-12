@@ -13,17 +13,18 @@ import json
 import math
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
 
 from runtime.strategy_lab import rule_engine as engine
 
-from . import adapters, backtest, factory, instruments, protocol, validation
+from . import adapters, backtest, factory, fx, instruments, protocol, validation
 from . import ledger as _ledger_mod
 from .jobs import JobCancelled
 
+FX_STALENESS = timedelta(hours=72)  # a conversion rate older than this is unavailable (never carried indefinitely)
 MIN_TRADES = 30
 MIN_DAYS = 365
 STABILITY_MAX_NEIGHBOURS = 6
@@ -283,17 +284,19 @@ def _run_cell(cell, ctx, dm, spec, frozen, info, sym, tf, start, end, capital, r
     conv_needed = info["fields"]["account_conversion"]["value"]["needed"]
     conv = (instruments.conversion_series(dm, sym, tf, begin, e.strftime("%Y-%m-%d"), account=account)
             if conv_needed else None)
-    if conv_needed and conv is None:
-        cell["flags"].append("PROVISIONAL_CURRENCY")
-    cell["currency_conversion"] = ("USD_QUOTE" if not conv_needed else
-                                   "CONVERTED_CAUSAL" if conv is not None else "UNCONVERTED")
-    if conv_needed and conv is None:
-        cell["currency_conversion"] = "UNCONVERTED"
+    if conv_needed and (conv is None or not len(conv)):
+        # no real FX series: never 1.0 / quote-currency amounts presented as account currency -> no money result
+        cell.update(status="FX_RATE_UNAVAILABLE", validation_status="INSUFFICIENT_DATA", edge_positive=False,
+                    currency_conversion="FX_RATE_UNAVAILABLE", currency_status="FX_RATE_UNAVAILABLE",
+                    money_blocked=True)
+        cell["flags"] += ["FX_RATE_UNAVAILABLE", "PROVISIONAL_CURRENCY"]
+        return
+    cell["currency_conversion"] = "USD_QUOTE" if not conv_needed else "CONVERTED_CAUSAL"
     cell["flags"].append("PROVISIONAL_CONTRACT")
     if origin and sym == origin:
         cell["flags"].append("ORIGIN_MARKET_IN_SAMPLE")  # parameters were found on this market's development data
     cm = factory.cost_model_for(sym, capital, (spec.get("risk") or {}).get("percent", 1.0))
-    contract = instruments.contract_for(sym, dm, account=account)
+    contract = instruments.contract_for(sym, dm, account=account, conversion_series=True)
     cell["cost_model"] = {"commission_per_lot_side": cm["commission_per_lot"], "spread": "real bid/ask",
                           "contract": {"size": contract.contract_size, "tick": contract.tick_size,
                                        "lot_step": contract.volume_step}}
@@ -646,13 +649,17 @@ def _run_adapter_cell(cell, ctx, dm, make, kind, ref, opts, binding, info, sym, 
     conv = None
     if info["fields"]["account_conversion"]["value"]["needed"]:
         conv = instruments.conversion_series(dm, sym, "H1" if tf == "M1" else tf, s_str, e_str, account=account)
-        if conv is None or not len(conv):
-            cell["flags"].append("PROVISIONAL_CURRENCY")
-            cell["currency_conversion"] = "UNCONVERTED"
-            conv = None
-        else:
-            cell["currency_conversion"] = "CONVERTED_CAUSAL_AT_EXIT"
-            trades = instruments.convert_trades(trades, conv)
+        try:
+            if conv is None or not len(conv):
+                raise fx.FxRateUnavailable("no conversion series")
+            trades = instruments.convert_trades(trades, conv, max_staleness=FX_STALENESS)
+        except fx.FxRateUnavailable as exc:
+            cell.update(status="FX_RATE_UNAVAILABLE", validation_status="INSUFFICIENT_DATA", edge_positive=False,
+                        currency_conversion="FX_RATE_UNAVAILABLE", currency_status="FX_RATE_UNAVAILABLE",
+                        money_blocked=True, fx_error=str(exc))
+            cell["flags"] += ["FX_RATE_UNAVAILABLE", "PROVISIONAL_CURRENCY"]
+            return
+        cell["currency_conversion"] = "CONVERTED_CAUSAL_AT_EXIT"
     else:
         cell["currency_conversion"] = "ACCOUNT_CURRENCY_QUOTE"
     m = _adapter_metrics(trades, capital, s, e)
@@ -667,7 +674,8 @@ def _run_adapter_cell(cell, ctx, dm, make, kind, ref, opts, binding, info, sym, 
     stress_ok, stress = None, {}
     if "spread_+50%" in scen:
         r2 = ad.fn(merged, s_str, e_str, **scen["spread_+50%"])
-        t2 = instruments.convert_trades(r2["trades"], conv) if conv is not None else r2["trades"]
+        t2 = (instruments.convert_trades(r2["trades"], conv, max_staleness=FX_STALENESS)
+              if conv is not None else r2["trades"])
         stress_ok, stress = sum(t["pnl"] for t in t2) > 0, {"scenario": "spread_+50% (engine re-run)",
                                                            "net_profit": float(sum(t["pnl"] for t in t2))}
     elif kind == "jesse":

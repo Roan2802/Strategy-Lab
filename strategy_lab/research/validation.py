@@ -949,8 +949,10 @@ def scorecard(evidence: dict, thresholds: dict | None = None) -> dict:
         checks.append(_chk("pbo", INSUFFICIENT, None, th["max_pbo"], "PBO niet berekenbaar (te weinig trials of perioden)."))
     else:
         ok = pbo <= th["max_pbo"]
-        checks.append(_chk("pbo", "PASS" if ok else "FAIL", pbo, th["max_pbo"],
-                           f"Kans op backtest-overfitting {pbo:.2f} (max {th['max_pbo']})."))
+        # pbo_review: a PBO above the limit asks for a human review (status REVIEW_REQUIRED) instead of failing; it is
+        # not a FAIL (no verdict effect) but never a PASS either (blocks FORWARD_ELIGIBLE)
+        checks.append(_chk("pbo", "PASS" if ok else "REVIEW_REQUIRED" if th.get("pbo_review") else "FAIL", pbo,
+                           th["max_pbo"], f"Kans op backtest-overfitting {pbo:.2f} (max {th['max_pbo']})."))
     # WFE
     wfe, wst = _unwrap(v["wfe"])
     if v["wfe"] is None and v["wf_status"] is None:
@@ -1013,14 +1015,21 @@ def scorecard(evidence: dict, thresholds: dict | None = None) -> dict:
         checks.append(_chk("yearly_consistency", "PASS" if ok else "FAIL", v["yearly"], th["min_yearly_positive"],
                            f"{v['yearly']:.0%} van de jaren winstgevend (min {th['min_yearly_positive']:.0%})."))
 
+    # Deferred checks are evaluated and shown but decided elsewhere (the factory defers PSR/DSR to its single L6
+    # multiplicity gate): they do not enter the verdict, and a deferred shortfall blocks FORWARD_ELIGIBLE.
+    deferred = set(th.get("deferred_checks") or ())
+    for c in checks:
+        if c["name"] in deferred:
+            c["deferred"] = True
     by = {c["name"]: c for c in checks}
     st = lambda n: by[n]["status"]
-    fails = [c["name"] for c in checks if c["status"] == "FAIL"]
-    insuff = [c["name"] for c in checks if c["status"] == INSUFFICIENT]
-    not_tested = [c["name"] for c in checks if c["status"] == "NOT_TESTED"]
+    live = [c for c in checks if c["name"] not in deferred]
+    fails = [c["name"] for c in live if c["status"] == "FAIL"]
+    insuff = [c["name"] for c in live if c["status"] == INSUFFICIENT]
+    not_tested = [c["name"] for c in live if c["status"] == "NOT_TESTED"]
     basics_missing = any(st(n) == "NOT_TESTED" for n in ("sample_size", "net_after_costs", "profit_factor", "max_drawdown"))
     notes = []
-    if st("net_after_costs") == "FAIL" or st("dsr") == "FAIL" or len(fails) >= 2:
+    if st("net_after_costs") == "FAIL" or ("dsr" not in deferred and st("dsr") == "FAIL") or len(fails) >= 2:
         verdict = "REJECT"
         notes.append("Afgewezen: harde fout op netto resultaat of DSR, of meerdere checks falen: " + ", ".join(fails) + ".")
     elif fails:
@@ -1062,13 +1071,15 @@ def scorecard(evidence: dict, thresholds: dict | None = None) -> dict:
     return {
         "verdict": verdict, "checks": checks, "thresholds": th, "notes_nl": notes,
         "counts": {"PASS": sum(c["status"] == "PASS" for c in checks), "FAIL": len(fails),
+                   "REVIEW_REQUIRED": sum(c["status"] == "REVIEW_REQUIRED" for c in checks),
                    "INSUFFICIENT_EVIDENCE": len(insuff), "NOT_TESTED": len(not_tested)},
         "disclaimer_nl": "Dit scorecard geeft geen kans op toekomstige winst; het beschrijft alleen de sterkte van het historische bewijs.",
     }
 
 
 # --------------------------------------------------------------------------- Dutch report
-_SYM = {"PASS": "PASS", "FAIL": "FAIL", "INSUFFICIENT_EVIDENCE": "ONVOLDOENDE BEWIJS", "NOT_TESTED": "NIET GETEST"}
+_SYM = {"PASS": "PASS", "FAIL": "FAIL", "INSUFFICIENT_EVIDENCE": "ONVOLDOENDE BEWIJS", "NOT_TESTED": "NIET GETEST",
+        "REVIEW_REQUIRED": "BEOORDELING NODIG"}
 _VERDICT_NL = {
     "REJECT": "Afgewezen: het bewijs spreekt de strategie tegen.",
     "NEEDS_MORE_DATA": "Meer data nodig: het bewijs is onvoldoende om te oordelen.",

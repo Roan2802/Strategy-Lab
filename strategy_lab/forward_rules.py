@@ -56,7 +56,9 @@ def _finite(value, name, *, minimum=0.0, maximum=math.inf, strict=False) -> floa
 
 
 def _reject_unsupported(spec: dict) -> None:
-    """Features the research backtest models but this forward model does not: refuse instead of diverging silently."""
+    """Features the research backtest models but this forward model does not: refuse instead of diverging silently.
+    (partial_exits ARE supported with the same semantics; the V102 ``execution`` model - margin/swap/hours/rejections -
+    is research-backtest only: the forward model has its own SHARED_MARGIN/RISK_LIMIT checks and no swap.)"""
     if spec.get("scale_in"):
         raise DataError("scale_in is not supported by the forward model (RULES_BIDASK_V1); "
                         "the research backtest would add to positions that the forward run never adds to")
@@ -146,7 +148,7 @@ def store_fetch(store, symbol: str):
 
 # ----------------------------------------------------------------------------- configuration
 
-def _contract(raw) -> execution.ContractSpec:
+def _contract(raw, symbol: str | None = None) -> execution.ContractSpec:
     names = [field.name for field in fields(execution.ContractSpec)]
     try:
         contract = execution.ContractSpec(**{name: raw[name] for name in names})
@@ -158,7 +160,23 @@ def _contract(raw) -> execution.ContractSpec:
         _finite(getattr(contract, name), name, strict=True)
     for name in ("commission_per_lot_side", "slippage_points"):
         _finite(getattr(contract, name), name)
+    if symbol is not None:
+        _require_real_fx(symbol, contract)
     return contract
+
+
+def _require_real_fx(symbol: str, contract) -> None:
+    """A frozen ``quote_to_account`` is never a rate for a non-account quote currency: the forward engine converts
+    every candle through FxService (fx_check DYNAMIC_FX) and ignores the frozen value, and ``enroll`` blocks when the
+    service is missing. Registration therefore rejects what can never be converted: an instrument outside the
+    registry (quote currency unverifiable) or a quote without a conversion pair. A non-USD account is left to the
+    enroll-time check."""
+    from .portfolio import fx_check
+
+    check = fx_check(symbol, contract, fx_available=True)
+    if check["status"] == "UNKNOWN_INSTRUMENT" or (
+            check["status"] == "BLOCKED" and "no causal conversion" not in check["reason"]):
+        raise DataError(f"FX_RATE_UNAVAILABLE: {check['reason']}")
 
 
 def build_configuration(spec: dict, parameters: dict | None, *, contract, starting_capital: float,
@@ -176,7 +194,7 @@ def build_configuration(spec: dict, parameters: dict | None, *, contract, starti
         raise DataError(str(exc)) from exc
     raw = contract if isinstance(contract, dict) else {f.name: getattr(contract, f.name)
                                                        for f in fields(execution.ContractSpec)}
-    _contract(raw)
+    _contract(raw, clean["symbol"])
     return {
         "strategy": clean["name"], "execution_model": MODEL, "spec": clean,
         "spec_sha256": engine.spec_sha256(clean), "parameters": explicit, "indicators": {},
@@ -220,7 +238,7 @@ def validate_registration(registration: dict):
         raise DataError(str(exc)) from exc
     if canonical != params:
         raise DataError("The frozen parameters are not canonical")
-    contract = _contract(config.get("contract") or {})
+    contract = _contract(config.get("contract") or {}, config.get("symbol"))
     _finite(config.get("starting_capital"), "allocation", strict=True)
     _finite(config.get("trade_risk"), "trade risk fraction", strict=True, maximum=1)
     _finite(config.get("portfolio_risk_limit"), "portfolio risk fraction", strict=True, maximum=1)
@@ -450,12 +468,60 @@ def _process_candle(portfolio, member, ctx, candle, stamp, budget, emit) -> None
                         bid["open"] if side == "long" else ask["open"], ambiguous=False)
         return
     target = position["target"]
-    if position["intrabar"] and position["entry_at"] == stamp:
+    fresh = position["intrabar"] and position["entry_at"] == stamp
+    if fresh:
         target = None
+    if position.get("plan"):
+        event = execution.partial_bar_events(
+            side=side, bid=bid, ask=ask, stop=position["stop"], target=target,
+            levels=[] if fresh else [lv for lv in position["plan"] if not lv["done"]])
+        if event["stop"] is not None:
+            _close_position(portfolio, member, ctx, candle, stamp, emit, "STOP_LOSS", event["stop"]["price"],
+                            ambiguous=event["ambiguous"])
+            return
+        for level, price in event["levels"]:
+            if state["position"] is not None:
+                _partial_fill(portfolio, member, ctx, candle, stamp, emit, level, price)
+        if event["target"] is not None and state["position"] is not None:
+            _close_position(portfolio, member, ctx, candle, stamp, emit, "TAKE_PROFIT", event["target"]["price"],
+                            ambiguous=False)
+        position = state["position"]
+        if position is not None and position["pending_stop"] is not None:   # remainder stop applies from the next candle
+            position["stop"] = (max(position["stop"], position["pending_stop"]) if side == "long"
+                                else min(position["stop"], position["pending_stop"]))
+            position["pending_stop"] = None
+        return
     hit = execution.conservative_ohlc_exit(side=side, bid=bid, ask=ask, stop=position["stop"], target=target)
     if hit is not None:
         _close_position(portfolio, member, ctx, candle, stamp, emit, hit["reason"], hit["price"],
                         ambiguous=hit["ambiguous"])
+
+
+def _partial_fill(portfolio, member, ctx, candle, stamp, emit, level, price) -> None:
+    """Take ``level['qty']`` at ``price`` (same semantics as research/backtest.py partial_exits)."""
+    state, contract = member["state"], member["contract"]
+    position = state["position"]
+    if abs(position["quantity"] - level["qty"]) < 1e-9:          # the level takes everything that is left
+        _close_position(portfolio, member, ctx, candle, stamp, emit, "TAKE_PROFIT", price, ambiguous=False)
+        return
+    pnl = execution.position_pnl(side=position["side"], quantity_lots=level["qty"], entry=position["entry"],
+                                 exit=price, contract=contract)
+    portfolio["balance"] += pnl["net_pnl"]
+    state["realized_pnl"] += pnl["net_pnl"]
+    level["done"] = True
+    position["partial_net"] += pnl["net_pnl"]
+    position["partial_gross"] += pnl["gross_pnl"]
+    position["partial_comm"] += pnl["commission"]
+    position["partial_qty"] = round(position["partial_qty"] + level["qty"], 8)
+    position["quantity"] = round(position["quantity"] - level["qty"], 8)
+    if level["new_stop"] is not None:
+        pending = position["pending_stop"]
+        position["pending_stop"] = level["new_stop"] if pending is None else (
+            max(pending, level["new_stop"]) if position["side"] == "long" else min(pending, level["new_stop"]))
+    emit("POSITION_PARTIAL_CLOSE", side=position["side"], entry_at=position["entry_at"], entry=position["entry"],
+         exit_at=stamp, exit=price, quantity=level["qty"], remaining=position["quantity"], level_r=level["r"],
+         partial_net_pnl=pnl["net_pnl"], commission=pnl["commission"], quote="BID" if position["side"] == "long" else "ASK",
+         fill_assumption="PARTIAL_LEVEL_OR_BETTER_OPEN")
 
 
 def _pending_fill(order, bid, ask, slip, kind):
@@ -496,6 +562,14 @@ def _open_position(portfolio, member, ctx, order, entry, candle, stamp, budget, 
     if min(stop, target if target is not None else stop) <= 0:
         emit("ORDER_REJECTED", reason="INVALID_PROTECTIVE_PRICE", **public)
         return
+    plan = []
+    if rs.get("partial_exits"):
+        r_target = abs(target - entry) / distance if target is not None else math.inf
+        sign = 1.0 if side == "long" else -1.0
+        for level in execution.partial_plan(rs["partial_exits"], lots, step_size):
+            if level["r"] < r_target - 1e-12:
+                plan.append({**level, "price": entry + sign * level["r"] * distance, "done": False,
+                             "new_stop": None if level["stop_r"] is None else entry + sign * level["stop_r"] * distance})
     multiplier = lots * unit
     margin = entry * multiplier / config.get("leverage", 1)
     risk = distance * multiplier + 2 * lots * contract.commission_per_lot_side
@@ -517,6 +591,9 @@ def _open_position(portfolio, member, ctx, order, entry, candle, stamp, budget, 
                 "quantity": lots, "stop": stop, "target": target, "margin": margin, "risk": risk,
                 "initial_stop": stop, "risk_distance": distance, "fav": entry, "be_done": False,
                 "intrabar": intrabar, "entry_bar": state["bar_n"], "exit_pending": False}
+    if plan:
+        position.update(plan=plan, partial_net=0.0, partial_gross=0.0, partial_comm=0.0, partial_qty=0.0,
+                        pending_stop=None)
     state["position"] = position
     emit("ORDER_FILLED", **{key: position[key] for key in (
         "side", "signal_at", "entry_at", "entry", "quantity", "stop", "target", "margin", "risk")},
@@ -540,8 +617,13 @@ def _close_position(portfolio, member, ctx, candle, stamp, emit, reason, level, 
     state["realized_pnl"] += pnl["net_pnl"]
     state["position"] = None
     state["last_exit_bar"] = state["bar_n"]
-    emit("POSITION_CLOSED", **{key: position[key] for key in (
-        "side", "signal_at", "entry_at", "entry", "quantity", "target", "margin", "risk")},
+    summary = {key: position[key] for key in ("side", "signal_at", "entry_at", "entry", "quantity", "target", "margin", "risk")}
+    if position.get("plan"):   # the closed record covers the whole trade; earlier partial fills are already in the balance
+        summary["quantity"] = round(position["quantity"] + position["partial_qty"], 8)
+        pnl = {**pnl, "gross_pnl": pnl["gross_pnl"] + position["partial_gross"],
+               "commission": pnl["commission"] + position["partial_comm"],
+               "net_pnl": pnl["net_pnl"] + position["partial_net"], "partial_fills_net_pnl": position["partial_net"]}
+    emit("POSITION_CLOSED", **summary,
         stop=position["initial_stop"], exit_stop=position["stop"], exit_at=stamp, exit=price,
         exit_reason=reason, ambiguous=ambiguous, quote="BID" if side == "long" else "ASK",
         spread_open=candle["ask_open"] - candle["bid_open"],

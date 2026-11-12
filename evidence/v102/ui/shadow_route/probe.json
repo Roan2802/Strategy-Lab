@@ -1,0 +1,17 @@
+{
+ "eligible": {
+  "run": "fr_20261111_165608_b17d03",
+  "id": "f2682098e67301cf",
+  "name": "Gen vwap_pullback USDJPY M15 f26820",
+  "problems": []
+ },
+ "ineligible": {
+  "run": "fr_20261111_165608_b17d03",
+  "id": "f8d64e4ecbce1c3e",
+  "name": "Gen vwap_deviation USDJPY M15 f8d64e",
+  "problems": [
+   "TECHNICAL_REJECTION: defective strategy (look-ahead, invalid spec or execution)",
+   "DUPLICATE"
+  ]
+ }
+}

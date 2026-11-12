@@ -203,13 +203,47 @@ def analyze_portfolio(inputs: list[dict]) -> dict:
 
 # ----------------------------------------------------------------------------- forward portfolio helpers
 
-def fx_check(symbol: str, contract) -> dict:
-    """Is the frozen quote_to_account rate plausible for this instrument? Never silently accept a wrong one.
+try:
+    from .research.fx import FxRateUnavailable
+except ImportError:  # research/fx.py not installed: every conversion pauses, nothing is guessed
+    class FxRateUnavailable(Exception):
+        """A needed FX rate is not available."""
 
-    BLOCKED  quote currency differs from the account but no conversion pair exists, or the account is not USD.
-    PLACEHOLDER_RATE  conversion needed but the frozen rate is 1.0: flagged in every report, not blocked (existing
-             registrations use it); set a real quote_to_account to clear it.
-    WARNING  a conversion is needed and a rate was frozen: it is static, so P&L drifts with the real FX rate.
+
+def load_fx():
+    """The causal FX service, or None when research/fx.py cannot be imported."""
+    try:
+        from .data_manager import DataManager
+        from .research.fx import FxService
+    except ImportError:
+        return None
+    return FxService(DataManager())
+
+
+def fx_quote_currency(symbol: str, account: str) -> str | None:
+    """Quote currency whose P&L needs a causal conversion into ``account``, or None (no conversion, or unknown)."""
+    from .research import instruments
+
+    info = instruments.conversion_info(symbol, str(account).upper())
+    return info["quote"] if info["needed"] and info.get("quote") and info.get("pair") else None
+
+
+def risk_group(symbol: str) -> str:
+    """Correlation group for the gross-exposure cap: ASSUMED to be the instrument's asset class (fx, index, metal,
+    crypto). Real correlations are reported separately and never change order acceptance."""
+    from .research import instruments
+
+    name = instruments.canonical(symbol)
+    return instruments._STATIC[name][0] if name in instruments._STATIC else f"UNKNOWN:{name}"
+
+
+def fx_check(symbol: str, contract, fx_available: bool | None = None) -> dict:
+    """Can the P&L of this instrument be converted into the account currency from a causal series?
+
+    BLOCKED  account is not USD (the registry converts to USD only); the quote needs a pair that is not available; or
+             conversion is needed but research/fx.py is not installed (FX_RATE_UNAVAILABLE).
+    DYNAMIC_FX  conversion is needed and applied per candle through FxService; the frozen ``quote_to_account`` is
+             ignored. A candle without a rate pauses processing (reason FX_RATE_UNAVAILABLE), no fill is faked.
     UNKNOWN_INSTRUMENT  not in the instrument registry: quote currency cannot be verified.
     OK       account-currency quote.
     """
@@ -229,12 +263,13 @@ def fx_check(symbol: str, contract) -> dict:
     if not spec.get("pair"):
         return {"status": "BLOCKED", "symbol": name,
                 "reason": f"{spec['quote']} quote needs a conversion pair that is not available"}
-    if abs(float(contract.quote_to_account) - 1.0) < 1e-12:
-        return {"status": "PLACEHOLDER_RATE", "symbol": name, "pair": spec["pair"],
-                "reason": f"{spec['quote']} quote with frozen quote_to_account 1.0: P&L, margin and risk are misstated "
-                          f"unless that is the true rate; conversion via {spec['pair']} is not applied"}
-    return {"status": "WARNING", "symbol": name, "pair": spec["pair"], "quote": spec["quote"],
-            "reason": f"static frozen {spec['quote']} rate; real conversion via {spec['pair']} drifts"}
+    if fx_available is None:
+        fx_available = load_fx() is not None
+    if not fx_available:
+        return {"status": "BLOCKED", "symbol": name, "pair": spec["pair"], "reason_code": "FX_RATE_UNAVAILABLE",
+                "reason": f"{spec['quote']} quote needs {spec['pair']} but no FX service is installed (research/fx.py)"}
+    return {"status": "DYNAMIC_FX", "symbol": name, "pair": spec["pair"], "quote": spec["quote"],
+            "reason": f"{spec['quote']} P&L, margin and risk are converted per candle via {spec['pair']}"}
 
 
 def _pearson(a: list[float], b: list[float]) -> float | None:
@@ -329,3 +364,192 @@ def _correlation_class(series, min_obs, symbols, threshold, empty_reason) -> dic
     pairs = correlation_pairs(series, min_obs=min_obs, symbols=symbols, threshold=threshold)
     ok = any(p["status"] == "OK" for p in pairs)
     return {"status": "OK" if ok else "INSUFFICIENT_EVIDENCE", "pairs": pairs}
+
+
+# ----------------------------------------------------------------------------- accounting and stress (both portfolios)
+
+PRIORITY_RULE = ("Same-minute orders are evaluated in enrolment order (joined_at, then registration id); the earlier "
+                 "member consumes margin and risk budget first. Rejections carry priority_rank and are logged as "
+                 "hypothetical ORDER_REJECTED events; nothing is netted across members.")
+ASSUMED_STOP_OUT_LEVEL = 0.5
+
+
+def margin_model(config: dict) -> dict:
+    """Where a member's margin rate comes from: a frozen ``margin_model`` (instrument profile) or the frozen leverage."""
+    frozen = config.get("margin_model")
+    if isinstance(frozen, dict):
+        return {**frozen, "leverage": config.get("leverage", 1)}
+    return {"source": "FROZEN_LEVERAGE_ASSUMPTION", "status": "ASSUMED", "leverage": config.get("leverage", 1),
+            "note": "margin = notional / frozen leverage; not a broker-verified margin schedule"}
+
+
+FX_RATE_UNAVAILABLE = "FX_RATE_UNAVAILABLE"
+
+
+def _open_positions(report: dict) -> list[dict]:
+    rows = []
+    fills = {}
+    for event in report["events"]:
+        if event["kind"] == "ORDER_FILLED":
+            fills[(event["registration_id"], event["detail"].get("entry_at"))] = event["detail"]
+    for member in report["members"]:
+        position = member["state"].get("position")
+        if not position:
+            continue
+        config, contract = member["configuration"], member["configuration"]["contract"]
+        fill = fills.get((member["registration_id"], position["entry_at"]), {})
+        mark = member["state"].get("mark") or position["entry"]
+        rate = member["state"].get("fx_rate")
+        status = "OK"
+        if not rate:
+            if fx_quote_currency(config["symbol"], contract["account_currency"]) is not None:
+                status = FX_RATE_UNAVAILABLE   # the frozen quote_to_account is never a rate for a non-account quote
+            else:
+                rate = contract["quote_to_account"]
+        multiplier = position["quantity"] * contract["contract_size"] * rate if rate else None
+        rows.append({
+            "registration_id": member["registration_id"], "symbol": config["symbol"],
+            "group": risk_group(config["symbol"]), "side": position["side"], "quantity": position["quantity"],
+            "entry": position["entry"], "stop": position["stop"], "mark": mark, "margin": position["margin"],
+            "risk": position["risk"], "status": status, "multiplier": multiplier,
+            "notional": mark * multiplier if multiplier else None,
+            "slippage_cost": contract["slippage_points"] * contract["tick_size"] * multiplier if multiplier else None,
+            "spread_cost": float(fill.get("spread_open") or 0.0) * multiplier if multiplier else None})
+    return rows
+
+
+def portfolio_accounting(report: dict) -> dict:
+    """Shared-capital accounting from a committed forward report (validated or shadow portfolio alike)."""
+    portfolio, days, members, limits = report["portfolio"], report["days"], report["members"], report["limits"]
+    equity = days[-1]["equity"] if days else portfolio["balance"]
+    allocated = sum(m["allocation"] for m in members)
+    positions = _open_positions(report)
+    budget_equity = max(0.0, min(portfolio["balance"], equity))
+    open_risk = sum(p["risk"] for p in positions)
+    open_margin = sum(p["margin"] for p in positions)
+    by_symbol, by_group, exposure = defaultdict(float), defaultdict(float), defaultdict(float)
+    for p in positions:
+        by_symbol[p["symbol"]] += p["risk"]
+        by_group[p["group"]] += p["risk"]
+        if p["notional"] is not None:
+            exposure[p["symbol"]] += p["notional"]
+    peak = max([portfolio["starting_capital"], *(d["equity"] for d in days)])
+    day_start = (days[-2]["equity"] if len(days) > 1 else portfolio["starting_capital"]) if days else None
+    day_pnl = days[-1]["equity"] - day_start if days else None
+    daily_limit = limits.get("max_daily_loss")
+    reasons = defaultdict(int)
+    rejected = []
+    for event in report["events"]:
+        if event["kind"] == "ORDER_REJECTED":
+            reasons[event["detail"].get("reason", "UNKNOWN")] += 1
+            rejected.append({"registration_id": event["registration_id"], "candle_at": event["candle_at"],
+                             "reason": event["detail"].get("reason"), "halt": event["detail"].get("halt"),
+                             "priority_rank": event["detail"].get("priority_rank"),
+                             "side": event["detail"].get("side"), "hypothetical": True})
+    return {
+        "capital": {"starting": portfolio["starting_capital"], "balance": portfolio["balance"], "equity": equity,
+                    "allocated": allocated, "unallocated": portfolio["starting_capital"] - allocated,
+                    "currency": portfolio["currency"]},
+        "allocations": [{
+            "registration_id": m["registration_id"], "symbol": m["configuration"]["symbol"],
+            "allocation": m["allocation"], "realized_pnl": m["state"].get("realized_pnl", 0.0),
+            "trade_risk_fraction": m["configuration"]["trade_risk"],
+            "portfolio_risk_fraction": m["configuration"]["portfolio_risk_limit"],
+            "margin_model": margin_model(m["configuration"]), "fx": m.get("fx")} for m in members],
+        "risk": {"open_stop_risk": open_risk, "max_open_risk": budget_equity * portfolio["risk_limit"],
+                 "open_risk_fraction": open_risk / budget_equity if budget_equity else None,
+                 "by_symbol": dict(by_symbol), "by_group": dict(by_group),
+                 "group_basis": "ASSUMED_ASSET_CLASS_NOT_MEASURED_CORRELATION"},
+        "margin": {"open_margin": open_margin, "free_margin": budget_equity - open_margin,
+                   "margin_level": equity / open_margin if open_margin else None,
+                   "reservation": "checked at fill time against min(balance, equity); pending orders reserve nothing"},
+        "exposure": {"gross_notional_by_symbol": dict(exposure), "gross_notional": sum(exposure.values()),
+                     "fx_rate_unavailable": [p["registration_id"] for p in positions if p["notional"] is None],
+                     "netting": "NONE (opposite positions are two gross positions)"},
+        "daily_loss": {"limit_fraction": daily_limit, "day": days[-1]["day"] if days else None,
+                       "day_start_equity": day_start, "day_pnl": day_pnl,
+                       "used_fraction": (max(0.0, -day_pnl) / (daily_limit * day_start)
+                                         if days and daily_limit and day_start else None)},
+        "drawdown": {"limit_fraction": limits.get("max_drawdown"), "peak_equity": peak,
+                     "current_fraction": (peak - equity) / peak if peak else None},
+        "rejected_orders": {"by_reason": dict(reasons), "total": sum(reasons.values()), "recent": rejected[-50:]},
+        "priority_rule": PRIORITY_RULE, "limits": limits, "open_positions": positions,
+    }
+
+
+def stress_test(report: dict, *, gap_pct: float = 0.02, vol_multiple: float = 2.0, slippage_multiple: float = 5.0,
+                spread_multiple: float = 3.0, stop_out_level: float = ASSUMED_STOP_OUT_LEVEL) -> dict:
+    """Deterministic what-if losses on the CURRENT open positions and the configured capacity. These are
+    assumption-driven scenarios, never forecasts."""
+    portfolio, days, limits = report["portfolio"], report["days"], report["limits"]
+    equity = days[-1]["equity"] if days else portfolio["balance"]
+    peak = max([portfolio["starting_capital"], *(d["equity"] for d in days)])
+    positions = _open_positions(report)
+    open_margin = sum(p["margin"] for p in positions)
+    open_risk = sum(p["risk"] for p in positions)
+    scenarios = []
+
+    def scenario(name, loss, assumption, **extra):
+        if loss is None:   # a position without a historical FX rate: no money figure rather than a frozen-rate guess
+            scenarios.append({"name": name, "loss": None, "status": FX_RATE_UNAVAILABLE, "assumption": assumption,
+                              **extra})
+            return
+        after = equity - loss
+        breaches = []
+        if limits.get("max_daily_loss") and loss >= limits["max_daily_loss"] * equity:
+            breaches.append("DAILY_LOSS_LIMIT")
+        if limits.get("max_drawdown") and peak and (peak - after) / peak >= limits["max_drawdown"]:
+            breaches.append("MAX_DRAWDOWN")
+        if loss > portfolio["risk_limit"] * max(0.0, min(portfolio["balance"], equity)) + 1e-9:
+            breaches.append("PORTFOLIO_RISK_BUDGET_EXCEEDED")
+        level = after / open_margin if open_margin else None
+        if level is not None and level < stop_out_level:
+            breaches.append("MARGIN_CALL_ASSUMED")
+        if after <= 0:
+            breaches.append("EQUITY_EXHAUSTED")
+        scenarios.append({"name": name, "loss": loss, "loss_fraction_of_equity": loss / equity if equity else None,
+                          "equity_after": after, "margin_level_after": level, "breaches": breaches,
+                          "assumption": assumption, **extra})
+
+    note = "no open positions" if not positions else None
+    groups = defaultdict(float)
+    for p in positions:
+        groups[p["group"]] += p["risk"]
+    worst = max(groups.items(), key=lambda kv: kv[1], default=(None, 0.0))
+    scenario("CORRELATED_SAME_DIRECTION", worst[1],
+             "every position of the worst asset-class group is stopped out together", group=worst[0], note=note)
+    scenario("CORRELATIONS_GO_TO_ONE", open_risk,
+             "all groups lose their full stop risk at once (cross-asset correlation 1)", note=note)
+    fx_blocked = any(p["multiplier"] is None for p in positions)
+    scenario("GAP_THROUGH_STOP", None if fx_blocked else
+             sum(p["multiplier"] * (abs(p["entry"] - p["stop"]) + gap_pct * p["entry"]) for p in positions),
+             f"stops fill {gap_pct:.1%} of entry price beyond the stop level", gap_pct=gap_pct, note=note)
+    scenario("VOLATILITY_SHOCK", vol_multiple * open_risk,
+             f"realised stop loss is {vol_multiple}x the planned stop risk", vol_multiple=vol_multiple, note=note)
+    scenario("POOR_LIQUIDITY", None if fx_blocked else
+             sum(p["risk"] + (slippage_multiple - 1) * p["slippage_cost"] for p in positions),
+             f"exit slippage is {slippage_multiple}x the frozen slippage", slippage_multiple=slippage_multiple,
+             note=note)
+    scenario("HIGHER_SPREADS", None if fx_blocked else
+             sum(p["risk"] + (spread_multiple - 1) * p["spread_cost"] for p in positions),
+             f"exit spread is {spread_multiple}x the spread seen at entry", spread_multiple=spread_multiple,
+             note=note)
+    capacity = sum(m["configuration"]["trade_risk"] * (m["allocation"] + m["state"].get("realized_pnl", 0.0))
+                   for m in report["members"])
+    cap = portfolio["risk_limit"] * max(0.0, min(portfolio["balance"], equity))
+    if limits.get("max_positions") and report["members"]:
+        capacity = min(capacity, capacity / len(report["members"]) * limits["max_positions"])
+    scenario("MANY_SIMULTANEOUS_POSITIONS", min(capacity, cap),
+             "every member holds one position at its per-trade risk; the portfolio risk cap and max_positions bind",
+             unconstrained_loss=capacity, cap_binds=capacity > cap, members=len(report["members"]))
+    scenario("INSUFFICIENT_MARGIN", open_risk,
+             f"all stops hit; margin call assumed below margin level {stop_out_level} (no broker stop-out schedule)",
+             free_margin_before=max(0.0, min(portfolio["balance"], equity)) - open_margin,
+             open_margin=open_margin, stop_out_level=stop_out_level, note=note)
+    daily = (limits.get("max_daily_loss") or 0.0) * equity
+    scenario("DAILY_LOSS_LIMIT", open_risk,
+             "all open stop risk realised in one UTC day against the daily loss limit",
+             daily_loss_limit_amount=daily or None, limit_configured=bool(limits.get("max_daily_loss")),
+             headroom=(daily - open_risk) if daily else None, note=note)
+    return {"basis": "ASSUMED_SCENARIOS_NOT_FORECASTS", "equity": equity, "open_positions": len(positions),
+            "scenarios": scenarios}

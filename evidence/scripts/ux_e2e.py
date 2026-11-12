@@ -6,6 +6,7 @@ Routes: home | strategieen/(mijn|bouwen|automatisch|bibliotheek) | onderzoeken/(
 """
 import json
 import shutil
+import urllib.error
 import sys
 import tempfile
 import time
@@ -19,9 +20,10 @@ base = args[1] if len(args) > 1 else "http://127.0.0.1:8767"
 channel = args[2] if len(args) > 2 else "chrome"
 w, h = map(int, (args[3] if len(args) > 3 else "1600x900").split("x"))
 quick = "--quick" in sys.argv
+shadow_only = "--shadow" in sys.argv  # isolated shadow-route group, see evidence/v102/shadow_route.sh
 theme = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--theme=")), "dark")
 tag = f"{channel}-{w}x{h}-{theme}"
-results, errors = [], []
+results, errors, last404 = [], [], [""]
 
 
 def check(name, ok, detail=""):
@@ -56,7 +58,9 @@ with sync_playwright() as p:
         ctx = p.chromium.launch_persistent_context(str(profile), channel=channel, viewport={"width": w, "height": h})
         pg = ctx.pages[0] if ctx.pages else ctx.new_page()
         pg.on("pageerror", lambda e: errors.append(f"[after step {len(results)}] pageerror: {e} | {(e.stack or '').splitlines()[1:4]}"))
-        pg.on("console", lambda m: m.type == "error" and "favicon" not in m.text and errors.append(f"console: {m.text}"))
+        pg.on("response", lambda r: r.status in (404, 409, 422) and last404.__setitem__(0, f"{r.status} {r.url}"))
+        # a 404/409/422 on the /api/shadow endpoints is an expected "not available yet" state (shown as a calm notice), not a JS fault
+        pg.on("console", lambda m: m.type == "error" and "favicon" not in m.text and not (any(c in m.text for c in ("404", "409", "422")) and "/api/shadow" in last404[0]) and errors.append(f"console: {m.text}"))
         return ctx, pg
 
     ctx, pg = launch()
@@ -67,12 +71,104 @@ with sync_playwright() as p:
     line = pg.inner_text("#dash-data-line")
     check("home shows compact market-data line with Details", "Marktdata" in line and pg.locator('#dash-data-line [data-go="data"]').count() == 1, line.replace("\n", " ")[:120])
     check("home has no permanent 7-step stepper", not pg.locator("#workflow-slot").is_visible())
+    import re
+    cnt = pg.locator("#dash-data-line [data-data-counts]")
+    m = re.search(r"(\d+) actueel . (\d+) vertraagd . (\d+) gesloten", cnt.inner_text()) if cnt.count() else None
+    n_sym = pg.evaluate("fetch('/api/data/supervisor').then(r => r.json()).then(d => (d.symbols || []).length).catch(() => null)")
+    check("home data line shows counts current / delayed / closed that add up", bool(m) and (n_sym is None or sum(map(int, m.groups())) == n_sym), f"{m.group(0) if m else 'no counts'} of {n_sym}")
+    check("home data line shows last successful sync", "laatste succesvolle sync" in line or "laatste controle" in line, line.replace(chr(10), " ")[-80:])
     sup = pg.evaluate("fetch('/api/data/supervisor').then(r => r.json()).catch(() => null)")
     lagging = bool(sup) and any((x.get("lag_days") or 0) > 0 and not x.get("market_closed") for x in sup.get("symbols", []))
     check("home data line never green while instruments lag", not (lagging and pg.locator("#dash-data-line .chip.good").count()), f"lagging={lagging}")
     kl = pg.inner_text("#dash-kpi")
     check("home shows running research, forward strategies and critical errors only", all(t in kl.lower() for t in ("lopend onderzoek", "forwardstrategie", "kritieke fouten")) and "waarschuwingen" not in kl.lower())
     shot(pg, "01-home", full=True)
+
+    # ------------------------------------------------------------------ shadow route (isolated instance only)
+    if shadow_only:
+        import urllib.request
+        def jget(url):
+            with urllib.request.urlopen(url, timeout=60) as r: return json.loads(r.read())
+        def jpost(url, body=None):
+            req = urllib.request.Request(url, data=json.dumps(body or {}).encode(), headers={"Content-Type": "application/json"})
+            try:
+                with urllib.request.urlopen(req, timeout=60) as r: return r.status, json.loads(r.read() or "null")
+            except urllib.error.HTTPError as e: return e.code, json.loads(e.read() or "null")
+        real = "http://127.0.0.1:8767"
+        count = lambda b: {p["id"]: p["strategies"] for p in jget(b + "/api/shadow/portfolios")["portfolios"]}
+        real_before = count(real)
+        fwd_before = jget(base + "/api/forward/portfolios")
+        picks = json.loads((out / "probe.json").read_text(encoding="utf-8"))
+        okc, badc = picks["eligible"], picks["ineligible"]
+        check("probe found an eligible and an ineligible factory candidate", bool(okc and badc), f"{okc and okc['name']} / {badc and badc['name']}")
+        check("isolated instance starts with an empty shadow store", count(base) == {}, count(base))
+        TOAST_UP = "(document.querySelector('#lab-toast')?.textContent || '').length > 0 && !document.querySelector('#lab-toast').hidden"
+        TOAST_REFUSED = "(() => { const t = document.querySelector('#lab-toast'); return t && !t.hidden && t.textContent.startsWith('Niet toegevoegd'); })()"
+        TOAST_GONE = "(() => { const t = document.querySelector('#lab-toast'); return !t || t.hidden; })()"
+        toast = lambda: pg.inner_text("#lab-toast") if pg.locator("#lab-toast:visible").count() else ""
+        # 1. empty state -> create test portfolio through the UI
+        pg.evaluate("localStorage.removeItem('labPfMode')"); pg.evaluate("labGo('portfolio/risico')"); pg.wait_for_selector("#pf-mode", timeout=20000)
+        pg.click('#pf-mode label:has(input[value="shadow"])'); pg.wait_for_selector("#shadow-live [data-sh-create]", timeout=20000)
+        check("empty shadow view offers a create button and the experimental label", "Experimenteel" in pg.inner_text("#shadow-live"))
+        shot(pg, "s01-empty")
+        pg.click("#shadow-live [data-sh-create]"); pg.wait_for_selector("#sh-table", timeout=20000)
+        ports = count(base)
+        check("UI created exactly one test shadow portfolio", len(ports) == 1, ports)
+        pid = next(iter(ports))
+        # 2. factory candidate -> Volg in Shadow Research
+        pg.evaluate("labGo('strategieen/automatisch')"); pg.wait_for_selector("#fx-start", timeout=20000); pg.wait_for_timeout(600)
+        pg.evaluate("([r, i]) => window.labFactory.open(r, i)", [okc["run"], okc["id"]]); pg.wait_for_selector("#fx-drawer #fx-shadow", timeout=30000)
+        check("eligible candidate drawer has the button Volg in Shadow Research", pg.inner_text("#fx-shadow").strip() == "Volg in Shadow Research")
+        pg.click("#fx-shadow"); pg.wait_for_function(TOAST_UP, timeout=20000)
+        t1 = toast(); shot(pg, "s02-toast-registered")
+        check("success toast confirms the candidate is followed", "wordt gevolgd in Shadow Research" in t1, t1)
+        check("registration landed in the test portfolio only", count(base).get(pid) == 1, count(base))
+        # 3. duplicate
+        pg.wait_for_function(TOAST_GONE, timeout=15000)
+        pg.click("#fx-shadow"); pg.wait_for_function(TOAST_REFUSED, timeout=20000)
+        t2 = toast(); shot(pg, "s03-toast-duplicate")
+        check("second click is refused with a calm Dutch toast", t2.startswith("Niet toegevoegd:") and "{" not in t2 and count(base).get(pid) == 1, t2)
+        pg.keyboard.press("Escape"); pg.wait_for_function(TOAST_GONE, timeout=15000)
+        # 4. ineligible
+        pg.evaluate("([r, i]) => window.labFactory.open(r, i)", [badc["run"], badc["id"]]); pg.wait_for_selector("#fx-drawer #fx-shadow", timeout=30000)
+        pg.click("#fx-shadow"); pg.wait_for_function(TOAST_REFUSED, timeout=20000)
+        t3 = toast(); shot(pg, "s04-toast-ineligible")
+        check("ineligible candidate shows a readable refusal reason, no raw JSON", "{" not in t3 and len(t3) > 30 and count(base).get(pid) == 1, t3)
+        pg.keyboard.press("Escape"); pg.wait_for_timeout(300)
+        # 5. Portfolio > Shadow Research list + detail
+        pg.evaluate("labGo('portfolio/risico')"); pg.wait_for_selector("#sh-table tr[data-sid]", timeout=20000); pg.wait_for_timeout(800)
+        sl = pg.inner_text("#shadow-live")
+        check("strategy appears in the shadow list with experimental label", pg.locator("#sh-table tr[data-sid]").count() == 1 and "Experimenteel" in sl and "vwap_pullback" in pg.inner_text("#sh-table"), pg.inner_text("#sh-table")[:120].replace(chr(10), " "))
+        check("shadow view shows evidence class DAILY_DELAYED_FORWARD", "DAILY_DELAYED_FORWARD" in sl)
+        pg.click("#sh-table tr[data-sid]"); pg.wait_for_selector("#sh-detail .sh-detail h3 small", timeout=20000); pg.wait_for_timeout(800)
+        sd = pg.inner_text("#sh-detail")
+        shot(pg, "s05-detail", full=True)
+        check("detail shows frozen registration info (version, hash, registered at)", all(t in sd for t in ("Registratie", "Versie", "Geregistreerd")), sd[:240].replace(chr(10), " "))
+        check("detail shows experimental label and evidence class", "Experimenteel" in sd and "DAILY_DELAYED_FORWARD" in sd, sd[:100].replace(chr(10), " "))
+        # 6. Mijn strategieën: builder spec follow
+        pg.evaluate("labGo('strategieen/mijn')"); pg.wait_for_selector("#lib-rows tr[data-key]", timeout=20000); pg.wait_for_timeout(500)
+        btn = pg.locator('#lib-rows tr[data-key] [data-lib-act="shadow"]')
+        check("Mijn strategieën offers Volg in Shadow Research on eligible rows", btn.count() >= 1, btn.count())
+        if btn.count():
+            name = pg.locator('#lib-rows tr[data-key]:has([data-lib-act="shadow"])').first.locator(".name b").inner_text()
+            pg.wait_for_function(TOAST_GONE, timeout=15000)
+            btn.first.click(); pg.wait_for_function(TOAST_UP, timeout=20000)
+            t4 = toast(); shot(pg, "s06-library-toast")
+            check("library follow gives success or calm refusal toast (no raw JSON)", ("wordt gevolgd" in t4 or t4.startswith("Niet toegevoegd")) and "{" not in t4, f"{name}: {t4}")
+        # 7. promote never allowed
+        st, body = jpost(f"{base}/api/shadow/portfolios/{pid}/promote")
+        check("promote attempt is refused with NEVER_LIVE_ELIGIBLE (UI exposes no promote control)", st == 409 and "NEVER_LIVE_ELIGIBLE" in json.dumps(body) and pg.locator("#shadow-live :text-matches('Promoveer|Promote|Live zetten', 'i')").count() == 0, f"{st} {json.dumps(body)[:100]}")
+        # 8. isolation + cleanliness
+        check("real shadow portfolio untouched (strategy counts unchanged)", count(real) == real_before, f"{real_before} -> {count(real)}")
+        check("validated /api/forward/portfolios unaffected", jget(base + "/api/forward/portfolios") == fwd_before)
+        check("no horizontal overflow in the shadow route", not pg.evaluate(HSCROLL_JS))
+        check("0 JS errors in the shadow route", not errors, errors[:3])
+        ctx.close()
+        shutil.rmtree(profile, ignore_errors=True)
+        summary = {"tag": tag + "-shadow", "passed": sum(r["ok"] for r in results), "failed": sum(not r["ok"] for r in results), "results": results, "js_errors": errors[:20]}
+        (out / f"e2e-shadow-{tag}.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(json.dumps({k: summary[k] for k in ("tag", "passed", "failed")}), "JS errors:", len(errors))
+        sys.exit(0)
 
     # navigation: every section and subtab renders without errors and without horizontal overflow
     before = len(errors)
@@ -114,7 +210,29 @@ with sync_playwright() as p:
     rows = pg.locator("#dsup-rows tr").count() if pg.locator("#dsup:visible").count() else pg.locator("#data-monitor-report tr").count()
     check("data page lists markets with status", rows >= 3, rows)
     check("data page has one sync button", pg.locator("#dsup-run:visible").count() == 1 or pg.locator("#data-sync-now:visible").count() == 1)
+    check("data page sync button reads Nu synchroniseren", pg.locator("#dsup:visible").count() == 0 or pg.inner_text("#dsup-run").strip() == "Nu synchroniseren", pg.inner_text("#dsup-run") if pg.locator("#dsup-run").count() else "")
+    check("data page shows last success, scheduler status and next attempt", pg.locator("#dsup:visible").count() == 0 or all(t in pg.inner_text("#dsup") for t in ("Laatste succes", "Planner", "Volgende poging")))
     shot(pg, "02-data", full=True)
+
+    # Portfolio: Gevalideerd | Shadow Research
+    pg.evaluate("localStorage.removeItem('labPfMode')"); pg.evaluate("labGo('portfolio/risico')"); pg.wait_for_selector("#pf-mode", timeout=20000); pg.wait_for_timeout(1500)
+    check("portfolio has segmented choice Gevalideerd | Shadow Research", pg.eval_on_selector_all("#pf-mode label", "els => els.map(e => e.textContent.trim())") == ["Gevalideerd", "Shadow Research"])
+    check("portfolio defaults to Gevalideerd and hides shadow view", pg.is_checked('#pf-mode input[value="validated"]') and not pg.locator("#shadow-live").is_visible())
+    shot(pg, "02b-portfolio-validated", full=True)
+    pg.click('#pf-mode label:has(input[value="shadow"])'); pg.wait_for_selector("#shadow-live .shadow-label", timeout=20000); pg.wait_for_timeout(1500)
+    sl = pg.inner_text("#shadow-live")
+    check("shadow view carries the experimental label and evidence class", "Experimenteel — niet gevalideerd, geen echte orders" in sl and "DAILY_DELAYED_FORWARD" in sl and "REALTIME_PAPER_FORWARD" in sl, sl[:100].replace(chr(10), " "))
+    check("shadow view hides validated portfolio content", not pg.locator("#portfolio-live").is_visible())
+    check("shadow view shows list, empty state or calm unavailable notice", pg.locator("#sh-table, [data-sh-create], .v10-notice").count() >= 1)
+    check("shadow view has no horizontal overflow", not pg.evaluate(HSCROLL_JS))
+    if pg.locator("#sh-table tr[data-sid]").count():
+        pg.click("#sh-table tr[data-sid]"); pg.wait_for_selector("#sh-detail .sh-detail", timeout=20000); pg.wait_for_timeout(800)
+        sd = pg.inner_text("#sh-detail")
+        check("shadow detail shows equity, daily, trades, forward comparison and details", all(t in sd for t in ("Dagresultaten", "Trades", "Backtest tegenover forward", "Details", "Experimenteel")), sd[:80].replace(chr(10), " "))
+    shot(pg, "02c-portfolio-shadow", full=True)
+    pg.click('#pf-mode label:has(input[value="validated"])'); pg.wait_for_timeout(500)
+    check("switching back to Gevalideerd restores the validated portfolio", pg.locator("#portfolio-live").is_visible() and not pg.locator("#shadow-live").is_visible())
+    pg.evaluate("localStorage.removeItem('labPfMode')")
 
     # Mijn strategieën library
     pg.evaluate("labGo('strategieen/mijn')"); pg.wait_for_selector("#lib-rows tr[data-key]", timeout=20000); pg.wait_for_timeout(500)

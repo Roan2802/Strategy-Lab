@@ -29,3 +29,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .claude/settings.local.json
+
+# raw simulation outputs (large, regenerable via pipeline_sim.py; summaries/tables are committed)
+evidence/v102/stats/pipeline_results*.json
+evidence/v102/stats/pbo_review_results.json

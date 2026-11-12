@@ -411,12 +411,14 @@ async function openDetail(id) {
 const REPORT_ST = {
   PASSED: ['good', 'Goedgekeurd'], REJECTED: ['bad', 'Afgewezen'],
   INSUFFICIENT_EVIDENCE: ['warn', 'Onvoldoende bewijs'], TECHNICAL_BLOCKED: ['idle', 'Technisch geblokkeerd'],
+  REVIEW_REQUIRED: ['warn', 'Beoordeling nodig — PBO-waarschuwing'],
 };
 function reportStatus(x, row, eligible) {
   const given = String(first(x, 'report_status', 'verdict_status') ?? first(row, 'report_status') ?? '').toUpperCase();
   if (REPORT_ST[given]) return given;
   const raw = `${x.status || row.status || ''} ${x.promotion_status || ''} ${x.evidence_verdict || ''}`.toUpperCase();
   const tech = [].concat(x.technical || []);
+  if (/REVIEW_REQUIRED/.test(raw)) return 'REVIEW_REQUIRED';
   if (/TECHNICAL|BLOCKED/.test(raw) || (String(x.stage || row.stage) === 'L1' && /REJECT/.test(raw)) || tech.some(t => t.ok === false)) return 'TECHNICAL_BLOCKED';
   if (/INSUFFICIENT/.test(raw)) return 'INSUFFICIENT_EVIDENCE';
   if (eligible === true || /PASS|FORWARD_ELIGIBLE|APPROVED/.test(String(x.evidence_verdict || '').toUpperCase())) return 'PASSED';
@@ -528,9 +530,10 @@ function renderDetail(d, id, x) {
     <div class="fx-grp" id="fx-g-stat"><h3>Statistische betrouwbaarheid</h3>${statHtml(x)}</div>
     <div class="fx-grp" id="fx-g-final"><h3>Eindbeoordeling</h3>${finalHtml(x, row, reasons, eligible)}</div>
     <details class="fx-adv fx-more"><summary>Meer analyse</summary><div class="fx-more-grid">${[['Scorecard', x.scorecard], ['Monte Carlo', x.robustness?.monte_carlo], ['Parameter-perturbatie', x.robustness?.perturbation], ['Optimalisatie', x.optimisation], ['Multiple testing', x.multiple_testing || state.run?.multiple_testing], ['Sessies', dev.sessions], ['Regimes', dev.regimes], ['Maandresultaat', dev.monthly]].filter(a => a[1]).map(([t, o]) => `<div><div class="fx-label">${t}</div>${scorecardOrKv(t, o)}</div>`).join('') || '<span class="fx-muted">Geen extra analyses.</span>'}</div></details>
-    <div class="fx-dfoot"><button type="button" id="fx-fwd">Naar forwardtest</button><button type="button" class="secondary" id="fx-mv">Test op andere markten</button><span class="fx-muted" id="fx-fwd-note"></span></div>`;
+    <div class="fx-dfoot"><button type="button" id="fx-fwd">Naar forwardtest</button><button type="button" class="secondary" id="fx-mv">Test op andere markten</button><button type="button" class="secondary" id="fx-shadow" data-tip="Experimenteel: volg deze kandidaat dagelijks vertraagd, zonder echte orders.">Volg in Shadow Research</button><span class="fx-muted" id="fx-fwd-note"></span></div>`;
   d.querySelector('.fx-close').onclick = closeDetail;
   d.querySelector('#fx-mv').onclick = () => multimarketFor(id);
+  d.querySelector('#fx-shadow').onclick = () => window.labShadow?.follow({kind: 'factory', candidate_id: id}, row?.name || id);
   d.querySelectorAll('.fx-jump a').forEach(a => a.onclick = e => { e.preventDefault(); d.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior: 'smooth', block: 'start'}); });
   const fb = d.querySelector('#fx-fwd'), fn = d.querySelector('#fx-fwd-note');
   if (eligible === false) { fb.disabled = true; fn.textContent = reasons[0] || 'Nog niet geschikt voor forward: de eindtest is niet gehaald.'; }

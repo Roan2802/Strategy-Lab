@@ -23,7 +23,7 @@ spec = {k: v for k, v in cand["spec"].items() if k != "meta"}
 spec["symbol"], spec["timeframe"] = "DE40", "H1"
 start, end = "2014-03-01", protocol.SEALED_START
 bid, ask, _ = backtest.load_bid_ask(dm, "DE40", "H1", "2014-01-01", end)
-contract = instruments.contract_for("DE40", dm)
+contract = instruments.contract_for("DE40", dm, conversion_series=True)
 conv = instruments.conversion_series(dm, "DE40", "H1", "2014-01-01", end)
 kw = dict(capital=10000, contract=contract, commission_per_lot=0.0, trade_from=start)
 before = backtest.run_rules_backtest(spec, bid, ask, cand["params"], **kw)
